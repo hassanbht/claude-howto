@@ -3,37 +3,36 @@ name: doc-generator
 description: Generate comprehensive, accurate API documentation from source code. Use when creating or updating API documentation, generating OpenAPI specs, or when users mention API docs, endpoints, or documentation.
 ---
 
-# مولد مستندات API (API Documentation Generator Skill)
+# API Documentation Generator Skill
 
-## تولید می‌کند
+## Generates
 
-- مشخصات OpenAPI/Swagger
-- مستندات endpointهای API
-- مثال‌های استفاده از SDK
-- راهنماهای یکپارچه‌سازی
-- مرجع کدهای خطا
-- راهنماهای احراز هویت
+- OpenAPI/Swagger specifications
+- API endpoint documentation
+- SDK usage examples
+- Integration guides
+- Error code references
+- Authentication guides
 
-## ساختار مستندات
+## Documentation Structure
 
-### برای هر endpoint
+### For Each Endpoint
 
 ````markdown
 ## GET /api/v1/users/:id
 
-### توضیحات
+### Description
+Brief explanation of what this endpoint does
 
-توضیح کوتاهی از آنچه این endpoint انجام می‌دهد
+### Parameters
 
-### پارامترها
-
-| نام | نوع | الزامی | توضیحات |
+| Name | Type | Required | Description |
 |------|------|----------|-------------|
-| id | string | بله | شناسه کاربر |
+| id | string | Yes | User ID |
 
-### پاسخ
+### Response
 
-**200 موفق**
+**200 Success**
 ```json
 {
   "id": "usr_123",
@@ -43,7 +42,7 @@ description: Generate comprehensive, accurate API documentation from source code
 }
 ```
 
-**404 یافت نشد**
+**404 Not Found**
 ```json
 {
   "error": "USER_NOT_FOUND",
@@ -51,7 +50,7 @@ description: Generate comprehensive, accurate API documentation from source code
 }
 ```
 
-### مثال‌ها
+### Examples
 
 **cURL**
 ```bash
