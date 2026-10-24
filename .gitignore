@@ -100,3 +100,6 @@ scripts/.vendor-cache/
 # Local agent/tooling state
 .asm-improver/
 .gitissue/
+_fix3.py
+_fix4.py
+_phrases.py
