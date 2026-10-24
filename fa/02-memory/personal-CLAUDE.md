@@ -1,46 +1,47 @@
-# My Development Preferences
+# ترجیحات توسعه من
 
-## About Me
-- **Experience Level**: 8 years full-stack development
-- **Preferred Languages**: TypeScript, Python
-- **Communication Style**: Direct, with examples
-- **Learning Style**: Visual diagrams with code
+## درباره من
+- **سطح تجربه**: ۸ سال توسعه full-stack
+- **زبان‌های ترجیحی**: TypeScript، Python
+- **سبک ارتباط**: مستقیم، بهتر است با مثال
+- **سبک یادگیری**: نمودارهای تصویری همراه با کد
 
-## Code Preferences
+## ترجیحات کد
 
-### Error Handling
-I prefer explicit error handling with try-catch blocks and meaningful error messages.
-Avoid generic errors. Always log errors for debugging.
+### مدیریت خطا
+من مدیریت خطای صریح با `try-catch` و پیام‌های خطای معنادار را ترجیح می‌دهم.
+از خطاهای عمومی اجتناب کنید. برای سهولت دیباگ، همیشه خطاها را لاگ کنید.
 
-### Comments
-Use comments for WHY, not WHAT. Code should be self-documenting.
-Comments should explain business logic or non-obvious decisions.
+### کامنت‌ها
+کامنت‌ها باید «چرا» را توضیح دهند، نه «چه». کد خودش باید تا حد امکان خودتوضیح باشد.
+کامنت‌ها باید منطق کسب‌وکار یا تصمیمات طراحی غیربدیهی را توضیح دهند.
 
-### Testing
-I prefer TDD (test-driven development).
-Write tests first, then implementation.
-Focus on behavior, not implementation details.
+### تست
+من TDD (توسعه مبتنی بر تست) را ترجیح می‌دهم.
+ابتدا تست، سپس پیاده‌سازی.
+تمرکز بر رفتار، نه جزئیات پیاده‌سازی.
 
-### Architecture
-I prefer modular, loosely-coupled design.
-Use dependency injection for testability.
-Separate concerns (Controllers, Services, Repositories).
+### معماری
+من طراحی ماژولار با coupling پایین را ترجیح می‌دهم.
+استفاده از dependency injection برای قابلیت تست.
+جداسازی concerns، مثلاً Controllers، Services، Repositories.
 
-## Debugging Preferences
-- Use console.log with prefix: `[DEBUG]`
-- Include context: function name, relevant variables
-- Use stack traces when available
-- Always include timestamps in logs
+## ترجیحات دیباگ
+- استفاده از `console.log` با پیشوند: `[DEBUG]`
+- شامل context: نام تابع، متغیرهای مرتبط
+- در صورت وجود stack trace، ترجیح داده شود
+- همیشه timestamp در لاگ
 
-## Communication
-- Explain complex concepts with diagrams
-- Show concrete examples before explaining theory
-- Include before/after code snippets
-- Summarize key points at the end
+## نحوه ارتباط
+- توضیح مفاهیم پیچیده با نمودار
+- ابتدا مثال‌های具体، سپس نظریه
+- ارائه قطعات کد قبل/بعد از تغییر
+- خلاصه کردن نکات کلیدی در پایان
 
-## Project Organization
-I organize my projects as:
-```
+## سازماندهی پروژه
+من معمولاً پروژه‌ها را این‌گونه سازماندهی می‌کنم:
+
+```text
 project/
   ├── src/
   │   ├── api/
@@ -52,16 +53,9 @@ project/
   └── docker/
 ```
 
-## Tooling
-- **IDE**: VS Code with vim keybindings
-- **Terminal**: Zsh with Oh-My-Zsh
-- **Format**: Prettier (100 char line length)
-- **Linter**: ESLint with airbnb config
-- **Test Framework**: Jest with React Testing Library
-
----
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/memory
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+## Toolchain
+- **IDE**: VS Code با keybindingهای vim
+- **ترمینال**: Zsh + Oh-My-Zsh
+- **فرمت‌بندی**: Prettier، عرض خط ۱۰۰ کاراکتر
+- **Linter**: ESLint، پیکربندی airbnb
+- **فریم‌ورک تست**: Jest + React Testing Library

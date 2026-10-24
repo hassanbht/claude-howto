@@ -1,72 +1,71 @@
-# API Module Standards
+# مشخصات ماژول API
 
-This file supplements root CLAUDE.md for everything in /src/api/. Memory files are
-concatenated, not overridden — the root CLAUDE.md still applies, and Claude Code
-loads this file on demand when it reads, writes, or edits files in this subtree.
+این فایل مکمل `CLAUDE.md` ریشه است و بر همه محتوای زیر `/src/api/` اعمال می‌شود. فایل‌های memory الحاق می‌شوند (concatenate) نه جایگزین — `CLAUDE.md` ریشه همچنان معتبر است و Claude Code این فایل را در صورت نیاز هنگام خواندن، نوشتن یا ویرایش فایل‌های آن زیردایرکتوری بارگذاری می‌کند.
 
-## API-Specific Standards
+## قوانین اختصاصی API
 
-### Request Validation
-- Use Zod for schema validation
-- Always validate input
-- Return 400 with validation errors
-- Include field-level error details
+### اعتبارسنجی درخواست
+- استفاده از Zod برای اعتبارسنجی schema
+- همیشه ورودی را اعتبارسنجی کنید
+- در صورت شکست اعتبارسنجی، 400 برگردانید
+- جزئیات خطا در سطح فیلد ارائه دهید
 
-### Authentication
-- All endpoints require JWT token
-- Token in Authorization header
-- Token expires after 24 hours
-- Implement refresh token mechanism
+### احراز هویت
+- همه endpointها به JWT token نیاز دارند
+- token در header `Authorization` قرار می‌گیرد
+- token پس از ۲۴ ساعت منقضی می‌شود
+- مکانیزم refresh token پیاده‌سازی کنید
 
-### Response Format
+### فرمت پاسخ
 
-All responses must follow this structure:
+همه پاسخ‌ها باید از ساختار زیر پیروی کنند:
 
 ```json
 {
   "success": true,
-  "data": { /* actual data */ },
+  "data": { /* داده واقعی */ },
   "timestamp": "2025-11-06T10:30:00Z",
   "version": "1.0"
 }
 ```
 
-Error responses:
+پاسخ خطا:
+
 ```json
 {
   "success": false,
   "error": {
     "code": "VALIDATION_ERROR",
-    "message": "User message",
-    "details": { /* field errors */ }
+    "message": "پیام قابل خواندن توسط کاربر",
+    "details": { /* خطاهای فیلد */ }
   },
   "timestamp": "2025-11-06T10:30:00Z"
 }
 ```
 
-### Pagination
-- Use cursor-based pagination (not offset)
-- Include `hasMore` boolean
-- Limit max page size to 100
-- Default page size: 20
+### صفحه‌بندی
+- استفاده از صفحه‌بندی مبتنی بر cursor، نه offset
+- شامل بولی `hasMore`
+- حداکثر تعداد در هر صفحه: ۱۰۰
+- اندازه صفحه پیش‌فرض: ۲۰
 
-### Rate Limiting
-- 1000 requests per hour for authenticated users
-- 100 requests per hour for public endpoints
-- Return 429 when exceeded
-- Include retry-after header
+### محدودیت نرخ
+- کاربران احراز هویت‌شده: ۱۰۰۰ درخواست در ساعت
+- endpointهای عمومی: ۱۰۰ درخواست در ساعت
+- در صورت تجاوز، 429 برگردانید
+- شامل header `retry-after`
 
-### Caching
-- Use Redis for session caching
-- Cache duration: 5 minutes default
-- Invalidate on write operations
-- Tag cache keys with resource type
+### کش
+- استفاده از Redis برای کش جلسه
+- مدت کش پیش‌فرض: ۵ دقیقه
+- در نوشتن، کش را invalidate کنید
+- کلیدهای کش را با نوع منبع برچسب‌گذاری کنید
 
 ---
-**Last Updated**: October 10, 2026
-**Claude Code Version**: 2.1.296
-**Sources**:
+
+**آخرین به‌روزرسانی**: ۱۰ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.296
+**منابع**:
 - https://code.claude.com/docs/en/memory
 - https://github.com/anthropics/claude-code/releases/tag/v2.1.288
 - https://github.com/anthropics/claude-code/releases/tag/v2.1.293
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

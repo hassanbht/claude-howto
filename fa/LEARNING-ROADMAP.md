@@ -1,52 +1,53 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# 📚 مسیر یادگیری کد کلود
+# 📚 نقشه راه یادگیری کلود کد
 
-**جدید در کد کلود؟** این راهنما به شما کمک می‌کند ویژگی‌های کد کلود را با سرعت خود مسلط شوید. چه یک مبتدی کامل باشید چه یک developer با تجربه، با quiz self-assessment زیر شروع کنید تا مسیر مناسب برای خود را پیدا کنید.
+**با کلود کد آشنایی ندارید؟** این راهنما به شما کمک می‌کند تا با سرعت خود، قابلیت‌های کلود کد را بیاموزید. چه تازه‌کار باشید چه توسعه‌دهنده حرفه‌ای، ابتدا از تست ارزیابی خود زیر استفاده کنید تا بهترین نقطه شروع را پیدا کنید.
 
 ---
 
+<a id="find-your-level"></a>
 ## 🧭 یافتن سطح خود
 
-همه از یک جا شروع نمی‌کنند. این self-assessment سریع را بگیرید تا entry point مناسب را پیدا کنید.
+نقطه شروع هر کسی متفاوت است. ابتدا یک ارزیابی خود سریع انجام دهید تا بهترین ورودی را برای خود تایید کنید.
 
-**به این سؤالات به‌طور صادقانه پاسخ دهید:**
+**لطفاً به正直回答 به سوالات زیر:**
 
-- [ ] می‌توانم کد کلود را شروع کنم و یک مکالمه داشته باشم (`claude`)
-- [ ] یک فایل CLAUDE.md ایجاد یا ویرایش کرده‌ام
-- [ ] حداقل 3 slash command داخلی استفاده کرده‌ام (مثلاً /help، /compact، /model)
-- [ ] یک slash command یا skill سفارشی (SKILL.md) ایجاد کرده‌ام
-- [ ] یک سرور MCP پیکربندی کرده‌ام (مثلاً GitHub، database)
-- [ ] hookها را در ~/.claude/settings.json تنظیم کرده‌ام
-- [ ] subagentهای سفارشی (.claude/agents/) ایجاد یا استفاده کرده‌ام
-- [ ] از print mode (`claude -p`) برای scripting یا CI/CD استفاده کرده‌ام
+- [ ] من می‌توانم کلود کد را راه‌اندازی کرده و با آن صحبت کنم (`claude`)
+- [ ] من فایل `CLAUDE.md` را ایجاد یا ویرایش کرده‌ام
+- [ ] من حداقل ۳ دستور Slash داخلی استفاده کرده‌ام (مثلاً `/help`، `/compact`، `/model`)
+- [ ] من دستور Slash یا مهارت سفارشی ایجاد کرده‌ام (`SKILL.md`)
+- [ ] من یک سرور MCP پیکربندی کرده‌ام (مثلاً GitHub، پایگاه داده)
+- [ ] من در `~/.claude/settings.json`胡ک‌ها را تنظیم کرده‌ام
+- [ ] من subagent سفارشی ایجاد یا استفاده کرده‌ام (`.claude/agents/`)
+- [ ] من از حالت چاپ (`claude -p`) برای اسکریپت یا CI/CD استفاده کرده‌ام
 
 **سطح شما:**
 
-| Checks | سطح | شروع از | زمان تکمیل |
+| تعداد تیک | سطح | از کجا شروع شود | زمان اتمام |
 |--------|-------|----------|------------------|
-| 0-2 | **Level 1: Beginner** — Getting Started | [Milestone 1A](#milestone-1a-first-commands--memory) | ~3 ساعت |
-| 3-5 | **Level 2: Intermediate** — Building Workflows | [Milestone 2A](#milestone-2a-automation-skills--hooks) | ~5 ساعت |
-| 6-8 | **Level 3: Advanced** — Power User & Team Lead | [Milestone 3A](#milestone-3a-advanced-features) | ~5 ساعت |
+| ۰-۲ | **Level ۱: مبتدی** - از اینجا شروع کنید | [مارک ۱A](#مرکب-۱a-اولین-دستور-و-حافظه) | حدود ۳ ساعت |
+| ۳-۵ | **Level ۲: متوسط** - ایجاد گردش کار | [مارک ۲A](#مرکب-۲a-اتوماسیون-مهارت‌ها-و-هوک‌ها) | حدود ۵ ساعت |
+| ۶-۸ | **Level ۳: پیشرفته** - کاربر پیشرفته و مسئول تیم | [مارک ۳A](#مرکب-۳a-ویژگی‌های-پیشرفته) | حدود ۵ ساعت |
 
-> **Tip**: اگر مطمئن نیستید، یک سطح پایین‌تر شروع کنید. بهتر است متریال آشنا را سریع review کنید تا مفاهیم foundational را از دست بدهید.
+> **نکته**: اگر مطمئن نیستید، بهتر است از سطح پایین‌تر شروع کنید. بازبینی محتوای آشناست، همیشه بهتر از از دست دادن مفاهیم پایه است.
 
-> **نسخه تعاملی**: `/self-assessment` را در کد کلود اجرا کنید برای یک quiz هدایت‌شده تعاملی که proficiency شما را در همه ۱۰ حوزه ویژگی امتیازدهی می‌کند و یک مسیر یادگیری personalized تولید می‌کند.
+> **نسخه تعاملی**: در کلود کد دستور `/self-assessment` را اجرا کنید تا یک تست تعاملی و راهنمایی‌شده دریافت کنید، کهAll ۱۰ حوزه قابلیت را پوشش می‌دهد و یک مسیر یادگیری شخصی تولید می‌کند.
 
 ---
 
 ## 🎯 فلسفه یادگیری
 
-پوشه‌های این repository به **ترتیب یادگیری توصیه‌شده** شماره‌گذاری شده‌اند بر اساس سه اصل کلیدی:
+پوشه‌های این مخزن بر اساس **ترتیب یادگیری پیشنهادی** شماره‌گذاری شده‌اند، پشت سر ۳ اصل:
 
-1. **Dependencies** - مفاهیم foundational اول می‌آیند
-2. **Complexity** - ویژگی‌های آسان قبل از پیشرفته
-3. **Frequency of Use** - رایج‌ترین ویژگی‌ها زودتر آموزش داده می‌شوند
+۱. **وابستگی‌ها** - ابتدا مفاهیم پایه را یاد بگیرید
+۲. **پیچیدگی** - ابتدا قابلیت‌های ساده، سپس قابلیت‌های پیشرفته
+۳. **سام بکارگیری-frequency** - ابتدا قابلیت‌های رایج‌ترین
 
-این رویکرد اطمینان می‌دهد که یک foundation جامد می‌سازید در حالی که فوراً مزایای بهره‌وری به دست می‌آورید.
+این رویکرد به شما کمک می‌کند در کنار کسب سود عملیاتی سریع، پایه قوی بسازید.
 
 ---
 
@@ -54,141 +55,23 @@
 
 ```mermaid
 graph TD
-    Q["🧭 Self-Assessment Quiz<br/>Find Your Level"] --> L1
+    Q["🧭 تست ارزیابی خود<br/>یافت سطح شما"] --> L1
     Q --> L2
     Q --> L3
-## 🎯 Milestoneها
 
-### Level 1: Beginner — Getting Started (~3 ساعت)
-
-#### Milestone 1A: First Commands & Memory
-- **ماژول‌ها**: `01-slash-commands`، `02-memory`
-- **یاد می‌گیرید**: slash commandها، CLAUDE.md، memory persistence
-- **تمرین**: یک slash command نصب کنید، یک CLAUDE.md بسازید
-- **پیش‌نیاز**: هیچ
-
-#### Milestone 1B: Safe Exploration
-- **ماژول‌ها**: `08-checkpoints`، `10-cli` (basics)
-- **یاد می‌گیرید**: checkpointها، CLI basics، rewind
-- **تمرین**: از checkpoint برای آزمایش امن استفاده کنید
-- **پیش‌نیاز**: Milestone 1A
-
-### Level 2: Intermediate — Building Workflows (~5 ساعت)
-
-#### Milestone 2A: Automation (Skills + Hooks)
-- **ماژول‌ها**: `03-skills`، `06-hooks`
-- **یاد می‌گیرید**: skillها، hookها، event-driven automation
-- **تمرین**: یک skill نصب کنید، یک hook تنظیم کنید
-- **پیش‌نیاز**: Level 1
-
-#### Milestone 2B: Integration (MCP + Subagents)
-- **ماژول‌ها**: `05-mcp`، `04-subagents`
-- **یاد می‌گیرید**: سرورهای MCP، subagentها، delegation
-- **تمرین**: یک MCP server پیکربندی کنید، یک subagent استفاده کنید
-- **پیش‌نیاز**: Milestone 2A
-
-### Level 3: Advanced — Power User (~5 ساعت)
-
-#### Milestone 3A: Advanced Features
-- **ماژول‌ها**: `09-advanced-features`
-- **یاد می‌گیرید**: planning mode، permission modes، background tasks
-- **تمرین**: از planning mode و auto mode استفاده کنید
-- **پیش‌نیاز**: Level 2
-
-#### Milestone 3B: Team & Distribution
-- **ماژول‌ها**: `07-plugins`، `10-cli` (advanced)
-- **یاد می‌گیرید**: pluginها، CLI mastery، توزیع تیمی
-- **تمرین**: یک plugin نصب کنید، تنظیمات تیم را به اشتراک بگذارید
-- **پیش‌نیاز**: Milestone 3A
-
----
-
-## 🎯 پس از تکمیل چه کنیم؟
-
-پس از تکمیل همه milestoneها:
-
-1. **مستندات تیم ایجاد کنید** - تنظیمات Claude Code تیم خود را مستند کنید
-2. **پلاگین‌های سفارشی بسازید** - workflowهای تیم خود را package کنید، شامل manifest fieldهای جدیدتر (`workflows`، `channels`، `dependencies`)
-3. **`/design` را امتحان کنید** - یک mockup UI، screen flow یا landing page را روی design canvas طراحی کنید به جای نوشتن دستی HTML (v2.1.265+)
-4. **Remote Control را کاوش کنید** - یک session محلی Claude Code را از phone، browser یا app Claude ادامه دهید، یا از phone از طریق device card در app Claude شروع کنید
-5. **Web Sessions را استفاده کنید** - Claude Code را از طریق interfaceهای browser-based برای remote development استفاده کنید
-6. **Desktop App را استفاده کنید** - به ویژگی‌های Claude Code از طریق application دسکتاپ native دسترسی داشته باشید
-7. **Auto Mode را استفاده کنید** - بگذارید Claude به‌طور autonomous با یک safety classifier background کار کند
-8. **Auto Memory را leverage کنید** - بگذارید Claude preferences شما را به‌طور خودکار در طول زمان یاد بگیرد
-9. **Agent Teams را تنظیم کنید** - چند ایجنت را روی taskهای پیچیده و چندوجهی coordinate کنید
-10. **Channels را استفاده کنید** - یک MCP server متصل کنید که eventها (CI results، chat messages، webhooks) را به session در حال اجرا push می‌کند
-11. **Voice Dictation را امتحان کنید** - ورودی voice hands-free برای تعامل با Claude Code
-12. **Scheduled Tasks را استفاده کنید** - چک‌های recurring را با `/loop` و cron tools automate کنید
-13. **مثال‌ها را contribute کنید** - با community به اشتراک بگذارید
-14. **دیگران را mentor کنید** - به teammates یاد بدهید
-15. **workflowها را optimize کنید** - به‌طور مداوم بر اساس استفاده بهبود دهید
-16. **به‌روز بمانید** - Claude Code releases و ویژگی‌های جدید را دنبال کنید
-
----
-
-## 📚 منابع اضافی
-
-### مستندات رسمی
-- [Claude Code Documentation](https://code.claude.com/docs/en/overview)
-- [Anthropic Documentation](https://docs.anthropic.com)
-- [MCP Protocol Specification](https://modelcontextprotocol.io)
-
-### Blog Posts
-- [Discovering Claude Code Slash Commands](https://medium.com/@luongnv89/discovering-claude-code-slash-commands-cdc17f0dfb29)
-
-### Community
-- [Anthropic Cookbook](https://github.com/anthropics/anthropic-cookbook)
-- [MCP Servers Repository](https://github.com/modelcontextprotocol/servers)
-
----
-
-## 💬 Feedback & Support
-
-- **issue یافتید؟** در repository یک issue ایجاد کنید
-- **پیشنهاد دارید؟** یک pull request submit کنید
-- **نیاز به کمک؟** مستندات را چک کنید یا از community بپرسید
-
----
-
-**آخرین به‌روزرسانی**: October 18, 2026
-**نسخه کد کلود**: 2.1.302
-**منابع**:
-- https://code.claude.com/docs/en/overview
-- https://code.claude.com/docs/en/hooks
-- https://code.claude.com/docs/en/permission-modes
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.144
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.145
-- https://code.claude.com/docs/en/model-config
-- https://code.claude.com/docs/en/agent-teams
-- https://code.claude.com/docs/en/mcp
-- https://code.claude.com/docs/en/plugins/install
-- https://code.claude.com/docs/en/channels
-- https://code.claude.com/docs/en/remote-control
-- https://code.claude.com/docs/en/scheduled-tasks
-- https://code.claude.com/docs/en/commands
-- https://code.claude.com/docs/en/sub-agents
-**مدل‌های سازگار**: Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
-**Maintained by**: Claude How-To Contributors
-**مجوز**: Educational purposes, free to use and adapt
-
----
-
-[← بازگشت به README اصلی](README.md)
-
-
-    subgraph L1["🟢 Level 1: Beginner — Getting Started"]
+    subgraph L1["🟢 Level ۱: مبتدی - از اینجا شروع کنید"]
         direction LR
-        A["1A: First Commands & Memory<br/>Slash Commands + Memory"] --> B["1B: Safe Exploration<br/>Checkpoints + CLI Basics"]
+        A["۱A: اولین دستور و حافظه<br/>دستورات Slash + حافظه"] --> B["۱B: کاوش امن<br/>Checkpoints + راه‌اندازی CLI"]
     end
 
-    subgraph L2["🔵 Level 2: Intermediate — Building Workflows"]
+    subgraph L2["🔵 Level ۲: متوسط - ایجاد گردش کار"]
         direction LR
-        C["2A: Automation<br/>Skills + Hooks"] --> D["2B: Integration<br/>MCP + Subagents"]
+        C["۲A: اتوماسیون<br/>مهارت‌ها + هوک‌ها"] --> D["۲B: یکپارچگی<br/>MCP + Subagentها"]
     end
 
-    subgraph L3["🔴 Level 3: Advanced — Power User"]
+    subgraph L3["🔴 Level ۳: پیشرفته - کاربر پیشرفته"]
         direction LR
-        E["3A: Advanced Features<br/>Planning + Permissions"] --> F["3B: Team & Distribution<br/>Plugins + CLI Mastery"]
+        E["۳A: قابلیت‌های پیشرفته<br/>برنامه‌ریزی + مجوزها"] --> F["۳B: تیم و توزیع<br/>پلاquinها + Clerk CLI"]
     end
 
     L1 --> L2
@@ -203,10 +86,22 @@ graph TD
     style F fill:#B71C1C,color:#fff
 ```
 
-**راهنمای رنگ:**
-- 💜 Purple = شروع (self-assessment)
-- 💚 Green = Level 1 (Beginner)
-- 💙 Blue = Level 2 (Intermediate)
-- 🔴 Red = Level 3 (Advanced)
+**توضیح رنگ‌ها:**
+- 💜 بنفش: تست ارزیابی خود
+- 🟢 سبز: مسیر Level ۱ - مبتدی
+- 🔵 آبی / 🟡 طلایی: مسیر Level ۲ - متوسط
+- 🔴 سرخ: مسیر Level ۳ - پیشرفته
 
 ---
+
+## 📊 جدول کامل نقشه راه
+
+| گام | قابلیت | پیچیدگی | زمان | سطح | وابستگی | چرا بیاموزید | فاید کلیدی |
+|------|---------|-----------|------|-------|--------------|----------------|--------------|
+| **۱** | [دستورات Slash](01-slash-commands/README.md) | ⭐ مبتدی | ۳۰ دقیقه | Level ۱ | هیچ | افزایش سریع بهره‌وری (۵۵+ دستور داخلی + skillهای بسته‌بندی شده) | اتوماسیون فوری، استانداردسازی تیمی |
+| **۲** | [حافظه](02-memory/README.md) | ⭐⭐ مبتدی+ | ۴۵ دقیقه | Level ۱ | هیچ | پایه همه قابلیت‌ها | contexte پایدار، تنظیمات ترجیحی |
+| **۳** | [Checkpoints](08-checkpoints/README.md) | ⭐⭐ متوسط | ۴۵ دقیقه | Level ۱ | مدیریت peril.session | کاوش امن | آزمایش، بازیابی |
+| **۴** | [راه‌اندازی CLI](10-cli/README.md) | ⭐⭐ مبتدی+ | ۳۰ دقیقه | Level ۱ | هیچ | کاربرد اصلی CLI | حالت تعاملی و حالت چاپ |
+| **۵** | [مهارت‌ها](03-skills/README.md) | ⭐⭐ متوسط | ۱ ساعت | Level ۲ | دستورات Slash | اتوماسیون قابلیت‌های حرفه‌ای | قابلیت‌های قابل استفاده مجدد، یکپارچگی |
+| **۶** | [هوک‌ها](06-hooks/README.md) | ⭐⭐ متوسط | ۱ ساعت | Level ۲ | ابزارها، دستورات | اتوماسیون گردش کار (۳۳ رویداد، ۵ نوع) | اعتبارسنجی، درگاه کیفیت |
+| **۷** | [MCP](05-mcp/

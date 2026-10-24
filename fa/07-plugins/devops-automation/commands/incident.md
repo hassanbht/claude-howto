@@ -1,24 +1,23 @@
 ---
-description: Handle production incidents with structured response
+description: پردازش حوادث تولید با فرآیند پاسخ ساختاری
 ---
 
-# Incident Response
+# پاسخ به حادثه
 
-Structured incident response workflow:
+جریان کاری پاسخ ساختاری:
 
-1. Create incident record
-2. Assess severity and impact
-3. Notify on-call team
-4. Gather diagnostic information
-5. Coordinate response efforts
-6. Document resolution
-7. Schedule post-mortem
+1. ایجاد سوابق حادثه
+2. ارزیابی شدت و تأثیر
+3. اطلاع‌رسانی به تیم شیفت
+4. جمع‌آوری اطلاعات تشخیص
+5. هماهنگی کارهای پاسخ
+6. ثبت راه‌حل
+7. برگزاری مرور پساز
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**آخرین به‌روزرسانی**: 15 اکتبر 2026
+**نسخه Claude Code**: 2.1.300
+**منابع**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

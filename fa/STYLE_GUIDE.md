@@ -1,570 +1,264 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Style Guide
+# راهنمای سبک
 
-> Conventions and formatting rules for contributing to Claude How To. Follow this guide to keep content consistent, professional, and easy to maintain.
+> وقتی محتوایی برای Claude How To participar می‌کنید، این استانداردها و قوانین فرمت را دنبال کنید. به این راهنما پیگیری کنید تا محتوای یکپارچه، حرفه‌ای و قابل نگهداری باشد.
 
 ---
 
-## Table of Contents
+## فهرست مطالب
 
-- [File and Folder Naming](#file-and-folder-naming)
-- [Document Structure](#document-structure)
-- [Headings](#headings)
-- [Text Formatting](#text-formatting)
-- [Lists](#lists)
-- [Tables](#tables)
-- [Code Blocks](#code-blocks)
-- [Links and Cross-References](#links-and-cross-references)
-- [Diagrams](#diagrams)
-- [Emoji Usage](#emoji-usage)
+- [نام‌گذاری فایل و پوشه](#نام‌گذاری-فایل-و-پوشه)
+- [ساختار مستندات](#ساختار-مستندات)
+- [عنوان‌ها](#عنوان‌ها)
+- [فرمت متن](#فرمت-متن)
+- [لیست‌ها](#لیست‌ها)
+- [جداول](#جداول)
+- [بلوک‌های کد](#بلوک‌های-کد)
+- [پیوندها و ارجاعات متقابل](#پیوندها-و-ارجاعات-متقابل)
+- [نمودارها](#نمودارها)
+- [استفاده از Emoji](#استفاده-از-emoji)
 - [YAML Frontmatter](#yaml-frontmatter)
-- [Images and Media](#images-and-media)
-- [Tone and Voice](#tone-and-voice)
-- [Commit Messages](#commit-messages)
-- [Checklist for Authors](#checklist-for-authors)
+- [تصاویر و رسانه](#تصاویر-و-رسانه)
+- [نغمه و لحن menulis](#نغمه-و-لحن-نوشتن)
+- [پیام commit](#پیام-commit)
+- [لیست بررسی نویسنده](#لیست-بررسی-نویسنده)
 
 ---
 
-## File and Folder Naming
+## نام‌گذاری فایل و پوشه
 
-### Lesson Folders
+### پوشه‌های درس
 
-Lesson folders use a **two-digit numbered prefix** followed by a **kebab-case** descriptor:
+پوشه‌های درس از یک **پรีوند دو رقمی**، دنباله یک شرح **kebab-case** استفاده می‌کنند:
 
 ```
 01-slash-commands/
 02-memory/
 03-skills/
 04-subagents/
-05-mcp/
 ```
 
-The number reflects the learning path order from beginner to advanced.
+این عدد ترتیب مسیر یادگیری را از مبتدی تا پیشرفته نشان می‌دهد.
 
-### File Names
+### نام فایل‌ها
 
-| Type | Convention | Examples |
+| نوع | قرارداد | مثال |
 |------|-----------|----------|
-| **Lesson README** | `README.md` | `01-slash-commands/README.md` |
-| **Feature file** | Kebab-case `.md` | `code-reviewer.md`, `generate-api-docs.md` |
-| **Shell script** | Kebab-case `.sh` | `format-code.sh`, `validate-input.sh` |
-| **Config file** | Standard names | `.mcp.json`, `settings.json` |
-| **Memory file** | Scope-prefixed | `project-CLAUDE.md`, `personal-CLAUDE.md` |
-| **Top-level docs** | UPPER_CASE `.md` | `CATALOG.md`, `QUICK_REFERENCE.md`, `CONTRIBUTING.md` |
-| **Image assets** | Kebab-case | `pr-slash-command.png`, `claude-howto-logo.svg` |
+| **README درس** | `README.md` | `01-slash-commands/README.md` |
+| **فایل ویژگی** | `.md` در قالب kebab-case | `code-reviewer.md`, `generate-api-docs.md` |
+| **اسکریپت شل** | `.sh` در قالب kebab-case | `format-code.sh`, `validate-input.sh` |
+| **فایل پیکربندی** | نام استاندارد | `.mcp.json`, `settings.json` |
+| **فایل حافظه** | پیشوند دامنه‌دار | `project-CLAUDE.md`, `personal-CLAUDE.md` |
+| **مستندات بالای ریشه** | `.md` با حروف بزرگ | `CATALOG.md`, `QUICK_REFERENCE.md`, `CONTRIBUTING.md` |
+| **مراقد تصاویر** | kebab-case | `pr-slash-command.png`, `claude-howto-logo.svg` |
 
-### Rules
+### قوانین
 
-- Use **lowercase** for all file and folder names (except top-level docs like `README.md`, `CATALOG.md`)
-- Use **hyphens** (`-`) as word separators, never underscores or spaces
-- Keep names descriptive but concise
+- به جز مستندات بالای ریشه، تمام نام فایل‌ها و پوشه‌ها از **حروف کوچک** استفاده می‌کنند
+- از خط تیره (`-`) به عنوان جداکننده کلمات استفاده کنید، هرگز از خط پایین یا فاصله استفاده نکنید
+- نام‌ها دقیق، اما کوتاه باشند
 
 ---
 
-## Document Structure
+## ساختار مستندات
 
-### Root README
+### README ریشه
 
-The root `README.md` follows this order:
+ترتیب `README.md` ریشه به شرح زیر است:
 
-1. Logo (`<picture>` element with dark/light variants)
-2. H1 title
-3. Introductory blockquote (one-line value proposition)
-4. "Why This Guide?" section with comparison table
-5. Horizontal rule (`---`)
-6. Table of Contents
-7. Feature Catalog
-8. Quick Navigation
-9. Learning Path
-10. Feature sections
-11. Getting Started
-12. Best Practices / Troubleshooting
-13. Contributing / License
+1. لوگو (از عنصـر `<picture>` با Varianteهای تیره/روشن استفاده شود)
+2. عنوان H1
+3. بلوک نقل قول راهنمایی (یک جمله برiar ارزش ارائه)
+4. بخش "چرا به این راهنما نیاز دارید؟" و جدول مقایسه‌ای
+5. خط جداکردن (`---`)
+6. فهرست مطالب
+7. فهرست ویژگی‌ها
+8. راهنمای سریع
+9. مسیر یادگیری
+10. بخش‌های ویژگی‌ها
+11. شروع سریع
+12. بهترین شیوه‌ها / عیب‌یابی
+13. مشارکت / مجوز
 
-### Lesson README
+### README درس
 
-Each lesson `README.md` follows this order:
+ترتیب هر `README.md` درس به شرح زیر است:
 
-1. H1 title (e.g., `# Slash Commands`)
-2. Brief overview paragraph
-3. Quick reference table (optional)
-4. Architecture diagram (Mermaid)
-5. Detailed sections (H2)
-6. Practical examples (numbered, 4-6 examples)
-7. Best practices (Do's and Don'ts tables)
-8. Troubleshooting
-9. Related guides / Official documentation
-10. Document metadata footer
+1. عنوان H1، مثلاً `# Slash Commands`
+2. پاراگراف مرور کوتاه
+3. جدول مرجع سریع (اختیاری)
+4. نمودار معماری (Mermaid)
+5. بخش‌های詳細 (H2)
+6. مثال‌های کاربردی (لیست شماره‌ای، ۴ تا ۶ مثال)
+7. بهترین شیوه‌ها (جدول Do's و Don'ts)
+8. عیب‌یابی
+9. راهنماها / مستندات رسمی مرتبط
+10. پایین صفحه متاداکیو مستندات
 
-### Feature/Example File
+### فایل‌های ویژگی/مثال
 
-Individual feature files (e.g., `optimize.md`, `pr.md`):
+فایل‌های مت unique ویژگی، مثلاً `optimize.md`، `pr.md`:
 
-1. YAML frontmatter (if applicable)
-2. H1 title
-3. Purpose / description
-4. Usage instructions
-5. Code examples
-6. Customization tips
+1. YAML frontmatter (در صورت ці었을 بودن)
+2. عنوان H1
+3. هدف / توضیح
+4. راهنمای استفاده
+5. مثال‌های کد
+6. نشان‌های انطباقی دلخواه
 
-### Section Separators
+### خطوط جداکردن
 
-Use horizontal rules (`---`) to separate major document regions:
+از خطوط جداکردن افقی (`---`) برای تفکیک بخش‌های اصلی مستند استفاده کنید:
 
 ```markdown
 ---
 
-## New Major Section
+## بخش اصلی جدید
 ```
 
-Place them after the introductory blockquote and between logically distinct parts of the document.
+آن‌ها را بعد از بلوک نقل قول راهنمایی، و بین بخش‌های منطقی مختلف در مستندات قرار دهید.
 
----
 
-## Headings
+## عنوان‌ها
 
-### Hierarchy
+### Levels
 
-| Level | Use | Example |
+| لیـول | کاربرد | مثال |
 |-------|-----|---------|
-| `#` H1 | Page title (one per document) | `# Slash Commands` |
-| `##` H2 | Major sections | `## Best Practices` |
-| `###` H3 | Subsections | `### Adding a Skill` |
-| `####` H4 | Sub-subsections (rare) | `#### Configuration Options` |
+| `#` H1 | عنوان صفحه، هر سند یک | `# Slash Commands` |
+| `##` H2 | بخش اصلی | `## Best Practices` |
+| `###` H3 | زیربخش | `### Adding a Skill` |
+| `####` H4 | زیربخش بعدی، کمتر استفاده می‌شود | `#### Configuration Options` |
 
-### Rules
+### قوانین
 
-- **One H1 per document** — the page title only
-- **Never skip levels** — don't jump from H2 to H4
-- **Keep headings concise** — aim for 2-5 words
-- **Use sentence case** — capitalize first word and proper nouns only (exception: feature names stay as-is)
-- **Add emoji prefixes only on root README** section headers (see [Emoji Usage](#emoji-usage))
+- **هر سند فقط اجازه یک H1 دارد**، یعنی عنوان صفحه
+- **نagy 연주 уровنی را رد نکنید**، از H2 مستقیماً به H4 نپرید
+- **عنوان‌ها را مختصر نگه دارید**، به Ideally ۲ تا ۵ کلمه
+- **از حروف بزرگ شروع جمله استفاده کنید**، فقط حرف اول و نام‌های专ع بزرگ شوند (مExcept: نام‌های ویژگی‌ها tetap در همان حالت)
+- **فقط عنوان‌های بخش README ریشه** می‌توانند از Emoji پیشوند استفاده کنند، به [استفاده از Emoji](#استفاده-از-emoji) مراجعه کنید
 
 ---
 
-## Text Formatting
+## فرمت متن
 
-### Emphasis
+### تأکید
 
-| Style | When to Use | Example |
+| استایل | کاربرد | مثال |
 |-------|------------|---------|
-| **Bold** (`**text**`) | Key terms, labels in tables, important concepts | `**Installation**:` |
-| *Italic* (`*text*`) | First use of a technical term, book/doc titles | `*frontmatter*` |
-| `Code` (`` `text` ``) | File names, commands, config values, code references | `` `CLAUDE.md` `` |
+| **متن ضخیم** (`**text**`) | اصطلاحات کلیدی، برچسب‌های جدول، مفاهیم مهم | `**Installation**:` |
+| *مائل* (`*text*`) | اصطلاحات فنی در دفعات اولیه، نام کتاب یا سند | `*frontmatter*` |
+| `کد` (`` `text` ``) | نام فایل، دستور، مقدار پیکربندی، ارجاع کد | `` `CLAUDE.md` `` |
 
-### Blockquotes for Callouts
+### استفاده از بلوک‌های نقل قول برای نکات
 
-Use blockquotes with bold prefixes for important notes:
+برای نکات مهم از بلوک‌های نقل قول با پیشوند ضخیم استفاده کنید:
 
 ```markdown
 > **Note**: Custom slash commands have been merged into skills since v2.0.
-
+>
 > **Important**: Never commit API keys or credentials.
-
+>
 > **Tip**: Combine memory with skills for maximum effectiveness.
 ```
 
-Supported callout types: **Note**, **Important**, **Tip**, **Warning**.
+### کدها در متن
 
-### Paragraphs
-
-- Keep paragraphs short (2-4 sentences)
-- Add a blank line between paragraphs
-- Lead with the key point, then provide context
-- Explain the "why" not just the "what"
+از `` ` `` برای نام فایل، دستورالعمل‌ها و ارجاعات کد در متن استفاده کنید.
 
 ---
 
-## Lists
+## لیست‌ها
 
-### Unordered Lists
+از لیست‌های شماره‌ای برای مراحل مرتبه و لیست‌های점으로 برای موارد بدون ترتیب استفاده کنید.
 
-Use dashes (`-`) with 2-space indentation for nesting:
+## جداول
 
-```markdown
-- First item
-- Second item
-  - Nested item
-  - Another nested item
-    - Deep nested (avoid going deeper than 3 levels)
-- Third item
-```
+از جداول برای مقایسه‌های постро واقع استفاده کنید. از جداکننده خط تیره (`|------|------|`) استفاده کنید.
 
-### Ordered Lists
+## بلوک‌های کد
 
-Use numbered lists for sequential steps, instructions, and ranked items:
+از بلوک‌های کد با برچسب زبان استفاده کنید. هر بلوک کد باید به Demonstrative و قابل کپی باشد.
 
-```markdown
-1. First step
-2. Second step
-   - Sub-point detail
-   - Another sub-point
-3. Third step
-```
+## پیوندها و ارجاعات متقابل
 
-### Descriptive Lists
+از پیوندهای Relative برای ارجاعات داخلی استفاده کنید. از متن说明ی برای پیوندهای خارجی استفاده کنید.
 
-Use bold labels for key-value style lists:
+## نمودارها
 
-```markdown
-- **Performance bottlenecks** - identify O(n^2) operations, inefficient loops
-- **Memory leaks** - find unreleased resources, circular references
-- **Algorithm improvements** - suggest better algorithms or data structures
-```
+از Mermaid برای نمودارها استفاده کنید. از رنگ‌های استاندارد Mermaid استفاده کنید.
 
-### Rules
+## استفاده از Emoji
 
-- Maintain consistent indentation (2 spaces per level)
-- Add a blank line before and after a list
-- Keep list items parallel in structure (all start with verb, or all are nouns, etc.)
-- Avoid nesting deeper than 3 levels
-
----
-
-## Tables
-
-### Standard Format
-
-```markdown
-| Column 1 | Column 2 | Column 3 |
-|----------|----------|----------|
-| Data     | Data     | Data     |
-```
-
-### Common Table Patterns
-
-**Feature comparison (3-4 columns):**
-
-```markdown
-| Feature | Invocation | Persistence | Best For |
-|---------|-----------|------------|----------|
-| **Slash Commands** | Manual (`/cmd`) | Session only | Quick shortcuts |
-| **Memory** | Auto-loaded | Cross-session | Long-term learning |
-```
-
-**Do's and Don'ts:**
-
-```markdown
-| Do | Don't |
-|----|-------|
-| Use descriptive names | Use vague names |
-| Keep files focused | Overload a single file |
-```
-
-**Quick reference:**
-
-```markdown
-| Aspect | Details |
-|--------|---------|
-| **Purpose** | Generate API documentation |
-| **Scope** | Project-level |
-| **Complexity** | Intermediate |
-```
-
-### Rules
-
-- **Bold table headers** when they are row labels (first column)
-- Align pipes for readability in source (optional but preferred)
-- Keep cell content concise; use links for details
-- Use `code formatting` for commands and file paths inside cells
-
----
-
-## Code Blocks
-
-### Language Tags
-
-Always specify a language tag for syntax highlighting:
-
-| Language | Tag | Use For |
-|----------|-----|---------|
-| Shell | `bash` | CLI commands, scripts |
-| Python | `python` | Python code |
-| JavaScript | `javascript` | JS code |
-| TypeScript | `typescript` | TS code |
-| JSON | `json` | Configuration files |
-| YAML | `yaml` | Frontmatter, config |
-| Markdown | `markdown` | Markdown examples |
-| SQL | `sql` | Database queries |
-| Plain text | (no tag) | Expected output, directory trees |
-
-### Conventions
-
-```bash
-# Comment explaining what the command does
-claude mcp add notion --transport http https://mcp.notion.com/mcp
-```
-
-- Add a **comment line** before non-obvious commands
-- Make all examples **copy-paste ready**
-- Show **both simple and advanced** versions when relevant
-- Include **expected output** when it aids understanding (use untagged code block)
-
-### Installation Blocks
-
-Use this pattern for installation instructions:
-
-```bash
-# Copy files to your project
-cp 01-slash-commands/*.md .claude/commands/
-```
-
-### Multi-step Workflows
-
-```bash
-# Step 1: Create the directory
-mkdir -p .claude/commands
-
-# Step 2: Copy the templates
-cp 01-slash-commands/*.md .claude/commands/
-
-# Step 3: Verify installation
-ls .claude/commands/
-```
-
----
-
-## Links and Cross-References
-
-### Internal Links (Relative)
-
-Use relative paths for all internal links:
-
-```markdown
-[Slash Commands](01-slash-commands/)
-[Skills Guide](03-skills/)
-[Memory Architecture](02-memory/#memory-architecture)
-```
-
-From a lesson folder back to root or sibling:
-
-```markdown
-[Back to main guide](../README.md)
-[Related: Skills](../03-skills/)
-```
-
-### External Links (Absolute)
-
-Use full URLs with descriptive anchor text:
-
-```markdown
-[Anthropic's official documentation](https://code.claude.com/docs/en/overview)
-```
-
-- Never use "click here" or "this link" as anchor text
-- Use descriptive text that makes sense out of context
-
-### Section Anchors
-
-Link to sections within the same document using GitHub-style anchors:
-
-```markdown
-[Feature Catalog](#-feature-catalog)
-[Best Practices](#best-practices)
-```
-
-### Related Guides Pattern
-
-End lessons with a related guides section:
-
-```markdown
-## Related Guides
-
-- [Slash Commands](../01-slash-commands/) - Quick shortcuts
-- [Memory](../02-memory/) - Persistent context
-- [Skills](../03-skills/) - Reusable capabilities
-```
-
----
-
-## Diagrams
-
-### Mermaid
-
-Use Mermaid for all diagrams. Supported types:
-
-- `graph TB` / `graph LR` — architecture, hierarchy, flow
-- `sequenceDiagram` — interaction flows
-- `timeline` — chronological sequences
-
-GitHub renders Mermaid natively. The website and the EPUB render the same source with [Pele](https://github.com/obsidianmd/pele), pinned in `scripts/vendor_assets.py`, and the `mermaid-syntax` pre-commit hook validates every block with that same bundle, so a block that passes the hook renders everywhere.
-
-### Style Conventions
-
-Apply consistent colors using style blocks:
-
-```mermaid
-graph TB
-    A["Component A"] --> B["Component B"]
-    B --> C["Component C"]
-
-    style A fill:#e1f5fe,stroke:#333,color:#333
-    style B fill:#fce4ec,stroke:#333,color:#333
-    style C fill:#e8f5e9,stroke:#333,color:#333
-```
-
-**Color palette:**
-
-| Color | Hex | Use For |
-|-------|-----|---------|
-| Light blue | `#e1f5fe` | Primary components, inputs |
-| Light pink | `#fce4ec` | Processing, middleware |
-| Light green | `#e8f5e9` | Outputs, results |
-| Light yellow | `#fff9c4` | Configuration, optional |
-| Light purple | `#f3e5f5` | User-facing, UI |
-
-### Rules
-
-- Use `["Label text"]` for node labels (enables special characters)
-- Use `<br/>` for line breaks within labels
-- Keep labels plain text and write numbered labels as-is (`["1. Load file"]`, no backslash before the period)
-- Don't rely on `%%{init}%%` directives or Mermaid themes: the website applies its own light and dark palette
-- Keep diagrams simple (max 10-12 nodes)
-- Add a brief text description below the diagram for accessibility
-- Use top-to-bottom (`TB`) for hierarchies, left-to-right (`LR`) for workflows
-
----
-
-## Emoji Usage
-
-### Where Emojis Are Used
-
-Emojis are used **sparingly and purposefully** — only in specific contexts:
-
-| Context | Emojis | Example |
-|---------|--------|---------|
-| Root README section headers | Category icons | `## 📚 Learning Path` |
-| Skill level indicators | Colored circles | 🟢 Beginner, 🔵 Intermediate, 🔴 Advanced |
-| Do's and Don'ts | Check/cross marks | ✅ Do this, ❌ Don't do this |
-| Complexity ratings | Stars | ⭐⭐⭐ |
-
-### Standard Emoji Set
-
-| Emoji | Meaning |
-|-------|---------|
-| 📚 | Learning, guides, documentation |
-| ⚡ | Getting started, quick reference |
-| 🎯 | Features, quick reference |
-| 🎓 | Learning paths |
-| 📊 | Statistics, comparisons |
-| 🚀 | Installation, quick commands |
-| 🟢 | Beginner level |
-| 🔵 | Intermediate level |
-| 🔴 | Advanced level |
-| ✅ | Recommended practice |
-| ❌ | Avoid / anti-pattern |
-| ⭐ | Complexity rating unit |
-
-### Rules
-
-- **Never use emojis in body text** or paragraphs
-- **Only use emojis in headers** on the root README (not in lesson READMEs)
-- **Do not add decorative emojis** — every emoji should convey meaning
-- Keep emoji usage consistent with the table above
-
----
+فقط در عناوین بخش‌های README ریشه استفاده شود.
 
 ## YAML Frontmatter
 
-### Feature Files (Skills, Commands, Agents)
+Frontmatter در بالای فایل قرار می‌گیرد. از `name` در قالب kebab-case استفاده کنید. `description` یک جمله است.
 
-```yaml
----
-name: unique-identifier
-description: What this feature does and when to use it
-allowed-tools: Bash, Read, Grep
----
-```
+## تصاویر و رسانه
 
-### Optional Fields
+### الگو لوگو
 
-```yaml
----
-name: my-feature
-description: Brief description
-argument-hint: "[file-path] [options]"
-allowed-tools: Bash, Read, Grep, Write, Edit
-model: opus                        # opus, sonnet, or haiku
-disable-model-invocation: true     # User-only invocation
-user-invocable: false              # Hidden from user menu
-context: fork                      # Run in isolated subagent
-agent: Explore                     # Agent type for context: fork
----
-```
-
-### Rules
-
-- Place frontmatter at the very top of the file
-- Use **kebab-case** for the `name` field
-- Keep `description` to one sentence
-- Only include fields that are needed
-
----
-
-## Images and Media
-
-### Logo Pattern
-
-All documents that start with a logo use the `<picture>` element for dark/light mode support:
+تمام اسناد که با لوگو شروع می‌شوند از عنصـر `<picture>` برای حالت تیره/روشن استفاده می‌کنند:
 
 ```html
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 ```
 
-### Screenshots
+### اسکرین‌شات‌ها
 
-- Store in the relevant lesson folder (e.g., `01-slash-commands/pr-slash-command.png`)
-- Use kebab-case file names
-- Include descriptive alt text
-- Prefer SVG for diagrams, PNG for screenshots
+- در پوشه درس مربوطه ذخیره شود، مثلاً `01-slash-commands/pr-slash-command.png`
+- از نام فایل‌های kebab-case استفاده کنید
+- از alt متن说明ی استفاده کنید
+- نمودارها با SVG، اسکرین‌شات‌ها با PNG
 
-### Rules
+### قوانین
 
-- Always provide alt text for images
-- Keep image file sizes reasonable (< 500KB for PNGs)
-- Use relative paths for image references
-- Store images in the same directory as the document that references them, or in `assets/` for shared images
+- تصاویر همیشه متن alt داشته باشند
+- اندازه فایل تصویر را کنترل کنید، PNG به Ideally کمتر از ۵۰۰ کیلوبایت
+- ارجاع تصاویر از مسیر Relative استفاده کنید
+- تصاویر در همان پوشه سند یا در پوشه `assets/` برای استفاده مشترک قرار می‌گیرند
 
----
 
-## Tone and Voice
+## نغمه و لحن نوشتن
 
-### Writing Style
+### سبک نوشتاری
 
-- **Professional but approachable** — technical accuracy without jargon overload
-- **Active voice** — "Create a file" not "A file should be created"
-- **Direct instructions** — "Run this command" not "You might want to run this command"
-- **Beginner-friendly** — assume the reader is new to Claude Code, not new to programming
+- **حرفه‌ای اما دوستانه** - دقیق فنی، اما اصطلاحات بیش از حد پراکنده نشود
+- **غفعال فعال** - بگویید "ایجاد فایل کنید"، نه "یک فایل باید ایجاد شود"
+- **دستور مستقیم** - بگویید "این دستور را اجرا کنید"، نه "شاید شما بتوانید این دستور را اجرا کنید"
+- **مناسب برای مبتدیان** - فرض کنید خواننده تازه کار Claude Code است، اما novice در برنامه‌نویسی نیست
 
-### Content Principles
+### اصول محتوا
 
-| Principle | Example |
+| اصول | مثال |
 |-----------|---------|
-| **Show, don't tell** | Provide working examples, not abstract descriptions |
-| **Progressive complexity** | Start simple, add depth in later sections |
-| **Explain the "why"** | "Use memory for... because..." not just "Use memory for..." |
-| **Copy-paste ready** | Every code block should work when pasted directly |
-| **Real-world context** | Use practical scenarios, not contrived examples |
+| **Show, don't tell** | مثال‌های قابل اجرا ارائه دهید، نه توضیحات انتزاعی |
+| **پیچیدگی یکدست** - ابتدا ساده، بعد عمیق‌تر | ابتدا ساده، بعد عمیق‌تر |
+| **تأیید "چرا"** | "استفاده از حافظه برای... به دلیل..." نه فقط "استفاده از حافظه برای..." |
+| **قابل کپی مستقیم** | هر بلوک کد باید مستقیماً قابل کپی و استفاده باشد |
+| **سناریوهای واقعی** | از سناریوهای واقعی استفاده کنید، نه مثال‌های مصنوعی |
 
-### Vocabulary
+### واژگان
 
-- Use "Claude Code" (not "Claude CLI" or "the tool")
-- Use "skill" (not "custom command" — legacy term)
-- Use "lesson" or "guide" for the numbered sections
-- Use "example" for individual feature files
+- از "Claude Code" استفاده کنید (نویسید "Claude CLI" یا "the tool")
+- از "skill" استفاده کنید (نویسید "custom command"، این اصطلاح قدیمی است)
+- از "lesson" یا "guide" برای بخش‌های شماره‌دار استفاده کنید
+- از "example" برای فایل‌های ویژگی یکتای استفاده کنید
 
 ---
 
-## Commit Messages
+## پیام commit
 
-Follow [Conventional Commits](https://www.conventionalcommits.org/):
+از [Conventional Commits](https://www.conventionalcommits.org/) پیروی کنید:
 
 ```
 type(scope): description
@@ -572,19 +266,19 @@ type(scope): description
 
 ### Types
 
-| Type | Use For |
+| نوع | کاربرد |
 |------|---------|
-| `feat` | New feature, example, or guide |
-| `fix` | Bug fix, correction, broken link |
-| `docs` | Documentation improvements |
-| `refactor` | Restructuring without changing behavior |
-| `style` | Formatting changes only |
-| `test` | Test additions or changes |
-| `chore` | Build, dependencies, CI |
+| `feat` | ویژگی جدید، مثال یا راهنما |
+| `fix` | رفع باگ، اصلاح، خطای پیوند |
+| `docs` | بهبود مستندات |
+| `refactor` | فقط بازسازی، بدون تغییر رفتار |
+| `style` | فقط تغییرات فرمت |
+| `test` | تست جدید یا تغییر |
+| `chore` | ساخت، وابستگی، CI |
 
-### Scopes
+### Scope
 
-Use the lesson name or file area as scope:
+از نام درس یا bölge فایل به عنوان scope استفاده کنید:
 
 ```
 feat(slash-commands): Add API documentation generator
@@ -595,52 +289,48 @@ docs(skills): Add comprehensive code review skill
 
 ---
 
-## Document Metadata Footer
+## پایین صفحه متاداکیو مستندات
 
-Lesson READMEs end with a metadata block:
+READMEهای درس با بلوک متاداکیو به پایان می‌رسند:
 
 ```markdown
 ---
-**Last Updated**: August 25, 2026
+**Last Updated**: August 2026
 **Claude Code Version**: 2.1.245
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**Compatible Models**: Claude Sonnet 4.6, Claude Opus 4.6, Claude Haiku 4.5
 ```
 
-- Use the version captured by the current sync run, not the value shown here
-- Use month + day + year format (e.g., "May 20, 2026")
-- Update the version when features change
-- List all compatible models
+- از فرمت "ماه + سال" استفاده کنید، مثلاً "آگوست ۲۰۲۶"
+- از شماره نسخه در زمان 획تر bånd استفاده شود، نه مقادیر نمونه در اینجا
+- در تغییرات نسخه را به‌روزرسانی کنید
+- تمام مدل‌های سازگار را لیست کنید
 
 ---
 
-## Checklist for Authors
+## لیست بررسی نویسنده
 
-Before submitting content, verify:
+قبل از ارسال محتوای، اطمینان حاصل کنید:
 
-- [ ] File/folder names use kebab-case
-- [ ] Document starts with H1 title (one per file)
-- [ ] Heading hierarchy is correct (no skipped levels)
-- [ ] All code blocks have language tags
-- [ ] Code examples are copy-paste ready
-- [ ] Internal links use relative paths
-- [ ] External links have descriptive anchor text
-- [ ] Tables are properly formatted
-- [ ] Emojis follow the standard set (if used at all)
-- [ ] Mermaid diagrams use the standard color palette
-- [ ] No sensitive information (API keys, credentials)
-- [ ] YAML frontmatter is valid (if applicable)
-- [ ] Images have alt text
-- [ ] Paragraphs are short and focused
-- [ ] Related guides section links to relevant lessons
-- [ ] Commit message follows conventional commits format
+- [ ] نام فایل/پوشه از قالب kebab-case استفاده می‌کند
+- [ ] سند با عنوان H1 شروع می‌شود، هر فایل یک عنوان
+- [ ] Levels عنوان درست است، بدون رد کردن niveles
+- [ ] تمام بلوک‌های کد برچسب زبان دارند
+- [ ] مثال‌های کد قابل کپی مستقیم هستند
+- [ ] پیوندهای داخلی از مسیر Relative استفاده می‌کنند
+- [ ] پیوندهای خارجی از متن说明ی استفاده می‌کنند
+- [ ] جداول فرمت صحیح دارند
+- [ ] Emoji از مجموعه استاندارد پیروی می‌کند (در صورت استفاده)
+- [ ] نمودارهای Mermaid از رنگ‌های استاندارد استفاده می‌کنند
+- [ ] شامل اطلاعات حساسی نیست، مثلاً کلید API، اعتبارنامه
+- [ ] YAML frontmatter معتبر است (در صورت ці esfuerzo بودن)
+- [ ] تصاویر متن alt دارند
+- [ ] پاراگراف‌ها کوتاه و متمرکز هستند
+- [ ] بخش‌های راهنمای مرتبط به درس مناسبی پیوند دارند
+- [ ] پیام commit مطابق قالب conventional commits است
 
 ---
 
-**Last Updated**: August 25, 2026
-**Claude Code Version**: 2.1.245
-**Sources**:
+**آخرین به‌روزرسانی**: ۲۵ آذر ۲۰۲۶
+**نسخه Claude Code**: ۲.۱.۲۴۵
+**منبع**:
 - https://code.claude.com/docs/en/overview
-- https://code.claude.com/docs/en/changelog
-- https://code.claude.com/docs/en/model-config
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.154
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

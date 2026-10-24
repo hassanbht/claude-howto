@@ -1,0 +1,5 @@
+fa/write_*.py
+fa/*.py
+__pycache__/
+.DS_Store
+translation_temp/

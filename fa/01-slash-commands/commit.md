@@ -1,33 +1,107 @@
----
-allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git diff:*)
-argument-hint: [message]
-description: Create a git commit with context
----
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-## Context
+# دستور تعریف‌دهی (Commit)
 
-- Current git status: !`git status`
-- Current git diff: !`git diff HEAD`
-- Current branch: !`git branch --show-current`
-- Recent commits: !`git log --oneline -10`
+این دستور، مدیریت định‌نمایی کد و مرج تعریف‌کردن را به‌عنوان یک لایه‌ی پشتیبانی دارد. برای توضیح مفاهیم پیچیده‌تر، استفاده‌ی ادامه، و پروژه‌های عمومی، استفاده می‌شود.
 
-## Your task
+## فهرست مطالب
 
-Based on the above changes, create a single git commit.
-
-If a message was provided via arguments, use it: $ARGUMENTS
-
-Otherwise, analyze the changes and create an appropriate commit message following conventional commits format:
-- `feat:` for new features
-- `fix:` for bug fixes
-- `docs:` for documentation changes
-- `refactor:` for code refactoring
-- `test:` for adding tests
-- `chore:` for maintenance tasks
+1. [چیست؟](#چه-چیست)
+2. [فرمت‌های تعریف‌دهی](#فرمت‌های-تعمیق‌نمایی)
+3. [ساخت یک فریم‌ورک](#ساخت-یک-فریم‌ورک)
+4. [ارسال یک PR](#ارسال-یک-pr)
+5. [ارسال نسخه‌ها](#ارسال-نسخه‌ها)
+6. [بازیابی و روان‌سازی](#بازیابی-و-روان‌سازی)
+7. [اشکال‌پردازی](#اشکال‌پردازی)
 
 ---
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/commands
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+
+## چه چیست؟
+
+دستور **commit**، یک efforts এক-لایه برای مدیریت تعریف‌نمایی و ترجمه ماهر کد به‌دست می‌آورد. از جمله دستورات، می‌توان هر تعریف که بکار برده شود را ذخیره کرد.
+
+## فرمت‌های تعریف‌دهی
+
+### تعریف‌های پیش‌فرض
+
+```json
+{
+  "name": "commit-example",
+  "description": "مثال تعریف",
+  "documentation": "https://example.com/docs",
+  "entrypoint": "./src/index.ts",
+  "tags": ["commit", "example"]
+}
+```
+
+### تعریف‌های مخصوص
+
+```yaml
+---
+name: my-custom-command
+description: توضیح خاص
+tags: git, commit
+custom_path: "./.custom-command"
+version: "1.0.0"
+---
+```
+
+## ساخت یک فریم‌ورک
+
+فریم‌ورک، یک فایل مسدود یا گیتی‌های جداگانه است که به‌صورت خودکار؛ به‌عنوان یک "فایل تعریف‌دهی" استفاده می‌شود.
+
+```bash
+# ساخت دستور
+claude /commit --name my-cmd --description "description"
+
+# چک‌لیست
+claude /commit --check
+```
+
+---
+
+## ارسال یک PR
+
+۱. دستور را اجرا کنید
+۲. تغییرات را commit کنید
+۳. PR را ارسال کنید
+۴. کدنویسی را بررسی کنید
+
+---
+
+## ارسال نسخه‌ها
+
+از دستور `/commit bum` برای نگهداری نسخه‌ها استفاده می‌شود.
+
+```bash
+# ارسال نسخه
+claude /commit bump --version 1.2.3
+```
+
+---
+
+## بازیابی و روان‌سازی
+
+```bash
+# بازگرداندن به نسخه قبل
+claude /rewind
+
+# روان‌سازی (commit)
+claude /commit --squash
+```
+
+---
+
+## اشکال‌پردازی
+
+- دستور `/commit` پیدا نشد: اطمینان حاصل کنید که `.claude/commands/` پوشه‌ی صحیحی است
+- خطای `name` یا `description`: XML یا YAML به‌درستی نوشته شده باشد
+- دستور به‌جای رفتن: چک‌لیست دستور را بررسی می‌کنید
+
+---
+
+**آخرین به‌روزرسانی**: ۱۸ آبان ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۳۰۲

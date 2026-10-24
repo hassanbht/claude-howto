@@ -1,94 +1,91 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Claude Code Feature Catalog
+# فهرست قابلیت‌های کلود کد
 
-> راهنمای مرجع سریع برای همه featureهای Claude Code: commands، agents، skills، plugins و hooks.
+> یک مرجع سریع برای همه قابلیت‌های کلود کد: دستورات، agentها، مهارت‌ها، پلاquinها و胡ک‌ها.
 
-## خلاصه
-
-| Feature | Built-in | Examples | Total | Reference |
-|---------|----------|----------|-------|-----------|
-| Slash Commands | 60+ | 8 | 68+ | [01-slash-commands/](01-slash-commands/) |
-| Subagents | 6 | 9 | 15 | [04-subagents/](04-subagents/) |
-| Skills | 20 bundled | 6 | 26 | [03-skills/](03-skills/) |
-| Plugins | - | 3 | 3 | [07-plugins/](07-plugins/) |
-| MCP Servers | - | 4 | 4 | [05-mcp/](05-mcp/) |
-| Hooks | 33 events | 11 | 44 | [06-hooks/](06-hooks/) |
-| Memory | 7 types | 3 | 10 | [02-memory/](02-memory/) |
-| **Total** | **126** | **44** | **170** | |
-
-## Slash Commands
-
-دستورهای user-invoked که actionهای مشخصی را اجرا می‌کنند. لیست کامل در [01-slash-commands/](01-slash-commands/) و [10-cli/](10-cli/).
-
-## Permission Modes
-
-manual/default، acceptEdits، plan، auto، dontAsk، bypassPermissions — کنترل می‌کنند Claude بدون prompt چه کاری می‌تواند انجام دهد.
-
-## Subagents
-
-subagentهای تخصصی برای taskهای isolated. [04-subagents/](04-subagents/)
-
-## Skills
-
-capabilityهای auto-invoke. [03-skills/](03-skills/)
-
-## Plugins
-
-bundleهای complete solution. [07-plugins/](07-plugins/)
-
-## MCP Servers
-
-external data integrations. [05-mcp/](05-mcp/)
-
-## Hooks
-
-event-triggered automation. [06-hooks/](06-hooks/)
-
-## Memory
-
-persistent context. [02-memory/](02-memory/)
-
-## New Features
-
-ویژگی‌های جدید در Claude Code — به [09-advanced-features/](09-advanced-features/) و [CATALOG](../CATALOG.md) انگلیسی برای جزئیات مراجعه کنید.
-
-## Quick Reference Matrix
-
-### Feature Selection Guide
-
-| Need | Recommended Feature | Why |
-|------|---------------------|-----|
-| Quick shortcut | Slash Command | Manual, immediate |
-| Persistent context | Memory | Auto-loaded |
-| Complex automation | Skill | Auto-invoked |
-| Specialized task | Subagent | Isolated context |
-| External data | MCP Server | Real-time access |
-| Event automation | Hook | Event-triggered |
-| Complete solution | Plugin | All-in-one bundle |
-
-### Installation Priority
-
-1. Essential — Memory: `cp 02-memory/project-CLAUDE.md ./CLAUDE.md`
-2. Daily Use — Slash Commands: `cp 01-slash-commands/*.md .claude/commands/`
-3. Quality — Subagents: `cp 04-subagents/*.md .claude/agents/`
-4. Automation — Hooks
-5. External — MCP
-6. Advanced — Skills
-7. Complete — Plugins
-
-## Complete One-Command Installation
-
-```bash
-mkdir -p .claude/{commands,agents,skills} ~/.claude/{hooks,skills}
-# سپس فایل‌های مثال را کپی کنید (دستورات دقیق در نسخه انگلیسی CATALOG.md)
-```
+**تنقل**: [دستورات slash](#دستورات-slash) | [حالت‌های مجاز](#حالت‌های-مجاز) | [Subagentها](#subagentها) | [مهارت‌ها](#مهارت‌ها) | [پلاquinها](#پلاquinها) | [سرورهای MCP](#سرورهای-mcp) | [هوک‌ها](#هوک‌ها) | [فایل‌های Memory](#فایل‌های-memory) | [ویژگی‌های جدید مارس ۲۰۲۶](#ویژگی‌های-جدید-مارس-۲۰۲۶)
 
 ---
 
-**Last Updated**: October 2026
+## مرور کلی
 
-*Part of the [Claude How To](../) guide series*
+| قابلیت | داخلی | مثال | مجموع | مرجع |
+|---------|----------|----------|-------|-----------|
+| **دستورات Slash** | ۶۰+ | ۸ | ۶۸+ | [۰۱-دستورات-slash/README.md](01-slash-commands/README.md) |
+| **Subagentها** | ۶ | ۸ | ۱۴ | [۰۴-subagents/README.md](04-subagents/README.md) |
+| **مهارت‌ها** | ۱۰ داخلی | ۶ | ۱۶ | [۰۳-مهارت‌ها/README.md](03-skills/README.md) |
+| **پلاquinها** | - | ۳ | ۳ | [۰۷-پلاquinها/README.md](07-plugins/README.md) |
+| **سرورهای MCP** | - | ۰ | ۰ | [۰۵-mcp/README.md](05-mcp/README.md) |
+| **هوک‌ها** | ۳۳ رویداد | ۰ | ۳۳ | [۰۶-هوک‌ها/README.md](06-hooks/README.md) |
+| **Memory** | ۷ نوع | ۳ | ۱۰ | [۰۲-pāyādar/README.md](02-memory/README.md) |
+| **مجموع** | **۱۱۶** | **۲۸** | **۱۴۴** | |
+
+---
+
+## دستورات Slash
+
+دستورهای کاربر-manual برای انجام وظایف خاص.
+
+### دستورات داخلی
+
+| دستور | توضیح | سناریو کاربرد |
+|---------|-------------|-------------|
+| `/help` | نمایش اطلاعات راهنما | شروع یادگیری، آموختن دستورات |
+| `/btw` | پرسیدن سوال اضافی بدون نوشتن در contexte | تکمیل موقت سوال |
+| `/chrome` | پیکربندی ادغام کروم | اتوماسیون مرورگر |
+| `/clear` | پاک کردن تاریخچه peril.session | شروع مجدد، کاهش contexte |
+| `/diff` | نمایشگر diff تعاملی | بررسی تغییرات |
+| `/config` | نمایش/ویرایش پیکربندی | سفارشی‌سازی رفتار |
+| `/status` | نمایش وضعیت peril.session | بررسی وضعیت فعلی |
+| `/agents` | حذف شده: راهنمای در v2.1.198 حذف شد، این دستور در v2.1.281 از منوی `/` و `/help` حذف شده — لطفاً به Claude بگویید تا subagent بسازد یا مدیریت کند، یا `.claude/agents/` را ویرایش کنید | اجازه به Claude برای مدیریت subagentها |
+| `/skills` | لیست مهارت‌های موجود | مشاهده قابلیت‌های خود-حادثه-trigger |
+| `/hooks` | لیست胡ک‌های پیکربندی شده | اشکال‌زدایی اتوماسیون |
+| `/insights` | تحلیل الگوهای peril.session | بهینه‌سازی استفاده از peril.session |
+| `/install-slack-app` | نصب برنامه Slack Claude | ادغام Slack |
+| `/keybindings` | سفارشی‌سازی میانبرهای کلید | تنظیم کلیدها |
+| `/mcp` | لیست سرورهای MCP | بررسی یکپارچگی‌های خارجی |
+| `/memory` | نمایش فایل‌های memory بارگذاری شده | عیب‌ジャー بارگذاری contexte |
+| `/mobile` | تولید کد QR موبایل | دسترسی از تلفن همراه |
+| `/passes` | Sharing یک هفته رایگان Claude Code با دوستان (فقط حساب‌های sure) | توصیه به دوستان |
+| `/plugin` | مدیریت پلاquinها | نصب/حذف افزونه‌ها |
+| `/plan` | ورود به حالت برنامه‌ریزی | پیاده‌سازی پیچیده |
+| `/rewind` | بازگشت به checkpoint | لغو تغییرات، کاوش گزینه‌های جایگزین |
+| `/checkpoint` | نام مستعار `/rewind` | همان `/rewind` |
+| `/cost` | نمایش مصرف توکن | نظارت بر هزینه‌ها |
+| `/context` | نمایش استفاده از janbe contexte | مدیریت طول peril.session |
+| `/export` | خروجی peril.session | ذخیره برای مرجع |
+| `/extra-usage` | پیکربندی محدودیت‌های استفاده اضافی | مدیریت نرخ |
+| `/feedback` | ارسال بازخورد یا گزارش باگ | گزارش مشکل |
+| `/login` | احراز هویت از طریق Anthropic | دسترسی به قابلیت‌ها |
+| `/logout` | خروج از حساب | تغییر حساب |
+| `/sandbox` | تغییر حالت sandbox | اجرای امن دستورات |
+| `/doctor` | اجرای تشخیص | عیب‌ジャー |
+| `/reload-plugins` | بارگذاری مجدد پلاquinهای نصب شده. از v2.1.221 به بعد، بیشتر نصب‌ها به طور فوری فعال می‌شوند؛ فقط وقتی خلاصه-install نشان می‌دهد `Run /reload-plugins to activate.` نیاز است | مدیریت پلاquin |
+| `/release-notes` | نمایش توضیحات آپدیت | مشاهده ویژگی‌های جدید |
+| `/remote-control` | فعال‌سازی کنترل از راه دور | دسترسی از راه دور |
+| `/permissions` | مدیریت مجوزها | کنترل دسترسی |
+| `/rename` | تغییر نام peril.session فعلی | سازمانdding peril.sessionها |
+| `/resume` | بازیابی peril.session قبلی | ادامه کار |
+| `/tasks` | نمایش وظایف پس‌زمینه | نظارت بر عملیات async |
+| `/copy` | کپی آخرین پاسخ به کلیپ بورد | به اشتراک گذاشتن سریع خروجی |
+| `/teleport` | انتقال peril.session به ماشین دیگر | ادامه کار از راه دور |
+| `/desktop` | باز کردن برنامه Claude Desktop | تغییر به رابط دسکتاپ |
+| `/theme` | تغییر رنگ posed | سفارشی‌سازی ظاهر |
+| `/usage` | نمایش آمار استفاده از API | نظارت بر سهم و مصرف |
+| `/fork` | کپی peril.session فعلی به یک peril.session پس‌زمینه جدید (v2.1.212+) | کاوش موازی گزینه‌های جایگزین |
+| `/subtask` | ایجاد یک subagent forked که peril.session کامل را ارث می‌برد، نتیجه را به peril.session فعلی برمی‌گرداند (v2.1.212+) | تفویض وظایف جانبی بدون متدelling sketch |
+| `/stats` | نمایش آمار peril.session | مشاهده شاخص‌های peril.session |
+| `/statusline` | پیکربندی وضعیت خط | سفارشی‌سازی نمایش وضعیت |
+| `/stickers` | سفارش březهای Claude Code | جایزه تفریحی |
+| `/fast` | تغییر حالت خروجی سریع | شتاب دادن پاسخ |
+| `/terminal-setup` | پیکربندی ادغام ترمینال | تنظیم ویژگی‌های ترمینال |
+| `/upgrade` | باز کردن صفحه ارتقا برای تغییر به طرح بالاتر | ارتقا طرح |
+
+### دستورات سفارشی (نمونه‌ها)
+
+| دستور | توضیح | سناریو کاربرد | دامنه |
+|---------|-------------|-------------|--------|

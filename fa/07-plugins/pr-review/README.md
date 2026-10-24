@@ -1,104 +1,104 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
-</picture>
+---
+name: PR 审查插件
+description: 为 Pull Request 提供完整的代码审查工作流
+tags: plugins, code-review, pull-request
+---
 
-# PR Review Plugin
+# PR 审查插件
 
-Complete PR review workflow with security, testing, and documentation checks.
+完整的 PR 审查工作流，包含安全、测试和文档检查。
 
-## Features
+## 功能
 
-✅ Security analysis
-✅ Test coverage checking
-✅ Documentation verification
-✅ Code quality assessment
-✅ Performance impact analysis
+✅ 安全分析
+✅ 测试覆盖率检查
+✅ 文档校验
+✅ 代码质量评估
+✅ 性能影响分析
 
-## Installation
+## 安装
 
 ```bash
 claude --plugin-dir ./07-plugins/pr-review
 ```
 
-## What's Included
+## 包含内容
 
-### Slash Commands
-- `/review-pr` - Comprehensive PR review
-- `/check-security` - Security-focused review
-- `/check-tests` - Test coverage analysis
+### Slash 命令
+- `/review-pr` - 全面 PR 审查
+- `/check-security` - 面向安全的审查
+- `/check-tests` - 测试覆盖率分析
 
-### Subagents
-- `security-reviewer` - Security vulnerability detection
-- `test-checker` - Test coverage analysis
-- `performance-analyzer` - Performance impact evaluation
+### 子 agents
+- `security-reviewer` - 安全漏洞检测
+- `test-checker` - 测试覆盖率分析
+- `performance-analyzer` - 性能影响评估
 
-### MCP Servers
-- GitHub integration for PR data
+### MCP 服务器
+- 用于 PR 数据的 GitHub 集成
 
 ### Hooks
-- `pre-review.js` - Pre-review validation
+- `pre-review.js` - 审查前验证
 
-## Usage
+## 使用
 
-### Basic PR Review
+### 基础 PR 审查
+
 ```
 /review-pr
 ```
 
-### Security Check Only
+### 仅安全检查
+
 ```
 /check-security
 ```
 
-### Test Coverage Check
+### 仅测试覆盖率检查
+
 ```
 /check-tests
 ```
 
-## Requirements
+## 要求
 
 - Claude Code 2.1+
-- GitHub access
-- Git repository
+- GitHub 访问权限
+- Git 仓库
 
-## Configuration
+## 配置
 
-Set up your GitHub token:
+设置 GitHub token：
+
 ```bash
 export GITHUB_TOKEN="your_github_token"
 ```
 
-## Example Workflow
+## 示例工作流
 
 ```
-User: /review-pr
+用户：/review-pr
 
 Claude:
-1. Runs pre-review hook (validates git repo)
-2. Fetches PR data via GitHub MCP
-3. Delegates security review to security-reviewer subagent
-4. Delegates testing to test-checker subagent
-5. Delegates performance to performance-analyzer subagent
-6. Synthesizes all findings
-7. Provides comprehensive review report
+1. 运行 pre-review hook（验证 git 仓库）
+2. 通过 GitHub MCP 获取 PR 数据
+3. 将安全审查委派给 security-reviewer subagent
+4. 将测试分析委派给 test-checker subagent
+5. 将性能分析委派给 performance-analyzer subagent
+6. 汇总所有发现
+7. 提供完整审查报告
 
-Result:
-✅ Security: No critical issues found
-⚠️  Testing: Coverage is 65%, recommend 80%+
-✅ Performance: No significant impact
-📝 Recommendations: Add tests for edge cases
+结果：
+✅ 安全：未发现关键问题
+⚠️  测试：覆盖率为 65%，建议达到 80%+
+✅ 性能：没有明显影响
+📝 建议：为边界情况添加测试
 ```
 
 ---
 
-**Last Updated**: October 18, 2026
-**Claude Code Version**: 2.1.302
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.131
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.138
-- https://code.claude.com/docs/en/model-config
+**最后更新**: 2026 年 10 月 18 日
+**Claude Code 版本**: 2.1.302
+**来源**:
 - https://code.claude.com/docs/en/plugins/cli-reference
 - https://code.claude.com/docs/en/plugins/install
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

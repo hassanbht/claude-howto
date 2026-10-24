@@ -1,22 +1,14 @@
 ---
 name: alert-analyzer
-description: Analyzes monitoring alerts and system metrics
+description: 分析监控告警和系统指标
 tools: Read, Grep, Bash
 ---
 
-# Alert Analyzer
+# 告警分析器
 
-Analyzes system health and alerts:
-- Alert correlation
-- Trend analysis
-- Root cause identification
-- Metric visualization
-- Proactive issue detection
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+分析系统健康状况和告警：
+- 告警关联分析
+- 趋势分析
+- 根因识别
+- 指标可视化
+- 主动问题检测

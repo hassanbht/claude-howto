@@ -1,22 +1,21 @@
 ---
-description: Validate documentation for completeness and accuracy
+description: 校验文档的完整性与准确性
 ---
 
-# Documentation Validation
+# 文档校验
 
-Validate documentation quality:
+校验文档质量：
 
-1. Check for broken links
-2. Verify code examples
-3. Ensure completeness
-4. Check formatting
-5. Validate against actual code
+1. 检查是否有损坏链接
+2. 验证代码示例
+3. 确保内容完整
+4. 检查格式
+5. 对照实际代码进行校验
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**最后更新**: 2026 年 10 月 15 日
+**Claude Code 版本**: 2.1.300
+**来源**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

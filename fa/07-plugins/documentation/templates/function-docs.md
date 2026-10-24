@@ -1,38 +1,38 @@
-# Function: `functionName`
+# 函数：`functionName`
 
-## Description
-Brief description of what the function does.
+## 描述
+简要说明这个函数的作用。
 
-## Signature
+## 签名
 ```typescript
 function functionName(param1: Type1, param2: Type2): ReturnType
 ```
 
-## Parameters
+## 参数
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| param1 | Type1 | Yes | Description of param1 |
-| param2 | Type2 | No | Description of param2 |
+| 参数 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| param1 | Type1 | 是 | param1 的说明 |
+| param2 | Type2 | 否 | param2 的说明 |
 
-## Returns
-**Type**: `ReturnType`
+## 返回值
+**类型**：`ReturnType`
 
-Description of what is returned.
+返回内容的说明。
 
-## Throws
-- `Error`: When invalid input is provided
-- `TypeError`: When wrong type is passed
+## 抛出异常
+- `Error`：在输入无效时抛出
+- `TypeError`：在传入错误类型时抛出
 
-## Examples
+## 示例
 
-### Basic Usage
+### 基本用法
 ```typescript
 const result = functionName('value1', 'value2');
 console.log(result);
 ```
 
-### Advanced Usage
+### 高级用法
 ```typescript
 const result = functionName(
   complexParam1,
@@ -40,19 +40,11 @@ const result = functionName(
 );
 ```
 
-## Notes
-- Additional notes or warnings
-- Performance considerations
-- Best practices
+## 备注
+- 其他说明或警告
+- 性能注意事项
+- 最佳实践
 
-## See Also
-- [Related Function](#)
-- [API Documentation](#)
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+## 另请参阅
+- [相关函数](#)
+- [API 文档](#)

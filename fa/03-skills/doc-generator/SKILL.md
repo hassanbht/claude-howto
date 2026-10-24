@@ -1,38 +1,39 @@
 ---
 name: doc-generator
-description: Generate comprehensive, accurate API documentation from source code. Use when creating or updating API documentation, generating OpenAPI specs, or when users mention API docs, endpoints, or documentation.
+description: تولید مستندات جامع و دقیق API از کد منبع. برای ایجاد یا به‌روزرسانی مستندات API، تولید مشخصات OpenAPI، یا وقتی که کاربر به مستندات API، نقاط پایگاه یا توضیحات اشاره می‌کند، مورد استفاده قرار می‌گیرد.
 ---
 
-# API Documentation Generator Skill
+# مهارت تولید مستندات API
 
-## Generates
+## موارد قابل تولید
 
-- OpenAPI/Swagger specifications
-- API endpoint documentation
-- SDK usage examples
-- Integration guides
-- Error code references
-- Authentication guides
+- مشخصات OpenAPI / Swagger
+- مستندات نقاط پایگاه API
+- مثال‌های استفاده از SDK
+- راهنمای یکپارچگی
+- مرجع کدهای خطا
+- راهنمای اعتبارسنجی
 
-## Documentation Structure
+## ساختاری مستندات
 
-### For Each Endpoint
+### نحوه نوشتن هر نقطه پایگاه
 
 ````markdown
 ## GET /api/v1/users/:id
 
-### Description
-Brief explanation of what this endpoint does
+### توضیح
+توضیح کوتاه چه کاری انجام می‌دهد
 
-### Parameters
+### پارامترها
 
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| id | string | Yes | User ID |
+| نام | نوع | الزامی | توضیح |
+|------|------|------|------|
+| id | string | بله | شناسه کاربر |
 
-### Response
+### پاسخ
 
-**200 Success**
+**۲۰۰ موفقیت**
+
 ```json
 {
   "id": "usr_123",
@@ -42,7 +43,8 @@ Brief explanation of what this endpoint does
 }
 ```
 
-**404 Not Found**
+**۴۰۴ یافت نشد**
+
 ```json
 {
   "error": "USER_NOT_FOUND",
@@ -50,15 +52,17 @@ Brief explanation of what this endpoint does
 }
 ```
 
-### Examples
+### مثال
 
 **cURL**
+
 ```bash
 curl -X GET "https://api.example.com/api/v1/users/usr_123" \
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
 **JavaScript**
+
 ```javascript
 const user = await fetch('/api/v1/users/usr_123', {
   headers: { 'Authorization': 'Bearer token' }
@@ -66,6 +70,7 @@ const user = await fetch('/api/v1/users/usr_123', {
 ```
 
 **Python**
+
 ```python
 response = requests.get(
     'https://api.example.com/api/v1/users/usr_123',
@@ -74,11 +79,3 @@ response = requests.get(
 user = response.json()
 ```
 ````
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/skills
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

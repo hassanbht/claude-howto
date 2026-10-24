@@ -1,44 +1,65 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Hooks
+# مرجع胡ک‌ها
 
-Hooks scriptهای automated هستند که در پاسخ به eventهای specific در طول sessionهای Claude Code اجرا می‌شوند. آن‌ها automation، validation، permission management و custom workflowها را فراهم می‌کنند.
+胡ک‌ها دستورات شل هستند که در رخ دادن رویدادهای Claude Code به صورت خودکار اجرا می‌شوند، برای اتوماسیون کارهایی مانند فرمت화، اعتبارسنجی، اعلان، بررسی امنیتی و غیره.
 
-## مرور کلی
+## مروری کلی
 
-Hooks actionهای automated (shell commands، HTTP webhooks، LLM prompts، MCP tool calls، یا subagent evaluations) هستند که به‌طور خودکار هنگام رخ دادن eventهای specific در Claude Code اجرا می‌شوند. آن‌ها JSON input دریافت می‌کنند و نتایج را از طریق exit codeها و JSON output communicate می‌کنند.
+胡ک‌ها یک مکانیزم اتوماسیون مبتنی بر رویداد هستند. آن‌ها در زمان انجام برخی اقدامات در Claude Code به صورت خودکار اجرا می‌شوند، بدون نیاز به فعال‌سازی دستی شما.
 
-**ویژگی‌های کلیدی:**
-- automation event-driven
-- input/output مبتنی بر JSON
-- پشتیبانی از hook typeهای `command`، `http`، `mcp_tool`، `prompt` و `agent`
-- pattern matching برای hookهای tool-specific
+استفاده‌های رایج:
 
-## Configuration
+- فرمت화 خودکار قبل از نوشتن فایل
+- اجرای تست قبل از commit
+- اسکن مسائل امنیتی
+- ثبت دستورات Bash
+- اعتبارسنجی پرامپت کاربر
+- ارسال اعلان به تیم
 
-Hooks در settings files با structure specific configure می‌شوند:
-- `~/.claude/settings.json` - تنظیمات کاربر (همه پروژه‌ها)
-- `.claude/settings.json` - تنظیمات پروژه (shareable، committed)
-- `.claude/settings.local.json` - تنظیمات محلی پروژه (committed نمی‌شود)
-- Managed policy - تنظیمات organization-wide
-- Plugin `hooks/hooks.json` - hookهای plugin-scoped
-- Skill/Agent frontmatter - hookهای component lifetime
+## انواع胡ک
 
-### Basic Configuration Structure
+Claude Code ۳۳ رویداد胡ک را پشتیبانی می‌کند، به چهار گروه بر اساس کاربرد تقسیم شده‌اند. ۵ نوع handler وجود دارد: `command`، `http`، `mcp_tool`، `prompt`، `agent`.
+
+- **胡ک ابزارها**: `PreToolUse`، `PostToolUse`، `PostToolUseFailure`، `PostToolBatch`، `PermissionRequest`، `PermissionDenied`
+- **胡ک جلسه**: `SessionStart`، `Setup`، `SessionEnd`، `Stop`، `StopFailure`، `SubagentStart`، `SubagentStop`
+- **胡ک وظیفه**: `UserPromptSubmit`، `UserPromptExpansion`، `MessageDisplay`، `TaskCompleted`، `TaskCreated`، `TeammateIdle` (`TaskCompleted` و `TaskCreated` فقط وقتی ابزار todo فعال است اجرا می‌شوند — به طور پیش‌فرض فقط در مدل‌های Claude 3.x، Opus ۴ تا ۴.۷، Sonnet ۴ تا ۴.۶ و Haiku ۴.۵ در دسترس است؛ `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` می‌تواند آن را بازیابی کند)
+- **胡ک چرخه عمر**: `ConfigChange`، `CwdChanged`، `DirectoryAdded`، `FileChanged`، `PreCompact`، `PostCompact`، `PreModelSwitch`، `PostModelSwitch`، `WorktreeCreate`، `WorktreeRemove`، `Notification`، `InstructionsLoaded`، `Elicitation`، `ElicitationResult`
+
+## نصب
+
+```bash
+mkdir -p ~/.claude/hooks
+cp 06-hooks/*.sh ~/.claude/hooks/
+chmod +x ~/.claude/hooks/*.sh
+```
+
+سپس در `~/.claude/settings.json` پیکربندی کنید:
+
 ```json
 {
   "hooks": {
-    "EventName": [
+    "PreToolUse": [
       {
-        "matcher": "ToolPattern",
+        "matcher": "Write",
         "hooks": [
           {
             "type": "command",
-            "command": "your-command-here",
-            "timeout": 60
+            "command": "~/.claude/hooks/format-code.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/security-scan.sh"
           }
         ]
       }
@@ -47,46 +68,53 @@ Hooks در settings files با structure specific configure می‌شوند:
 }
 ```
 
-**فیلدهای کلیدی:** `matcher` (pattern برای match کردن نام tool)، `hooks` (array تعریف hookها)، `type` (command/prompt/http/mcp_tool/agent)، `command`، `timeout`، `once`، `async`، `asyncRewake`، `shell`، `statusMessage`، `onFailure`.
+## استفاده
 
-> **یادداشت**: برخی eventها default timeout پایین‌تری دارند. `UserPromptSubmit` default command/http/mcp_tool را به 30 ثانیه کاهش می‌دهد و `MessageDisplay` به 10 ثانیه. hookهای `SessionEnd` budget 1.5 ثانیه‌ای share می‌کنند.
+胡ک‌ها وقتی رویداد مطابق پیدا می‌شود، به صورت خودکار اجرا می‌شوند. می‌توانید آن‌ها را به عنوان 콜بک رویداد Claude Code در نظر بگیرید.
 
-## Matcher Patterns
+## مثال‌های رایج
 
-patternهای مختلف برای match کردن نام toolها پشتیبانی می‌شوند (`"Write"`، `"Edit|Write"`، `"*"`). برای جزئیات exact به فایل اصلی `06-hooks/README.md` مراجعه کنید.
+- `format-code.sh` - فرمت화 خودکار قبل از نوشتن
+- `pre-commit.sh` - اجرای تست قبل از commit
+- `security-scan.sh` - انجام اسکن امنیتی
+- `log-bash.sh` - ثبت دستورات Bash
+- `validate-prompt.sh` - اعتبارسنجی ورودی
+- `notify-team.sh` - ارسال اعلان
 
-## Hook Types
+## بهترین شیوه‌ها
 
-- **command**: اجرای shell command
-- **prompt**: evaluation مبتنی بر LLM
-- **http**: webhook خارجی
-- **mcp_tool**: invocation ابزار MCP (v2.1.118+)
-- **agent**: subagent evaluation
+-胡ک‌ها را کوتاه و مشخص نگه دارید
+- فقط مسئولیت واحد انجام دهید
+- ابتدا در محیط محلی تست کنید
+- منطق تجاری پیچیده را در胡ک قرار ندهید
+- در مورد اثرات جانبی مراقب باشید
 
-## Hook Events
+## عیب‌یابی
 
-eventهای مختلفی پشتیبانی می‌شوند (PreToolUse، PostToolUse، UserPromptSubmit، Stop، SessionStart، SessionEnd، MessageDisplay و ...). برای لیست کامل و payloadها به فایل اصلی مراجعه کنید.
+- مسیر فایل و مجوزها را بررسی کنید
+- تأیید کنید اسکریپت قابل اجرا است
+- نحوی settings.json را بررسی کنید
+- سازگاری نسخه Claude Code را بررسی کنید
 
-## Examples
+## مفاهیم مرتبط
 
-فایل اصلی چند example ارائه می‌دهد (auto-format، security scanner، prompt validator، context tracker، ...). برای کد کامل به `06-hooks/README.md` مراجعه کنید.
+- [Checkpoints و Rewind](../08-checkpoints/README.md)
+- [دستورات Slash](../01-slash-commands/README.md)
+- [مهارت‌ها](../03-skills/README.md)
+- [Subagents](../04-subagents/README.md)
+- [پلاگین‌ها](../07-plugins/README.md)
+- [ویژگی‌های پیشرفته](../09-advanced-features/README.md)
 
-## Best Practices
+## منابع بیشتر
 
-- hookها را focused و سریع نگه دارید.
-- از `async` برای عملیات طولانی استفاده کنید.
-- timeoutها را مناسب تنظیم کنید.
-- JSON output را validate کنید.
-
-## Additional Resources
-
-- [Official Hooks Documentation](https://code.claude.com/docs/en/hooks)
-- [Skills Guide](../03-skills/)
-- [MCP Guide](../05-mcp/)
+- [راهنمای حافظه](../02-memory/README.md)
+- [مستندات رسمی胡ک‌ها](https://code.claude.com/docs/en/hooks)
+- [مرجع CLI](https://code.claude.com/docs/en/cli-reference)
 
 ---
 
-**Last Updated**: October 18, 2026
-**Claude Code Version**: 2.1.302
-
-*Part of the [Claude How To](../) guide series*
+**آخرین به‌روزرسانی**: ۱۹ شهریور ۲۰۲۶
+**نسخه Claude Code**: ۲.۱.۲۷۸
+**منبع**:
+- https://code.claude.com/docs/en/hooks
+- https://code.claude.com/docs/en/tools-reference#task-tool-availability

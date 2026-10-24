@@ -1,21 +1,13 @@
 ---
 name: performance-analyzer
-description: Performance impact analysis
+description: 性能影响分析
 tools: Read, Grep, Bash
 ---
 
-# Performance Analyzer
+# 性能分析器
 
-Evaluates performance impact of changes:
-- Algorithm complexity
-- Database query efficiency
-- Memory usage
-- Caching opportunities
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+评估变更对性能的影响：
+- 算法复杂度
+- 数据库查询效率
+- 内存使用
+- 缓存机会

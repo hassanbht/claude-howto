@@ -1,23 +1,22 @@
 ---
-description: Deploy application to production or staging
+description: 将应用部署到生产或预发环境
 ---
 
-# Deploy Application
+# 应用部署
 
-Execute deployment workflow:
+执行部署工作流：
 
-1. Run pre-deployment checks
-2. Build application
-3. Run tests
-4. Deploy to target environment
-5. Run health checks
-6. Notify team on Slack
+1. 运行部署前检查
+2. 构建应用
+3. 运行测试
+4. 部署到目标环境
+5. 运行健康检查
+6. 在 Slack 上通知团队
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**最后更新**: 2026 年 10 月 15 日
+**Claude Code 版本**: 2.1.300
+**来源**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

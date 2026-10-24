@@ -1,26 +1,58 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
+
+# دستور بهینه‌سازی متمرکز
+
+دستور `/optimize`، برآورد بهینه‌سازی و مرج تعریف‌دهی، به‌صورت خودکار، کاربر، مدل هوشمند را به‌صورت خودکار، آموزش می‌دهد.
+
+## چیستی این دستور
+
+دستور `/optimize`، استانداردهای کد‌نویسی یا عملکرد، به‌صورت خودکار، کدها را پیشنهاد می‌کند. از طریق ارائه‌ی مثال‌ها، قوانین و اصول، این کار به‌روز است.
+
+## روش‌پردازی
+
+دستور `/optimize`، مراحل زیر را به‌صورت خودکار انجام می‌دهد:
+
+۱. **پکیج‌بندی**: کدهای موردنظر را شناسایی می‌کند و فهرست می‌کند
+۲. **پس‌نمایی**: خروجی‌ها، پیکربندی‌ها، و متغیرها را به‌نمایی می‌کند
+۳. **بررسی**: کدها را برای بهبود، تحلیل می‌کند
+۴. **پیشنهاد**: با استفاده از استانداردها، پیشنهادی می‌کند
+
+## مثال‌ها
+
+### مثال ۱: بهینه‌سازی فرمان
+
+```bash
+# استفاده در آپ‌سارکر
+/optimize
+
+# استفاده در مسیر مدVERSE
+/optimize --target ./src/app.py
+```
+
+### مثال ۲: بهینه‌سازی HTML
+
+```bash
+# در رشته‌های عکس‌آوری، هم‌زمان
+/optimize --code-base docs/api
+```
+
+## مزایا
+
+- **بهینه‌سازی خودکار**: کدها را به‌عنوان پیشنهادات خودبه‌به‌یه می‌کند
+- **استانداردسازی**: پیکربندی‌های استاندارد را از قبل، تکمیل می‌کند
+- **دوره‌های کوتاه‌تر**: کمترین زمان، می‌تواند طی شود
+- **خروجی شفاف**: پیشنهادات، با توضیحات، قابل درک هستند
+
+## اشکال‌پردازی
+
+- `submit error`: مطمئن شوید که فایل‌ها، پوشه‌ی صحیحی هستند
+- `no matches found`: اطمینان حاصل کنید که استانداردها، در دستور، تعیین‌شده‌اند
+- `out of disk space`: دسکتاپ را بررسی کنید
+
 ---
-description: Analyze code for performance issues and suggest optimizations
----
 
-# Code Optimization
-
-Review the provided code for the following issues in order of priority:
-
-1. **Performance bottlenecks** - identify O(n²) operations, inefficient loops
-2. **Memory leaks** - find unreleased resources, circular references
-3. **Algorithm improvements** - suggest better algorithms or data structures
-4. **Caching opportunities** - identify repeated computations
-5. **Concurrency issues** - find race conditions or threading problems
-
-Format your response with:
-- Issue severity (Critical/High/Medium/Low)
-- Location in code
-- Explanation
-- Recommended fix with code example
-
----
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/commands
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**آخرین به‌روزرسانی**: ۱۸ آبان ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۳۰۲

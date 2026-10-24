@@ -1,120 +1,122 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
-</picture>
+---
+name: DevOps 自动化插件
+description: 为部署、监控和故障处理提供自动化工作流
+tags: plugins, devops, automation
+---
 
-# DevOps Automation Plugin
+# DevOps 自动化插件
 
-Complete DevOps automation for deployment, monitoring, and incident response.
+完整的 DevOps 自动化工作流，覆盖部署、监控和事故响应。
 
-## Features
+## 功能
 
-✅ Automated deployments
-✅ Rollback procedures
-✅ System health monitoring
-✅ Incident response workflows
-✅ Kubernetes integration
+✅ 自动化部署
+✅ 回滚流程
+✅ 系统健康监控
+✅ 事故响应工作流
+✅ Kubernetes 集成
 
-## Installation
+## 安装
 
 ```bash
 claude --plugin-dir ./07-plugins/devops-automation
 ```
 
-## What's Included
+## 包含内容
 
-### Slash Commands
-- `/deploy` - Deploy to production or staging
-- `/rollback` - Rollback to previous version
-- `/status` - Check system health
-- `/incident` - Handle production incidents
+### Slash 命令
+- `/deploy` - 部署到生产或预发环境
+- `/rollback` - 回滚到上一个版本
+- `/status` - 检查系统健康
+- `/incident` - 处理生产事故
 
-### Subagents
-- `deployment-specialist` - Deployment operations
-- `incident-commander` - Incident coordination
-- `alert-analyzer` - System health analysis
+### 子 agents
+- `deployment-specialist` - 部署操作
+- `incident-commander` - 事故协调
+- `alert-analyzer` - 系统健康分析
 
-### MCP Servers
-- Kubernetes integration
+### MCP 服务器
+- Kubernetes 集成
 
-### Scripts
-- `deploy.sh` - Deployment automation
-- `rollback.sh` - Rollback automation
-- `health-check.sh` - Health check utilities
+### 脚本
+- `deploy.sh` - 部署自动化
+- `rollback.sh` - 回滚自动化
+- `health-check.sh` - 健康检查工具
 
 ### Hooks
-- `pre-deploy.js` - Pre-deployment validation
-- `post-deploy.js` - Post-deployment tasks
+- `pre-deploy.js` - 部署前验证
+- `post-deploy.js` - 部署后任务
 
-## Usage
+## 使用
 
-### Deploy to Staging
+### 部署到预发环境
+
 ```
 /deploy staging
 ```
 
-### Deploy to Production
+### 部署到生产环境
+
 ```
 /deploy production
 ```
 
-### Rollback
+### 回滚
+
 ```
 /rollback production
 ```
 
-### Check Status
+### 检查状态
+
 ```
 /status
 ```
 
-### Handle Incident
+### 处理事故
+
 ```
 /incident
 ```
 
-## Requirements
+## 要求
 
 - Claude Code 2.1+
-- Kubernetes CLI (kubectl)
-- Cluster access configured
+- Kubernetes CLI（kubectl）
+- 已配置集群访问
 
-## Configuration
+## 配置
 
-Set up your Kubernetes config:
+设置 Kubernetes 配置：
+
 ```bash
 export KUBECONFIG=~/.kube/config
 ```
 
-## Example Workflow
+## 示例工作流
 
 ```
-User: /deploy production
+用户：/deploy production
 
 Claude:
-1. Runs pre-deploy hook (validates kubectl, cluster connection)
-2. Delegates to deployment-specialist subagent
-3. Runs deploy.sh script
-4. Monitors deployment progress via Kubernetes MCP
-5. Runs post-deploy hook (waits for pods, smoke tests)
-6. Provides deployment summary
+1. 运行 pre-deploy hook（验证 kubectl 和集群连接）
+2. 将部署委派给 deployment-specialist subagent
+3. 运行 deploy.sh 脚本
+4. 通过 Kubernetes MCP 监控部署进度
+5. 运行 post-deploy hook（等待 pods 就绪，执行 smoke tests）
+6. 提供部署总结
 
-Result:
-✅ Deployment complete
-📦 Version: v2.1.0
-🚀 Pods: 3/3 ready
-⏱️  Time: 2m 34s
+结果：
+✅ 部署完成
+📦 版本：v2.1.0
+🚀 Pods：3/3 已就绪
+⏱️  用时：2m 34s
 ```
 
 ---
 
-**Last Updated**: October 18, 2026
-**Claude Code Version**: 2.1.302
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.131
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.138
-- https://code.claude.com/docs/en/model-config
+**最后更新**: 2026 年 10 月 18 日
+**Claude Code 版本**: 2.1.302
+**来源**:
 - https://code.claude.com/docs/en/plugins/cli-reference
 - https://code.claude.com/docs/en/plugins/install
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

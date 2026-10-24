@@ -1,349 +1,309 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Checkpoints and Rewind
+# Checkpoints و Rewind
 
-Checkpoints allow you to save conversation state and rewind to previous points in your Claude Code session. This is invaluable for exploring different approaches, recovering from mistakes, or comparing alternative solutions.
+Checkpoints به شما اجازه می‌دهند وضعیت peril.session را ذخیره کنید و در peril.sessionهای Claude Code به نقطه‌های زمانی قبلی بازگردید. چه در حال کاوش راه‌های مختلف هستید، خطا برطرف می‌کنید، یا مسیرهای پیاده‌سازی مختلف را مقایسه می‌کنید، این قابلیت بسیار کاربردی است.
 
-## Overview
+## مروری کلی
 
-Checkpoints allow you to save conversation state and rewind to previous points, enabling safe experimentation and exploration of multiple approaches. They are snapshots of your conversation state, including:
-- All messages exchanged
-- File modifications made
-- Tool usage history
-- Session context
+Checkpoints وضعیت peril.session را ذخیره می‌کنند، به شما امکان می-daar به راحتی کاوش کنید و多ép راه‌ها را آزمایش کنید. به طور essentiel、آن‌ها عکس‌کردنی از وضعیت فعلی peril.session هستند، شامل:
 
-Checkpoints are invaluable when exploring different approaches, recovering from mistakes, or comparing alternative solutions.
+- تمام پیام‌های رد و بدل شده
+- تغییرات فایل انجام شده
+- تاریخچه استفاده از ابزارها
+- شرایط настоящее peril.session
 
-## Key Concepts
+وقتی در حال کروش verschiedenen پیاده‌سازی هستید، بازیابی از خطاها، یا مقایسه راه‌های جایگزین، این ویژگی به طور ویژه مفید است.
 
-| Concept | Description |
+## مفاهیم اصلی
+
+| مفهوم | توضیحات |
 |---------|-------------|
-| **Checkpoint** | Snapshot of conversation state including messages, files, and context |
-| **Rewind** | Return to a previous checkpoint, discarding subsequent changes |
-| **Branch Point** | Checkpoint from which multiple approaches are explored |
+| **Checkpoint** | عکس‌برداری از peril.session شامل پیام‌ها، فایل‌ها و contexte |
+| **Rewind** | بازگشت به checkpoint قبلی و حذف تغییرات بعدی |
+| **نقطه شاخه** | از همان checkpoint شروع کنید و راه‌های مختلفی را کاوش کنید |
 
-## Accessing Checkpoints
+## دسترسی به Checkpoints
 
-You can access and manage checkpoints in two primary ways:
+می‌توانید از دو روش اصلی برای دسترسی و مدیریت checkpoints استفاده کنید:
 
-### Using Keyboard Shortcut
-Press `Esc` twice (`Esc` + `Esc`) to open the checkpoint interface and browse saved checkpoints.
+### استفاده از میانبر‌های کلیدی
 
-### Using Slash Command
-Use the `/rewind` command (aliases: `/checkpoint`, `/undo`) for quick access:
+دو بار `Esc` (`Esc` + `Esc`) را بزنید تا antarmuka checkpoints باز شود و checkpoints ذخیره شده را مرور کنید.
+
+### استفاده از دستور Slash
+
+از دستور `/rewind` (نام مستعار: `/checkpoint`، `/undo`) برای ورود سریع به این antarmuka استفاده کنید:
 
 ```bash
-# Open rewind interface
+# باز کردن antarmuka rewind
 /rewind
 
-# Or use the alias
+# یا استفاده از نام مستعار
 /checkpoint
 ```
 
-## Rewind Options
+## گزینه‌های Rewind
 
-When you rewind, you are presented with a menu of six options:
+ هنگام بازگشت، antarmuka‌ای با پنج گزینه خواهید دید:
 
-1. **Restore code and conversation** -- Revert both files and messages to that checkpoint
-2. **Restore conversation** -- Rewind messages only, keep your current code as-is
-3. **Restore code** -- Revert file changes only, keep the full conversation history
-4. **Summarize from here** -- Compress the conversation from this point forward into an AI-generated summary, freeing context window space. Messages before the selected point stay intact. No files on disk are changed. The original messages are preserved in the session transcript. You can optionally provide instructions to focus the summary on specific topics.
-5. **Summarize up to here** -- The backward counterpart: compress everything *before* the selected point into an AI-generated summary, keeping the messages from this point forward intact. Together with "Summarize from here" this gives you bidirectional, targeted compaction of your context window. No files on disk are changed, and the original messages are preserved in the session transcript.
-6. **Never mind** -- Cancel and return to the current state
+1. **بازگردانی کد و peril.session** - فایل‌ها و پیام‌ها را به آن checkpoint بازگردانید
+2. **بازگردانی peril.session** - فقط پیام‌ها را بازگردانید، کد فعلی را حفظ کنید
+3. **بازگردانی کد** - فقط تغییرات فایل را بازگردانید، تاریخچه کامل peril.session را حفظ کنید
+4. **از اینجا خلاصه کنید** - pericol.sessionهای این نقطه به بعد را به یک خلاصه تولید شده توسط AI فشرده کنید، به جای حذف کامل. پیام‌های اصلی همچنان در ذخیره نگه داشته می‌شوند. همچنین می‌توانید موضوعاتی که باید خلاصه بر اساس آن‌ها MELP کنید، مشخص کنید.
+5. **چنین نداریم** - لغو و بازگشت به وضعیت فعلی
 
-> **Note**: After restoring the conversation or choosing **Summarize from here**, the original prompt from the selected message is restored into the input field so you can re-send or edit it. Choosing **Summarize up to here** leaves you at the end of the conversation with the input empty.
+## Checkpoints خودکار
 
-> **`/clear` is no longer a hard boundary (v2.1.191+)**: `/rewind` can resume from a checkpoint taken *before* you ran `/clear`. Clearing the conversation no longer permanently discards the state that preceded it — you can rewind back across the clear if you need that earlier code or context again.
+Claude Code به طور خودکار checkpoints برای شما ایجاد می‌کند:
 
-## Automatic Checkpoints
+- **هر پرامپت کاربر** - هر بار کاربر ورودی می‌دهد، یک checkpoint جدید ایجاد می‌شود
+- **ذخیره پایدار** - checkpoints با peril.session ذخیره می‌شوند، بنابراین بعد از بازیابی peril.session همچنان می‌توانید از `/rewind` استفاده کنید
+- **پاکسازی خودکار** - checkpoints قدیمی ۳۰ روز بعد به صورت خودکار پاک می‌شوند
 
-Claude Code automatically creates checkpoints for you:
+این بدان معناست که می‌توانید هر زمان به هر نقطه‌ای در گذشته، از چند دقیقه قبل تا چند روز قبل، بازگردید.
 
-- **Every user prompt** - A new checkpoint is created with each user input
-- **Persistent** - Checkpoints are saved with the conversation, so `/rewind` still works after you resume a session
-- **Auto-cleaned** - Checkpoints are automatically cleaned up after 30 days
+## سناریوهای کاربردی
 
-This means you can always rewind to any previous point in your conversation, from a few minutes ago to days before.
-
-## Use Cases
-
-| Scenario | Workflow |
+| سناریو | گردش کار |
 |----------|----------|
-| **Exploring Approaches** | Save → Try A → Save → Rewind → Try B → Compare |
-| **Safe Refactoring** | Save → Refactor → Test → If fail: Rewind |
-| **A/B Testing** | Save → Design A → Save → Rewind → Design B → Compare |
-| **Mistake Recovery** | Notice issue → Rewind to last good state |
+| **کاوش راه‌های مختلف** | ذخیره → کاوش راه A → ذخیره → Rewind → کاوش راه B → مقایسه |
+| **بازسازی امن** | ذخیره → بازسازی → تست → اگر شکست خورد: Rewind |
+| **آ/B تست** | ذخیره → طراحی A → ذخیره → Rewind → طراحی B → مقایسه |
+| **بازیابی از خطا** | پیدا کردن مشکل → Rewind به آخرین حالت صحت |
 
-## Using Checkpoints
 
-### Viewing and Rewinding
+## نحوه استفاده از Checkpoints
 
-Press `Esc` twice or use `/rewind` to open the checkpoint browser. You'll see a list of all available checkpoints with timestamps. Select any checkpoint to rewind to that state.
+### مشاهده و بازگردانی
 
-### Checkpoint Details
+دو بار `Esc` را بزنید، یا از `/rewind` برای باز کردن مرورگر checkpoints استفاده کنید. شما antarmuka‌ای از checkpoints موجود با تاریخچه می‌بینید. هر checkpoint را انتخاب کنید تا به آن وضعیت بازگردید.
 
-Each checkpoint shows:
-- Timestamp of when it was created
-- Files that were modified
-- Number of messages in the conversation
-- Tools that were used
+## جزئیات Checkpoint
 
-## Practical Examples
+هر checkpoint موارد زیر را نمایش می‌دهد:
 
-### Example 1: Exploring Different Approaches
+- زمان ایجاد
+- فایل‌های تغییر یافته
+- تعداد پیام‌ها در peril.session
+- ابزارهای استفاده شده
 
-```
-User: Let's add a caching layer to the API
 
-Claude: I'll add Redis caching to your API endpoints...
-[Makes changes at checkpoint A]
+## مثال‌های کاربردی
 
-User: Actually, let's try in-memory caching instead
+نمونه‌های قابل استفاده بیشتر به فارسی در [checkpoint-examples.md](checkpoint-examples.md) وجود دارد.
 
-Claude: I'll rewind to explore a different approach...
-[User presses Esc+Esc and rewinds to checkpoint A]
-[Implements in-memory caching at checkpoint B]
+### مثال ۱: کاوش راه‌های مختلف
 
-User: Now I can compare both approaches
-```
+```text
+کاربر: لطفاً یک لایه کش به APIمان اضافه کنیم
 
-### Example 2: Recovering from Mistakes
+کلود: من یک کش Redis به نقاط پایگاه API شما اضافه خواهم کرد...
+[تغییرات در checkpoint A انجام می‌شود]
 
-```
-User: Refactor the authentication module to use JWT
+کاربر: در واقع قبلاً کش در حافظه را امتحان کنیم
 
-Claude: I'll refactor the authentication module...
-[Makes extensive changes]
+کلود: من rewind می‌کنم و راه دیگری را کاوش می‌کنم...
+[کاربر دو بار Esc می‌زنند و به checkpoint A بازمی‌گردند]
+[در checkpoint B کش در حافظه پیاده‌سازی می‌شود]
 
-User: Wait, that broke the OAuth integration. Let's go back.
-
-Claude: I'll help you rewind to before the refactoring...
-[User presses Esc+Esc and selects the checkpoint before the refactor]
-
-User: Let's try a more conservative approach this time
+کاربر: حالا می‌توانم دو راه را مقایسه کنم
 ```
 
-### Example 3: Safe Experimentation
+### مثال ۲: بازیابی از خطا
 
-```
-User: Let's try rewriting this in a functional style
-[Creates checkpoint before experiment]
+```text
+کاربر: ماژول احراز هویت را به JWT بازسازی کنید
 
-Claude: [Makes experimental changes]
+کلود: من ماژول احراز هویت را بازسازی می‌کنم...
+[تغییرات زیاد انجام می‌شود]
 
-User: The tests are failing. Let's rewind.
-[User presses Esc+Esc and rewinds to the checkpoint]
+کاربر: صبر کنید، این یکپارچگی OAuth را خراب کرده است. برگردیم.
 
-Claude: I've rewound the changes. Let's try a different approach.
-```
+کلود: من به شما کمک می‌کنم به حالت قبل از بازسازی بازگردید...
+[کاربر دو بار Esc می‌زنند و checkpoint قبل از بازسازی را انتخاب می‌کنند]
 
-### Example 4: Branching Approaches
-
-```
-User: I want to compare two database designs
-[Takes note of checkpoint - call it "Start"]
-
-Claude: I'll create the first design...
-[Implements Schema A]
-
-User: Now let me go back and try the second approach
-[User presses Esc+Esc and rewinds to "Start"]
-
-Claude: Now I'll implement Schema B...
-[Implements Schema B]
-
-User: Great! Now I have both schemas to choose from
+کاربر: این بار یک روش محافظه‌کارتر امتحان می‌کنیم
 ```
 
-## Checkpoint Retention
+### مثال ۳: آزمایش امن
 
-Claude Code automatically manages your checkpoints:
+```text
+کاربر: شاید آن را به سبک تابعی بازنویسی کنیم
+[قبل از آزمایش checkpoint ایجاد شود]
 
-- Checkpoints are created automatically with every user prompt
-- Old checkpoints are retained for up to 30 days
-- Checkpoints are cleaned up automatically to prevent unlimited storage growth
+کلود: [تغییرات آزمایشی اجرا می‌شود]
 
-## Workflow Patterns
+کاربر: تست شکست داد. پس بگذارید برگردیم.
+[کاربر دو بار Esc می‌زنند و به checkpoint بازمی‌گردند]
 
-### Branching Strategy for Exploration
-
-When exploring multiple approaches:
-
-```
-1. Start with initial implementation → Checkpoint A
-2. Try Approach 1 → Checkpoint B
-3. Rewind to Checkpoint A
-4. Try Approach 2 → Checkpoint C
-5. Compare results from B and C
-6. Choose best approach and continue
+کلود: من تغییرات را برگردانده‌ام. حالا روش دیگری را امتحان می‌کنیم.
 ```
 
-### Safe Refactoring Pattern
+### مثال ۴: کاوش شاخه‌ای
 
-When making significant changes:
+```text
+کاربر: می‌خواهم دو طراحی پایگاه داده را مقایسه کنم
+[یک checkpoint با نام "شروع" ثبت کنید]
 
+کلود: من ابتدا طراحی اول را پیاده‌سازی می‌کنم...
+[پیاده‌سازی اسکیمای A]
+
+کاربر: حالا برگردم و طرح دوم را امتحان کنم
+[کاربر دو بار Esc می‌زنند و به "شروع" بازمی‌گردند]
+
+کلود: حالا اسکیمای B را پیاده‌سازی می‌کنم...
+[پیاده‌سازی اسکیمای B]
+
+کاربر: عالی، حالا دو اسکیمای دارم که می‌توانم از آنها انتخاب کنم
 ```
-1. Current state → Checkpoint (auto)
-2. Start refactoring
-3. Run tests
-4. If tests pass → Continue working
-5. If tests fail → Rewind and try different approach
+
+## استراتژی حفظ Checkpoint
+
+Claude Code به طور خودکار checkpoints شما را مدیریت می‌کند:
+
+- هر بار ورودی کاربر، یک checkpoint به صورت خودکار ایجاد می‌شود
+- checkpoints قدیمی تا ۳۰ روز حفظ می‌شوند
+- سیستم به طور خودکار پاکسازی می‌کند تا ذخیره نامحدود نباشد
+
+
+## الگوهای گردش کار
+
+### استراتژی شاخه‌ای هنگام کاوش
+
+وقتی در حال کاوش راه‌های مختلف هستید:
+
+```text
+1. از پیاده‌سازی اولیه شروع کنید → Checkpoint A
+2. راه ۱ را امتحان کنید → Checkpoint B
+3. به Checkpoint A برگردید
+4. راه ۲ را امتحان کنید → Checkpoint C
+5. نتایج B و C را مقایسه کنید
+6. بهترین راه را انتخاب کنید و ادامه دهید
 ```
 
-## Best Practices
+### الگو بازسازی امن
 
-Since checkpoints are created automatically, you can focus on your work without worrying about manually saving state. However, keep these practices in mind:
+وقتی تغییرات بزرگ انجام می‌دهید:
 
-### Using Checkpoints Effectively
+```text
+1. وضعیت فعلی → Checkpoint (خودکار)
+2. بازسازی را شروع کنید
+3. تست‌ها را اجرا کنید
+4. اگر تست‌ها موفقیت‌آمیز بود → ادامه دهید
+5. اگر تست‌ها شکست خورد → Rewind کنید و روشی دیگر امتحان کنید
+```
 
-✅ **Do:**
-- Review available checkpoints before rewinding
-- Use rewind when you want to explore different directions
-- Keep checkpoints to compare different approaches
-- Understand what each rewind option does (restore code and conversation, restore conversation, restore code, or summarize)
+## بهترین شیوه‌ها
 
-❌ **Don't:**
-- Rely on checkpoints alone for code preservation
-- Expect checkpoints to track external file system changes
-- Use checkpoints as a substitute for git commits
+از آنجا که checkpoints به صورت خودکار ایجاد می‌شوند، می‌توانید روی کار خود تمرکز کنید، و نگران ذخیره دستی وضعیت نباشید. با این حال، عادت‌های زیر همچنان مهم هستند:
 
-## Configuration
+### استفاده کارآمد از Checkpoints
 
-Checkpoints are a built-in default behavior in Claude Code and do not require any configuration to enable. Every user prompt automatically creates a checkpoint.
+✅ **باید انجام شود:**
 
-Two settings govern checkpoint behavior — whether snapshots are taken at all, and how long they are kept:
+- قبل از بازگردانی، به checkpoints موجود نگاه کنید
+- وقتی می‌خواهید راه‌های مختلفی را امتحان کنید، از rewind استفاده کنید
+- checkpoints را برای مقایسه راه‌های مختلف حفظ کنید
+- هر گزینه rewind را در مورد اینکه چه می‌کند درک کنید
+
+❌ **نباید انجام شود:**
+
+- فقط به checkpoints برای ذخیره کد متکی باشید
+- انتظار داشته باشید checkpoints تغییرات فایل سیستم خارجی را ردیابی کنند
+- checkpoints را جایگزین git commit در نظر بگیرید
+
+## پیکربندی
+
+می‌توانید در تنظیمات، checkpoints خودکار را فعال یا غیرفعال کنید:
 
 ```json
 {
-  "fileCheckpointingEnabled": true,
-  "cleanupPeriodDays": 30
+  "fileCheckpointingEnabled": true
 }
 ```
 
-| Setting | Default | Effect |
-|---------|---------|--------|
-| `fileCheckpointingEnabled` | `true` | Snapshot files before each edit so `/rewind` can restore them. Requires v2.1.119+. Surfaces in `/config` as **Rewind code (checkpoints)**. Env equivalent: `CLAUDE_CODE_DISABLE_FILE_CHECKPOINTING` |
-| `cleanupPeriodDays` | `30` | Number of days to retain session history and checkpoints |
+- `fileCheckpointingEnabled`: آیا قبل از هر ویرایش فایل عکس‌برداری ایجاد شود تا بتواند با `/rewind` بازیابی شود (پیش‌فرض: `true`)
 
-Claude Code keeps snapshots for the **100 most recent checkpoints**; older ones are dropped even inside the retention window.
+## محدودیت‌ها
 
-> **v2.1.117 update**: `cleanupPeriodDays` now governs retention for many on-disk caches, not just checkpoints (a selection below; session transcripts, `file-history/`, `plans/`, `debug/`, `paste-cache/` and more are covered too):
->
-> - Session checkpoints
-> - `~/.claude/tasks/` — persistent task lists
-> - `~/.claude/shell-snapshots/` — captured shell-environment snapshots
-> - `~/.claude/backups/` — earlier versions of `~/.claude.json` (the five newest are kept)
->
-> A single setting now prunes these directories uniformly after the same number of days.
+Checkpoints برای بازگشت در peril.session بسیار مناسب هستند، اما یک سیستم کنترل نسخه نیستند. برای تغییراتی که نیاز به حفظ بلندمدت، پذیرای بازبینی و به اشتراک گذاشته شدن دارند، همچنان باید از git استفاده کنید.
 
-## Limitations
 
-Checkpoints have the following limitations:
+## عیب‌یابی
 
-- **Bash command changes NOT tracked** - Operations like `rm`, `mv`, `cp` on the filesystem are not captured in checkpoints
-- **External changes NOT tracked** - Changes made outside Claude Code (in your editor, terminal, etc.) are not captured
-- **Not a replacement for version control** - Use git for permanent, auditable changes to your codebase
-- **Subagent edits NOT restored** - Files edited by a subagent are untracked, so `/rewind` leaves them as they are; the exception is a foreground `context: fork` skill, whose edits are restored like the main session's
+### پیدا نشدن Checkpoints
 
-> **v2.1.216 update**: `/rewind` no longer restores or deletes files through symlinks or hard links at tracked paths. If a tracked path resolves through a symlink or hard link, rewind skips it rather than following the link, and it reports how many paths it skipped for this reason.
+- بررسی کنید آیا در نسخه Claude Code که این ویژگی را پشتیبانی می‌کند هستید
+- تأیید کنید checkpoint خودکار غیرفعال نشده است
+- peril.session را دوباره باز کنید و دوباره امتحان کنید
 
-## Troubleshooting
+### شکست در Rewind
 
-### Missing Checkpoints
+- تأیید کنید یک checkpoint معتبر انتخاب شده است
+- بررسی کنید آیا محدودیت‌های مربوط به فایل سیستم یا مجوز وجود دارد
+- ابتدا کد یا peril.session را به صورت جداگانه بازیابی کنید، سپس تصمیم بگیرید آیا هر دو را به صورت همزمان بازیابی کنید یا خیر
 
-**Problem**: Expected checkpoint not found
+## یکپارچگی با Git
 
-**Solution**:
-- Check if checkpoints were cleared
-- Check disk space
-- Ensure `cleanupPeriodDays` is set high enough (default: 30 days)
+Checkpoints و git یک تکمیلی هستند:
 
-### Rewind Failed
+- Checkpoints برای کاوش در peril.session و آزمایش امن استفاده می‌شوند
+- Git برای حفظ پایدار تاریخچه کد استفاده می‌شود
+- شما می‌توانید ابتدا از checkpoints برای کاوش سریع استفاده کنید، سپس طرح نهایی را در git commit کنید
 
-**Problem**: Cannot rewind to checkpoint
+## شروع سریع
 
-**Solution**:
-- Ensure no uncommitted changes conflict
-- Check if checkpoint is corrupted
-- Try rewinding to a different checkpoint
+### گردش کار پایه
 
-## Integration with Git
+```text
+1. قبل از شروع تغییرات به صورت خودکار checkpoint ایجاد می‌شود
+2. یک راه حل را امتحان کنید
+3. اگر نتیجه مناسب نیست، دو بار Esc بزنید
+4. گزینه rewind مناسب را انتخاب کنید
+5. ادامه کاوش کنید یا طرح نهایی را ارسال کنید
+```
 
-Checkpoints complement (but don't replace) git:
+### میانبرهای کلیدی
 
-| Feature | Git | Checkpoints |
-|---------|-----|-------------|
-| Scope | File system | Conversation + files |
-| Persistence | Permanent | Session-based |
-| Granularity | Commits | Any point |
-| Speed | Slower | Instant |
-| Sharing | Yes | Limited |
+- `Esc` + `Esc`: باز کردن مرورگر checkpoints
+- `/rewind`: ورود به antarmuka بازگشت از طریق دستور
+- `/checkpoint`، `/undo`: نام مستعار برای `/rewind`
 
-Use both together:
-1. Use checkpoints for rapid experimentation
-2. Use git commits for finalized changes
-3. Create checkpoint before git operations
-4. Commit successful checkpoint states to git
+## چه زمانی باید rewind: مانیتور링 contexte
 
-## Quick Start Guide
+اگر این نشانه‌ها را متوجه شدید، معمولاً بهتر است بازگردید:
 
-### Basic Workflow
+- راه فعلی پیچیده می‌شود و هنوز اینکه کدام راه است مشخص نیست
+- تست قبلاً شکست داده است و مشکل ممکن است یک یا دو گام قبلی ایجاد شده باشد
+- می‌خواهید دو روش پیاده‌سازی را مقایسه کنید
+- می‌خواهید یک "نقطه شروع تمیز" برای ادامه کاوش داشته باشید
 
-1. **Work normally** - Claude Code creates checkpoints automatically
-2. **Want to go back?** - Press `Esc` twice or use `/rewind`
-3. **Choose checkpoint** - Select from the list to rewind
-4. **Select what to restore** - Choose from restore code and conversation, restore conversation, restore code, summarize from here, summarize up to here, or cancel
-5. **Continue working** - You're back at that point
+## مفاهیم مرتبط
 
-### Keyboard Shortcuts
+- **حافظه**: contexte بلندمدت در peril.sessionهای مختلف، به [02-memory/README.md](../02-memory/README.md) مراجعه کنید
+- **胡ک‌ها**: اتوماسیون رویداد، به [06-hooks/README.md](../06-hooks/README.md) مراجعه کنید
+- **پلاگین‌ها**: مجموعه قابلیت‌های بسته‌بندی شده، به [07-plugins/README.md](../07-plugins/README.md) مراجعه کنید
+- **ویژگی‌های پیشرفته**: شامل التخطيط و وظایف پس‌زمینه، به [09-advanced-features/README.md](../09-advanced-features/README.md) مراجعه کنید
 
-- **`Esc` + `Esc`** - Open checkpoint browser
-- **`/rewind`** - Alternative way to access checkpoints
-- **`/checkpoint`**, **`/undo`** - Aliases for `/rewind`
+## منابع بیشتر
 
-## Knowing When to Rewind: Context Monitoring
+- [راهنمای ریشه](../README.md)
+- [مستندات رسمی checkpoint Claude Code](https://code.claude.com/docs/en/checkpointing)
+- [راهنمای ویژگی‌های پیشرفته Claude Code](../09-advanced-features/README.md)
 
-Checkpoints let you go back — but how do you know *when* you should? As your conversation grows, Claude's context window fills up and model quality silently degrades. You might be shipping code from a half-blind model without realizing it.
+## جمع‌بندی
 
-**[cc-context-stats](https://github.com/luongnv89/cc-context-stats)** solves this by adding real-time **context zones** to your Claude Code status bar. It tracks where you are in the context window — from **Plan** (green, safe to plan and code) through **Code** (yellow, avoid starting new plans) to **Dump** (orange, finish up and rewind). When you see the zone shift, you know it's time to checkpoint and start fresh instead of pushing through with degraded output.
-
-## Related Concepts
-
-- **[Advanced Features](../09-advanced-features/)** - Planning mode and other advanced capabilities
-- **[Memory Management](../02-memory/)** - Managing conversation history and context
-- **[Slash Commands](../01-slash-commands/)** - User-invoked shortcuts
-- **[Hooks](../06-hooks/)** - Event-driven automation
-- **[Plugins](../07-plugins/)** - Bundled extension packages
-
-## Additional Resources
-
-- [Official Checkpointing Documentation](https://code.claude.com/docs/en/checkpointing)
-- [Advanced Features Guide](../09-advanced-features/) - Extended thinking and other capabilities
-
-## Summary
-
-Checkpoints are an automatic feature in Claude Code that lets you safely explore different approaches without fear of losing work. Every user prompt creates a new checkpoint automatically, so you can rewind to any previous point in your session.
-
-Key benefits:
-- Experiment fearlessly with multiple approaches
-- Quickly recover from mistakes
-- Compare different solutions side-by-side
-- Integrate safely with version control systems
-
-Remember: checkpoints are not a replacement for git. Use checkpoints for rapid experimentation and git for permanent code changes.
+ارزش Checkpoints در این است که به شما اجازه می‌دهد با اطمینان خطا کنید. این ویژگی باعث می‌شود که "اولاً اجرا، سپس برای خطا بازگشت" امن شود، و به شما کمک می‌کند به سرعت به راه حل درست برسید.
 
 ---
 
-**Last Updated**: October 18, 2026
-**Claude Code Version**: 2.1.302
-**Sources**:
+**آخرین به‌روزرسانی**: ۱۸ آبان ۲۰۲۶
+**نسخه Claude Code**: ۲.۱.۳۰۲
+**منبع**:
 - https://code.claude.com/docs/en/checkpointing
-- https://code.claude.com/docs/en/settings
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.117
-- https://code.claude.com/docs/en/model-config
 - https://code.claude.com/docs/en/commands
-- https://code.claude.com/docs/en/claude-directory
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+- https://code.claude.com/docs/en/settings-reference

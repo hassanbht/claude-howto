@@ -1,165 +1,177 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# Claude How To - Brand Assets
+# Claude How To - 品牌资源
 
-Complete collection of logos, icons, and favicons for the Claude How To project. All assets use the V3.0 design: a compass with code bracket (`>`) symbol, representing guided navigation through code — using a Black/White/Gray palette with Bright Green (#22C55E) accent.
+这是 Claude How To 项目的完整品牌资源集合，包括 logo、图标和 favicon。所有资源都采用 V3.0 设计：一个带有代码括号（`>`）符号的指南针，象征在代码中引导前进，整体使用黑/白/灰配色，并以亮绿色（`#22C55E`）作为强调色。
 
-## Directory Structure
+## 目录结构
 
 ```
 resources/
 ├── logos/
-│   ├── claude-howto-logo.svg       # Main logo - Light mode (520×120px)
-│   └── claude-howto-logo-dark.svg  # Main logo - Dark mode (520×120px)
+│   ├── claude-howto-logo.svg       # 主 logo - 浅色模式 (520×120px)
+│   └── claude-howto-logo-dark.svg  # 主 logo - 深色模式 (520×120px)
 ├── icons/
-│   ├── claude-howto-icon.svg       # App icon - Light mode (256×256px)
-│   └── claude-howto-icon-dark.svg  # App icon - Dark mode (256×256px)
+│   ├── claude-howto-icon.svg       # 应用图标 - 浅色模式 (256×256px)
+│   └── claude-howto-icon-dark.svg  # 应用图标 - 深色模式 (256×256px)
 └── favicons/
     ├── favicon-16.svg              # Favicon - 16×16px
-    ├── favicon-32.svg              # Favicon - 32×32px (primary)
+    ├── favicon-32.svg              # Favicon - 32×32px（主用）
     ├── favicon-64.svg              # Favicon - 64×64px
     ├── favicon-128.svg             # Favicon - 128×128px
     └── favicon-256.svg             # Favicon - 256×256px
 ```
 
-Additional assets in `assets/logo/`:
+`assets/logo/` 下还有额外资源：
+
 ```
 assets/logo/
-├── logo-full.svg       # Mark + wordmark (horizontal)
-├── logo-mark.svg       # Compass symbol only (120×120px)
-├── logo-wordmark.svg   # Text only
-├── logo-icon.svg       # App icon (512×512, rounded)
-├── favicon.svg         # 16×16 optimized
-├── logo-white.svg      # White version for dark backgrounds
-└── logo-black.svg      # Black monochrome version
+├── logo-full.svg       # 图形标记 + 品牌字样（横向）
+├── logo-mark.svg       # 仅指南针符号 (120×120px)
+├── logo-wordmark.svg   # 仅文字
+├── logo-icon.svg       # 应用图标 (512×512，圆角)
+├── favicon.svg         # 16×16 优化版
+├── logo-white.svg      # 适用于深色背景的白色版本
+└── logo-black.svg      # 黑色单色版本
 ```
 
-## Assets Overview
+## 资源概览
 
-### Design Concept (V3.0)
+### 设计概念（V3.0）
 
-**Compass with Code Bracket** — guidance meets code:
-- **Compass Ring** = Navigation, finding your way
-- **North Needle (Green)** = Direction, progress on the learning path
-- **South Needle (Black)** = Grounding, solid foundation
-- **`>` Bracket** = Terminal prompt, code, CLI context
-- **Tick Marks** = Precision, structured learning
+**指南针 + 代码括号**，代表“导航遇见代码”：
 
-### Logos
+- **指南针环** = 导航、找到方向
+- **北针（绿色）** = 方向、学习路径上的进展
+- **南针（黑色）** = 扎实基础、稳固根基
+- **`>` 括号** = 终端提示符、代码、CLI 场景
+- **刻度线** = 精准、结构化学习
 
-**Files**:
-- `logos/claude-howto-logo.svg` (Light mode)
-- `logos/claude-howto-logo-dark.svg` (Dark mode)
+### Logo
 
-**Specifications**:
-- **Size**: 520×120 px
-- **Purpose**: Main header/branding logo with wordmark
-- **Usage**:
-  - Website headers
-  - README badges
-  - Marketing materials
-  - Print materials
-- **Format**: SVG (fully scalable)
-- **Modes**: Light (white background) & Dark (#0A0A0A background)
+**文件**：
 
-### Icons
+- `logos/claude-howto-logo.svg`（浅色模式）
+- `logos/claude-howto-logo-dark.svg`（深色模式）
 
-**Files**:
-- `icons/claude-howto-icon.svg` (Light mode)
-- `icons/claude-howto-icon-dark.svg` (Dark mode)
+**规格**：
 
-**Specifications**:
-- **Size**: 256×256 px
-- **Purpose**: Application icon, avatars, thumbnails
-- **Usage**:
-  - App icons
-  - Profile avatars
-  - Social media thumbnails
-  - Documentation headers
-- **Format**: SVG (fully scalable)
-- **Modes**: Light (white background) & Dark (#0A0A0A background)
+- **尺寸**：520×120 px
+- **用途**：主标题/品牌 logo，带品牌字样
+- **使用场景**：
+  - 网站页眉
+  - README 徽章
+  - 营销素材
+  - 印刷物料
+- **格式**：SVG（可无限缩放）
+- **模式**：浅色（白色背景）与深色（#0A0A0A 背景）
 
-**Design Elements**:
-- Compass ring with cardinal and intercardinal tick marks
-- Green north needle (direction/guidance)
-- Black south needle (foundation)
-- `>` code bracket at center (terminal/CLI)
-- Green center dot accent
+### 图标
 
-### Favicons
+**文件**：
 
-Optimized versions at multiple sizes for web use:
+- `icons/claude-howto-icon.svg`（浅色模式）
+- `icons/claude-howto-icon-dark.svg`（深色模式）
 
-| File | Size | DPI | Usage |
-|------|------|-----|-------|
-| `favicon-16.svg` | 16×16 px | 1x | Browser tabs (older browsers) |
-| `favicon-32.svg` | 32×32 px | 1x | Standard browser favicon |
-| `favicon-64.svg` | 64×64 px | 1x-2x | High-DPI displays |
-| `favicon-128.svg` | 128×128 px | 2x | Apple touch icon, bookmarks |
-| `favicon-256.svg` | 256×256 px | 4x | Modern browsers, PWA icons |
+**规格**：
 
-**Optimization Notes**:
-- 16px: Minimal geometry — ring, needles, chevron only
-- 32px: Adds cardinal tick marks
-- 64px+: Full detail with intercardinal ticks
-- All maintain visual consistency with main icon
-- SVG format ensures crisp display at any size
+- **尺寸**：256×256 px
+- **用途**：应用图标、头像、缩略图
+- **使用场景**：
+  - App 图标
+  - 个人头像
+  - 社交媒体缩略图
+  - 文档页眉
+- **格式**：SVG（可无限缩放）
+- **模式**：浅色（白色背景）与深色（#0A0A0A 背景）
 
-## HTML Integration
+**设计元素**：
 
-### Basic Favicon Setup
+- 带方位和中间方位刻度的指南针环
+- 绿色北针（方向/引导）
+- 黑色南针（基础）
+- 中央 `>` 代码括号（终端/CLI）
+- 绿色中心点强调
+
+### Favicon
+
+为网页使用提供了多种尺寸的优化版本：
+
+| 文件 | 尺寸 | DPI | 用途 |
+|------|------|-----|------|
+| `favicon-16.svg` | 16×16 px | 1x | 浏览器标签页（旧浏览器） |
+| `favicon-32.svg` | 32×32 px | 1x | 标准浏览器 favicon |
+| `favicon-64.svg` | 64×64 px | 1x-2x | 高 DPI 显示器 |
+| `favicon-128.svg` | 128×128 px | 2x | Apple touch icon、书签 |
+| `favicon-256.svg` | 256×256 px | 4x | 现代浏览器、PWA 图标 |
+
+**优化说明**：
+
+- 16px：最小几何元素，仅保留环、指针和箭头
+- 32px：增加方位刻度
+- 64px 以上：完整细节与中间方位刻度
+- 全部版本都保持与主图标一致的视觉效果
+- SVG 格式保证任意尺寸下都清晰锐利
+
+## HTML 集成
+
+### 基础 Favicon 配置
 
 ```html
-<!-- Browser favicon -->
+<!-- 浏览器 favicon -->
 <link rel="icon" type="image/svg+xml" href="/resources/favicons/favicon-32.svg">
 <link rel="icon" type="image/svg+xml" href="/resources/favicons/favicon-16.svg" sizes="16x16">
 
-<!-- Apple touch icon (mobile home screen) -->
+<!-- Apple touch icon（移动端桌面图标） -->
 <link rel="apple-touch-icon" href="/resources/favicons/favicon-128.svg">
 
-<!-- PWA & modern browsers -->
+<!-- PWA 与现代浏览器 -->
 <link rel="icon" type="image/svg+xml" href="/resources/favicons/favicon-256.svg" sizes="256x256">
 ```
 
-### Complete Setup
+### 完整配置
 
 ```html
 <head>
-  <!-- Primary favicon -->
+  <!-- 主 favicon -->
   <link rel="icon" type="image/svg+xml" href="/resources/favicons/favicon-32.svg" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/resources/favicons/favicon-16.svg" sizes="16x16">
 
   <!-- Apple touch icon -->
   <link rel="apple-touch-icon" href="/resources/favicons/favicon-128.svg">
 
-  <!-- PWA icons -->
+  <!-- PWA 图标 -->
   <link rel="icon" type="image/svg+xml" href="/resources/favicons/favicon-256.svg" sizes="256x256">
 
   <!-- Android -->
   <link rel="shortcut icon" href="/resources/favicons/favicon-256.svg">
 
-  <!-- PWA manifest reference (if using manifest.json) -->
+  <!-- PWA manifest 引用（如果使用 manifest.json） -->
   <meta name="theme-color" content="#000000">
 </head>
 ```
 
-## Color Palette
+## 颜色方案
 
-### Primary Colors
-- **Black**: `#000000` (Primary text, strokes, south needle)
-- **White**: `#FFFFFF` (Light backgrounds)
-- **Gray**: `#6B7280` (Secondary text, minor tick marks)
+### 主色
 
-### Accent Color
-- **Bright Green**: `#22C55E` (North needle, center dot, accent lines — highlights only, never as background)
+- **黑色**：`#000000`（主文本、线条、南针）
+- **白色**：`#FFFFFF`（浅色背景）
+- **灰色**：`#6B7280`（次级文本、次要刻度）
 
-### Dark Mode
-- **Background**: `#0A0A0A` (Near-black)
+### 强调色
 
-### CSS Variables
+- **亮绿色**：`#22C55E`（北针、中心点、强调线条，只用于高亮，绝不作为背景）
+
+### 深色模式
+
+- **背景**：`#0A0A0A`（接近黑色）
+
+### CSS 变量
+
 ```css
 --color-primary: #000000;
 --color-secondary: #6B7280;
@@ -168,7 +180,8 @@ Optimized versions at multiple sizes for web use:
 --color-bg-dark: #0A0A0A;
 ```
 
-### Tailwind Config
+### Tailwind 配置
+
 ```js
 colors: {
   brand: {
@@ -179,43 +192,49 @@ colors: {
 }
 ```
 
-### Usage Guidelines
-- Use black for primary text and structural elements
-- Use gray for secondary/supporting elements
-- Use green **only** for highlights — needle, dots, accent lines
-- Never use green as a background color
-- Maintain WCAG AA contrast (4.5:1 minimum)
+### 使用规范
 
-## Design Guidelines
+- 主文本和结构元素使用黑色
+- 次级/辅助元素使用灰色
+- 绿色**仅**用于高亮，例如指针、点和强调线
+- 不要把绿色用作背景色
+- 保持 WCAG AA 对比度（最低 4.5:1）
 
-### Logo Usage
-- Use on white or dark (#0A0A0A) backgrounds
-- Scale proportionally
-- Include clear space around logo (minimum: logo height / 2)
-- Use provided light/dark variants for appropriate backgrounds
+## 设计规范
 
-### Icon Usage
-- Use at standard sizes: 16, 32, 64, 128, 256px
-- Maintain the compass proportions
-- Scale proportionally
+### Logo 使用
 
-### Favicon Usage
-- Use appropriate size for context
-- 16-32px: Browser tabs, bookmarks
-- 64px: Favicon site icons
-- 128px+: Apple/Android home screens
+- 用于白色或深色（#0A0A0A）背景
+- 按比例缩放
+- Logo 四周保留足够留白（最小值：logo 高度 / 2）
+- 根据背景选择对应的浅色/深色版本
 
-## SVG Optimization
+### 图标使用
 
-All SVG files are flat design with no gradients or filters:
-- Clean stroke-based geometry
-- No embedded rasters
-- Optimized paths
-- Responsive viewBox
+- 适用于标准尺寸：16、32、64、128、256px
+- 保持指南针比例
+- 按比例缩放
 
-For web optimization:
+### Favicon 使用
+
+- 根据场景选用合适尺寸
+- 16-32px：浏览器标签页、书签
+- 64px：站点图标
+- 128px 以上：Apple/Android 桌面图标
+
+## SVG 优化
+
+所有 SVG 文件都采用扁平设计，沒有渐变和滤镜：
+
+- 干净的基于描边的几何结构
+- 不嵌入位图
+- 路径已优化
+- 使用响应式 `viewBox`
+
+网页优化示例：
+
 ```bash
-# Compress SVG while maintaining quality
+# 压缩 SVG，同时保持质量
 svgo --config='{
   "js2svg": {
     "indent": 2
@@ -227,40 +246,40 @@ svgo --config='{
 }' input.svg -o output.svg
 ```
 
-## PNG Conversion
+## PNG 转换
 
-To convert SVG to PNG for older browser support:
+如果你需要为旧浏览器支持转换成 PNG：
 
 ```bash
-# Using ImageMagick
+# 使用 ImageMagick
 convert -density 300 -background none favicon-256.svg favicon-256.png
 
-# Using Inkscape
+# 使用 Inkscape
 inkscape -D -z --file=favicon-256.svg --export-png=favicon-256.png
 ```
 
-## Accessibility
+## 无障碍性
 
-- High contrast color ratios (WCAG AA compliant — 4.5:1 minimum)
-- Clean geometric shapes recognizable at all sizes
-- Scalable vector format
-- No text in icons (text added separately in wordmark)
-- No red-green color dependency for meaning
+- 高对比度颜色比例（符合 WCAG AA，最低 4.5:1）
+- 几何形状清晰，在各种尺寸下都容易识别
+- 矢量格式，可无限缩放
+- 图标中不使用文字（文字由单独的 wordmark 承担）
+- 不依赖红绿配色表达含义
 
-## Attribution
+## 署名
 
-These assets are part of the Claude How To project.
+这些资源属于 Claude How To 项目。
 
-**License**: MIT (see project LICENSE file)
+**许可证**：MIT（见项目 LICENSE 文件）
 
-## Version History
+## 版本历史
 
-- **v3.0** (February 2026): Compass-bracket design with Black/White/Gray + Green accent palette
-- **v2.0** (January 2026): Claude-inspired 12-ray starburst design with emerald palette
-- **v1.0** (January 2026): Original hexagon-based progression icon design
+- **v3.0**（2026 年 2 月）：指南针 + 括号设计，黑/白/灰 + 绿色强调色
+- **v2.0**（2026 年 1 月）：受 Claude 启发的 12 芒星爆发式设计，祖母绿配色
+- **v1.0**（2026 年 1 月）：最初基于六边形的进度图标设计
 
 ---
 
-**Last Updated**: February 2026
-**Current Version**: 3.0 (Compass-Bracket)
-**All Assets**: Production-ready SVG, fully scalable, WCAG AA accessible
+**最后更新**：2026 年 2 月
+**当前版本**：3.0（指南针 + 括号）
+**全部资源**：可直接用于生产环境的 SVG，支持无限缩放，符合 WCAG AA 无障碍标准

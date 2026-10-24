@@ -1,23 +1,22 @@
 ---
-description: Create or update project README
+description: 创建或更新项目 README
 ---
 
-# README Generator
+# README 生成器
 
-Generate comprehensive README:
+生成完整的 README：
 
-1. Project overview and description
-2. Installation instructions
-3. Usage examples
-4. API documentation links
-5. Contributing guidelines
-6. License information
+1. 项目概览与简介
+2. 安装说明
+3. 使用示例
+4. API 文档链接
+5. 贡献指南
+6. 许可证信息
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**最后更新**: 2026 年 10 月 15 日
+**Claude Code 版本**: 2.1.300
+**来源**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

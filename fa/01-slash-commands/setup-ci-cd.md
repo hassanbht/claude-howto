@@ -1,31 +1,47 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
+
+# دستور تنظیم CI و CD
+
+دستور `/setup-ci-cd`، پیک‌کردن‌های CI/CD، برای مخزن‌های GitHub، اغلب خودکار، تولید می‌کند. این دستور، بسته به تنظیمات، مراحل CI/CD، و موارد وابسته، پیک‌کردن‌ها را باعث می‌شود.
+
+## چیستی
+
+دستور `/setup-ci-cd`، مراحل زیر را برای تنظیم CI/CD برای پروژه، انجام می‌دهد:
+
+۱. فایل‌ها را شناسایی می‌کند
+۲. کانفیگر‌ها، پیک‌کردن‌ها، و فایل‌های `.yml`، تولید می‌کند
+۳.amethyst، پیک‌کردن‌ها، را در پوشه‌ای که مشخص است، می‌سازد
+۴. می‌تواند، فایل‌های تنظیم، را به‌روزرسانی کند
+
+## مثال‌ها
+
+### مثال ۱: تنظیم CI/CD مخصوص
+
+```bash
+# اجرا در مسیر، تنظیم می‌شود
+/setup-ci-cd
+
+# پیک‌کردن‌ها و فایل‌ها، به‌عنوان ورودی، می‌دهد
+/setup-ci-cd --input ./ci-config
+```
+
+## مراحل
+
+۱. Claude، سورس و پیک‌کردن‌ها را شناسایی می‌کند
+۲. کانفیگر‌ها و پیاده‌سازی‌ها را به‌صورت خودکار می‌سازد
+۳. فایل‌های `.yml` و `.yaml`، می‌سازد
+۴. مراحل، پیک‌کردن‌ها، و توکن‌ها، را تنظیم می‌کند
+
+## اشکال‌پردازی
+
+- دستور نا‌موجود: علامت‌گذاری‌ها را بررسی کنید
+- خطای لاگ: اطمینان حاصل کنید که پیک‌کردن‌ها، درست هستند
+- خروجی خالی: بررسی کنید که فایل‌ها، به درستی، توسعه یافته‌اند
+
 ---
-name: setup-ci-cd
-description: Implement pre-commit hooks and GitHub Actions for quality assurance
----
 
-# Setup CI/CD Pipeline
-
-Implement comprehensive DevOps quality gates adapted to project type:
-
-1. **Analyze project**: Detect language(s), framework, build system, and existing tooling
-2. **Configure pre-commit hooks** with language-specific tools:
-   - Formatting: Prettier/Black/gofmt/rustfmt/etc.
-   - Linting: ESLint/Ruff/golangci-lint/Clippy/etc.
-   - Security: Bandit/gosec/cargo-audit/npm audit/etc.
-   - Type checking: TypeScript/mypy/flow (if applicable)
-   - Tests: Run relevant test suites
-3. **Create GitHub Actions workflows** (.github/workflows/):
-   - Mirror pre-commit checks on push/PR
-   - Multi-version/platform matrix (if applicable)
-   - Build and test verification
-   - Deployment steps (if needed)
-4. **Verify pipeline**: Test locally, create test PR, confirm all checks pass
-
-Use free/open-source tools. Respect existing configs. Keep execution fast.
-
----
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/commands
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**آخرین به‌روزرسانی**: ۱۸ آبان ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۳۰۲

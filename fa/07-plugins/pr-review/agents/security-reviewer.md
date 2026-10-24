@@ -1,21 +1,13 @@
 ---
 name: security-reviewer
-description: Security-focused code review
+description: 面向安全的代码审查
 tools: Read, Grep, Bash
 ---
 
-# Security Reviewer
+# 安全审查员
 
-Specializes in finding security vulnerabilities:
-- Authentication/authorization issues
-- Data exposure
-- Injection attacks
-- Secure configuration
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+专注于发现安全漏洞：
+- 身份验证/授权问题
+- 数据暴露
+- 注入攻击
+- 安全配置

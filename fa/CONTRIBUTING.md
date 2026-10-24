@@ -1,216 +1,168 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# مشارکت در Claude How To
+# 이란의 청사진: Claude Code
 
-از علاقه شما به مشارکت در این پروژه سپاسگزاریم! این راهنما به شما کمک می‌کند تا به‌طور مؤثر مشارکت کنید.
+이 문서는 Claude Code의 청사진으로서, 프로젝트 구조, 편집 모범 사례, 기여 방법 및 릴리스 분류 버전을 설명합니다.
 
-## درباره این پروژه
+## 프로젝트 구조
 
-Claude How To یک راهنمای visual و example-driven برای Claude Code است. ما فراهم می‌کنیم:
-- **دیاگرام‌های Mermaid** که توضیح می‌دهند featureها چگونه کار می‌کنند
-- **templateهای production-ready** که می‌توانید بلافاصله استفاده کنید
-- **مثال‌های real-world** با context و best practiceها
-- **مسیرهای یادگیری progressive** از مبتدی تا پیشرفته
+```
+claude-howto/
+├── .github/                     # GitHub 작업 흐름 및 템플릿
+├── 01-slash-commands/           # 슬래시 명령어
+├── 02-memory/                   # 메모리 시스템
+├── 03-skills/                   # 에이전트 스킬
+├── 04-subagents/                # 서브에이전트
+├── 05-mcp/                      # MCP 통합
+├── 06-hooks/                    # 훅
+├── 07-plugins/                  # 플러그인
+├── 08-checkpoints/              # 체크포인트 및 리와인드
+├── 09-advanced-features/        # 고급 기능
+├── 10-cli/                      # 명령줄 참조
+├── docs/                        # 보조 문서
+├── prompts/                     # 에이전트 프롬프트
+├── resources/                   # 브랜드 자산
+├── scripts/                     # 빌드 및 유틸리티 스크립트
+├── CONTRIBUTING.md              # 기여 가이드
+├── CODE_OF_CONDUCT.md           # 행동 강령
+├── SECURITY.md                  # 보안 정책
+├── STYLE_GUIDE.md               # 스타일 가이드
+├── CLAUDE.md                    # 프로젝트 수준의 AI 지침
+├── README.md                    # 메인 문서
+└── ...
+```
 
-## انواع مشارکت
+각 하위 디렉토리에는 해당 디렉토리의 문서, 스킬 또는 명령어가 포함된 자체 README.md가 있습니다.
 
-### 1. مثال یا template جدید
-افزودن مثال برای featureهای موجود (slash commands، skills، hooks و غیره):
-- کد copy-paste ready
-- توضیح واضح نحوه کارکرد
-- use caseها و مزایا
-- نکات troubleshooting
+## 저장소 설정
 
-### 2. بهبود مستندات
-- شفاف‌سازی بخش‌های گیج‌کننده
-- رفع typo و grammar
-- افزودن اطلاعات missing
-- بهبود مثال‌های کد
-
-### 3. راهنماهای Feature
-ایجاد راهنما برای featureهای جدید Claude Code:
-- tutorialهای step-by-step
-- دیاگرام‌های architecture
-- patternها و anti-patternهای رایج
-- workflowهای real-world
-
-### 4. گزارش Bug
-گزارش issueهایی که با آن‌ها مواجه شدید:
-- توضیح آنچه انتظار داشتید
-- توضیح آنچه واقعاً رخ داد
-- شامل کردن مراحل reproduce
-- افزودن نسخه Claude Code و OS مربوطه
-
-### 5. بازخورد و پیشنهادات
-کمک به بهبود راهنما:
-- پیشنهاد توضیحات بهتر
-- اشاره به gapهای coverage
-- توصیه بخش‌ها یا reorganization جدید
-
-## شروع کار
-
-### 1. Fork and Clone
 ```bash
-git clone https://github.com/luongnv89/claude-howto.git
+# 저장소 클론
+git clone https://github.com/hassanbht/claude-howto.git
 cd claude-howto
+
+# 종속성 설치
+pip install -r scripts/requirements.txt  # 선택 사항
+
+# 개발용 가상 환경 설정 (선택 사항)
+python -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scriptsctivate
 ```
 
-### 2. ایجاد یک Branch
-از نام branch توصیفی استفاده کنید:
-```bash
-git checkout -b add/feature-name
-git checkout -b fix/issue-description
-git checkout -b docs/improvement-area
-```
+## 편집 모범 사례
 
-### 3. تنظیم محیط
+- **일관성**: 이 저장소 전반에 걸친 스타일 가이드를 따르세요.
+- **명확성**: 전문 용어에 의존하지 않고 코드가 없는 사람에게도 이해되도록 하세요.
+- **구조**: 헤더와 코드 블록에 일관된 마크다운 형식을 사용하세요.
+- **코드 블록**: 언어 태그를 포함하세요: `bash`, `json`, `md`, `yaml`, `mermaid`, `text`.
+- **링크**: 절대 경로를 사용하세요. 내부 링크는 앵커나 상대 경로를 사용하세요.
 
-Hookهای pre-commit همان checkهای CI را به‌صورت محلی قبل از هر commit اجرا می‌کنند. هر پنج check باید قبل از پذیرش PR pass شوند.
-
-**وابستگی‌های required:**
-
-```bash
-pip install uv
-uv venv
-source .venv/bin/activate
-uv pip install -r scripts/requirements-dev.txt
-
-npm install -g markdownlint-cli
-
-node --version
-
-uv pip install pre-commit
-pre-commit install
-```
-
-**تأیید setup:**
+### 코드 블록 예시
 
 ```bash
-pre-commit run --all-files
+# 올바른 예
+```bash
+echo "Hello"
 ```
 
-hookهایی که روی هر commit اجرا می‌شوند:
+# 잘못된 예
+```bash
+echo "Hello"
+```
+```
 
-| Hook | آنچه بررسی می‌کند |
-|------|-------------------|
-| `markdown-lint` | فرمت و ساختار Markdown |
-| `cross-references` | لینک‌های relative، anchorها، code fenceها |
-| `mermaid-syntax` | همه بلوک‌های ` ```mermaid ` به‌درستی parse می‌شوند |
-| `link-check` | URLهای خارجی reachable هستند |
-| `build-epub` | EPUB build |
+### 헤더
 
-## فرآیند Review کد
+```markdown
+## 주요 섹션 제목
 
-reviewerها بررسی می‌کنند:
-- **Accuracy**: آیا همان‌طور که توضیح داده شده کار می‌کند؟
-- **Quality**: آیا production-ready است؟
-- **Consistency**: آیا patternهای پروژه را دنبال می‌کند؟
-- **Documentation**: آیا واضح و کامل است؟
-- **Security**: آیا vulnerability وجود دارد؟
+### 하위 섹션 제목
+```
 
-## گزارش Issue
+### 체크리스트
 
-### گزارش Bug
-شامل:
-- نسخه Claude Code
-- سیستم‌عامل
-- مراحل reproduce
-- رفتار مورد انتظار
-- رفتار واقعی
-- اسکرین‌شات در صورت امکان
+```markdown
+- [ ] 항목 1
+- [ ] 항목 2
+```
 
-### درخواست Feature
-شامل:
-- use case یا problem being solved
-- راه‌حل پیشنهادی
-- alternativeهایی که در نظر گرفته‌اید
-- context اضافی
+## 기여 방법
 
-### مسائل مستندات
-شامل:
-- آنچه گیج‌کننده یا missing است
-- پیشنهادات بهبود
-- مثال‌ها یا referenceها
+### 이슈 제출
 
-## سیاست‌های پروژه
+이슈를 제출하기 전에 [TESTING.md](.github/TESTING.md)를 읽으세요.
 
-### اطلاعات حساس
-- هرگز API key، token یا credential commit نکنید
-- از placeholder valueها در مثال‌ها استفاده کنید
-- `.env.example` را برای configuration fileها include کنید
-- environment variableهای required را مستند کنید
+1. 기존 이슈를 검색하세요
+2. 문제가 재현 가능한지 확인하세요
+3. 의 취약점을 이용해 이슈를 생성하세요
+4. 가능하면 재현 가능한 최소 저장소를 첨부하세요
 
-### کیفیت کد
-- مثال‌ها را focused و readable نگه دارید
-- از over-engineering خودداری کنید
-- برای logic غیربدیهی comment بگذارید
-- قبل از submit به‌طور کامل تست کنید
+### 풀 리퀘스트
 
-### مالکیت معنوی
-- محتوای original متعلق به author است
-- پروژه از educational license استفاده می‌کند
-- copyrightهای موجود را رعایت کنید
-- attribution را در صورت نیاز فراهم کنید
+1. 기능 브랜치를 작성하세요: `git checkout -b feature/my-feature`
+2. 변경 사항을 커밋하세요: `git commit -m "feat: add my feature"`
+3. 브랜치를 푸시하세요: `git push origin feature/my-feature`
+4. 풀 리퀘스트를 생성하세요
 
-## دریافت کمک
+### PR 템플릿
 
-- **سؤالات**: یک discussion در GitHub Issues باز کنید
-- **کمک عمومی**: مستندات موجود را بررسی کنید
-- **کمک development**: مثال‌های مشابه را review کنید
-- **Code review**: maintainerها را در PRها tag کنید
+`.github/pull_request_template.md`를 준수하세요. 변경 사항을 위에 나열된 섹션으로 설명하세요.
 
-## شناسایی
+### 코드 스타일
 
-مشارکت‌کنندگان در این بخش‌ها شناسایی می‌شوند:
-- بخش Contributors در README.md
-- صفحه contributors گیت‌هاب
-- تاریخچه commit
+- 들여쓰기: 2개 공백
+- 줄 바꿈 문자: LF
+- 파일 끝: 줄 바꿈
+- 명령어 `prettier --write .`로 스타일을 검사하세요
 
-## امنیت
+## 릴리스 분류 버전 관리
 
-هنگام مشارکت مثال‌ها و مستندات، لطفاً secure coding practiceها را دنبال کنید:
+이 프로젝트는 아래 규칙에 따라 버전을 분류합니다:
 
-- **هرگز secret یا API key را hardcode نکنید** - از environment variableها استفاده کنید
-- **درباره پیامدهای امنیتی هشدار دهید** - riskهای potential را highlight کنید
-- **پیش‌فرض‌های امن استفاده کنید** - featureهای امنیتی را به‌طور پیش‌فرض فعال کنید
-- **inputها را validate کنید** - input validation و sanitization مناسب را نشان دهید
-- **نکات امنیتی include کنید** - security considerationها را مستند کنید
+```text
+MAJOR.MINOR.PATCH
+```
 
-برای مسائل امنیتی، [SECURITY.md](SECURITY.md) را برای فرآیند گزارش vulnerability ببینید.
+- **MAJOR**: 비호환성 변경 사항
+- **MINOR**: 하위 호환 기능을 추가함 (새로운 섹션, 새로운 문서)
+- **PATCH**: 버그 수정
 
-## کد رفتار
+### 버전 파일
 
-ما متعهد به فراهم کردن یک community خوشامدگو و فراگیر هستیم. لطفاً [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) را برای استانداردهای کامل community بخوانید.
+- `RELEASE_NOTES.md` - 주요 릴리스 노트
+- `CHANGELOG.md` - 전체 변경 로그
+- `VERSION` - 현재 버전
 
-به‌طور خلاصه:
-- respectful و inclusive باشید
-- بازخورد را با فروتنی بپذیرید
-- به دیگران کمک کنید تا یاد بگیرند و رشد کنند
-- از harassment یا discrimination خودداری کنید
-- issueها را به maintainerها گزارش کنید
+현재 버전: `1.0.0`
 
-همه مشارکت‌کنندگان انتظار می‌رود این کد را رعایت کنند و با مهربانی و احترام با یکدیگر رفتار کنند.
+### 릴리스 작업 흐름
 
-## مجوز
+1. 변경 사항 검토
+2. `RELEASE_NOTES.md` 업데이트
+3. `CHANGELOG.md` 업데이트
+4. 태그 생성: `git tag -a v1.0.1 -m "Release v1.0.1"`
+5. 푸시: `git push origin v1.0.1`
+6. GitHub에서 릴리스 생성
 
-با مشارکت در این پروژه، موافقت می‌کنید که مشارکت‌های شما تحت MIT License منتشر شوند. فایل [LICENSE](LICENSE) را برای جزئیات ببینید.
+## 업데이트 및 유지 관리
 
-## سؤالی دارید؟
+이 저장소는 정기적으로 업데이트됩니다:
 
-- [README](README.md) را بررسی کنید
-- [LEARNING-ROADMAP.md](LEARNING-ROADMAP.md) را review کنید
-- مثال‌های موجود را ببینید
-- برای discussion یک issue باز کنید
+- **매월**: 새로운 섹션 리뷰 및 추가
+- **분기별**: 오래된 콘텐츠 검토
+- **릴리스 시**: 리비전 및 CHANGELOG 업데이트
 
-از مشارکت شما سپاسگزاریم! 🙏
+### 콘텐츠 업데이트 확인
 
----
+```bash
+git pull origin main
+```
 
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/overview
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+## 적용 및 지원
+
+이 프로젝트에 대한 질문이나 문의 사항이 있으시면, `CONTRIBUTING.md` 또는 `CODE_OF_CONDUCT.md`를 참조하세요.
+
+웹사이트: https://github.com/hassanbht/claude-howto

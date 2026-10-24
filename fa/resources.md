@@ -1,123 +1,122 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# List of good resources
+# 优质资源清单
 
-## Official Documentation
+## 官方文档
 
-| Resource | Description | Link |
+| 资源 | 说明 | 链接 |
 |----------|-------------|------|
-| Claude Code Docs | Official Claude Code documentation | [code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview) |
-| Anthropic Docs | Full Anthropic documentation | [docs.anthropic.com](https://docs.anthropic.com) |
-| MCP Protocol | Model Context Protocol specification | [modelcontextprotocol.io](https://modelcontextprotocol.io) |
-| MCP Servers | Official MCP server implementations | [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) |
-| Anthropic Cookbook | Code examples and tutorials | [github.com/anthropics/anthropic-cookbook](https://github.com/anthropics/anthropic-cookbook) |
-| Claude Code Skills | Community skills repository | [github.com/anthropics/skills](https://github.com/anthropics/skills) |
-| Agent Teams | Multi-agent coordination and collaboration | [code.claude.com/docs/en/agent-teams](https://code.claude.com/docs/en/agent-teams) |
-| Scheduled Tasks | Recurring tasks with /loop and cron | [code.claude.com/docs/en/scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) |
-| Chrome Integration | Browser automation | [code.claude.com/docs/en/chrome](https://code.claude.com/docs/en/chrome) |
-| Keybindings | Keyboard shortcut customization | [code.claude.com/docs/en/keybindings](https://code.claude.com/docs/en/keybindings) |
-| Desktop App | Native desktop application | [code.claude.com/docs/en/desktop](https://code.claude.com/docs/en/desktop) |
-| Remote Control | Remote session control | [code.claude.com/docs/en/remote-control](https://code.claude.com/docs/en/remote-control) |
-| Auto Mode | Automatic permission management | [code.claude.com/docs/en/permissions](https://code.claude.com/docs/en/permissions) |
-| Channels | Multi-channel communication | [code.claude.com/docs/en/channels](https://code.claude.com/docs/en/channels) |
-| Voice Dictation | Voice input for Claude Code | [code.claude.com/docs/en/voice-dictation](https://code.claude.com/docs/en/voice-dictation) |
-| Code Review | Managed pull-request reviews through the Claude GitHub App (Team and Enterprise) | [code.claude.com/docs/en/code-review](https://code.claude.com/docs/en/code-review) |
+| Claude Code 文档 | Claude Code 官方文档 | [code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview) |
+| Anthropic 文档 | Anthropic 完整文档 | [docs.anthropic.com](https://docs.anthropic.com) |
+| MCP Protocol | Model Context Protocol 规范 | [modelcontextprotocol.io](https://modelcontextprotocol.io) |
+| MCP Servers | 官方 MCP server 实现 | [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) |
+| Anthropic Cookbook | 代码示例和教程 | [github.com/anthropics/anthropic-cookbook](https://github.com/anthropics/anthropic-cookbook) |
+| Claude Code Skills | 社区技能仓库 | [github.com/anthropics/skills](https://github.com/anthropics/skills) |
+| Agent Teams | 多 agent 协作与协调 | [code.claude.com/docs/en/agent-teams](https://code.claude.com/docs/en/agent-teams) |
+| Scheduled Tasks | 使用 `/loop` 和 cron 的周期性任务 | [code.claude.com/docs/en/scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) |
+| Chrome Integration | 浏览器自动化 | [code.claude.com/docs/en/chrome](https://code.claude.com/docs/en/chrome) |
+| Keybindings | 键盘快捷键自定义 | [code.claude.com/docs/en/keybindings](https://code.claude.com/docs/en/keybindings) |
+| Desktop App | 原生桌面应用 | [code.claude.com/docs/en/desktop](https://code.claude.com/docs/en/desktop) |
+| Remote Control | 远程会话控制 | [code.claude.com/docs/en/remote-control](https://code.claude.com/docs/en/remote-control) |
+| Auto Mode | 自动权限管理 | [code.claude.com/docs/en/permissions](https://code.claude.com/docs/en/permissions) |
+| Channels | 多通道通信 | [code.claude.com/docs/en/channels](https://code.claude.com/docs/en/channels) |
+| Voice Dictation | Claude Code 语音输入 | [code.claude.com/docs/en/voice-dictation](https://code.claude.com/docs/en/voice-dictation) |
 
 ## Anthropic Engineering Blog
 
-| Article | Description | Link |
+| 文章 | 说明 | 链接 |
 |---------|-------------|------|
-| Code Execution with MCP | How to solve MCP context bloat using code execution — 98.7% token reduction | [anthropic.com/engineering/code-execution-with-mcp](https://www.anthropic.com/engineering/code-execution-with-mcp) |
+| Code Execution with MCP | 如何通过代码执行解决 MCP 上下文膨胀问题，Token 数量减少 98.7% | [anthropic.com/engineering/code-execution-with-mcp](https://www.anthropic.com/engineering/code-execution-with-mcp) |
 
 ---
 
-## Mastering Claude Code in 30 Minutes
+## 30 分钟掌握 Claude Code
 
-_Video_: https://www.youtube.com/watch?v=6eBSHbLKuN0
+_视频_: https://www.youtube.com/watch?v=6eBSHbLKuN0
 
-_**All Tips**_
-- **Explore Advanced Features and Shortcuts**
-  - Regularly check Claude's new code editing and context features in their release notes.
-  - Learn keyboard shortcuts to switch between chat, file, and editor views quickly.
+_**全部技巧**_
+- **探索高级功能和快捷键**
+  - 定期查看 Claude 发布说明中的新代码编辑与上下文功能。
+  - 学习键盘快捷键，在聊天、文件和编辑器视图之间快速切换。
 
-- **Efficient Setup**
-  - Create project-specific sessions with clear names/descriptions for easy retrieval.
-  - Pin most-used files or folders so Claude can access them at any time.
-  - Set up Claude's integrations (e.g., GitHub, popular IDEs) to streamline your coding process.
+- **高效设置**
+  - 为项目创建带有清晰名称和描述的会话，便于之后查找。
+  - 将最常用的文件或文件夹固定住，让 Claude 随时可访问。
+  - 配置 Claude 的集成，例如 GitHub 和常见 IDE，以简化你的编码流程。
 
-- **Effective Codebase Q&A**
-  - Ask Claude detailed questions about architecture, design patterns, and specific modules.
-  - Use file and line references in your questions (e.g., "What does the logic in `app/models/user.py` accomplish?").
-  - For large codebases, provide a summary or manifest to help Claude focus.
-  - **Example prompt**: _"Can you explain the authentication flow implemented in src/auth/AuthService.ts:45-120? How does it integrate with the middleware in src/middleware/auth.ts?"_
+- **高效的代码库问答**
+  - 向 Claude 询问架构、设计模式和具体模块的细节问题。
+  - 在问题里使用文件和行号引用，例如：“`app/models/user.py` 里的逻辑是在做什么？”
+  - 对于大型代码库，提供摘要或清单，帮助 Claude 聚焦。
+  - **示例提示词**：_“你能解释一下 `src/auth/AuthService.ts:45-120` 里实现的认证流程吗？它是如何与 `src/middleware/auth.ts` 里的中间件集成的？”_
 
-- **Code Editing & Refactoring**
-  - Use inline comments or requests in code blocks to get focused edits ("Refactor this function for clarity").
-  - Ask for side-by-side before/after comparisons.
-  - Let Claude generate tests or documentation after major edits for quality assurance.
-  - **Example prompt**: _"Refactor the getUserData function in api/users.js to use async/await instead of promises. Show me a before/after comparison and generate unit tests for the refactored version."_
+- **代码编辑与重构**
+  - 使用代码块中的内联注释或请求来获得更聚焦的编辑结果（例如：“把这个函数重构得更清晰一些”）。
+  - 让 Claude 给出并排的修改前后对比。
+  - 在重大修改后，让 Claude 生成测试或文档，以保证质量。
+  - **示例提示词**：_“把 `api/users.js` 里的 `getUserData` 函数从 promises 改成 async/await。给我一个修改前后对比，并为重构后的版本生成单元测试。”_
 
-- **Context Management**
-  - Limit your pasted code/context to only what's relevant for the current task.
-  - Use structured prompts ("Here's file A, here's function B, my question is X") for best performance.
-  - Remove or collapse large files in the prompt window to avoid exceeding context limits.
-  - **Example prompt**: _"Here's the User model from models/User.js and the validateUser function from utils/validation.js. My question is: how can I add email validation while maintaining backward compatibility?"_
+- **上下文管理**
+  - 只粘贴当前任务真正需要的代码和上下文。
+  - 使用结构化提示词（“这里是文件 A，这里是函数 B，我的问题是 X”）通常效果最好。
+  - 在提示窗口里移除或折叠大文件，避免超出上下文限制。
+  - **示例提示词**：_“这里是 `models/User.js` 里的 User 模型，以及 `utils/validation.js` 里的 `validateUser` 函数。我的问题是：如何在保持向后兼容的前提下添加邮箱验证？”_
 
-- **Integrate Team Tools**
-  - Connect Claude sessions to your team's repositories and documentation.
-  - Use built-in templates or create custom ones for recurring engineering tasks.
-  - Collaborate by sharing session transcripts and prompts with teammates.
+- **接入团队工具**
+  - 将 Claude 会话连接到你们团队的代码仓库和文档。
+  - 使用内置模板，或为重复出现的工程任务创建自定义模板。
+  - 通过和队友共享会话记录与提示词来协作。
 
-- **Boosting Performance**
-  - Give Claude clear, goal-oriented instructions (e.g., "Summarize this class in five bullet points").
-  - Trim unnecessary comments and boilerplate from context windows.
-  - If Claude's output is off track, reset context or rephrase questions for better alignment.
-  - **Example prompt**: _"Summarize the DatabaseManager class in src/db/Manager.ts in five bullet points, focusing on its main responsibilities and key methods."_
+- **提升性能**
+  - 给 Claude 清晰、面向目标的指令，例如：“用五个要点总结这个类”。
+  - 从上下文窗口中删掉不必要的注释和样板代码。
+  - 如果 Claude 的输出跑偏了，重置上下文或重新表述问题，以获得更好的对齐。
+  - **示例提示词**：_“用五个要点总结 `src/db/Manager.ts` 里的 `DatabaseManager` 类，重点说明它的核心职责和关键方法。”_
 
-- **Practical Use Examples**
-  - Debugging: Paste errors and stack traces, then ask for possible causes and fixes.
-  - Test Generation: Request property-based, unit, or integration tests for complex logic.
-  - Code Reviews: Ask Claude to identify risky changes, edge cases, or code smells.
-  - **Example prompts**:
-    - _"I'm getting this error: 'TypeError: Cannot read property 'map' of undefined at line 42 in components/UserList.jsx'. Here's the stack trace and the relevant code. What's causing this and how can I fix it?"_
-    - _"Generate comprehensive unit tests for the PaymentProcessor class, including edge cases for failed transactions, timeouts, and invalid inputs."_
-    - _"Review this pull request diff and identify potential security issues, performance bottlenecks, and code smells."_
+- **实用场景示例**
+  - 调试：粘贴错误和堆栈信息，然后询问可能的原因和修复方式。
+  - 生成测试：为复杂逻辑请求属性测试、单元测试或集成测试。
+  - 代码审查：请 Claude 识别风险变更、边界情况或代码异味。
+  - **示例提示词**：
+    - _“我遇到这个错误：`TypeError: Cannot read property 'map' of undefined at line 42 in components/UserList.jsx`。这是堆栈信息和相关代码。是什么原因导致的？我该怎么修复？”_
+    - _“为 `PaymentProcessor` 类生成完整的单元测试，包括失败交易、超时和无效输入等边界情况。”_
+    - _“审查这个 pull request diff，找出潜在的安全问题、性能瓶颈和代码异味。”_
 
-- **Workflow Automation**
-  - Script repetitive tasks (like formatting, clean-ups, and repetitive renaming) using Claude prompts.
-  - Use Claude to draft PR descriptions, release notes, or documentation based on code diffs.
-  - **Example prompt**: _"Based on the git diff, create a detailed PR description with a summary of changes, list of modified files, testing steps, and potential impacts. Also generate release notes for version 2.3.0."_
+- **工作流自动化**
+  - 用 Claude 提示词为格式化、清理、批量重命名等重复任务编写脚本。
+  - 用 Claude 基于代码 diff 起草 PR 描述、发布说明或文档。
+  - **示例提示词**：_“根据 git diff，生成一份详细的 PR 描述，包含变更摘要、修改文件列表、测试步骤和潜在影响。同时为 2.3.0 版本生成发布说明。”_
 
-**Tip**: For best results, combine several of these practices—start by pinning critical files and summarizing your goals, then use focused prompts and Claude’s refactoring tools to incrementally improve your codebase and automation.
+**提示**：想要获得最佳效果，可以把这些实践组合起来使用。先固定关键文件并总结目标，再使用聚焦的提示词和 Claude 的重构工具，逐步改进你的代码库和自动化流程。
 
 
-**Recommended workflow with Claude Code**
+**与 Claude Code 配合使用的推荐工作流**
 
-### Recommended Workflow with Claude Code
+### Claude Code 推荐工作流
 
-#### For a New Repository
+#### 新仓库场景
 
-1. **Initialize the Repo & Claude Integration**
-   - Set up your new repository with essential structure: README, LICENSE, .gitignore, root configs.
-   - Create a `CLAUDE.md` file describing the architecture, high-level goals, and coding guidelines.
-   - Install Claude Code and link it to your repository for code suggestions, test scaffolding, and workflow automation.
+1. **初始化仓库并接入 Claude**
+   - 建立新仓库的基础结构：`README`、`LICENSE`、`.gitignore`、根配置文件。
+   - 创建 `CLAUDE.md`，说明架构、高层目标和编码规范。
+   - 安装 Claude Code，并将其连接到仓库，用于代码建议、测试脚手架和工作流自动化。
 
-2. **Use Plan Mode and Specs**
-   - Use plan mode (`shift-tab` or `/plan`) to draft a detailed specification before implementing features.
-   - Ask Claude for architecture suggestions and initial project layout.
-   - Keep a clear, goal-oriented prompt sequence—ask for component outlines, major modules, and responsibilities.
+2. **使用计划模式和规格说明**
+   - 在实现功能之前，使用计划模式（`shift-tab` 或 `/plan`）先写详细规格。
+   - 让 Claude 给出架构建议和初始项目布局。
+   - 保持清晰、面向目标的提示词序列，依次询问组件轮廓、主要模块和职责。
 
-3. **Iterative Develop & Review**
-   - Implement core features in small chunks, prompting Claude for code generation, refactoring, and documentation.
-   - Request unit tests and examples after each increment.
-   - Maintain a running task list in CLAUDE.md.
+3. **迭代开发与审查**
+   - 把核心功能拆成小块逐步实现，并在过程中请求 Claude 生成代码、重构和文档。
+   - 每增加一小步，都请求单元测试和示例。
+   - 在 `CLAUDE.md` 中维护持续更新的任务列表。
 
-4. **Automate CI/CD and Deployment**
-   - Use Claude to scaffold GitHub Actions, npm/yarn scripts, or deployment workflows.
-   - Adapt pipelines easily by updating your CLAUDE.md and requesting corresponding commands/scripts.
+4. **自动化 CI/CD 和部署**
+   - 用 Claude 搭建 GitHub Actions、npm/yarn 脚本或部署工作流。
+   - 通过更新 `CLAUDE.md` 并请求对应命令/脚本，轻松调整流水线。
 
 ```mermaid
 graph TD
@@ -146,31 +145,31 @@ graph TD
     S --> T[Test Automation]
     T --> U[Repository Ready]
 
-    style A fill:#e1f5fe,stroke:#333,color:#333
-    style G fill:#fff9c4,stroke:#333,color:#333
-    style K fill:#e8f5e9,stroke:#333,color:#333
-    style Q fill:#f3e5f5,stroke:#333,color:#333
-    style U fill:#e8f5e9,stroke:#333,color:#333
+    style A fill:#e1f5ff
+    style G fill:#fff4e1
+    style K fill:#f0ffe1
+    style Q fill:#ffe1f5
+    style U fill:#90EE90
 ```
 
-#### For an Existing Repository
+#### 现有仓库场景
 
-1. **Repository & Context Setup**
-   - Add or update `CLAUDE.md` to document repo structure, coding patterns, and key files. For legacy repos, use `CLAUDE_LEGACY.md` covering frameworks, version maps, instructions, bugs, and upgrade notes.
-   - Pin or highlight main files Claude should use for context.
+1. **仓库与上下文准备**
+   - 添加或更新 `CLAUDE.md`，记录仓库结构、编码模式和关键文件。对于旧仓库，可以使用 `CLAUDE_LEGACY.md`，其中涵盖框架、版本映射、说明、已知问题和升级笔记。
+   - 固定或高亮 Claude 应该用来作为上下文的主文件。
 
-2. **Contextual Code Q&A**
-   - Ask Claude for code reviews, bug explanations, refactors, or migration plans referencing specific files/functions.
-   - Give Claude explicit boundaries (e.g., "modify only these files" or "no new dependencies").
+2. **上下文驱动的代码问答**
+   - 让 Claude 基于具体文件/函数，回答代码审查、 bug 解释、重构或迁移计划。
+   - 给 Claude 明确边界，例如“只修改这些文件”或者“不要新增依赖”。
 
-3. **Branch, Worktree, and Multi-Session Management**
-   - Use multiple git worktrees for isolated features or bug fixes and launch separate Claude sessions per worktree.
-   - Keep terminal tabs/windows organized by branch or feature for parallel workflows.
+3. **分支、工作区和多会话管理**
+   - 使用多个 git worktree 做隔离的功能开发或 bug 修复，并为每个 worktree 启动独立的 Claude 会话。
+   - 通过终端标签页/窗口按分支或功能组织并行工作。
 
-4. **Team Tools and Automation**
-   - Synchronize custom commands via `.claude/commands/` for cross-team consistency.
-   - Automate repetitive tasks, PR creation, and code formatting via Claude's slash commands or hooks.
-   - Share sessions and context with team members for collaborative troubleshooting and review.
+4. **团队工具和自动化**
+   - 通过 `.claude/commands/` 同步自定义命令，保持团队一致性。
+   - 用 Claude 的 slash commands 或 hooks 自动化重复任务、PR 创建和代码格式化。
+   - 与团队成员共享会话和上下文，便于协作排障和审查。
 
 ```mermaid
 graph TD
@@ -211,59 +210,48 @@ graph TD
     Y -->|Yes| H
     Y -->|No| Z[Workflow Complete]
 
-    style A fill:#e1f5fe,stroke:#333,color:#333
-    style C fill:#fce4ec,stroke:#333,color:#333
-    style D fill:#fff9c4,stroke:#333,color:#333
-    style P fill:#e8f5e9,stroke:#333,color:#333
-    style T fill:#f3e5f5,stroke:#333,color:#333
-    style Z fill:#e8f5e9,stroke:#333,color:#333
+    style A fill:#e1f5ff
+    style C fill:#ffecec
+    style D fill:#fff4e1
+    style P fill:#f0ffe1
+    style T fill:#ffe1f5
+    style Z fill:#90EE90
 ```
 
-**Tips**:
-- Start each new feature or fix with a spec and plan mode prompt.
-- For legacy and complex repos, store detailed guidance in CLAUDE.md/CLAUDE_LEGACY.md.
-- Give clear, focused instructions and break down complex work into multi-phase plans.
-- Regularly clean up sessions, prune context, and remove completed worktrees to avoid clutter.
+**提示**：
+- 每个新功能或修复都从规格和计划模式提示词开始。
+- 对于旧仓库和复杂仓库，把更详细的指导存放在 `CLAUDE.md` / `CLAUDE_LEGACY.md` 中。
+- 给出清晰、聚焦的指令，把复杂工作拆成多阶段计划。
+- 定期清理会话、裁剪上下文，并删除已完成的工作区，避免堆积混乱。
 
-These steps capture the core recommendations for smooth workflows with Claude Code in both new and existing codebases.
+这些步骤概括了在新旧代码库中更顺畅使用 Claude Code 的核心建议。
 
 ---
 
-## New Features & Capabilities
+## 2026 年 3 月新增功能与能力
 
-### Key Feature Resources
+### 关键功能资源
 
-| Feature | Description | Learn More |
+| 功能 | 说明 | 了解更多 |
 |---------|-------------|------------|
-| **Auto Memory** | Claude automatically learns and remembers your preferences across sessions | [Memory Guide](02-memory/) |
-| **Remote Control** | Continue a local Claude Code session from your phone, browser or the Claude app | [Advanced Features](09-advanced-features/) |
-| **Web Sessions** | Access Claude Code through browser-based interfaces for remote development | [CLI Reference](10-cli/) |
-| **Desktop App** | Native desktop application for Claude Code with enhanced UI | [Claude Code Docs](https://code.claude.com/docs/en/desktop) |
-| **Extended Thinking** | Deep reasoning toggle via `Alt+T`/`Option+T`; Opus 4.7+, Sonnet 5+, Haiku 5.5 and Fable always use adaptive reasoning, so a fixed `MAX_THINKING_TOKENS` budget does not apply (control depth with `/effort`) | [Advanced Features](09-advanced-features/) |
-| **Permission Modes** | Fine-grained control: manual (formerly default), acceptEdits, plan, auto, dontAsk, bypassPermissions | [Advanced Features](09-advanced-features/) |
-| **7-Tier Memory** | Managed Policy, Project, Project Rules, User, User Rules, Local, Auto Memory | [Memory Guide](02-memory/) |
-| **Hook Events** | 33 events: PreToolUse, PostToolUse, PostToolUseFailure, Stop, StopFailure, SubagentStart, SubagentStop, Notification, Elicitation, and more | [Hooks Guide](06-hooks/) |
-| **Agent Teams** | Coordinate multiple agents working together on complex tasks | [Subagents Guide](04-subagents/) |
-| **Scheduled Tasks** | Set up recurring tasks with `/loop` and cron tools | [Advanced Features](09-advanced-features/) |
-| **Chrome Integration** | Browser automation in your own Chrome via the Claude in Chrome extension | [Advanced Features](09-advanced-features/) |
-| **Keyboard Customization** | Customize keybindings including chord sequences | [Advanced Features](09-advanced-features/) |
-| **Monitor Tool** | Watch a background command's stdout stream and react to events instead of polling (v2.1.98+) | [Advanced Features](09-advanced-features/) |
-| **/goal mode** | Register a session-level completion condition; Claude keeps working until met (v2.1.139+) | [Slash Commands](01-slash-commands/) |
-| **claude agents (Agent View)** | List, inspect, and resume background agents from the terminal; `--json` for machine-readable output (v2.1.139+, `--json` added v2.1.145) | [code.claude.com/docs/en/agent-view](https://code.claude.com/docs/en/agent-view) |
-| **/run, /verify, /run-skill-generator** | Bundled skills to launch your project, confirm a fix works, and generate per-project run/verify skills (v2.1.145+) | [Skills Guide](03-skills/) |
+| **Auto Memory** | Claude 会自动学习并记住你跨会话的偏好 | [记忆指南](02-memory/README.md) |
+| **Remote Control** | 从手机、浏览器或 Claude 应用继续本地的 Claude Code 会话 | [高级功能](09-advanced-features/README.md) |
+| **Web Sessions** | 通过基于浏览器的界面访问 Claude Code，实现远程开发 | [CLI 参考](10-cli/README.md) |
+| **Desktop App** | Claude Code 的原生桌面应用，界面更强大 | [Claude Code 文档](https://code.claude.com/docs/en/desktop) |
+| **Extended Thinking** | 通过 `Alt+T` / `Option+T` 切换深度推理；Opus 4.7+、Sonnet 5+、Haiku 5.5 和 Fable 始终使用自适应推理，因此 `MAX_THINKING_TOKENS` 固定预算不适用（用 `/effort` 控制深度） | [高级功能](09-advanced-features/README.md) |
+| **Permission Modes** | 精细权限控制：default、acceptEdits、plan、auto、dontAsk、bypassPermissions | [高级功能](09-advanced-features/README.md) |
+| **7-Tier Memory** | Managed Policy、Project、Project Rules、User、User Rules、Local、Auto Memory | [记忆指南](02-memory/README.md) |
+| **Hook Events** | 33 个事件：PreToolUse、PostToolUse、PostToolUseFailure、Stop、StopFailure、SubagentStart、SubagentStop、Notification、Elicitation 等 | [Hooks 指南](06-hooks/README.md) |
+| **Agent Teams** | 协调多个 agent 共同处理复杂任务 | [Subagents 指南](04-subagents/README.md) |
+| **Scheduled Tasks** | 用 `/loop` 和 cron 工具设置周期性任务 | [高级功能](09-advanced-features/README.md) |
+| **Chrome Integration** | 通过 Claude in Chrome 扩展在你自己的 Chrome 中做浏览器自动化 | [高级功能](09-advanced-features/README.md) |
+| **Keyboard Customization** | 自定义按键绑定，包括组合键序列 | [高级功能](09-advanced-features/README.md) |
 
 ---
-**Last Updated**: October 18, 2026
-**Claude Code Version**: 2.1.302
-**Sources**:
-- https://code.claude.com/docs/en/overview
-- https://code.claude.com/docs/en/changelog
-- https://code.claude.com/docs/en/agent-view
-- https://code.claude.com/docs/en/permission-modes
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.144
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.145
-- https://code.claude.com/docs/en/model-config
+
+**最后更新**：2026 年 10 月 18 日
+**Claude Code 版本**：2.1.302
+**来源**：
 - https://code.claude.com/docs/en/chrome
 - https://code.claude.com/docs/en/remote-control
-- https://code.claude.com/docs/en/code-review
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+- https://code.claude.com/docs/en/model-config

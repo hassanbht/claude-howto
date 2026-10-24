@@ -1,32 +1,32 @@
-# [METHOD] /api/v1/[endpoint]
+# [方法] /api/v1/[endpoint]
 
-## Description
-Brief explanation of what this endpoint does.
+## 描述
+简要说明这个端点的作用。
 
-## Authentication
-Required authentication method (e.g., Bearer token).
+## 身份验证
+所需的身份验证方式，例如 Bearer token。
 
-## Parameters
+## 参数
 
-### Path Parameters
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| id | string | Yes | Resource ID |
+### 路径参数
+| 名称 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| id | string | 是 | 资源 ID |
 
-### Query Parameters
-| Name | Type | Required | Description |
-|------|------|----------|-------------|
-| page | integer | No | Page number (default: 1) |
-| limit | integer | No | Items per page (default: 20) |
+### 查询参数
+| 名称 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| page | integer | 否 | 页码（默认：1） |
+| limit | integer | 否 | 每页条数（默认：20） |
 
-### Request Body
+### 请求体
 ```json
 {
   "field": "value"
 }
 ```
 
-## Responses
+## 响应
 
 ### 200 OK
 ```json
@@ -34,7 +34,7 @@ Required authentication method (e.g., Bearer token).
   "success": true,
   "data": {
     "id": "123",
-    "name": "Example"
+    "name": "示例"
   }
 }
 ```
@@ -45,7 +45,7 @@ Required authentication method (e.g., Bearer token).
   "success": false,
   "error": {
     "code": "VALIDATION_ERROR",
-    "message": "Invalid input"
+    "message": "无效输入"
   }
 }
 ```
@@ -56,12 +56,12 @@ Required authentication method (e.g., Bearer token).
   "success": false,
   "error": {
     "code": "NOT_FOUND",
-    "message": "Resource not found"
+    "message": "资源未找到"
   }
 }
 ```
 
-## Examples
+## 示例
 
 ### cURL
 ```bash
@@ -92,18 +92,10 @@ response = requests.get(
 data = response.json()
 ```
 
-## Rate Limits
-- 1000 requests per hour for authenticated users
-- 100 requests per hour for public endpoints
+## 限流
+- 已认证用户每小时 1000 次请求
+- 公开端点每小时 100 次请求
 
-## Related Endpoints
+## 相关端点
 - [GET /api/v1/related](#)
 - [POST /api/v1/related](#)
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

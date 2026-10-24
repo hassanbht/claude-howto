@@ -1,22 +1,21 @@
 ---
-description: Run security-focused code review
+description: اجرای بازبینی امنیتی متمرکز بر کد
 ---
 
-# Security Check
+# بررسی امنیت
 
-Perform focused security analysis on code changes:
+تحلیل امنیتی متمرکز بر تغییرات کد:
 
-1. Authentication/authorization checks
-2. Data exposure risks
-3. Injection vulnerabilities
-4. Cryptographic weaknesses
-5. Sensitive data in logs
+1. بررسی احراز هویت/مجوز
+2. خطرات نشت داده
+3. آسیب‌پذیری‌های تزریق
+4. نقاط ضعف رمزنگاری
+5. داده‌های حساس در لاگ‌ها
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**آخرین به‌روزرسانی**: 15 اکتبر 2026
+**نسخه Claude Code**: 2.1.300
+**منابع**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

@@ -1,132 +1,135 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
-</picture>
+---
+name: 文档生成插件
+description: 为文档编写、同步和校验提供完整工作流
+tags: plugins, documentation, automation
+---
 
-# Documentation Plugin
+# 文档生成插件
 
-Comprehensive documentation generation and maintenance for your project.
+这个插件把文档相关的命令、subagents、模板和 MCP 服务器打包在一起，帮助你生成、同步和校验文档。
 
-## Features
+## 特性
 
-✅ API documentation generation
-✅ README creation and updates
-✅ Documentation synchronization
-✅ Code comment improvements
-✅ Example generation
+✅ 生成 API 文档
+✅ 创建和更新 README
+✅ 同步文档
+✅ 改进代码注释
+✅ 生成示例
 
-## Installation
+## 包含内容
+
+### 命令
+- [commands/generate-api-docs.md](commands/generate-api-docs.md) - 生成 API 文档
+- [commands/generate-readme.md](commands/generate-readme.md) - 生成 README
+- [commands/sync-docs.md](commands/sync-docs.md) - 同步文档
+- [commands/validate-docs.md](commands/validate-docs.md) - 校验文档
+
+### Subagents
+- [agents/api-documenter.md](agents/api-documenter.md) - API 文档 subagent
+- [agents/code-commentator.md](agents/code-commentator.md) - 代码注释 subagent
+- [agents/example-generator.md](agents/example-generator.md) - 示例生成 subagent
+
+### 模板
+- [templates/adr-template.md](templates/adr-template.md) - ADR 模板
+- [templates/api-endpoint.md](templates/api-endpoint.md) - API 端点模板
+- [templates/function-docs.md](templates/function-docs.md) - 函数文档模板
+
+### MCP 服务器
+- GitHub 集成 - 用于文档同步
+
+## 安装
 
 ```bash
 claude --plugin-dir ./07-plugins/documentation
 ```
 
-## What's Included
+## 使用方式
 
-### Slash Commands
-- `/generate-api-docs` - Generate API documentation
-- `/generate-readme` - Create or update README
-- `/sync-docs` - Sync docs with code changes
-- `/validate-docs` - Validate documentation
-
-### Subagents
-- `api-documenter` - API documentation specialist
-- `code-commentator` - Code comment improvements
-- `example-generator` - Code example creation
-
-### Templates
-- `api-endpoint.md` - API endpoint documentation template
-- `function-docs.md` - Function documentation template
-- `adr-template.md` - Architecture Decision Record template
-
-### MCP Servers
-- GitHub integration for documentation syncing
-
-## Usage
-
-### Generate API Documentation
-```
+### 生成 API 文档
+```bash
 /generate-api-docs
 ```
 
-### Create README
-```
+### 创建 README
+```bash
 /generate-readme
 ```
 
-### Sync Documentation
-```
+### 同步文档
+```bash
 /sync-docs
 ```
 
-### Validate Documentation
-```
+### 校验文档
+```bash
 /validate-docs
 ```
 
-## Requirements
+## 适用场景
+
+- 想标准化项目文档产出
+- 想自动生成 README、API 文档和示例
+- 想同步多个文档之间的一致性
+- 想维护代码注释和示例质量
+
+## 需求
 
 - Claude Code 2.1+
-- GitHub access (optional)
+- GitHub 访问权限（可选）
 
-## Example Workflow
+## 示例工作流
 
-```
-User: /generate-api-docs
+```text
+用户：/generate-api-docs
 
-Claude:
-1. Scans all API endpoints in /src/api/
-2. Delegates to api-documenter subagent
-3. Extracts function signatures and JSDoc
-4. Organizes by module/endpoint
-5. Uses api-endpoint.md template
-6. Generates comprehensive markdown docs
-7. Includes curl, JavaScript, and Python examples
+Claude：
+1. 扫描 /src/api/ 下的所有 API 端点
+2. 委派给 api-documenter subagent
+3. 提取函数签名和 JSDoc
+4. 按模块 / 端点组织内容
+5. 使用 api-endpoint.md 模板
+6. 生成完整的 Markdown 文档
+7. 包含 curl、JavaScript 和 Python 示例
 
-Result:
-✅ API documentation generated
-📄 Files created:
+结果：
+✅ API 文档已生成
+📄 已创建文件：
    - docs/api/users.md
    - docs/api/auth.md
    - docs/api/products.md
-📊 Coverage: 23/23 endpoints documented
+📊 覆盖率：23/23 个端点已文档化
 ```
 
-## Templates Usage
+## 模板用途
 
-### API Endpoint Template
-Use for documenting REST API endpoints with full examples.
+### API 端点模板
+用于编写带完整示例的 REST API 文档。
 
-### Function Documentation Template
-Use for documenting individual functions/methods.
+### 函数文档模板
+用于编写单个函数或方法的说明文档。
 
-### ADR Template
-Use for documenting architectural decisions.
+### ADR 模板
+用于记录架构决策。
 
-## Configuration
+## 配置
 
-Set up GitHub token for documentation syncing:
+为文档同步设置 GitHub token：
 ```bash
 export GITHUB_TOKEN="your_github_token"
 ```
 
-## Best Practices
+## 最佳实践
 
-- Keep documentation close to code
-- Update docs with code changes
-- Include practical examples
-- Validate regularly
-- Use templates for consistency
+- 文档尽量贴近代码
+- 随着代码变化同步更新文档
+- 提供可直接执行的示例
+- 定期校验文档有效性
+- 使用模板保持一致性
 
 ---
 
-**Last Updated**: October 18, 2026
-**Claude Code Version**: 2.1.302
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.131
-- https://github.com/anthropics/claude-code/releases/tag/v2.1.138
-- https://code.claude.com/docs/en/model-config
+**最后更新**: 2026 年 10 月 18 日
+**Claude Code 版本**: 2.1.302
+**来源**:
 - https://code.claude.com/docs/en/plugins/cli-reference
 - https://code.claude.com/docs/en/plugins/install
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

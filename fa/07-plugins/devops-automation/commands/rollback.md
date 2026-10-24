@@ -1,22 +1,21 @@
 ---
-description: Rollback to previous deployment
+description: بازگشت به آخرین استقرار
 ---
 
-# Rollback Deployment
+# بازگشت استقرار
 
-Rollback to previous stable version:
+به نسخه قبلی پایدار باز می‌گردید:
 
-1. Identify previous deployment
-2. Verify rollback target is healthy
-3. Execute rollback procedure
-4. Run health checks
-5. Notify team
+1. تأیید آخرین استقرار
+2. بررسی سلامت هدف بازگشت
+3. اجرای فرآیند بازگشت
+4. اجرای بررسی سلامت
+5. اطلاع‌رسانی به تیم
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**آخرین به‌روزرسانی**: 15 اکتبر 2026
+**نسخه Claude Code**: 2.1.300
+**منابع**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

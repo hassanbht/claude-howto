@@ -1,33 +1,50 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
+
+# دستور آماده‌سازی و بازتاب‌دهی Pull Request
+
+دستور `/pr`، پیش‌پردازش و ارسال یک پرس‌پرداز برای فایل‌های متنی، و فایل‌های کد، برای مخزن‌های GitHub، هاست‌های ساختگی، یا فرآیندهایی است که برای پروژه‌های کلود کد، از این دستور، استفاده می‌شود.
+
+## چیستی
+
+دستور `/pr`، برآورد شده است که:
+
+۱. فایل‌ها و تغییرات را کپی می‌کند
+۲. با استفاده از `git branches`، فایل‌ها را مجدداً بررسی می‌کند
+۳. تغییرات را به‌صورت خودکار، به‌عددی، پیک‌مرزه می‌کند
+۴. یک پیک‌فرمو، توسط گیت، اجرا می‌کند
+
+## مثال‌ها
+
+### مثال ۱: ایجاد PR
+
+```bash
+# در مسیر انتهایی، پیک‌کردن می‌شود
+/pr
+```
+
+### مثال ۲: بررسی تغییرات
+
+```bash
+# پرس‌پرداز، تغییرات را بررسی می‌کند
+/pr --check
+```
+
+## مراحل
+
+۱. **تیک‌ها**: تغییرات را مطابق فایل‌ها، کپی کنید
+۲. **آزمون‌ها**: خود آزمون‌ها را اجرا کنید
+۳. **استانداردها**: تغییرات، به استانداردها، مطابقت دارند
+۴. **پیک‌کردن**: فایل‌ها را برای تغییر، تنظیم کنید
+
+## اشکال‌پردازی
+
+- پیک‌دهی تکراری: مطمئن شوید که پیک‌کردن‌های قبلی، پاک شده‌اند
+- لاگ‌های استی‌ابزاری: فایل‌ها را به‌عنوان خطا، لیست کنید
+
 ---
-description: Clean up code, stage changes, and prepare a pull request
-allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git diff:*), Bash(npm test:*), Bash(npm run lint:*)
----
 
-# Pull Request Preparation Checklist
-
-Before creating a PR, execute these steps:
-
-1. Run linting: `prettier --write .`
-2. Run tests: `npm test`
-3. Review git diff: `git diff HEAD`
-4. Stage changes: `git add .`
-5. Create commit message following conventional commits:
-   - `fix:` for bug fixes
-   - `feat:` for new features
-   - `docs:` for documentation
-   - `refactor:` for code restructuring
-   - `test:` for test additions
-   - `chore:` for maintenance
-
-6. Generate PR summary including:
-   - What changed
-   - Why it changed
-   - Testing performed
-   - Potential impacts
-
----
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/commands
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**آخرین به‌روزرسانی**: ۱۸ آبان ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۳۰۲

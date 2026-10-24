@@ -1,292 +1,200 @@
-# Refactoring Plan Template
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-Use this template to document and track your refactoring effort.
+# 重构计划模板
 
----
-
-## Project Information
-
-| Field | Value |
-|-------|-------|
-| **Project/Module** | [Project name] |
-| **Target Files** | [List of files to refactor] |
-| **Date Created** | [Date] |
-| **Author** | [Name] |
-| **Status** | Draft / In Review / Approved / In Progress / Completed |
+使用这个模板来记录和跟踪你的重构工作。
 
 ---
 
-## Executive Summary
+## 项目信息
 
-### Goals
-- [ ] [Primary goal: e.g., Improve readability of payment processing]
-- [ ] [Secondary goal: e.g., Reduce code duplication]
-- [ ] [Tertiary goal: e.g., Improve testability]
-
-### Constraints
-- [ ] [Constraint 1: e.g., Cannot change public API]
-- [ ] [Constraint 2: e.g., Must maintain backward compatibility]
-- [ ] [Constraint 3: e.g., No changes to database schema]
-
-### Risk Level
-- [ ] Low - Minor changes, well-tested code
-- [ ] Medium - Moderate changes, some risk
-- [ ] High - Significant changes, careful attention needed
+| 字段 | 值 |
+|------|-----|
+| **项目 / 模块** | [项目名称] |
+| **目标文件** | [要重构的文件列表] |
+| **创建日期** | [日期] |
+| **作者** | [姓名] |
+| **状态** | Draft / In Review / Approved / In Progress / Completed |
 
 ---
 
-## Pre-Refactoring Checklist
+## 执行摘要
 
-### Test Coverage Assessment
+### 目标
 
-| Metric | Current | Target | Status |
-|--------|---------|--------|--------|
-| Unit Test Coverage | __%  | ≥80% | |
-| Integration Tests | Yes/No | Yes | |
-| All Tests Passing | Yes/No | Yes | |
+- [ ] [主要目标：例如，提升支付流程可读性]
+- [ ] [次要目标：例如，减少重复代码]
+- [ ] [第三目标：例如，提升可测试性]
 
-### Required Before Starting
-- [ ] All tests passing
-- [ ] Code reviewed and understood
-- [ ] Backup/version control in place
-- [ ] User approval obtained
+### 约束
 
----
+- [ ] [约束 1：例如，不能改公共 API]
+- [ ] [约束 2：例如，必须保持向后兼容]
+- [ ] [约束 3：例如，不能改数据库 schema]
 
-## Identified Code Smells
+### 风险等级
 
-### Summary
-
-| # | Smell | Location | Severity | Priority |
-|---|-------|----------|----------|----------|
-| 1 | [e.g., Long Method] | [file:line] | High | P1 |
-| 2 | [e.g., Duplicate Code] | [file:line] | Medium | P2 |
-| 3 | [e.g., Feature Envy] | [file:line] | Low | P3 |
-
-### Detailed Analysis
-
-#### Smell #1: [Name]
-
-**Location**: `path/to/file.js:45-120`
-
-**Description**: [Detailed description of the problem]
-
-**Impact**:
-- [Impact 1]
-- [Impact 2]
-
-**Proposed Solution**: [Brief overview of how to fix]
+- [ ] Low - 小改动，测试充分
+- [ ] Medium - 中等改动，有一定风险
+- [ ] High - 大改动，需要特别注意
 
 ---
 
-## Refactoring Phases
+## 重构前检查清单
 
-### Phase A: Quick Wins (Low Risk)
+### 测试覆盖评估
 
-**Objective**: Simple improvements with immediate value
+| 指标 | 当前值 | 目标值 | 状态 |
+|------|--------|--------|------|
+| 单元测试覆盖率 | __% | ≥80% | |
+| 集成测试 | Yes/No | Yes | |
+| 所有测试通过 | Yes/No | Yes | |
 
-**Estimated Changes**: [X files, Y methods]
+### 开始前必须满足
 
-**User Approval Required**: Yes / No
-
-| # | Task | File | Refactoring | Status |
-|---|------|------|-------------|--------|
-| A1 | Rename variable `x` to `userCount` | utils.js:15 | Rename Variable | [ ] |
-| A2 | Remove unused `oldHandler()` | api.js:89 | Remove Dead Code | [ ] |
-| A3 | Extract duplicate validation | form.js:23,67 | Extract Method | [ ] |
-
-**Rollback Plan**: Revert commits A1-A3
-
----
-
-### Phase B: Structural Improvements (Medium Risk)
-
-**Objective**: Improve code organization and clarity
-
-**Estimated Changes**: [X files, Y methods]
-
-**User Approval Required**: Yes
-
-**Dependencies**: Phase A must be complete
-
-| # | Task | File | Refactoring | Status |
-|---|------|------|-------------|--------|
-| B1 | Extract `calculatePrice()` from long method | order.js:45 | Extract Method | [ ] |
-| B2 | Introduce `OrderDetails` parameter object | order.js:12 | Introduce Parameter Object | [ ] |
-| B3 | Move `formatAddress()` to Address class | customer.js:78 | Move Method | [ ] |
-
-**Rollback Plan**: Revert to post-Phase-A commit
+- [ ] 所有测试通过
+- [ ] 已读懂并审查代码
+- [ ] 已有备份 / 版本控制
+- [ ] 已获得用户批准
 
 ---
 
-### Phase C: Architectural Changes (Higher Risk)
+## 已识别的代码异味
 
-**Objective**: Address deeper structural issues
+### 摘要
 
-**Estimated Changes**: [X files, Y methods]
+| # | 异味 | 位置 | 严重性 | 优先级 |
+|---|-------|------|-------|--------|
+| 1 | [例如，Long Method] | [file:line] | High | P1 |
+| 2 | [例如，Duplicate Code] | [file:line] | Medium | P2 |
+| 3 | [例如，Feature Envy] | [file:line] | Low | P3 |
 
-**User Approval Required**: Yes
+### 详细分析
 
-**Dependencies**: Phases A and B must be complete
+#### 异味 #1：[名称]
 
-| # | Task | File | Refactoring | Status |
-|---|------|------|-------------|--------|
-| C1 | Replace price switch with polymorphism | pricing.js:30 | Replace Conditional with Polymorphism | [ ] |
-| C2 | Extract `NotificationService` class | user.js:100 | Extract Class | [ ] |
+**位置**：`path/to/file.js:45-120`
 
-**Rollback Plan**: Revert to post-Phase-B commit
+**描述**：[对问题的详细描述]
+
+**影响：**
+
+- [影响 1]
+- [影响 2]
+
+**建议方案**：[如何修复的简要说明]
 
 ---
 
-## Detailed Refactoring Steps
+## 重构阶段
 
-### Task [ID]: [Task Name]
+### 阶段 A：快速收益（低风险）
 
-**Smell Addressed**: [Smell name]
+**目标**：快速、低风险的改进，立刻产生价值
 
-**Refactoring Technique**: [Technique name]
+**预计改动**：[X 个文件，Y 个方法]
 
-**Risk Level**: Low / Medium / High
+**需要用户批准**：Yes / No
 
-#### Context
+| # | 任务 | 文件 | 重构手法 | 状态 |
+|---|------|------|----------|------|
+| A1 | 将变量 `x` 重命名为 `userCount` | utils.js:15 | Rename Variable | [ ] |
+| A2 | 删除未使用的 `oldHandler()` | api.js:89 | Remove Dead Code | [ ] |
+| A3 | 提取重复的验证逻辑 | form.js:23,67 | Extract Method | [ ] |
 
-**Before** (Current State):
+**回滚方案**：回退 A1-A3 的提交
+
+---
+
+### 阶段 B：结构优化（中风险）
+
+**目标**：改善代码组织和清晰度
+
+**预计改动**：[X 个文件，Y 个方法]
+
+**需要用户批准**：Yes
+
+**依赖**：必须先完成阶段 A
+
+| # | 任务 | 文件 | 重构手法 | 状态 |
+|---|------|------|----------|------|
+| B1 | 从长函数中提取 `calculatePrice()` | order.js:45 | Extract Method | [ ] |
+| B2 | 引入 `OrderDetails` 参数对象 | order.js:12 | Introduce Parameter Object | [ ] |
+| B3 | 将 `formatAddress()` 移动到 Address 类 | customer.js:78 | Move Method | [ ] |
+
+**回滚方案**：回滚到阶段 A 完成后的提交
+
+---
+
+### 阶段 C：架构改动（高风险）
+
+**目标**：处理更深层的结构问题
+
+**预计改动**：[X 个文件，Y 个方法]
+
+**需要用户批准**：Yes
+
+**依赖**：必须先完成阶段 A 和 B
+
+| # | 任务 | 文件 | 重构手法 | 状态 |
+|---|------|------|----------|------|
+| C1 | 用多态替换价格 switch | pricing.js:30 | Replace Conditional with Polymorphism | [ ] |
+| C2 | 提取 `NotificationService` 类 | user.js:100 | Extract Class | [ ] |
+
+**回滚方案**：回滚到阶段 B 完成后的提交
+
+---
+
+## 详细重构步骤
+
+### 任务 [ID]：[任务名称]
+
+**对应异味**：[异味名称]
+
+**重构手法**：[手法名称]
+
+**风险等级**：Low / Medium / High
+
+#### 上下文
+
+**重构前**（当前状态）：
+
 ```javascript
-// Paste current code here
+// 把当前代码贴在这里
 ```
 
-**After** (Expected State):
+**重构后**（期望状态）：
+
 ```javascript
-// Paste expected code here
+// 把期望代码贴在这里
 ```
 
-#### Step-by-Step Mechanics
+#### 逐步操作
 
-1. [ ] **Step 1**: [Description]
-   - Test: Run tests after this step
-   - Expected: All tests pass
+1. [ ] **步骤 1**：[描述]
+   - 测试：完成此步后运行测试
+   - 预期：所有测试通过
 
-2. [ ] **Step 2**: [Description]
-   - Test: Run tests after this step
-   - Expected: All tests pass
+2. [ ] **步骤 2**：[描述]
+   - 测试：完成此步后运行测试
+   - 预期：所有测试通过
 
-3. [ ] **Step 3**: [Description]
-   - Test: Run tests after this step
-   - Expected: All tests pass
+3. [ ] **步骤 3**：[描述]
+   - 测试：完成此步后运行测试
+   - 预期：所有测试通过
 
-#### Verification
+#### 验证
 
-- [ ] All tests passing
-- [ ] Behavior unchanged
-- [ ] Code compiles
-- [ ] No new warnings
+- [ ] 所有测试通过
+- [ ] 行为未改变
+- [ ] 代码可编译
+- [ ] 没有新的警告
 
-#### Commit Message
+#### 提交信息
+
 ```
-refactor: [Describe the refactoring]
+refactor: [描述这次重构]
 ```
-
----
-
-## Progress Tracking
-
-### Phase Status
-
-| Phase | Status | Started | Completed | Tests Passing |
-|-------|--------|---------|-----------|---------------|
-| A | Not Started / In Progress / Done | | | |
-| B | Not Started / In Progress / Done | | | |
-| C | Not Started / In Progress / Done | | | |
-
-### Issues Encountered
-
-| # | Issue | Resolution | Status |
-|---|-------|------------|--------|
-| 1 | [Description] | [How resolved] | Open / Resolved |
-
----
-
-## Metrics Comparison
-
-### Before Refactoring
-
-| Metric | File 1 | File 2 | Total |
-|--------|--------|--------|-------|
-| Lines of Code | | | |
-| Cyclomatic Complexity | | | |
-| Maintainability Index | | | |
-| Number of Methods | | | |
-| Avg Method Length | | | |
-
-### After Refactoring
-
-| Metric | File 1 | File 2 | Total | Change |
-|--------|--------|--------|-------|--------|
-| Lines of Code | | | | |
-| Cyclomatic Complexity | | | | |
-| Maintainability Index | | | | |
-| Number of Methods | | | | |
-| Avg Method Length | | | | |
-
----
-
-## Post-Refactoring Checklist
-
-- [ ] All tests passing
-- [ ] No new warnings or errors
-- [ ] Code compiles successfully
-- [ ] Manual verification completed
-- [ ] Documentation updated (if needed)
-- [ ] Code reviewed
-- [ ] Metrics improved
-- [ ] User sign-off obtained
-
----
-
-## Lessons Learned
-
-### What Went Well
-- [Item 1]
-- [Item 2]
-
-### What Could Be Improved
-- [Item 1]
-- [Item 2]
-
-### Recommendations for Future
-- [Item 1]
-- [Item 2]
-
----
-
-## Approvals
-
-| Role | Name | Date | Signature |
-|------|------|------|-----------|
-| Plan Author | | | |
-| Technical Lead | | | |
-| Product Owner | | | |
-
----
-
-## Appendix
-
-### A. Related Documentation
-- [Link to relevant docs]
-
-### B. Reference Materials
-- [Link to code smells catalog]
-- [Link to refactoring catalog]
-
-### C. Tools Used
-- [Testing framework]
-- [Linting tools]
-- [Complexity analysis tools]
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/skills
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

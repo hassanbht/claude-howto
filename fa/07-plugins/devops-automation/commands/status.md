@@ -1,23 +1,22 @@
 ---
-description: Check overall system health and status
+description: بررسی وضعیت سلامت کلی سیستم
 ---
 
-# System Status Check
+# بررسی وضعیت سیستم
 
-Check system health across all services:
+بررسی سلامت سیستم تمام سرویس‌ها:
 
-1. Query Kubernetes pod status
-2. Check database connections
-3. Monitor API response times
-4. Review error rates
-5. Check resource utilization
-6. Report overall health
+1. بررسی وضعیت پودهای Kubernetes
+2. بررسی اتصال پایگاه داده
+3. نظارت بر زمان پاسخ API
+4. مشاهده نرخ خطا
+5. بررسی استفاده از منابع
+6. گزارش وضعیت کلی سلامت
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**آخرین به‌روزرسانی**: 15 اکتبر 2026
+**نسخه Claude Code**: 2.1.300
+**منابع**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

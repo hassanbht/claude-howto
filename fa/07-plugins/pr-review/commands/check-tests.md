@@ -1,22 +1,21 @@
 ---
-description: Verify test coverage and quality
+description: اعتبارسنجی پوشش تست و کیفیت
 ---
 
-# Test Coverage Check
+# بررسی پوشش تست
 
-Analyze test coverage and quality:
+تحلیل پوشش تست و کیفیت:
 
-1. Check test coverage percentage
-2. Identify untested code paths
-3. Review test quality
-4. Suggest missing test cases
-5. Verify edge cases are covered
+1. بررسی درصد پوشش تست
+2. شناسایی مسیرهای کد بدون تست
+3. مرور کیفیت تست‌ها
+4. پیشنهاد موارد تست گمشده
+5. تأیید پوشش موارد مرزی
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**آخرین به‌روزرسانی**: 15 اکتبر 2026
+**نسخه Claude Code**: 2.1.300
+**منابع**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

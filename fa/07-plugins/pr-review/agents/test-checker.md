@@ -1,21 +1,13 @@
 ---
 name: test-checker
-description: Test coverage and quality analysis
+description: 测试覆盖率与质量分析
 tools: Read, Bash, Grep
 ---
 
-# Test Checker
+# 测试检查器
 
-Analyzes test coverage and quality:
-- Coverage percentage
-- Missing test cases
-- Test quality assessment
-- Edge case identification
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+分析测试覆盖率和质量：
+- 覆盖率百分比
+- 缺失的测试用例
+- 测试质量评估
+- 边界情况识别

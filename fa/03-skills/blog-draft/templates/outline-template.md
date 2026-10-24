@@ -1,105 +1,163 @@
-# Blog Post Outline: [Title]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-## Meta Information
+# 草稿博客模板
 
-| Attribute | Value |
-|-----------|-------|
-| **Target Audience** | [Who is this for?] |
-| **Tone** | [Formal/Casual/Technical/Conversational] |
-| **Target Length** | [Word count range] |
-| **Main Takeaway** | [One sentence: what should readers remember?] |
-| **Keywords** | [SEO keywords if relevant] |
+这些模板可以帮助你为 `blog-draft` 技能生成结构清晰、与品牌一致的博客文章。
 
 ---
 
-## Proposed Structure
+## 草稿模板
 
-### 1. Introduction / Hook
+### 博客文章
 
-**Opening Hook Options:**
-- [ ] Question that resonates with reader
-- [ ] Surprising statistic or fact
-- [ ] Brief story or scenario
-- [ ] Bold statement
+```markdown
+# 文章标题
 
-**Context Setting:**
-- Background information needed
-- Why this topic matters now
+## 引言
 
-**Thesis Statement:**
-- Clear statement of what the post will cover
+- 吸引读者注意
+- 说明文章价值
+- 概述将要讲解的内容
 
----
+## 主要内容
 
-### 2. [Section Title]
+### 章节 1
 
-**Key Points:**
-- Point A: [description]
-- Point B: [description]
+### 章节 2
 
-**Supporting Evidence:**
-- From [source]: [relevant data/quote]
+### 章节 3
 
-**Transition to next section:**
-- [How this connects to what's next]
+## 结论
+
+## 附录（可选）
+
+```
 
 ---
 
-### 3. [Section Title]
+## 文章大纲模板
 
-**Key Points:**
-- Point A: [description]
-- Point B: [description]
+```markdown
+# 文章大纲
 
-**Supporting Evidence:**
-- From [source]: [relevant data/quote]
+## 标题
 
-**Transition to next section:**
-- [How this connects to what's next]
+## 摘要
 
----
+## 1. 引言
 
-### 4. [Section Title] (add more sections as needed)
+### 1.1 背景
 
-**Key Points:**
-- Point A: [description]
-- Point B: [description]
+### 1.2 目标
 
-**Supporting Evidence:**
-- From [source]: [relevant data/quote]
+## 2. 主要内容
 
----
+### 2.1 第一部分
 
-### 5. Conclusion
+### 2.2 第二部分
 
-**Summary of Key Points:**
-- Recap point 1
-- Recap point 2
-- Recap point 3
+## 3. 结论
 
-**Final Thought / Call to Action:**
-- [What should readers do or think about next?]
+## 关键词
+
+## 推荐标签
+```
 
 ---
 
-## Sources to Cite
+## 产品更新文章模板
 
-1. [Source Name](#) - Used for: [what information]
-2. [Source Name](#) - Used for: [what information]
-3. [Source Name](#) - Used for: [what information]
+```markdown
+# 产品更新：[产品名称]
+
+## 摘要
+
+简述本次更新的核心内容。
+
+## 更新内容
+
+- 更新 1
+- 更新 2
+- 更新 3
+
+## 如何开始
+
+## 常见问题
+
+## 路线图
+```
 
 ---
 
-## Notes for Drafting
+## 开发者教程模板
 
-- [Any specific requirements or constraints]
-- [Things to emphasize]
-- [Things to avoid]
+```markdown
+# 教程：[主题]
+
+## 学习目标
+
+在本教程结束时，您将能够：
+
+## 环境要求
+
+## 第 1 步：[操作名称]
+
+## 第 2 步：[操作名称]
+
+## 注意事项
+
+## 常见问题
+
+## 延伸阅读
+```
 
 ---
 
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/skills
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+## 分析文章模板
+
+```markdown
+# [主题] 分析
+
+## 摘要
+
+## 背景
+
+## 方法
+
+## 结果
+
+## 讨论
+
+## 建议
+
+## 结论
+```
+
+---
+
+## 品牌语气指南模板
+
+```markdown
+# 品牌语气指南
+
+## 主要语气
+
+## 风格关键词
+
+## 禁用词/短语
+
+## 示例
+
+### 好的示例
+
+### 不好的示例
+```
+
+---
+
+## 版权声明
+
+这些模板适用于 `blog-draft` skill。根据特定需求调整。

@@ -1,18 +1,25 @@
-# Code Review Finding Template
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-Use this template when documenting each issue found during code review.
+# 代码审查问题记录模板
+
+使用这个模板来记录代码审查中发现的每一个问题。
 
 ---
 
-## Issue: [TITLE]
+## 问题：[标题]
 
-### Severity
-- [ ] Critical (blocks deployment)
-- [ ] High (should fix before merge)
-- [ ] Medium (should fix soon)
-- [ ] Low (nice to have)
+### 严重性
 
-### Category
+- [ ] Critical（阻塞发布）
+- [ ] High（合并前应修复）
+- [ ] Medium（尽快修复）
+- [ ] Low（可选优化）
+
+### 类别
+
 - [ ] Security
 - [ ] Performance
 - [ ] Code Quality
@@ -21,100 +28,93 @@ Use this template when documenting each issue found during code review.
 - [ ] Design Pattern
 - [ ] Documentation
 
-### Location
-**File:** `src/components/UserCard.tsx`
+### 位置
 
-**Lines:** 45-52
+**文件：** `src/components/UserCard.tsx`
 
-**Function/Method:** `renderUserDetails()`
+**行号：** 45-52
 
-### Issue Description
+**函数 / 方法：** `renderUserDetails()`
 
-**What:** Describe what the issue is.
+### 问题描述
 
-**Why it matters:** Explain the impact and why this needs to be fixed.
+**是什么：** 描述这个问题是什么。
 
-**Current behavior:** Show the problematic code or behavior.
+**为什么重要：** 说明影响，以及为什么需要修复。
 
-**Expected behavior:** Describe what should happen instead.
+**当前行为：** 展示有问题的代码或行为。
 
-### Code Example
+**期望行为：** 描述理想情况下应该发生什么。
 
-#### Current (Problematic)
+### 代码示例
+
+#### 当前（有问题）
 
 ```typescript
-// Shows the N+1 query problem
+// 这里展示了 N+1 查询问题
 const users = fetchUsers();
 users.forEach(user => {
-  const posts = fetchUserPosts(user.id); // Query per user!
+  const posts = fetchUserPosts(user.id); // 每个用户都发一次查询！
   renderUserPosts(posts);
 });
 ```
 
-#### Suggested Fix
+#### 建议修复
 
 ```typescript
-// Optimized with JOIN query
+// 使用 JOIN 查询进行优化
 const usersWithPosts = fetchUsersWithPosts();
 usersWithPosts.forEach(({ user, posts }) => {
   renderUserPosts(posts);
 });
 ```
 
-### Impact Analysis
+### 影响分析
 
-| Aspect | Impact | Severity |
-|--------|--------|----------|
-| Performance | 100+ queries for 20 users | High |
-| User Experience | Slow page load | High |
-| Scalability | Breaks at scale | Critical |
-| Maintainability | Hard to debug | Medium |
+| 方面 | 影响 | 严重性 |
+|------|------|--------|
+| 性能 | 20 个用户就会产生 100+ 次查询 | High |
+| 用户体验 | 页面加载缓慢 | High |
+| 可扩展性 | 规模变大后会失效 | Critical |
+| 可维护性 | 难以排查问题 | Medium |
 
-### Related Issues
+### 相关问题
 
-- Similar issue in `AdminUserList.tsx` line 120
-- Related PR: #456
-- Related issue: #789
+- `AdminUserList.tsx` 第 120 行有类似问题
+- 相关 PR：#456
+- 相关 issue：#789
 
-### Additional Resources
+### 额外资源
 
 - [N+1 Query Problem](https://en.wikipedia.org/wiki/N%2B1_problem)
 - [Database Join Documentation](https://docs.example.com/joins)
 
-### Reviewer Notes
+### 审查者备注
 
-- This is a common pattern in this codebase
-- Consider adding this to the code style guide
-- Might be worth creating a helper function
+- 这是这个代码库里常见的模式
+- 可以考虑把它加入代码风格指南
+- 也许值得提取一个辅助函数
 
-### Author Response (for feedback)
+### 作者回复（供反馈）
 
-*To be filled by the code author:*
+*由代码作者填写：*
 
-- [ ] Fix implemented in commit: `abc123`
-- [ ] Fix status: Complete / In Progress / Needs Discussion
-- [ ] Questions or concerns: (describe)
-
----
-
-## Finding Statistics (for Reviewer)
-
-When reviewing multiple findings, track:
-
-- **Total Issues Found:** X
-- **Critical:** X
-- **High:** X
-- **Medium:** X
-- **Low:** X
-
-**Recommendation:** ✅ Approve / ⚠️ Request Changes / 🔄 Needs Discussion
-
-**Overall Code Quality:** 1-5 stars
+- [ ] 已在提交 `abc123` 中修复
+- [ ] 修复状态：Complete / In Progress / Needs Discussion
+- [ ] 问题或疑虑：（描述）
 
 ---
 
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/skills
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+## 统计信息（供审查者使用）
+
+在审查多个问题时，请记录：
+
+- **发现问题总数：** X
+- **Critical：** X
+- **High：** X
+- **Medium：** X
+- **Low：** X
+
+**建议：** ✅ Approve / ⚠️ Request Changes / 🔄 Needs Discussion
+
+**整体代码质量：** 1-5 星

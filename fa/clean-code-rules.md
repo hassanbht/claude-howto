@@ -1,115 +1,122 @@
-# Clean Code Rules for AI Code Generation
+# قوانین کد تمیز برای تولید کد با هوش مصنوعی
 
-These rules guide code generation to produce maintainable, professional-quality code.
+این قوانین جهت راهنمایی تولید کد استفاده می‌شوند تا در خروجی کدهای قابل نگهداری و با کیفیت حرفه‌ای تولید شود.
 
-## Meaningful Names
-- Use intention-revealing names that explain why something exists
-- Avoid disinformation and meaningless distinctions (e.g., `data`, `info`, `manager`)
-- Use pronounceable, searchable names
-- Class names: nouns (e.g., `UserAccount`, `PaymentProcessor`)
-- Method names: verbs (e.g., `calculateTotal`, `sendEmail`)
-- Avoid mental mapping and encodings (Hungarian notation, prefixes)
+## نام‌گذاری semantics
 
-## Functions
-- Keep functions small (< 20 lines ideal)
-- Do one thing only - Single Responsibility Principle
-- One level of abstraction per function
-- Limit arguments: 0-2 ideal, 3 maximum, avoid flag arguments
-- No side effects - function should do what its name says
-- Separate commands (change state) from queries (return info)
-- Prefer exceptions over error codes
+- از نام‌هایی استفاده کنید کهintent را شناسایی کنند، توضیح دهند چرا وجود دارند
+- از نام‌گذاریهای گمراه کننده و تمایزهای بی‌معنی مانند `data`، `info`، `manager` اجتناب کنید
+- از نام‌های قابل خواندن و قابل جستجو استفاده کنید
+- نام کلاس‌ها از اسم استفاده می‌کنند، مثلاً `UserAccount`، `PaymentProcessor`
+- نام متدها از فعل استفاده می‌کنند، مثلاً `calculateTotal`، `sendEmail`
+- از نام‌گذاریهای Mapaged در مغز و سبک کدنویسی اجتناب کنید، مثلاً نام‌گذاری استری मानزی، پیشوند
 
-## Comments
-- Code should be self-explanatory - avoid comments when possible
-- Good comments: legal info, warnings, TODOs, public API documentation
-- Bad comments: redundant, misleading, or explaining bad code
-- Never comment out code - delete it (version control preserves history)
-- If you need a comment, consider refactoring the code instead
+## توابع
 
-## Formatting
-- Keep files small and focused
-- Vertical formatting: related concepts close together, blank lines separate concepts
-- Horizontal formatting: limit line length (80-120 characters)
-- Use consistent indentation and team style
-- Group related functions together
+- توابع را کوتاه و تمرکز محفوظ کنید، تا به Ideally کمتر از ۲۰ خط
+- فقط یک کار انجام دهند، از اصل مسئولیت واحد پیروی کنند
+- هر تابع فقط یک لایه انتزاع را مدیریت کند
+- تعداد پارامترها را محدود کنید، به Ideally ۰ تا ۲، حداکثر ۳، از پارامترهای بولان اجتناب کنید
+- اثر جانبی ایجاد نکنید، تابع باید آنچه نامش است را انجام دهد
+- دستورات را از پرس‌وجوها تفکیک کنید، دستورات حالت را تغییر می‌دهند، پرس‌وجوها اطلاعات برمی‌گردانند
+- به جای کدهای خطا از استثناها استفاده کنید
 
-## Objects and Data Structures
-- Objects: hide data behind abstractions, expose behavior through methods
-- Data structures: expose data, have minimal behavior
-- Law of Demeter: only talk to immediate friends, avoid `a.getB().getC().doSomething()`
-- Don't expose internal structure through getters/setters blindly
+## نظرات
 
-## Error Handling
-- Use exceptions, not return codes or error flags
-- Write `try-catch-finally` first when code might fail
-- Provide context in exception messages
-- Don't return `null` - return empty collections or use Optional/Maybe
-- Don't pass `null` as arguments
+- کد به حد امکان باید خود clarification باشد، اگر بدون نظر قابل فهم است، نظر ننویسید
+- نظرات خوب شامل: اطلاعات حقوقی، هشدار، TODO، مستندات API عمومی
+- نظرات بد شامل: تکراری، گمراه، یا فقط توضیح کد ضعیف
+- کد را نظر ندهید، مستقیماً حذف کنید، کنترل نسخه تاریخچه را حفظ می‌کند
+- اگر نیاز به نوشتن نظر دارید، ابتدا به بازسازی کد فکر کنید
 
-## Classes
-- Small classes: measured by responsibilities, not lines
-- Single Responsibility Principle: one reason to change
-- High cohesion: class variables used by many methods
-- Low coupling: minimal dependencies between classes
-- Open/Closed Principle: open for extension, closed for modification
+## فرمت화
 
-## Unit Tests
-- Fast, Independent, Repeatable, Self-validating, Timely (F.I.R.S.T.)
-- One assert per test (or one concept)
-- Test code quality equals production code quality
-- Readable test names that describe what's being tested
-- Arrange-Act-Assert pattern
+- فایل‌ها را کوچک و متمرکز نگه دارید
+- فرمت화 عمودی: مفاهیم مرتبط را به هم نزدیک کنید، خط خالی برای تفکیک مفاهیم مختلف
+- فرمت화 افقی: طول خط را در حد ۸۰ تا ۱۲۰ کاراکتر محدود کنید
+- از تورفتگی و سبک تیم به صورت یکدست استفاده کنید
+- توابع مرتبط را در یک جایgruize کنید
 
-## Code Quality Principles
-- **DRY (Don't Repeat Yourself)**: No duplication
-- **YAGNI (You Aren't Gonna Need It)**: Don't build for hypothetical futures
-- **KISS (Keep It Simple)**: Avoid unnecessary complexity
-- **Boy Scout Rule**: Leave code cleaner than you found it
+## اشیاء و ساختارهای داده
 
-## Code Smells to Avoid
-- Long functions or classes
-- Duplicate code
-- Dead code (unused variables, functions, parameters)
-- Feature envy (method more interested in other class)
-- Inappropriate intimacy (classes knowing too much about each other)
-- Long parameter lists
-- Primitive obsession (overusing primitives instead of small objects)
-- Switch/case statements (consider polymorphism)
-- Temporary fields (class variables only used sometimes)
+- اشیاء: داده را از طریق انتزاع پنهان کرده، رفتار را از طریق روش‌ها افشا می‌کنند
+- ساختارهای داده: داده را افشا می‌کنند، رفتار کمترین را ارائه می‌دهند
+- قانون دیمیتر: فقط با دوستان مستقیم صحبت کنید، از `a.getB().getC().doSomething()` اجتناب کنید
+- از طریق getter/setter ناگزیر ساختاری داخلی را افشا نکنید
 
-## Concurrency
-- Keep concurrent code separate from other code
-- Limit scope of synchronized/locked data
-- Use thread-safe collections
-- Keep synchronized sections small
-- Know your execution models and primitives
+## مدیریت خطا
 
-## System Design
-- Separate construction from use (dependency injection)
-- Use factories, builders for complex object creation
-- Program to interfaces, not implementations
-- Favor composition over inheritance
-- Apply design patterns when they simplify, not to show off
+- از استثناها استفاده کنید، نه کدهای بازگشت یا پرچم خطا
+- وقتی کد ممکن است شکست بخورد، ابتدا `try-catch-finally` بنویسید
+- در پیام استثنا زمینه ارائه دهید
+- از برگرداندن `null` اجتناب کنید، به جای آن مجموعه خالی برگردانید یا از Optional/Maybe استفاده کنید
+- `null` را به عنوان پارامتر ارسال نکنید
 
-## Refactoring
-- Refactor continuously, not in big batches
-- Always have passing tests before and after
-- Small steps: one change at a time
-- Common refactorings: Extract Method, Rename, Move, Inline
+## کلاس‌ها
 
-## Documentation
-- Self-documenting code > comments > external docs
-- Public APIs need clear documentation
-- Include examples in documentation
-- Keep docs close to code (ideally in code)
+- کلاس کوچک بر اساس مسئولیت، نه بر اساس تعداد خط اندازه‌گیری شود
+- اصل مسئولیت واحد: فقط یک دلیل برای تغییر
+- Alyhesan بالا: متغیرهای کلاس از بیشتر روش‌ها استفاده می‌شوند
+-ابطال پایین: وابستگی کلاس‌ها به حداقل برسد
+- اصل باز و بسته: برای توسعه باز، برای تغییر بسته
+
+## تست واحدها
+
+- سریع، مستقل، قابل تکرار، خود اعتبارسنج، در زمان (F.I.R.S.T)
+- هر تست یک ادعا، یا فقط یک مفهوم را تأیید می‌کند
+- کیفیت کد تست باید با کیفیت کد تولیدی برابر باشد
+- نام تست‌ها قابل خواندن باشند، به duidelijk توضیح دهند که چه چیزی در حال تست است
+- از الگو Arrange-Act-Assert پیروی کنید
+
+## اصول کیفیت کد
+
+- **DRY (Don't Repeat Yourself)**: تکرار نکنید
+- **YAGNI (You Aren't Gonna Need It)**: برای فرضیات آینده قبل از زمان بسازید
+- **KISS (Keep It Simple)**: از پیچیدگی نامطلوب اجتناب کنید
+- **قانون جاسوس همکاری**: کد را تمیزتر از زمانی که دریافت کردید نگه دارید
+
+## ش rév الزایی کد
+
+- تابع یا کلاس طولانی
+- کد تکراری
+- کد مرده (متغیر، تابع، پارامتر استفاده نشده)
+- Feature Envy (روشی بیشتر از کلاس دیگر مراقبت می‌کند)
+- رابطه نامناسب clans (کلاس‌ها بیش از حد از هم می‌دانند)
+- لیست پارامتر طولانی
+- تفاخر نوع اولیه (استفاده بیش از حد از انواع اولیه به جای اشیاء کوچک)
+-expressionهای switch/case (به جای آن از پولی‌مورفیت استفاده کنید)
+- فیلد موقت (متغیر کلاس فقط در برخی اوقات استفاده می‌شود)
+
+## هم‌زمانی
+
+- کد هم‌زمانی را از کدهای دیگر جدا کنید
+- محدوده هم‌سازی/قفل‌سازی داده را محدود کنید
+- از مجموعه‌های 안전 برای رشته استفاده کنید
+- بلوک‌های هم‌سازی را حداقل نگه دارید
+- مدل اجرا و اصول خود را درک کنید
+
+## طراحی سیستم
+
+- ساخت و استفاده را از هم تفکیک کنید، مثلاً از طریق تزریق وابستگی
+- برای ایجاد اشیاء پیچیده از کارخانه، Billder استفاده کنید
+- به توفیق نسبت به اجرای 교육 کنید
+- به جای انتساب، ترکیب را ترجیح دهید
+- الگوهای طراحی فقط زمانی استفاده شوند که مشکل را ساده کنند، نه برای نمایی
+
+## بازسازی
+
+- مدام بازسازی کنید، نه به صورت دسته‌های بزرگ یک‌باره
+- قبل و بعد از بازسازی از گذران تست‌ها اطمینان حاصل کنید
+- قدمی قدمی پیش بروید، هر دفعه فقط یک مورد تغییر دهید
+- بازسازی‌های رایج شامل: استخراج متد، تغییر نام، جابجایی، جایگزینی
+
+## مستندات
+
+- کد autonomous > نظر > مستندات خارجی
+- APIهای عمومی به مستندات شفاف نیاز دارند
+- در مستندات مثال‌ها را شامل کنید
+- مستندات را به نزد کد نگه دارید، Ideally مستقیماً در کد
 
 ---
 
-**Core Philosophy**: Code is read 10x more than written. Optimize for readability and maintainability, not cleverness.
-
----
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/overview
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**فلسفه کلی**: کد ۱۰ بار بیشتر از نوشتنش خوانده می‌شود. بهینه‌سازی خوانایی و نگهداری را، نه دنبال جالب بودن.

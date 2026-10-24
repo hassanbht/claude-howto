@@ -1,87 +1,76 @@
----
-name: code-review-specialist
-description: Comprehensive code review with security, performance, and quality analysis. Use when users ask to review code, analyze code quality, evaluate pull requests, or mention code review, security analysis, or performance optimization.
----
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-# Code Review Skill
+# 代码审查 Skill
 
-This skill provides comprehensive code review capabilities focusing on:
+这个 skill 提供全面的代码审查能力，重点关注：
 
-1. **Security Analysis**
-   - Authentication/authorization issues
-   - Data exposure risks
-   - Injection vulnerabilities
-   - Cryptographic weaknesses
-   - Sensitive data logging
+1. **安全分析**
+   - 身份验证 / 授权问题
+   - 数据泄露风险
+   - 注入漏洞
+   - 密码学弱点
+   - 敏感数据日志记录
 
-2. **Performance Review**
-   - Algorithm efficiency (Big O analysis)
-   - Memory optimization
-   - Database query optimization
-   - Caching opportunities
-   - Concurrency issues
+2. **性能审查**
+   - 算法效率（Big O 分析）
+   - 内存优化
+   - 数据库查询优化
+   - 缓存机会
+   - 并发问题
 
-3. **Code Quality**
-   - SOLID principles
-   - Design patterns
-   - Naming conventions
-   - Documentation
-   - Test coverage
+3. **代码质量**
+   - SOLID 原则
+   - 设计模式
+   - 命名规范
+   - 文档
+   - 测试覆盖率
 
-4. **Maintainability**
-   - Code readability
-   - Function size (should be < 50 lines)
-   - Cyclomatic complexity
-   - Dependency management
-   - Type safety
+4. **可维护性**
+   - 代码可读性
+   - 函数长度（建议少于 50 行）
+   - 圈复杂度
+   - 依赖管理
+   - 类型安全
 
-## Reference Files
+## 审查模板
 
-This skill includes supporting files that you should read when performing reviews:
+对每一段被审查的代码，请提供：
 
-- **`templates/review-checklist.md`** — Structured checklist covering security, performance, quality, and testing. Read this file and use it as a guide to ensure no category is missed during review.
-- **`templates/finding-template.md`** — Standard template for documenting individual findings with severity, location, code examples, and impact analysis. Read this file and use its format when reporting issues.
-- **`scripts/analyze-metrics.py`** — Python script that calculates code metrics (function count, class count, average line length, complexity score). Run this on the file under review to gather quantitative data.
-- **`scripts/compare-complexity.py`** — Python script that compares cyclomatic and cognitive complexity between two versions of a file. Run this with the before and after versions when reviewing refactoring changes.
+### 摘要
 
-## Review Template
+- 整体质量评分（1-5）
+- 关键发现数量
+- 建议优先关注的区域
 
-For each piece of code reviewed, provide:
+### 关键问题（如有）
 
-### Summary
-- Overall quality assessment (1-5)
-- Key findings count
-- Recommended priority areas
+- **问题**：清晰描述
+- **位置**：文件和行号
+- **影响**：为什么这很重要
+- **严重性**：Critical / High / Medium
+- **修复**：代码示例
 
-### Critical Issues (if any)
-- **Issue**: Clear description
-- **Location**: File and line number
-- **Impact**: Why this matters
-- **Severity**: Critical/High/Medium
-- **Fix**: Code example
+### 按类别列出发现
 
-### Findings by Category
+#### 安全性（如有问题）
 
-#### Security (if issues found)
-List security vulnerabilities with examples
+列出安全漏洞及示例
 
-#### Performance (if issues found)
-List performance problems with complexity analysis
+#### 性能（如有问题）
 
-#### Quality (if issues found)
-List code quality issues with refactoring suggestions
+列出性能问题，并说明复杂度
 
-#### Maintainability (if issues found)
-List maintainability problems with improvements
+#### 质量（如有问题）
 
-## Version History
+列出代码质量问题，并给出重构建议
 
-- v1.0.0 (2024-12-10): Initial release with security, performance, quality, and maintainability analysis
+#### 可维护性（如有问题）
 
----
+列出可维护性问题，并给出改进建议
 
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/skills
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+## 版本历史
+
+- v1.0.0 (2024-12-10)：首次发布，包含安全、性能、质量和可维护性分析

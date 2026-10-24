@@ -1,22 +1,14 @@
 ---
 name: incident-commander
-description: Coordinates incident response
+description: 协调事故响应
 tools: Read, Write, Bash, Grep
 ---
 
-# Incident Commander
+# 事故指挥官
 
-Manages incident response:
-- Severity assessment
-- Team coordination
-- Status updates
-- Resolution tracking
-- Post-mortem facilitation
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+管理事故响应：
+- 严重性评估
+- 团队协调
+- 状态更新
+- 解决跟踪
+- 事后复盘推动

@@ -1,95 +1,105 @@
-# Project Configuration
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-## Project Overview
-- **Name**: E-commerce Platform
-- **Tech Stack**: Node.js, PostgreSQL, React 18, Docker
-- **Team Size**: 5 developers
-- **Deadline**: Q4 2025
+# 项目配置
 
-## Architecture
+## 项目概览
+
+- **名称**：电商平台
+- **技术栈**：Node.js、PostgreSQL、React 18、Docker
+- **团队规模**：5 名开发者
+- **截止时间**：2025 年第 4 季度
+
+## 架构
+
 @docs/architecture.md
 @docs/api-standards.md
 @docs/database-schema.md
 
-## Development Standards
+## 开发规范
 
-### Code Style
-- Use Prettier for formatting
-- Use ESLint with airbnb config
-- Maximum line length: 100 characters
-- Use 2-space indentation
+### 代码风格
 
-### Naming Conventions
-- **Files**: kebab-case (user-controller.js)
-- **Classes**: PascalCase (UserService)
-- **Functions/Variables**: camelCase (getUserById)
-- **Constants**: UPPER_SNAKE_CASE (API_BASE_URL)
-- **Database Tables**: snake_case (user_accounts)
+- 使用 Prettier 格式化
+- 使用带 airbnb 配置的 ESLint
+- 最大行长度：100 字符
+- 使用 2 空格缩进
 
-### Git Workflow
-- Branch names: `feature/description` or `fix/description`
-- Commit messages: Follow conventional commits
-- PR required before merge
-- All CI/CD checks must pass
-- Minimum 1 approval required
+### 命名规范
 
-### Testing Requirements
-- Minimum 80% code coverage
-- All critical paths must have tests
-- Use Jest for unit tests
-- Use Cypress for E2E tests
-- Test filenames: `*.test.ts` or `*.spec.ts`
+- **文件**：kebab-case（`user-controller.js`）
+- **类**：PascalCase（`UserService`）
+- **函数 / 变量**：camelCase（`getUserById`）
+- **常量**：UPPER_SNAKE_CASE（`API_BASE_URL`）
+- **数据库表**：snake_case（`user_accounts`）
 
-### API Standards
-- RESTful endpoints only
-- JSON request/response
-- Use HTTP status codes correctly
-- Version API endpoints: `/api/v1/`
-- Document all endpoints with examples
+### Git 工作流
 
-### Database
-- Use migrations for schema changes
-- Never hardcode credentials
-- Use connection pooling
-- Enable query logging in development
-- Regular backups required
+- 分支命名：`feature/description` 或 `fix/description`
+- 提交信息：遵循 conventional commits
+- 合并前必须有 PR
+- 所有 CI/CD 检查都必须通过
+- 至少需要 1 个 approval
 
-### Deployment
-- Docker-based deployment
-- Kubernetes orchestration
-- Blue-green deployment strategy
-- Automatic rollback on failure
-- Database migrations run before deploy
+### 测试要求
 
-## Common Commands
+- 最低 80% 代码覆盖率
+- 所有关键路径都必须有测试
+- 单元测试使用 Jest
+- E2E 测试使用 Cypress
+- 测试文件名：`*.test.ts` 或 `*.spec.ts`
 
-| Command | Purpose |
-|---------|---------|
-| `npm run dev` | Start development server |
-| `npm test` | Run test suite |
-| `npm run lint` | Check code style |
-| `npm run build` | Build for production |
-| `npm run migrate` | Run database migrations |
+### API 规范
 
-## Team Contacts
-- Tech Lead: Sarah Chen (@sarah.chen)
-- Product Manager: Mike Johnson (@mike.j)
-- DevOps: Alex Kim (@alex.k)
+- 只允许 RESTful 端点
+- 请求 / 响应都使用 JSON
+- 正确使用 HTTP 状态码
+- API 版本路径：`/api/v1/`
+- 所有端点都要带示例文档
 
-## Known Issues & Workarounds
-- PostgreSQL connection pooling limited to 20 during peak hours
-- Workaround: Implement query queuing
-- Safari 14 compatibility issues with async generators
-- Workaround: Use Babel transpiler
+### 数据库
 
-## Related Projects
-- Analytics Dashboard: `/projects/analytics`
-- Mobile App: `/projects/mobile`
-- Admin Panel: `/projects/admin`
+- schema 变更使用 migrations
+- 绝不硬编码凭据
+- 使用连接池
+- 开发环境启用查询日志
+- 需要定期备份
 
----
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/memory
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+### 部署
+
+- 基于 Docker 的部署
+- 使用 Kubernetes 编排
+- 蓝绿部署策略
+- 失败时自动回滚
+- 部署前先执行数据库迁移
+
+## 常用命令
+
+| 命令 | 作用 |
+|------|------|
+| `npm run dev` | 启动开发服务器 |
+| `npm test` | 运行测试套件 |
+| `npm run lint` | 检查代码风格 |
+| `npm run build` | 构建生产版本 |
+| `npm run migrate` | 执行数据库迁移 |
+
+## 团队联系人
+
+- 技术负责人：Sarah Chen（@sarah.chen）
+- 产品经理：Mike Johnson（@mike.j）
+- 运维：Alex Kim（@alex.k）
+
+## 已知问题与解决方案
+
+- PostgreSQL 连接池在高峰期限制为 20
+- 解决方法：实现查询排队
+- Safari 14 对 async generator 的兼容性有问题
+- 解决方法：使用 Babel 转译器
+
+## 关联项目
+
+- 分析仪表盘：`/projects/analytics`
+- 移动端 App：`/projects/mobile`
+- 管理后台：`/projects/admin`

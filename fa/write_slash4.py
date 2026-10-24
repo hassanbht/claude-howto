@@ -1,0 +1,67 @@
+import os
+
+fa_dir = r"D:\Project\claude-howto\fa"
+
+content = """<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
+
+# دستور تولید مستندات API
+
+دستور `/generate-api-docs`، مستندات API را به‌صورت خودکار تولید می‌کند. این دستور، بسته به سرویس، سطوح مبتنی بر API، و دیگر پیکربندی‌ها، مستندات را به‌عنوان فایل‌های `REST`، `GraphQL`، یا ترکیب‌دهی، تولید می‌کند.
+
+## چیستی
+
+دستور `/generate-api-docs`:
+
+۱. بسته‌ها، تحت‌انتظار، و سرویس‌های endpoint، را شناسایی می‌کند
+۲. بسته‌ها، نقشه‌ی درونی را به‌صورت خودکار ساخته و مستند می‌کند
+۳. فایل‌های مستقیم را، با استفاده از `proxy`، می‌سازد
+۴. می‌تواند فایل‌هایی را در پوشه‌ای که مشخص است، تولید کند
+
+## مثال‌ها
+
+### مثال ۱: تولید مستندات مدVERSE
+
+```bash
+# کاربرد در مسیر ورودی
+/generate-api-docs
+
+# کاربرد در مسیر مخصوص
+/generate-api-docs --path services/api-v1
+```
+
+### مثال ۲: تولید مستنداتORK
+
+```bash
+# با خروجی json
+/generate-api-docs --format json
+
+# با خروجی mermaid
+/generate-api-docs --format mermaid
+```
+
+## روش‌پردازی
+
+### مراحل
+
+۱. کلود کد، پوشه‌ها را می‌سازد و مسیر‌ها را می‌خواند
+۲. باید فایل‌ها را پیک‌کردن کند و مستندات را تولید کند
+۳. مستندات را در خروجی ذخیره می‌کند
+
+## اشکال‌پردازی
+
+- دستور نا‌موجود: اطمینان حاصل کنید که فایل، پوشه‌ی `.claude/commands/` است
+- خطای فرمت: اطمینان حاصل کنید که YAML frontmatter، به‌درستی نوشته شده است
+- خروجی خالی: بررسی کنید که پوشه، فایل‌های md یا sh داشته باشد
+
+---
+
+**آخرین به‌روزرسانی**: ۱۸ آبان ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۳۰۲
+"""
+with open(os.path.join(fa_dir, "01-slash-commands", "generate-api-docs.md"), "w", encoding="utf-8") as f:
+    f.write(content)
+
+print("01-slash-commands/generate-api-docs.md written!")

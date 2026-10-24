@@ -1,23 +1,22 @@
 ---
-description: Generate comprehensive API documentation from source code
+description: 从源代码生成完整的 API 文档
 ---
 
-# API Documentation Generator
+# API 文档生成器
 
-Generate complete API documentation:
+生成完整的 API 文档：
 
-1. Scan API endpoints
-2. Extract function signatures and JSDoc
-3. Organize by module/endpoint
-4. Create markdown with examples
-5. Include request/response schemas
-6. Add error documentation
+1. 扫描 API 端点
+2. 提取函数签名和 JSDoc
+3. 按模块 / 端点组织内容
+4. 创建带示例的 Markdown
+5. 包含请求 / 响应 schema
+6. 添加错误文档
 
 ---
 
-**Last Updated**: October 15, 2026
-**Claude Code Version**: 2.1.300
-**Sources**:
+**最后更新**: 2026 年 10 月 15 日
+**Claude Code 版本**: 2.1.300
+**来源**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

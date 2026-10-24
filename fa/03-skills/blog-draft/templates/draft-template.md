@@ -1,75 +1,124 @@
-# [Blog Post Title]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-*[Subtitle or tagline - optional]*
+# 博客草稿 - 草稿模板
 
-**[Author Name]** | [Date]
-
----
-
-[Opening hook - grab attention immediately]
-
-[Context and background - why this matters]
-
-[Thesis statement - what this post will cover]
+此模板用于创建结构性强、内容完整的博客文章草稿。
 
 ---
 
-## [Section 1 Title]
+## 文章模板
 
-[Section content with clear, engaging prose]
+```markdown
+# [文章标题]
 
-[Include evidence, examples, or data to support points]
+> 副标题/简介
 
-> "Relevant quote from research" - Source
+## 引言
 
-[Transition to next section]
+- 吸引读者
+- 说明价值
+- 概述结构
 
----
+## 一、[章节标题]
 
-## [Section 2 Title]
+### 1.1 细分内容
 
-[Continue with main content]
+### 1.2 细分内容
 
-**Key takeaway:** [Highlight important points in bold or callout boxes]
+## 二、[章节标题]
 
-[More supporting content]
+### 2.1 细分内容
 
----
+## 结论
 
-## [Section 3 Title]
+## 关键词
 
-[Additional sections as needed]
-
-### Subsection (if needed)
-
-[Subsection content]
-
----
-
-## Conclusion
-
-[Summarize the key points covered]
-
-[Reinforce the main takeaway]
-
-[Call to action or thought-provoking final statement]
+## 推荐标签
+```
 
 ---
 
-## References
+## 产品更新模板
 
-1. [Source Title](#)
-2. [Source Title](#)
-3. [Source Title](#)
+```markdown
+# 产品更新：[产品名称]
+
+## 摘要
+
+## 更新内容
+
+- 更新 1
+- 更新 2
+- 更新 3
+
+## 如何开始
+
+## 常见问题
+
+## 路线图
+```
 
 ---
 
-*[Optional: Author bio or related posts suggestion]*
+## 开发者教程模板
+
+```markdown
+# 教程：[主题]
+
+## 学习目标
+
+## 环境要求
+
+## 第 1 步：[操作名称]
+
+## 第 2 步：[操作名称]
+
+## 常见问题
+
+## 延伸阅读
+```
 
 ---
 
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/skills
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+## 分析文章模板
+
+```markdown
+# [主题] 分析
+
+## 摘要
+
+## 背景
+
+## 方法
+
+## 结果
+
+## 讨论
+
+## 建议
+
+## 结论
+```
+
+---
+
+## 品牌语气模板
+
+```markdown
+# 品牌语气指南
+
+## 主要语气
+
+## 风格关键词
+
+## 禁用词
+
+## 示例
+
+### 好的示例
+
+### 不好的示例
+```

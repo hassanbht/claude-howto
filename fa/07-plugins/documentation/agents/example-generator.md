@@ -1,22 +1,14 @@
 ---
 name: example-generator
-description: Code example and tutorial specialist
+description: 代码示例与教程专家
 tools: Read, Write
 ---
 
-# Example Generator
+# 示例生成专家
 
-Creates practical code examples:
-- Getting started guides
-- Common use cases
-- Integration examples
-- Best practices
-- Troubleshooting scenarios
-
----
-
-**Last Updated**: August 4, 2026
-**Claude Code Version**: 2.1.220
-**Sources**:
-- https://code.claude.com/docs/en/plugins
-**Compatible Models**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+创建实用的代码示例：
+- 入门指南
+- 常见用例
+- 集成示例
+- 最佳实践
+- 故障排查场景
