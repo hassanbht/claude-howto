@@ -105,3 +105,14 @@ graph TD
 | **۵** | [مهارت‌ها](03-skills/README.md) | ⭐⭐ متوسط | ۱ ساعت | Level ۲ | دستورات Slash | اتوماسیون قابلیت‌های حرفه‌ای | قابلیت‌های قابل استفاده مجدد، یکپارچگی |
 | **۶** | [هوک‌ها](06-hooks/README.md) | ⭐⭐ متوسط | ۱ ساعت | Level ۲ | ابزارها، دستورات | اتوماسیون گردش کار (۳۳ رویداد، ۵ نوع) | اعتبارسنجی، درگاه کیفیت |
 | **۷** | [MCP](05-mcp/
+| **۷** | [MCP](05-mcp/README.md) | ⭐⭐⭐ متوسط+ | ۱ ساعت | Level ۲ | پیکربندی | دسترسی به داده زنده | یکپارچه‌سازی real-time، APIها |
+| **۸** | [Subagentها](04-subagents/README.md) | ⭐⭐⭐ متوسط+ | ۱.۵ ساعت | Level ۲ | Memory، دستورات | مدیریت taskهای پیچیده (۶ built-in، شامل Explore و Plan) | واگذاری، تخصص |
+| **۹** | [ویژگی‌های پیشرفته](09-advanced-features/README.md) | ⭐⭐⭐⭐⭐ پیشرفته | ۲-۳ ساعت | Level ۳ | همه قبلی | ابزارهای power user | برنامه‌ریزی، Auto Mode، Channelها، Voice Dictation، permissionها |
+| **۱۰** | [Pluginها](07-plugins/README.md) | ⭐⭐⭐⭐ پیشرفته | ۲ ساعت | Level ۳ | همه قبلی | راه حل‌های کامل | onboarding تیم، distribution |
+| **۱۱** | [CLI Mastery](10-cli/README.md) | ⭐⭐⭐ پیشرفته | ۱ ساعت | Level ۳ | توصیه‌شده: همه | تسلط بر command-line | scripting، CI/CD، automation |
+
+**مجموع زمان یادگیری**: ~۱۱-۱۳ ساعت (یا به سطح خود jump کنید و زمان ذخیره کنید)
+
+---
+
+> بقیه این فایل (Milestoneهای 1A تا 3B و بخش‌های بعدی) باید از روی نسخه انگلیسی ترجمه شوند.
