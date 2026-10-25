@@ -50,25 +50,25 @@ model: inherit
 ```javascript
 describe('Feature: User Authentication', () => {
   beforeEach(() => {
-    // Setup
+    // آماده‌سازی
   });
 
   afterEach(() => {
-    // Cleanup
+    // پاک‌سازی
   });
 
   it('should authenticate valid credentials', async () => {
-    // Arrange
-    // Act
-    // Assert
+    // چیدمان
+    // اجرا
+    // بررسی
   });
 
   it('should reject invalid credentials', async () => {
-    // Test error case
+    // آزمون حالت خطا
   });
 
   it('should handle edge case: empty password', async () => {
-    // Test edge case
+    // آزمون حالت مرزی
   });
 });
 ```

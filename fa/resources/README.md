@@ -215,7 +215,7 @@ colors: {
 
 برای بهینه‌سازی وب:
 ```bash
-# Compress SVG while maintaining quality
+# فشرده‌سازی SVG با حفظ کیفیت
 svgo --config='{
   "js2svg": {
     "indent": 2
@@ -232,10 +232,10 @@ svgo --config='{
 برای تبدیل SVG به PNG جهت پشتیبانی مرورگرهای قدیمی:
 
 ```bash
-# Using ImageMagick
+# با استفاده از ImageMagick
 convert -density 300 -background none favicon-256.svg favicon-256.png
 
-# Using Inkscape
+# با استفاده از Inkscape
 inkscape -D -z --file=favicon-256.svg --export-png=favicon-256.png
 ```
 

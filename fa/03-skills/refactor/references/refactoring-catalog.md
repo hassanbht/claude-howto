@@ -1,47 +1,40 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
-</picture>
+# کاتالوگ ری‌فاکتور
 
-# 重构目录
+کاتالوگی گزیده از تکنیک‌های ری‌فاکتور بر اساس کتاب *Refactoring* (ویرایش دوم) مارتین فاولر. هر ری‌فاکتور شامل انگیزه، مکانیک گام‌به‌گام و مثال است.
 
-这是 Martin Fowler《Refactoring》（第 2 版）中的一份精选重构目录。每个重构都包含动机、操作步骤和示例。
-
-> “重构由它的操作步骤来定义，也就是你执行这个变化时遵循的精确过程。” — Martin Fowler
+> «یک ری‌فاکتور با مکانیک خود تعریف می‌شود — همان توالی دقیق گام‌هایی که برای انجام تغییر دنبال می‌کنید.» — مارتین فاولر
 
 ---
 
-## 如何使用这个目录
+## نحوه استفاده از این کاتالوگ
 
-1. **识别异味**：先用代码异味目录定位问题
-2. **找到对应重构**：在这里查找匹配的手法
-3. **按步骤执行**：一步一步来
-4. **每步都测试**：确保行为不变
+۱. **بوی کد را شناسایی کنید** با استفاده از مرجع بوی کد
+۲. **ری‌فاکتور مطابق را پیدا کنید** در این کاتالوگ
+۳. **مکانیک را گام‌به‌گام دنبال کنید**
+۴. **پس از هر گام تست کنید** تا رفتار حفظ شود
 
-**黄金法则：** 如果某一步超过 10 分钟，就把它拆得更小。
+**قاعده طلایی**: اگر هر گامی بیش از ۱۰ دقیقه طول می‌کشد، آن را به گام‌های کوچک‌تر بشکنید.
 
 ---
 
-## 最常见的重构
+## رایج‌ترین ری‌فاکتورها
 
-### Extract Method
+### استخراج متد (Extract Method)
 
-**何时使用**：长函数、重复代码、需要为概念命名
+**زمان استفاده**: متد طولانی، کد تکراری، نیاز به نام‌گذاری یک مفهوم
 
-**动机**：把一段代码抽成一个名字能说明意图的方法。
+**انگیزه**: یک قطعه کد را به متدی تبدیل کنید که نامش هدف را توضیح می‌دهد.
 
-**步骤：**
+**مکانیک**:
+۱. متدی جدید بسازید که بر اساس کاری که انجام می‌دهد نام‌گذاری شده باشد (نه نحوه انجام)
+۲. قطعه کد را به متد جدید کپی کنید
+۳. متغیرهای محلی استفاده‌شده در قطعه را بررسی کنید
+۴. متغیرهای محلی را به‌عنوان پارامتر منتقل کنید (یا در متد اعلان کنید)
+۵. مقادیر بازگشتی را به‌درستی مدیریت کنید
+۶. قطعه اصلی را با فراخوانی متد جدید جایگزین کنید
+۷. تست کنید
 
-1. 创建一个新方法，名字应描述“做什么”而不是“怎么做”
-2. 把代码片段复制到新方法里
-3. 检查片段里用了哪些局部变量
-4. 把局部变量作为参数传入，或在方法内声明
-5. 正确处理返回值
-6. 用新方法调用替换原始片段
-7. 测试
-
-**前：**
-
+**قبل**:
 ```javascript
 function printOwing(invoice) {
   let outstanding = 0;
@@ -50,19 +43,18 @@ function printOwing(invoice) {
   console.log("**** Customer Owes ****");
   console.log("***********************");
 
-  // Calculate outstanding
+  // محاسبه بدهی
   for (const order of invoice.orders) {
     outstanding += order.amount;
   }
 
-  // Print details
+  // چاپ جزئیات
   console.log(`name: ${invoice.customer}`);
   console.log(`amount: ${outstanding}`);
 }
 ```
 
-**后：**
-
+**بعد**:
 ```javascript
 function printOwing(invoice) {
   printBanner();
@@ -86,23 +78,22 @@ function printDetails(invoice, outstanding) {
 }
 ```
 
+---
 
-### Inline Method
+### درون‌خطی کردن متد (Inline Method)
 
-**何时使用**：方法体和名字一样清楚，或者只是多余转发
+**زمان استفاده**: بدنه متد به‌اندازه نامش شفاف است، واگذاری بیش از حد
 
-**动机**：当方法没有额外价值时，去掉不必要的间接层。
+**انگیزه**: حذف غیرمستقیم‌سازی غیرضروری وقتی متد ارزشی اضافه نمی‌کند.
 
-**步骤：**
+**مکانیک**:
+۱. بررسی کنید که متد چندریختی نباشد
+۲. همه فراخوانی‌های متد را پیدا کنید
+۳. هر فراخوانی را با بدنه متد جایگزین کنید
+۴. پس از هر جایگزینی تست کنید
+۵. تعریف متد را حذف کنید
 
-1. 确认这个方法不是多态方法
-2. 找到所有调用点
-3. 用方法体替换每个调用
-4. 每替换一次就测试一次
-5. 删除方法定义
-
-**前：**
-
+**قبل**:
 ```javascript
 function getRating(driver) {
   return moreThanFiveLateDeliveries(driver) ? 2 : 1;
@@ -113,8 +104,7 @@ function moreThanFiveLateDeliveries(driver) {
 }
 ```
 
-**后：**
-
+**بعد**:
 ```javascript
 function getRating(driver) {
   return driver.numberOfLateDeliveries > 5 ? 2 : 1;
@@ -123,30 +113,27 @@ function getRating(driver) {
 
 ---
 
-### Extract Variable
+### استخراج متغیر (Extract Variable)
 
-**何时使用**：复杂表达式难以理解
+**زمان استفاده**: عبارت پیچیده‌ای که درک آن دشوار است
 
-**动机**：给复杂表达式的一部分起名字。
+**انگیزه**: به بخشی از یک عبارت پیچیده نام بدهید.
 
-**步骤：**
+**مکانیک**:
+۱. مطمئن شوید عبارت عوارض جانبی ندارد
+۲. یک متغیر تغییرناپذیر اعلان کنید
+۳. آن را به نتیجه عبارت (یا بخشی از آن) مقداردهی کنید
+۴. عبارت اصلی را با متغیر جایگزین کنید
+۵. تست کنید
 
-1. 确保表达式没有副作用
-2. 声明一个不可变变量
-3. 将表达式结果赋给变量
-4. 用变量替换原表达式
-5. 测试
-
-**前：**
-
+**قبل**:
 ```javascript
 return order.quantity * order.itemPrice -
   Math.max(0, order.quantity - 500) * order.itemPrice * 0.05 +
   Math.min(order.quantity * order.itemPrice * 0.1, 100);
 ```
 
-**后：**
-
+**بعد**:
 ```javascript
 const basePrice = order.quantity * order.itemPrice;
 const quantityDiscount = Math.max(0, order.quantity - 500) * order.itemPrice * 0.05;
@@ -156,114 +143,819 @@ return basePrice - quantityDiscount + shipping;
 
 ---
 
-### Inline Variable
+### درون‌خطی کردن متغیر (Inline Variable)
 
-**何时使用**：变量名没有比表达式更清楚
+**زمان استفاده**: نام متغیر بیش از خود عبارت چیزی را منتقل نمی‌کند
 
-**动机**：移除没必要的间接层。
+**انگیزه**: حذف غیرمستقیم‌سازی غیرضروری.
 
-**步骤：**
-
-1. 检查右侧表达式没有副作用
-2. 如果变量不是不可变的，先改成不可变并测试
-3. 找到第一次引用并替换成表达式
-4. 测试
-5. 对所有引用重复
-6. 删除变量声明和赋值
-7. 测试
-
----
-
-### Rename Variable
-
-**何时使用**：名字没有清楚表达用途
-
-**动机**：好名字是清晰代码的基础。
-
-**步骤：**
-
-1. 如果变量有多个引用，先重命名所有引用
-2. 确保新名字能符合代码风格
-3. 测试
-
-
-### Replace Temp with Query
-
-**何时使用**：临时变量阻碍提取方法
-
-**动机**：把临时变量变成一个查询方法。
-
-**步骤：**
-
-1. 确认临时变量只读
-2. 把临时变量的计算移到一个新方法中
-3. 用新方法替换临时变量
-4. 测试
+**مکانیک**:
+۱. بررسی کنید سمت راست عبارت عوارض جانبی ندارد
+۲. اگر متغیر تغییرناپذیر نیست، آن را تغییرناپذیر کنید و تست کنید
+۳. نخستین ارجاع را پیدا کنید و با عبارت جایگزین کنید
+۴. تست کنید
+۵. برای همه ارجاع‌ها تکرار کنید
+۶. اعلان و مقداردهی را حذف کنید
+۷. تست کنید
 
 ---
 
-### Introduce Parameter Object
+### تغییر نام متغیر (Rename Variable)
 
-**何时使用**：多个参数总是成组出现
+**زمان استفاده**: نام به‌روشنی هدف را منتقل نمی‌کند
 
-**动机**：用一个对象封装一组相关参数。
+**انگیزه**: نام‌های خوب برای کد تمیز حیاتی هستند.
 
-**步骤：**
+**مکانیک**:
+۱. اگر متغیر به‌طور گسترده استفاده می‌شود، کپسوله‌سازی را در نظر بگیرید
+۲. همه ارجاع‌ها را پیدا کنید
+۳. هر ارجاع را تغییر دهید
+۴. تست کنید
 
-1. 创建新对象，把相关参数移入
-2. 更新调用点
-3. 测试
-
-**前：**
-
-```javascript
-function createUser(firstName, lastName, email, phone,
-                    street, city, state, zip,
-                    isAdmin, isActive, createdBy)
-```
-
-**后：**
+**نکات**:
+- از نام‌هایی که نیت را آشکار می‌کنند استفاده کنید
+- از اختصارات پرهیز کنید
+- از اصطلاحات دامنه استفاده کنید
 
 ```javascript
-function createUser(personalInfo, address, options)
+// بد
+const d = 30;
+const x = users.filter(u => u.a);
+
+// خوب
+const daysSinceLastLogin = 30;
+const activeUsers = users.filter(user => user.isActive);
 ```
 
 ---
 
-### Move Method
+### تغییر اعلان تابع (Change Function Declaration)
 
-**何时使用**：方法更适合在另一个类里
+**زمان استفاده**: نام تابع هدف را توضیح نمی‌دهد، پارامترها باید تغییر کنند
 
-**动机**：让行为放在合适的地方。
+**انگیزه**: نام‌های خوب تابع، کد را خودمستند می‌کنند.
 
-**步骤：**
+**مکانیک (ساده)**:
+۱. پارامترهای غیرلازم را حذف کنید
+۲. نام را تغییر دهید
+۳. پارامترهای لازم را اضافه کنید
+۴. تست کنید
 
-1. 检查方法是否依赖其他类的状态
-2. 复制方法到目标类
-3. 更新引用
-4. 测试
-5. 删除原方法
+**مکانیک (مهاجرت - برای تغییرات پیچیده)**:
+۱. اگر پارامتری حذف می‌کنید، مطمئن شوید استفاده نمی‌شود
+۲. تابع جدید با اعلان مورد نظر بسازید
+۳. تابع قدیمی تابع جدید را فراخوانی کند
+۴. تست کنید
+۵. فراخوانی‌کنندگان را به تابع جدید تغییر دهید
+۶. پس از هر مورد تست کنید
+۷. تابع قدیمی را حذف کنید
 
+**قبل**:
+```javascript
+function circum(radius) {
+  return 2 * Math.PI * radius;
+}
+```
 
-### Extract Class
+**بعد**:
+```javascript
+function circumference(radius) {
+  return 2 * Math.PI * radius;
+}
+```
 
-**何时使用**：大类里有多个职责
+---
 
-**动机**：拆分类以维持单一职责。
+### کپسوله‌سازی متغیر (Encapsulate Variable)
 
-**步骤：**
+**زمان استفاده**: دسترسی مستقیم به داده از چند جا
 
-1. 决定如何拆分职责
-2. 创建新类
-3. 把字段从原类移到新类
-4. 测试
-5. 把方法从原类移到新类
-6. 每次移动后测试
-7. 重新检查并命名两个类
-8. 决定如何暴露新类
+**انگیزه**: نقطه دسترسی شفافی برای دستکاری داده فراهم کنید.
 
-**前：**
+**مکانیک**:
+۱. توابع getter و setter بسازید
+۲. همه ارجاع‌ها را پیدا کنید
+۳. خواندن‌ها را با getter جایگزین کنید
+۴. نوشتن‌ها را با setter جایگزین کنید
+۵. پس از هر تغییر تست کنید
+۶. دیدپذیری متغیر را محدود کنید
 
+**قبل**:
+```javascript
+let defaultOwner = { firstName: "Martin", lastName: "Fowler" };
+
+// در جاهای زیادی استفاده می‌شود
+spaceship.owner = defaultOwner;
+```
+
+**بعد**:
+```javascript
+let defaultOwnerData = { firstName: "Martin", lastName: "Fowler" };
+
+function defaultOwner() { return defaultOwnerData; }
+function setDefaultOwner(arg) { defaultOwnerData = arg; }
+
+spaceship.owner = defaultOwner();
+```
+
+---
+
+### معرفی شیء پارامتر (Introduce Parameter Object)
+
+**زمان استفاده**: چند پارامتر که مکرراً با هم می‌آیند
+
+**انگیزه**: داده‌هایی که به‌طور طبیعی به هم تعلق دارند را گروه‌بندی کنید.
+
+**مکانیک**:
+۱. یک کلاس/ساختار جدید برای پارامترهای گروه‌بندی‌شده بسازید
+۲. تست کنید
+۳. از تغییر اعلان تابع برای افزودن شیء جدید استفاده کنید
+۴. تست کنید
+۵. برای هر پارامتر در گروه، آن را از تابع حذف کنید و از شیء جدید استفاده کنید
+۶. پس از هر مورد تست کنید
+
+**قبل**:
+```javascript
+function amountInvoiced(startDate, endDate) { ... }
+function amountReceived(startDate, endDate) { ... }
+function amountOverdue(startDate, endDate) { ... }
+```
+
+**بعد**:
+```javascript
+class DateRange {
+  constructor(start, end) {
+    this.start = start;
+    this.end = end;
+  }
+}
+
+function amountInvoiced(dateRange) { ... }
+function amountReceived(dateRange) { ... }
+function amountOverdue(dateRange) { ... }
+```
+
+---
+
+### ترکیب توابع در کلاس (Combine Functions into Class)
+
+**زمان استفاده**: چند تابع روی داده یکسان کار می‌کنند
+
+**انگیزه**: توابع را با داده‌ای که روی آن کار می‌کنند گروه‌بندی کنید.
+
+**مکانیک**:
+۱. کپسوله‌سازی رکورد را روی داده مشترک اعمال کنید
+۲. هر تابع را به کلاس منتقل کنید
+۳. پس از هر انتقال تست کنید
+۴. آرگومان‌های داده را با استفاده از فیلدهای کلاس جایگزین کنید
+
+**قبل**:
+```javascript
+function base(reading) { ... }
+function taxableCharge(reading) { ... }
+function calculateBaseCharge(reading) { ... }
+```
+
+**بعد**:
+```javascript
+class Reading {
+  constructor(data) { this._data = data; }
+
+  get base() { ... }
+  get taxableCharge() { ... }
+  get calculateBaseCharge() { ... }
+}
+```
+
+---
+
+### تقسیم فاز (Split Phase)
+
+**زمان استفاده**: کد با دو چیز متفاوت سروکار دارد
+
+**انگیزه**: کد را به فازهای مجزا با مرزهای شفاف تقسیم کنید.
+
+**مکانیک**:
+۱. یک تابع دوم برای فاز دوم بسازید
+۲. تست کنید
+۳. یک ساختار داده میانی بین فازها معرفی کنید
+۴. تست کنید
+۵. فاز اول را به تابع خودش استخراج کنید
+۶. تست کنید
+
+**قبل**:
+```javascript
+function priceOrder(product, quantity, shippingMethod) {
+  const basePrice = product.basePrice * quantity;
+  const discount = Math.max(quantity - product.discountThreshold, 0)
+    * product.basePrice * product.discountRate;
+  const shippingPerCase = (basePrice > shippingMethod.discountThreshold)
+    ? shippingMethod.discountedFee : shippingMethod.feePerCase;
+  const shippingCost = quantity * shippingPerCase;
+  return basePrice - discount + shippingCost;
+}
+```
+
+**بعد**:
+```javascript
+function priceOrder(product, quantity, shippingMethod) {
+  const priceData = calculatePricingData(product, quantity);
+  return applyShipping(priceData, shippingMethod);
+}
+
+function calculatePricingData(product, quantity) {
+  const basePrice = product.basePrice * quantity;
+  const discount = Math.max(quantity - product.discountThreshold, 0)
+    * product.basePrice * product.discountRate;
+  return { basePrice, quantity, discount };
+}
+
+function applyShipping(priceData, shippingMethod) {
+  const shippingPerCase = (priceData.basePrice > shippingMethod.discountThreshold)
+    ? shippingMethod.discountedFee : shippingMethod.feePerCase;
+  const shippingCost = priceData.quantity * shippingPerCase;
+  return priceData.basePrice - priceData.discount + shippingCost;
+}
+```
+
+---
+
+## جابه‌جایی قابلیت‌ها
+
+### انتقال متد (Move Method)
+
+**زمان استفاده**: متد بیشتر از قابلیت‌های کلاس دیگر استفاده می‌کند تا کلاس خودش
+
+**انگیزه**: توابع را با داده‌ای که بیشتر استفاده می‌کنند قرار دهید.
+
+**مکانیک**:
+۱. همه عناصر برنامه که متد در کلاس خودش استفاده می‌کند را بررسی کنید
+۲. بررسی کنید متد چندریختی نباشد
+۳. متد را به کلاس هدف کپی کنید
+۴. برای زمینه جدید تنظیم کنید
+۵. متد اصلی را وادار کنید به هدف واگذار کند
+۶. تست کنید
+۷. حذف متد اصلی را در نظر بگیرید
+
+---
+
+### انتقال فیلد (Move Field)
+
+**زمان استفاده**: فیلد بیشتر توسط کلاس دیگری استفاده می‌شود
+
+**انگیزه**: داده را با توابعی که از آن استفاده می‌کنند نگه دارید.
+
+**مکانیک**:
+۱. اگر فیلد کپسوله نشده، آن را کپسوله کنید
+۲. تست کنید
+۳. فیلد را در هدف بسازید
+۴. ارجاع‌ها را برای استفاده از فیلد هدف به‌روزرسانی کنید
+۵. تست کنید
+۶. فیلد اصلی را حذف کنید
+
+---
+
+### انتقال دستورات به تابع (Move Statements into Function)
+
+**زمان استفاده**: همان کد همیشه همراه با فراخوانی یک تابع ظاهر می‌شود
+
+**انگیزه**: با انتقال کد تکراری به تابع، تکرار را حذف کنید.
+
+**مکانیک**:
+۱. کد تکراری را در تابعی استخراج کنید اگر قبلاً این‌طور نیست
+۲. دستورات را به آن تابع منتقل کنید
+۳. تست کنید
+۴. اگر فراخوانی‌کنندگان دیگر به دستورات مستقل نیاز ندارند، آن‌ها را حذف کنید
+
+---
+
+### انتقال دستورات به فراخوانی‌کنندگان (Move Statements to Callers)
+
+**زمان استفاده**: رفتار مشترک بین فراخوانی‌کنندگان متفاوت است
+
+**انگیزه**: وقتی رفتار باید متفاوت باشد، آن را از تابع بیرون ببرید.
+
+**مکانیک**:
+۱. استخراج متد را روی کدی که باید منتقل شود اعمال کنید
+۲. درون‌خطی کردن متد را روی تابع اصلی اعمال کنید
+۳. فراخوانی درون‌خطی‌شده را حذف کنید
+۴. کد استخراج‌شده را به هر فراخوانی‌کننده منتقل کنید
+۵. تست کنید
+
+---
+
+## سازمان‌دهی داده
+
+### جایگزینی نوع ابتدایی با شیء (Replace Primitive with Object)
+
+**زمان استفاده**: آیتم داده به رفتار بیشتری از یک مقدار ساده نیاز دارد
+
+**انگیزه**: داده را همراه با رفتارش کپسوله کنید.
+
+**مکانیک**:
+۱. کپسوله‌سازی متغیر را اعمال کنید
+۲. یک کلاس مقدار ساده بسازید
+۳. setter را تغییر دهید تا نمونه جدید بسازد
+۴. getter را تغییر دهید تا مقدار را برگرداند
+۵. تست کنید
+۶. رفتار غنی‌تر به کلاس جدید اضافه کنید
+
+**قبل**:
+```javascript
+class Order {
+  constructor(data) {
+    this.priority = data.priority; // رشته: "high"، "rush" و غیره
+  }
+}
+
+// استفاده
+if (order.priority === "high" || order.priority === "rush") { ... }
+```
+
+**بعد**:
+```javascript
+class Priority {
+  constructor(value) {
+    if (!Priority.legalValues().includes(value))
+      throw new Error(`Invalid priority: ${value}`);
+    this._value = value;
+  }
+
+  static legalValues() { return ['low', 'normal', 'high', 'rush']; }
+  get value() { return this._value; }
+
+  higherThan(other) {
+    return Priority.legalValues().indexOf(this._value) >
+           Priority.legalValues().indexOf(other._value);
+  }
+}
+
+// استفاده
+if (order.priority.higherThan(new Priority("normal"))) { ... }
+```
+
+---
+
+### جایگزینی متغیر موقت با پرس‌وجو (Replace Temp with Query)
+
+**زمان استفاده**: متغیر موقت نتیجه یک عبارت را نگه می‌دارد
+
+**انگیزه**: با استخراج عبارت در یک تابع، کد را شفاف‌تر کنید.
+
+**مکانیک**:
+۱. بررسی کنید متغیر فقط یک بار مقدار می‌گیرد
+۲. سمت راست مقداردهی را در متدی استخراج کنید
+۳. ارجاع‌ها به متغیر موقت را با فراخوانی متد جایگزین کنید
+۴. تست کنید
+۵. اعلان و مقداردهی متغیر موقت را حذف کنید
+
+**قبل**:
+```javascript
+const basePrice = this._quantity * this._itemPrice;
+if (basePrice > 1000) {
+  return basePrice * 0.95;
+} else {
+  return basePrice * 0.98;
+}
+```
+
+**بعد**:
+```javascript
+get basePrice() {
+  return this._quantity * this._itemPrice;
+}
+
+// در متد
+if (this.basePrice > 1000) {
+  return this.basePrice * 0.95;
+} else {
+  return this.basePrice * 0.98;
+}
+```
+
+---
+
+## ساده‌سازی منطق شرطی
+
+### تجزیه شرطی (Decompose Conditional)
+
+**زمان استفاده**: دستور شرطی پیچیده (if-then-else)
+
+**انگیزه**: با استخراج شرط‌ها و اقدام‌ها، نیت را شفاف کنید.
+
+**مکانیک**:
+۱. استخراج متد را روی شرط اعمال کنید
+۲. استخراج متد را روی شاخه then اعمال کنید
+۳. استخراج متد را روی شاخه else (در صورت وجود) اعمال کنید
+
+**قبل**:
+```javascript
+if (!aDate.isBefore(plan.summerStart) && !aDate.isAfter(plan.summerEnd)) {
+  charge = quantity * plan.summerRate;
+} else {
+  charge = quantity * plan.regularRate + plan.regularServiceCharge;
+}
+```
+
+**بعد**:
+```javascript
+if (isSummer(aDate, plan)) {
+  charge = summerCharge(quantity, plan);
+} else {
+  charge = regularCharge(quantity, plan);
+}
+
+function isSummer(date, plan) {
+  return !date.isBefore(plan.summerStart) && !date.isAfter(plan.summerEnd);
+}
+
+function summerCharge(quantity, plan) {
+  return quantity * plan.summerRate;
+}
+
+function regularCharge(quantity, plan) {
+  return quantity * plan.regularRate + plan.regularServiceCharge;
+}
+```
+
+---
+
+### یکپارچه‌سازی عبارت شرطی (Consolidate Conditional Expression)
+
+**زمان استفاده**: چند شرط با نتیجه یکسان
+
+**انگیزه**: شفاف کنید که شرط‌ها یک بررسی واحد هستند.
+
+**مکانیک**:
+۱. بررسی کنید شرط‌ها عوارض جانبی ندارند
+۲. شرط‌ها را با `and` یا `or` ترکیب کنید
+۳. استخراج متد را روی شرط ترکیبی در نظر بگیرید
+
+**قبل**:
+```javascript
+if (employee.seniority < 2) return 0;
+if (employee.monthsDisabled > 12) return 0;
+if (employee.isPartTime) return 0;
+```
+
+**بعد**:
+```javascript
+if (isNotEligibleForDisability(employee)) return 0;
+
+function isNotEligibleForDisability(employee) {
+  return employee.seniority < 2 ||
+         employee.monthsDisabled > 12 ||
+         employee.isPartTime;
+}
+```
+
+---
+
+### جایگزینی شرطی تودرتو با بندهای محافظ (Replace Nested Conditional with Guard Clauses)
+
+**زمان استفاده**: شرط‌های عمیقاً تودرتو که جریان را دشوار می‌کنند
+
+**انگیزه**: برای موارد خاص از بندهای محافظ استفاده کنید تا جریان عادی شفاف بماند.
+
+**مکانیک**:
+۱. شرط‌های مورد خاص را پیدا کنید
+۲. آن‌ها را با بندهای محافظی که زود بازمی‌گردند جایگزین کنید
+۳. پس از هر تغییر تست کنید
+
+**قبل**:
+```javascript
+function payAmount(employee) {
+  let result;
+  if (employee.isSeparated) {
+    result = { amount: 0, reasonCode: "SEP" };
+  } else {
+    if (employee.isRetired) {
+      result = { amount: 0, reasonCode: "RET" };
+    } else {
+      result = calculateNormalPay(employee);
+    }
+  }
+  return result;
+}
+```
+
+**بعد**:
+```javascript
+function payAmount(employee) {
+  if (employee.isSeparated) return { amount: 0, reasonCode: "SEP" };
+  if (employee.isRetired) return { amount: 0, reasonCode: "RET" };
+  return calculateNormalPay(employee);
+}
+```
+
+---
+
+### جایگزینی شرطی با چندریختی (Replace Conditional with Polymorphism)
+
+**زمان استفاده**: switch/case بر اساس نوع، منطق شرطی که با نوع تغییر می‌کند
+
+**انگیزه**: بگذارید اشیاء رفتار خودشان را مدیریت کنند.
+
+**مکانیک**:
+۱. سلسله‌مراتب کلاس بسازید (اگر وجود ندارد)
+۲. برای ساخت شیء از تابع کارخانه استفاده کنید
+۳. منطق شرطی را به متد ابرکلاس منتقل کنید
+۴. برای هر حالت متد زیرکلاس بسازید
+۵. شرطی اصلی را حذف کنید
+
+**قبل**:
+```javascript
+function plumages(birds) {
+  return birds.map(b => plumage(b));
+}
+
+function plumage(bird) {
+  switch (bird.type) {
+    case 'EuropeanSwallow':
+      return "average";
+    case 'AfricanSwallow':
+      return (bird.numberOfCoconuts > 2) ? "tired" : "average";
+    case 'NorwegianBlueParrot':
+      return (bird.voltage > 100) ? "scorched" : "beautiful";
+    default:
+      return "unknown";
+  }
+}
+```
+
+**بعد**:
+```javascript
+class Bird {
+  get plumage() { return "unknown"; }
+}
+
+class EuropeanSwallow extends Bird {
+  get plumage() { return "average"; }
+}
+
+class AfricanSwallow extends Bird {
+  get plumage() {
+    return (this.numberOfCoconuts > 2) ? "tired" : "average";
+  }
+}
+
+class NorwegianBlueParrot extends Bird {
+  get plumage() {
+    return (this.voltage > 100) ? "scorched" : "beautiful";
+  }
+}
+
+function createBird(data) {
+  switch (data.type) {
+    case 'EuropeanSwallow': return new EuropeanSwallow(data);
+    case 'AfricanSwallow': return new AfricanSwallow(data);
+    case 'NorwegianBlueParrot': return new NorwegianBlueParrot(data);
+    default: return new Bird(data);
+  }
+}
+```
+
+---
+
+### معرفی مورد خاص / شیء null (Introduce Special Case)
+
+**زمان استفاده**: بررسی‌های مکرر null برای موارد خاص
+
+**انگیزه**: شیء خاصی برگردانید که مورد خاص را مدیریت می‌کند.
+
+**مکانیک**:
+۱. کلاس مورد خاص با رابط مورد انتظار بسازید
+۲. بررسی isSpecialCase را اضافه کنید
+۳. متد کارخانه معرفی کنید
+۴. بررسی‌های null را با استفاده از شیء مورد خاص جایگزین کنید
+۵. تست کنید
+
+**قبل**:
+```javascript
+const customer = site.customer;
+// ... جاهای زیادی بررسی می‌کنند
+if (customer === "unknown") {
+  customerName = "occupant";
+} else {
+  customerName = customer.name;
+}
+```
+
+**بعد**:
+```javascript
+class UnknownCustomer {
+  get name() { return "occupant"; }
+  get billingPlan() { return registry.defaultPlan; }
+}
+
+// متد کارخانه
+function customer(site) {
+  return site.customer === "unknown"
+    ? new UnknownCustomer()
+    : site.customer;
+}
+
+// استفاده - نیازی به بررسی null نیست
+const customerName = customer.name;
+```
+
+---
+
+## ری‌فاکتور APIها
+
+### جداسازی پرس‌وجو از تغییردهنده (Separate Query from Modifier)
+
+**زمان استفاده**: تابع هم مقدار برمی‌گرداند و هم عوارض جانبی دارد
+
+**انگیزه**: شفاف کنید کدام عملیات عوارض جانبی دارند.
+
+**مکانیک**:
+۱. یک تابع پرس‌وجوی جدید بسازید
+۲. منطق بازگشتی تابع اصلی را کپی کنید
+۳. تابع اصلی را تغییر دهید تا void برگرداند
+۴. فراخوانی‌هایی که از مقدار بازگشتی استفاده می‌کنند را جایگزین کنید
+۵. تست کنید
+
+**قبل**:
+```javascript
+function alertForMiscreant(people) {
+  for (const p of people) {
+    if (p === "Don") {
+      setOffAlarms();
+      return "Don";
+    }
+    if (p === "John") {
+      setOffAlarms();
+      return "John";
+    }
+  }
+  return "";
+}
+```
+
+**بعد**:
+```javascript
+function findMiscreant(people) {
+  for (const p of people) {
+    if (p === "Don") return "Don";
+    if (p === "John") return "John";
+  }
+  return "";
+}
+
+function alertForMiscreant(people) {
+  if (findMiscreant(people) !== "") setOffAlarms();
+}
+```
+
+---
+
+### پارامتری کردن تابع (Parameterize Function)
+
+**زمان استفاده**: چند تابع که کارهای مشابه با مقادیر متفاوت انجام می‌دهند
+
+**انگیزه**: با افزودن یک پارامتر، تکرار را حذف کنید.
+
+**مکانیک**:
+۱. یک تابع انتخاب کنید
+۲. برای مقدار متغیر، پارامتر اضافه کنید
+۳. بدنه را تغییر دهید تا از پارامتر استفاده کند
+۴. تست کنید
+۵. فراخوانی‌کنندگان را به نسخه پارامتری تغییر دهید
+۶. توابع استفاده‌نشده را حذف کنید
+
+**قبل**:
+```javascript
+function tenPercentRaise(person) {
+  person.salary = person.salary * 1.10;
+}
+
+function fivePercentRaise(person) {
+  person.salary = person.salary * 1.05;
+}
+```
+
+**بعد**:
+```javascript
+function raise(person, factor) {
+  person.salary = person.salary * (1 + factor);
+}
+
+// استفاده
+raise(person, 0.10);
+raise(person, 0.05);
+```
+
+---
+
+### حذف آرگومان پرچم (Remove Flag Argument)
+
+**زمان استفاده**: پارامتر بولی که رفتار تابع را تغییر می‌دهد
+
+**انگیزه**: رفتار را از طریق توابع مجزا صریح کنید.
+
+**مکانیک**:
+۱. برای هر مقدار پرچم تابع صریح بسازید
+۲. هر فراخوانی را با تابع جدید مناسب جایگزین کنید
+۳. پس از هر تغییر تست کنید
+۴. تابع اصلی را حذف کنید
+
+**قبل**:
+```javascript
+function bookConcert(customer, isPremium) {
+  if (isPremium) {
+    // منطق رزرو ویژه
+  } else {
+    // منطق رزرو عادی
+  }
+}
+
+bookConcert(customer, true);
+bookConcert(customer, false);
+```
+
+**بعد**:
+```javascript
+function bookPremiumConcert(customer) {
+  // منطق رزرو ویژه
+}
+
+function bookRegularConcert(customer) {
+  // منطق رزرو عادی
+}
+
+bookPremiumConcert(customer);
+bookRegularConcert(customer);
+```
+
+---
+
+## کار با ارث‌بری
+
+### کشیدن متد به بالا (Pull Up Method)
+
+**زمان استفاده**: متد یکسان در چند زیرکلاس
+
+**انگیزه**: حذف تکرار در سلسله‌مراتب کلاس.
+
+**مکانیک**:
+۱. متدها را بررسی کنید تا مطمئن شوید یکسان‌اند
+۲. بررسی کنید امضاها یکسان‌اند
+۳. متد جدید در ابرکلاس بسازید
+۴. بدنه را از یک زیرکلاس کپی کنید
+۵. متد یک زیرکلاس را حذف کنید، تست کنید
+۶. متدهای زیرکلاس‌های دیگر را حذف کنید، هر یک را تست کنید
+
+---
+
+### هل دادن متد به پایین (Push Down Method)
+
+**زمان استفاده**: رفتاری که فقط به زیرمجموعه‌ای از زیرکلاس‌ها مربوط است
+
+**انگیزه**: متد را جایی بگذارید که استفاده می‌شود.
+
+**مکانیک**:
+۱. متد را به هر زیرکلاسی که به آن نیاز دارد کپی کنید
+۲. متد را از ابرکلاس حذف کنید
+۳. تست کنید
+۴. از زیرکلاس‌هایی که نیاز ندارند حذف کنید
+۵. تست کنید
+
+---
+
+### جایگزینی زیرکلاس با واگذاری (Replace Subclass with Delegate)
+
+**زمان استفاده**: ارث‌بری نادرست استفاده می‌شود، نیاز به انعطاف بیشتر
+
+**انگیزه**: در جای مناسب، ترکیب را به ارث‌بری ترجیح دهید.
+
+**مکانیک**:
+۱. کلاس خالی برای واگذار بسازید
+۲. فیلدی به کلاس میزبان اضافه کنید که واگذار را نگه دارد
+۳. سازنده‌ای برای واگذار بسازید که از میزبان فراخوانی شود
+۴. قابلیت‌ها را به واگذار منتقل کنید
+۵. پس از هر انتقال تست کنید
+۶. ارث‌بری را با واگذاری جایگزین کنید
+
+---
+
+## استخراج کلاس (Extract Class)
+
+**زمان استفاده**: کلاس بزرگ با چند مسئولیت
+
+**انگیزه**: کلاس را برای حفظ مسئولیت واحد تقسیم کنید.
+
+**مکانیک**:
+۱. تصمیم بگیرید مسئولیت‌ها را چگونه تقسیم کنید
+۲. کلاس جدید بسازید
+۳. فیلد را از کلاس اصلی به کلاس جدید منتقل کنید
+۴. تست کنید
+۵. متدها را از کلاس اصلی به کلاس جدید منتقل کنید
+۶. پس از هر انتقال تست کنید
+۷. هر دو کلاس را بازبینی و تغییر نام دهید
+۸. تصمیم بگیرید کلاس جدید چگونه افشا شود
+
+**قبل**:
 ```javascript
 class Person {
   get name() { return this._name; }
@@ -279,8 +971,7 @@ class Person {
 }
 ```
 
-**后：**
-
+**بعد**:
 ```javascript
 class Person {
   constructor() {
@@ -304,29 +995,37 @@ class TelephoneNumber {
 
 ---
 
-## 异味到重构快速映射
+## مرجع سریع: از بوی کد تا ری‌فاکتور
 
-| 代码异味 | 主要重构 | 备选方案 |
-|----------|---------|---------|
-| 长函数 | Extract Method | Replace Temp with Query |
-| 重复代码 | Extract Method | Pull Up Method |
-| 大类 | Extract Class | Extract Subclass |
-| 长参数列表 | Introduce Parameter Object | Preserve Whole Object |
-| Feature Envy | Move Method | Extract Method + Move |
-| 数据泥团 | Extract Class | Introduce Parameter Object |
-| 基础类型沉迷 | Replace Primitive with Object | Replace Type Code |
-| switch 语句 | Replace Conditional with Polymorphism | Replace Type Code |
-| 临时字段 | Extract Class | Introduce Null Object |
-| 消息链 | Hide Delegate | Extract Method |
-| 中间人 | Remove Middle Man | Inline Method |
-| 发散式变化 | Extract Class | Split Phase |
-| 散弹式修改 | Move Method | Inline Class |
-| 死代码 | Remove Dead Code | - |
-| 臆想泛化 | Collapse Hierarchy | Inline Class |
+| بوی کد | ری‌فاکتور اصلی | جایگزین |
+|------------|-------------------|-------------|
+| متد طولانی | استخراج متد | جایگزینی متغیر موقت با پرس‌وجو |
+| کد تکراری | استخراج متد | کشیدن متد به بالا |
+| کلاس بزرگ | استخراج کلاس | استخراج زیرکلاس |
+| فهرست پارامتر طولانی | معرفی شیء پارامتر | حفظ شیء کامل |
+| حسادت به ویژگی | انتقال متد | استخراج متد + انتقال |
+| خوشه‌های داده | استخراج کلاس | معرفی شیء پارامتر |
+| وسواس به انواع ابتدایی | جایگزینی نوع ابتدایی با شیء | جایگزینی کد نوع |
+| دستورات switch | جایگزینی شرطی با چندریختی | جایگزینی کد نوع |
+| فیلد موقت | استخراج کلاس | معرفی شیء null |
+| زنجیره‌های پیام | پنهان‌سازی واگذار | استخراج متد |
+| واسطه | حذف واسطه | درون‌خطی کردن متد |
+| تغییر واگرا | استخراج کلاس | تقسیم فاز |
+| جراحی با شاتگان | انتقال متد | درون‌خطی کردن کلاس |
+| کد مرده | حذف کد مرده | - |
+| کلیت حدسی | فروپاشی سلسله‌مراتب | درون‌خطی کردن کلاس |
 
 ---
 
-## 参考
+## مطالعه بیشتر
 
-- Fowler, M. (2018). *Refactoring: Improving the Design of Existing Code* (第 2 版)
-- 在线目录：https://refactoring.com/catalog/
+- Fowler, M. (2018). *Refactoring: Improving the Design of Existing Code* (2nd ed.)
+- کاتالوگ آنلاین: https://refactoring.com/catalog/
+
+---
+
+**آخرین به‌روزرسانی**: ۴ اوت ۲۰۲۶
+**نسخه Claude Code**: 2.1.220
+**منابع**:
+- https://code.claude.com/docs/en/skills
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

@@ -64,11 +64,11 @@ CLAUDE_CODE_NEW_INIT=1 claude
 **گردش کار نمونه:**
 
 ```markdown
-# In your project directory
+# در پوشه پروژه شما
 /init
 
-# Claude creates CLAUDE.md with structure like:
-# Project Configuration
+# کلود فایل CLAUDE.md را با ساختاری مانند این می‌سازد:
+# پیکربندی پروژه
 ## Project Overview
 - Name: Your Project
 - Tech Stack: [Your technologies]
@@ -108,7 +108,7 @@ Please add to memory: prefer async/await over promise chains.
 میانبر پیشوند `#` قبلاً اجازه افزودن قوانین درون‌خطی را می‌داد:
 
 ```markdown
-# Always use TypeScript strict mode in this project  ← no longer works
+# همیشه در این پروژه از حالت سخت‌گیرانه TypeScript استفاده کن  ← دیگر کار نمی‌کند
 ```
 
 اگر به این الگو متکی بودید، به دستور `/memory` یا درخواست‌های محاوره‌ای تغییر دهید.
@@ -150,20 +150,20 @@ Please add to memory: prefer async/await over promise chains.
 **گردش کار نمونه:**
 
 ```markdown
-# Open memory for editing
+# باز کردن حافظه برای ویرایش
 /memory
 
-# Claude presents options:
-# 1. Managed Policy Memory
-# 2. Project Memory (./CLAUDE.md)
-# 3. User Memory (~/.claude/CLAUDE.md)
-# 4. Local Project Memory
+# کلود گزینه‌ها را ارائه می‌دهد:
+# ۱. حافظه سیاست مدیریت‌شده
+# ۲. حافظه پروژه (./CLAUDE.md)
+# ۳. حافظه کاربر (~/.claude/CLAUDE.md)
+# ۴. حافظه پروژه محلی
 
-# Choose option 2 (Project Memory)
-# Your default editor opens with ./CLAUDE.md content
+# گزینه ۲ را انتخاب کنید (حافظه پروژه)
+# ویرایشگر پیش‌فرض شما با محتوای ./CLAUDE.md باز می‌شود
 
-# Make changes, save, and close editor
-# Claude automatically reloads the updated memory
+# تغییرات را بدهید، ذخیره کنید و ویرایشگر را ببندید
+# کلود حافظه به‌روزشده را خودکار دوباره بارگذاری می‌کند
 ```
 
 **استفاده از importهای حافظه:**
@@ -171,12 +171,12 @@ Please add to memory: prefer async/await over promise chains.
 فایل‌های CLAUDE.md از نحو `@path/to/file` برای شامل کردن محتوای خارجی پشتیبانی می‌کنند:
 
 ```markdown
-# Project Documentation
+# مستندات پروژه
 See @README.md for project overview
 See @package.json for available npm commands
 See @docs/architecture.md for system design
 
-# Import from home directory using absolute path
+# وارد کردن از پوشه خانه با مسیر مطلق
 @~/.claude/my-project-instructions.md
 ```
 
@@ -191,7 +191,7 @@ See @docs/architecture.md for system design
 
 ## معماری حافظه
 
-حافظه در کلود کد یک سیستم سلسله‌مراتبی پیروی می‌کند که در آن scopeهای مختلف اهداف متفاوتی را خدمت می‌کنند. برخلاف چرخه سنتز ۲۴-ساعته Claude Web/Desktop (به [حافظه در Claude Web/Desktop](#memory-in-claude-webdesktop) در زیر مراجعه کنید)، کلود کد دو سیستم حافظه دارد که هر دو در شروع هر سیشن بارگذاری و به‌طور مستمر به‌روزرسانی می‌شوند، نه روی تایمر:
+حافظه در کلود کد یک سیستم سلسله‌مراتبی پیروی می‌کند که در آن scopeهای مختلف اهداف متفاوتی را خدمت می‌کنند. برخلاف چرخه سنتز ۲۴-ساعته Claude Web/Desktop (به [حافظه در Claude Web/Desktop](#حافظه-در-claude-webdesktop) در زیر مراجعه کنید)، کلود کد دو سیستم حافظه دارد که هر دو در شروع هر سیشن بارگذاری و به‌طور مستمر به‌روزرسانی می‌شوند، نه روی تایمر:
 
 ```mermaid
 graph TB
@@ -228,7 +228,7 @@ graph TB
 
 **`.claude/rules/*.md`** — دستورالعمل‌های ماژولار، موضوعی، به‌صورت اختیاری محدود به مسیرهای فایل از طریق frontmatter `paths`. قوانین بدون فیلد `paths` بدون قیدوشروط با همان اولویت `.claude/CLAUDE.md` بارگذاری می‌شوند; قوانین مسیر-محور هنگام تقاضا بارگذاری می‌شوند وقتی کلود یک فایل تطابقی را می‌خواند، می‌نویسد یا ویرایش می‌کند — شامل مشاهده با یک خواندن Bash تک‌فایلی مثل `cat`, `head`, `tail`, `sed -n` یا `grep` (Write/Edit از v2.1.288، خواندن Bash از v2.1.293). قوانین سطح کاربر (`~/.claude/rules/`) قبل از قوانین پروژه بارگذاری می‌شوند.
 
-**حافظه خودکار** (`~/.claude/projects/<project>/memory/`) یک سیستم جداگانه است: یادداشت‌های خود کلود، نه محتوای CLAUDE.md، و نه بخشی از ترتیب الحاق بالا. به [حافظه خودکار](#auto-memory) در زیر مراجعه کنید.
+**حافظه خودکار** (`~/.claude/projects/<project>/memory/`) یک سیستم جداگانه است: یادداشت‌های خود کلود، نه محتوای CLAUDE.md، و نه بخشی از ترتیب الحاق بالا. به [حافظه خودکار](#حافظه-خودکار) در زیر مراجعه کنید.
 
 > **نکته**: `CLAUDE.local.md` به‌طور کامل پشتیبانی و در [مستندات رسمی](https://code.claude.com/docs/en/memory) مستند شده است. این ترجیحات خاص پروژه شخصی را که به کنترل نسخه commit نمی‌شوند فراهم می‌کند. `CLAUDE.local.md` را به `.gitignore` خود اضافه کنید.
 
@@ -309,7 +309,7 @@ graph TD
 در monorepoهای بزرگ، برخی فایل‌های CLAUDE.md ممکن است به کار فعلی شما نامربوط باشند. تنظیم `claudeMdExcludes` به شما اجازه می‌دهد فایل‌های CLAUDE.md خاص را رد کنید تا در context بارگذاری نشوند:
 
 ```jsonc
-// In ~/.claude/settings.json or .claude/settings.json
+// در ~/.claude/settings.json یا .claude/settings.json
 {
   "claudeMdExcludes": [
     "**/packages/legacy-app/CLAUDE.md",
@@ -432,7 +432,7 @@ your-project/
 paths: src/api/**/*.ts
 ---
 
-# API Development Rules
+# قواعد توسعه API
 
 - All API endpoints must include input validation
 - Use Zod for schema validation
@@ -564,7 +564,7 @@ npm install -g @anthropic-ai/claude-code@latest
 به‌طور پیش‌فرض، حافظه خودکار در `~/.claude/projects/<project>/memory/` ذخیره می‌شود. می‌توانید این مکان را با تنظیم `autoMemoryDirectory` (در دسترس از **v2.1.74**) تغییر دهید:
 
 ```jsonc
-// In any settings file: user, project, local, or managed policy
+// در هر فایل تنظیمات: کاربر، پروژه، محلی یا سیاست مدیریت‌شده
 {
   "autoMemoryDirectory": "/path/to/custom/memory/directory"
 }
@@ -607,10 +607,10 @@ Subagent اولین ۲۰۰ خط / ۲۵KB از `MEMORY.md` آن دایرکتور�
 | *(unset)* | رفتار پیش‌فرض (حافظه خودکار فعال) |
 
 ```bash
-# Disable auto memory for a session
+# غیرفعال کردن حافظه خودکار برای یک نشست
 CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude
 
-# Force auto memory on explicitly
+# روشن کردن اجباری حافظه خودکار
 CLAUDE_CODE_DISABLE_AUTO_MEMORY=0 claude
 ```
 
@@ -639,7 +639,7 @@ claude --add-dir /path/to/other/project
 **فایل:** `./CLAUDE.md`
 
 ```markdown
-# Project Configuration
+# پیکربندی پروژه
 
 ## Project Overview
 - **Name**: E-commerce Platform
@@ -734,7 +734,7 @@ claude --add-dir /path/to/other/project
 **فایل:** `./src/api/CLAUDE.md`
 
 ````markdown
-# API Module Standards
+# استانداردهای ماژول API
 
 This file supplements root CLAUDE.md for everything in /src/api/. Memory files are
 concatenated, not overridden — the root CLAUDE.md still applies, and Claude Code
@@ -804,7 +804,7 @@ Error responses:
 **فایل:** `~/.claude/CLAUDE.md`
 
 ```markdown
-# My Development Preferences
+# ترجیحات توسعه من
 
 ## About Me
 - **Experience Level**: 8 years full-stack development
@@ -866,12 +866,12 @@ I organize my projects as:
 ```
 
 _My Test_
-Ask Claude to save a new rule
+از کلود بخواهید یک قاعدهٔ جدید ذخیره کند
 
-![Ask Claude to save a new rule](memory-ask-claude.png)
-Claude has not save the rule because I did not have any `Claude.md` file anywhere. Then asked Claude to confirm the location.
+![از کلود بخواهید یک قاعدهٔ جدید ذخیره کند](../../02-memory/memory-ask-claude.png)
+کلود قاعده را ذخیره نکرد، چون هیچ فایل `Claude.md` در هیچ‌کجا نداشتم. سپس از کلود خواستم مکان را تأیید کند.
 
-![Ask Claude to save a new rule](memory-saved.png)
+![از کلود بخواهید یک قاعدهٔ جدید ذخیره کند](../../02-memory/memory-saved.png)
 
 ### مثال ۴: به‌روزرسانی حافظه در طول سیشن
 
@@ -1003,7 +1003,7 @@ graph LR
 
 - **مبهم نباشید**: از جملات عمومی مثل "از بهترین شیوه‌ها پیروی کنید" یا "کد خوب بنویسید" اجتناب کنید
 
-- **بیش از حد طولانی نکنید**: هدف **زیر ۲۰۰ خط** به‌ازای CLAUDE.md. فایل‌های طولانی‌تر همچنان به‌طور کامل بارگذاری می‌شوند، اما پایبندی کاهش می‌یابد — به [کوچک نگه‌داشتن CLAUDE.md](#keeping-claudemd-small) در زیر مراجعه کنید
+- **بیش از حد طولانی نکنید**: هدف **زیر ۲۰۰ خط** به‌ازای CLAUDE.md. فایل‌های طولانی‌تر همچنان به‌طور کامل بارگذاری می‌شوند، اما پایبندی کاهش می‌یابد — به [کوچک نگه‌داشتن CLAUDE.md](#کوچک-نگه‌داشتن-claudemd) در زیر مراجعه کنید
 
 - **بیش از حد سازماندهی نکنید**: از سلسله‌مراتب به‌صورت استراتژیک استفاده کنید; بازنویسی‌های زیردایرکتوری افراطی ایجاد نکنید
 
@@ -1058,13 +1058,13 @@ Anthropic بیش از ۸۰٪ از system prompt خود کلود کد را برا
 **بهترین شیوه‌های import:**
 
 ```markdown
-# Good: Reference existing docs
+# خوب: ارجاع به مستندات موجود
 @README.md
 @docs/architecture.md
 @package.json
 
-# Avoid: Copying content that exists elsewhere
-# Instead of copying README content into CLAUDE.md, just import it
+# بپرهیزید: کپی کردن محتوایی که جای دیگری هست
+# به‌جای کپی محتوای README در CLAUDE.md، فقط آن را import کنید
 ```
 
 ## دستورالعمل‌های نصب
@@ -1108,7 +1108,7 @@ Anthropic بیش از ۸۰٪ از system prompt خود کلود کد را برا
 2. **استانداردهای پروژه را اضافه کنید:**
    ```bash
    cat > CLAUDE.md << 'EOF'
-   # Project Configuration
+   # پیکربندی پروژه
 
    ## Project Overview
    - **Name**: Your Project Name
@@ -1143,7 +1143,7 @@ Anthropic بیش از ۸۰٪ از system prompt خود کلود کد را برا
 3. **ترجیحات خود را اضافه کنید:**
    ```bash
    cat > ~/.claude/CLAUDE.md << 'EOF'
-   # My Development Preferences
+   # ترجیحات توسعه من
 
    ## About Me
    - Experience Level: [Your level]
@@ -1166,7 +1166,7 @@ Anthropic بیش از ۸۰٪ از system prompt خود کلود کد را برا
 2. **قوانین خاص دایرکتوری اضافه کنید:**
    ```bash
    cat > /path/to/directory/CLAUDE.md << 'EOF'
-   # [Directory Name] Standards
+   # استانداردهای [نام پوشه]
 
    This file supplements root CLAUDE.md for this directory. Memory files are
    concatenated, not overridden — Claude Code loads this file on demand when it
@@ -1186,10 +1186,10 @@ Anthropic بیش از ۸۰٪ از system prompt خود کلود کد را برا
 
 1. **مکان‌های حافظه را بررسی کنید:**
    ```bash
-   # Project root memory
+   # حافظه ریشه پروژه
    ls -la ./CLAUDE.md
 
-   # Personal memory
+   # حافظه شخصی
    ls -la ~/.claude/CLAUDE.md
    ```
 
@@ -1222,7 +1222,7 @@ Anthropic بیش از ۸۰٪ از system prompt خود کلود کد را برا
 - داخل code spanها یا بلوک‌های کد markdown ارزیابی نمی‌شوند
 - به‌طور خودکار محتوای ارجاع‌شده در context کلود شامل می‌شود
 
-**ترتیب بارگذاری CLAUDE.md** (به context الحاق، نه بازنویسی سخت‌گیرانه — به [سلسله‌مراتب حافظه در کلود کد](#memory-hierarchy-in-claude-code) بالا مراجعه کنید):
+**ترتیب بارگذاری CLAUDE.md** (به context الحاق، نه بازنویسی سخت‌گیرانه — به [سلسله‌مراتب حافظه در کلود کد](#سلسله‌مراتب-حافظه-در-کلود-کد) بالا مراجعه کنید):
 
 1. سیاست مدیریت‌شده (اول بارگذاری)
 2. قوانین سطح کاربر (`~/.claude/rules/`)

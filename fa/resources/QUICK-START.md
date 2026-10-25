@@ -3,10 +3,10 @@
 ## کپی دارایی‌ها به پروژه خود
 
 ```bash
-# Copy all resources to your web project
+# کپی همه منابع به پروژه وب شما
 cp -r resources/ /path/to/your/website/
 
-# Or just the favicons for web
+# یا فقط فاوآیکون‌ها برای وب
 cp resources/favicons/* /path/to/your/website/public/
 ```
 

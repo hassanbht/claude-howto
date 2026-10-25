@@ -72,8 +72,8 @@
 | `npm run migrate` | اجرای migrationهای پایگاه‌داده |
 
 ## مخاطبان تیم
-- Tech Lead: Sarah Chen (@sarah.chen)
-- Product Manager: Mike Johnson (@mike.j)
+- سرپرست فنی: Sarah Chen (@sarah.chen)
+- مدیر محصول: Mike Johnson (@mike.j)
 - DevOps: Alex Kim (@alex.k)
 
 ## مسائل شناخته‌شده و راه‌حل‌ها

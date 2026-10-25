@@ -107,13 +107,13 @@
 1. **خلاصه‌ای از اطلاعات کشف‌شده ارائه دهید:**
 
    ```text
-   📊 DISCOVERED INFORMATION
+   📊 اطلاعات کشف‌شده
 
-   Product: [Name]
-   Value Proposition: [Main benefit to customers]
-   Key Features: [2-3 main benefits]
-   Brand Colors: [Extracted or suggested colors]
-   Target Audience: [Who this is for]
+   محصول: [نام]
+   ارزش پیشنهادی: [مزیت اصلی برای مشتریان]
+   ویژگی‌های کلیدی: [۲ تا ۳ مزیت اصلی]
+   رنگ‌های برند: [رنگ‌های استخراج‌شده یا پیشنهادی]
+   مخاطب هدف: [این ویدیو برای چه کسی است]
    ```
 
 2. **ترجیحات کاربر را بخواهید (پیش از ادامه الزامی است):**
@@ -121,27 +121,27 @@
    از قالب روشن و مختصر استفاده کنید:
 
    ```text
-   Before I create your video, please let me know your preferences:
+   پیش از ساخت ویدیوی شما، لطفاً ترجیحات خود را به من بگویید:
 
-   1. **Video Size/Format:**
-      - Landscape (1920x1080) - YouTube, website
-      - Portrait (1080x1920) - TikTok, Instagram Reels
-      - Square (1080x1080) - Instagram feed
+   1. **اندازه/قالب ویدیو:**
+      - افقی (1920x1080) - یوتیوب، وب‌سایت
+      - عمودی (1080x1920) - تیک‌تاک، ریلز اینستاگرام
+      - مربع (1080x1080) - فید اینستاگرام
 
-   2. **Video Duration:**
-      - 15 seconds - Quick social media ad
-      - 30 seconds - Standard promotional video
-      - 60 seconds - Detailed feature showcase
-      - Custom duration
+   2. **مدت ویدیو:**
+      - ۱۵ ثانیه - آگهی سریع شبکه‌های اجتماعی
+      - ۳۰ ثانیه - ویدیوی تبلیغاتی استاندارد
+      - ۶۰ ثانیه - نمایش دقیق قابلیت‌ها
+      - مدت دلخواه
 
-   3. **Video Style:**
-      - Modern & Minimal - Clean, Apple-style aesthetics
-      - Energetic & Bold - Fast-paced, social media style
-      - Professional & Corporate - Business-focused
-      - Custom style (describe your vision)
+   3. **سبک ویدیو:**
+      - مدرن و مینیمال - زیبایی‌شناسی تمیز به سبک اپل
+      - پرانرژی و جسور - پرسرعت، به سبک شبکه‌های اجتماعی
+      - حرفه‌ای و سازمانی - متمرکز بر کسب‌وکار
+      - سبک دلخواه (دیدگاه خود را توصیف کنید)
 
-   4. **Anything else to highlight or customize?**
-      (Specific features, messaging, colors, etc.)
+   4. **چیز دیگری برای برجسته‌سازی یا سفارشی‌سازی هست؟**
+      (قابلیت‌های مشخص، پیام‌رسانی، رنگ‌ها و غیره)
    ```
 
 3. **پاسخ کاربر را پیش از ادامه به مرحله ۴ منتظر بمانید.**
@@ -164,22 +164,22 @@
 1. **ساختار ویدیو را با ترجیحات تأییدشده کاربر طراحی کنید:**
 
    ```text
-   🎬 VIDEO STRUCTURE
+   🎬 ساختار ویدیو
 
-   Act 1: The Hook (0-5 seconds)
-   - [Attention-grabbing visual concept]
-   - [Bold animation entrance]
-   - [Compelling headline/question]
+   پرده ۱: قلاب (۰ تا ۵ ثانیه)
+   - [ایدهٔ بصری جلب‌کنندهٔ توجه]
+   - [ورود انیمیشنی جسورانه]
+   - [تیتر/پرسش متقاعدکننده]
 
-   Act 2: Value Demonstration (middle section)
-   - [Show key benefits in action]
-   - [Visual storytelling of customer value]
-   - [2-3 feature highlights as benefits]
+   پرده ۲: نمایش ارزش (بخش میانی)
+   - [نمایش مزیت‌های کلیدی در عمل]
+   - [روایت بصری ارزش مشتری]
+   - [۲ تا ۳ ویژگی برجسته به‌صورت مزیت]
 
-   Act 3: Call to Action (final section)
-   - [Clear CTA with brand reinforcement]
-   - [Memorable closing visual]
-   - [Smooth exit animation]
+   پرده ۳: فراخوان به اقدام (بخش پایانی)
+   - [CTA شفاف همراه با تقویت برند]
+   - [تصویر پایانی به‌یادماندنی]
+   - [انیمیشن خروج نرم]
    ```
 
 2. **اعمال ترجیحات کاربر:**
@@ -271,14 +271,14 @@
 1. **دستورالعمل‌های رندر را ارائه دهید:**
 
    ```bash
-   # Preview the video in browser
+   # پیش‌نمایش ویدیو در مرورگر
    npm run dev
 
-   # Render the final video
+   # رندر ویدیوی نهایی
    npm run build
    npx remotion render Video out/video.mp4
 
-   # For specific codec/settings
+   # برای کدک/تنظیمات مشخص
    npx remotion render Video out/video.mp4 --codec h264
    ```
 

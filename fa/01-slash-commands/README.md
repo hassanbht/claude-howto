@@ -148,7 +148,7 @@
 - /sandbox برای toggle حالت sandbox اضافه شد
 - انتخاب‌گر `/model` اکنون برچسب‌های قابل‌خواندن توسط انسان (مثلاً "Sonnet 4.6") به‌جای شناسه‌های مدل خام نشان می‌دهد
 - `/resume` از نام مستعار `/continue` پشتیبانی می‌کند
-- پرامپت‌های MCP به‌عنوان دستورات `/mcp__<server>__<prompt>` در دسترس‌اند (به [پرامپت‌های MCP به‌عنوان دستور](#mcp-prompts-as-commands) مراجعه کنید)
+- پرامپت‌های MCP به‌عنوان دستورات `/mcp__<server>__<prompt>` در دسترس‌اند (به [پرامپت‌های MCP به‌عنوان دستور](#پرامپت‌های-mcp-به‌عنوان-دستور) مراجعه کنید)
 - `/team-onboarding` برای تولید خودکار راهنماهای ramp-up هم‌تیمی اضافه شد (v2.1.101)
 - `/tui` برای رندر TUI fullscreen بدون پرش اضافه شد (v2.1.110)
 - `/focus` برای toggle نمای تمرکز اضافه شد; `Ctrl+O` اکنون فقط transcript پر‌حرف را toggle می‌کند (v2.1.110)
@@ -169,9 +169,9 @@
 - نصب‌های پلاگین اکنون زمانی که ایمن باشد بلافاصله فعال می‌شوند; `/reload-plugins` فقط زمانی لازم است که خلاصه نصب آن را بخواهد (v2.1.221)
 - `/ultraplan` حذف شد — از حالت برنامه‌ریزی استفاده کنید (v2.1.222)
 - `/code-review` و `/review` آخرین سطح تلاش تایپ‌شده شما را هنگام حذف آن به یاد می‌آورند (v2.1.223)
-- `/code-review ultra` نقطه ورودی ترجیحی برای بازبینی چندagentی cloud شد; `/ultrareview` به‌عنوان نام مستعار باقی می‌ماند (v2.1.223)
+- `/code-review ultra` نقطه ورودی ترجیحی برای بازبینی چندایجنتـی ابری شد؛ `/ultrareview` به‌عنوان نام مستعار باقی می‌ماند (v2.1.223)
 - `/code-review` در تلاش `high`, `xhigh` و `max` اکنون مانند سایر سطوح در یک agent پس‌زمینه اجرا می‌شود (v2.1.232)
-- نکته شروع که پیشنهاد ایجاد subagentهای سفارشی می‌کرد، و نudge مطابق در تور `/powerup`، حذف شدند (v2.1.232)
+- نکته شروع که پیشنهاد ایجاد زیرایجنت‌های سفارشی می‌کرد، و یادآوری مطابق در تور `/powerup`، حذف شدند (v2.1.232)
 - `/permissions` اکنون می‌تواند در حین کار کلود باز شود — تغییرات قانون برای بقیه نوبت فعلی اعمال می‌شود (v2.1.234)
 - `/add-dir <path>` اکنون می‌تواند در حین کار کلود استفاده شود; گفت‌وگوهای `/add-dir`, `/autocompact`, `/theme`, `/help`, `/config` و `/advisor` در **fullscreen TUI** میان نوبت باز می‌شوند، به‌جای اینکه تا پایان پاسخ‌گویی کلود در صف بمانند (`/bug` از v2.1.232 از قبل بلافاصله باز می‌شد) (v2.1.234)
 
@@ -265,7 +265,7 @@ name: my-command
 description: What this command does and when to use it
 ---
 
-# My Command
+# دستور من
 
 Instructions for Claude to follow when this command is invoked.
 
@@ -457,7 +457,7 @@ sequenceDiagram
 ```
 
 **اسکرین‌شات:**
-![/pr](pr-slash-command.png)
+![/pr](../../01-slash-commands/pr-slash-command.png)
 
 ### ۳. `/generate-api-docs` - تولید مستندات API
 
@@ -526,10 +526,10 @@ pre-commit hookها و GitHub Actions را برای اطمینان کیفیت پ
 در دایرکتوری مهارت‌های خود کپی کنید:
 
 ```bash
-# Create skills directory
+# ساخت پوشه مهارت‌ها
 mkdir -p .claude/skills
 
-# For each command file, create a skill directory
+# برای هر فایل دستور، یک پوشه مهارت بسازید
 for cmd in optimize pr commit; do
   mkdir -p .claude/skills/$cmd
   cp 01-slash-commands/$cmd.md .claude/skills/$cmd/SKILL.md
@@ -541,11 +541,11 @@ done
 در دایرکتوری دستورات خود کپی کنید:
 
 ```bash
-# Project-wide (team)
+# در سطح پروژه (تیم)
 mkdir -p .claude/commands
 cp 01-slash-commands/*.md .claude/commands/ && rm .claude/commands/README.md
 
-# Personal use
+# استفاده شخصی
 mkdir -p ~/.claude/commands
 cp 01-slash-commands/*.md ~/.claude/commands/ && rm ~/.claude/commands/README.md
 ```
@@ -564,7 +564,7 @@ argument-hint: [optional-args]
 allowed-tools: Bash(npm *), Read, Grep
 ---
 
-# Command Title
+# عنوان دستور
 
 ## Context
 

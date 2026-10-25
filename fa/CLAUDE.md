@@ -1,62 +1,62 @@
 # CLAUDE.md
 
-Tutorial repo. Output is markdown in numbered modules `01-` through `10-`, not an app. Scripts in `scripts/` exist only to validate docs and build the EPUB.
+مخزن آموزشی. خروجی، مارک‌داون در ماژول‌های شماره‌گذاری‌شده `01-` تا `10-` است، نه یک اپلیکیشن. اسکریپت‌های پوشه `scripts/` فقط برای اعتبارسنجی مستندات و ساخت EPUB وجود دارند.
 
-See also `.claude/CLAUDE.md` for stack/commands and `STYLE_GUIDE.md` for lesson structure.
+برای پشته/دستورات به `.claude/CLAUDE.md` و برای ساختار درس به `STYLE_GUIDE.md` مراجعه کنید.
 
-## Critical commands
+## دستورات حیاتی
 
 ```bash
-# Quality gate (also runs on commit via pre-commit hooks)
+# دروازه کیفیت (هنگام کامیت هم با هوک‌های pre-commit اجرا می‌شود)
 pre-commit run --all-files
 
-# Tests
+# تست‌ها
 pytest scripts/tests/ -v
 
-# EPUB build (renders Mermaid with Pele — needs Node.js >= 20; the pinned bundle downloads once, then works offline)
+# ساخت EPUB (Mermaid را با Pele رندر می‌کند — به Node.js >= 20 نیاز دارد؛ بسته پین‌شده یک بار دانلود می‌شود و سپس آفلاین کار می‌کند)
 uv run scripts/build_epub.py
 
-# Python tooling
+# ابزارهای پایتون
 ruff check scripts/ && ruff format scripts/
 mypy scripts/ --ignore-missing-imports
 bandit -c scripts/pyproject.toml -r scripts/ --exclude scripts/tests/
 ```
 
-Pre-commit runs 5 doc checks on `.md` changes: markdown-lint, cross-references, mermaid-syntax, link-check, markdown-rendering. All must pass. The EPUB build is **not** a pre-commit hook — it runs in CI only (`build-epub` job in `.github/workflows/test.yml`), because it is a slow full-book build; the mermaid-syntax hook already renders every diagram with the same Pele bundle.
+pre-commit پنج بررسی مستندات را روی تغییرات `.md` اجرا می‌کند: markdown-lint، cross-references، mermaid-syntax، link-check، markdown-rendering. همه باید موفق شوند. ساخت EPUB هوک pre-commit **نیست** — فقط در CI اجرا می‌شود (کار `build-epub` در `.github/workflows/test.yml`)، زیرا ساخت کامل و کند کتاب است؛ هوک mermaid-syntax از قبل هر نمودار را با همان بسته Pele رندر می‌کند.
 
-## Architecture map
+## نقشه معماری
 
-- `01-` … `10-` — tutorial modules. **Numbered prefix = learning order**, not alphabetical. Do not reorganize.
-- Each module: `README.md` + copy-paste templates (`.md`, `.json`, `.sh`).
-- `scripts/` — utilities (EPUB builder, link/mermaid/cross-ref validators). Not the product.
-- `02-memory/*.md` — CLAUDE.md templates users copy into their own projects. Don't confuse with this file.
-- `openspec/` — spec-driven change proposals.
+- `01-` … `10-` — ماژول‌های آموزشی. **پیشوند شماره‌دار = ترتیب یادگیری**، نه الفبایی. آن را بازسازمان‌دهی نکنید.
+- هر ماژول: `README.md` به‌همراه قالب‌های کپی-چسباندنی (`.md`، `.json`، `.sh`).
+- `scripts/` — ابزارهای کمکی (سازنده EPUB، اعتبارسنج‌های پیوند/mermaid/cross-ref). محصول نیست.
+- `02-memory/*.md` — قالب‌های CLAUDE.md که کاربران در پروژه‌های خود کپی می‌کنند. با این فایل اشتباه نشوند.
+- `openspec/` — پیشنهادهای تغییر مبتنی بر مشخصات.
 
-## Hard rules
+## قواعد سخت‌گیرانه
 
-- **YOU MUST NOT commit or push without explicit user request.**
-- **YOU MUST NOT add `Co-Authored-By: Claude`** to any commit message.
-- Always activate `.venv` before running Python scripts (check `venv/`, `.venv/`, `env/`).
-- Internal links use **relative paths** (e.g. `01-slash-commands/README.md`); anchors use `#heading-name`.
-- Code fences **must** declare a language (`bash`, `python`, `json`, …) — the cross-reference check fails otherwise.
-- External URLs must be reachable and stable. No ephemeral links.
-- Mermaid diagrams must render with Pele. The pre-commit mermaid hooks get Node.js 22 from pre-commit and run strict, so they fail instead of skipping; the first run needs network to download Node.js and the pinned Pele bundle (offline: `SKIP=mermaid,vietnamese-mermaid,japanese-mermaid`). Run by hand, `scripts/check_mermaid.py` only warns without Node.js >= 20, and fails under `--strict` or in CI. A broken EPUB build is usually invalid Mermaid, a missing Node.js >= 20, or a failed bundle download.
-- Commit format: `type(scope): subject` where `scope` matches the module folder (e.g. `feat(slash-commands):`, `docs(memory):`, `fix(README):`).
-- Do not reorganize the `01-`–`10-` numbering. The order is the curriculum.
+- **نباید بدون درخواست صریح کاربر کامیت یا پوش کنید.**
+- **نباید `Co-Authored-By: Claude`** را به هیچ پیام کامیت اضافه کنید.
+- پیش از اجرای اسکریپت‌های پایتون همیشه `.venv` را فعال کنید (`venv/`، `.venv/`، `env/` را بررسی کنید).
+- پیوندهای داخلی از **مسیرهای نسبی** استفاده می‌کنند (مثلاً `01-slash-commands/README.md`)؛ لنگرها از `#heading-name`.
+- بلوک‌های کد **باید** زبان را مشخص کنند (`bash`، `python`، `json`، …) — در غیر این صورت بررسی ارجاعات متقابل شکست می‌خورد.
+- نشانی‌های خارجی باید در دسترس و پایدار باشند. بدون پیوندهای زودگذر.
+- نمودارهای Mermaid باید با Pele رندر شوند. هوک‌های mermaid در pre-commit نسخه Node.js 22 را از pre-commit می‌گیرند و در حالت سخت‌گیرانه اجرا می‌شوند، بنابراین به‌جای رد کردن شکست می‌خورند؛ اجرای نخست به شبکه برای دانلود Node.js و بسته Pele نیاز دارد (آفلاین: `SKIP=mermaid,vietnamese-mermaid,japanese-mermaid`). اجرای دستی `scripts/check_mermaid.py` بدون Node.js نسخه ۲۰ یا بالاتر فقط هشدار می‌دهد و در `--strict` یا در CI شکست می‌خورد. ساخت ناموفق EPUB معمولاً به دلیل Mermaid نامعتبر، نبود Node.js نسخه ۲۰ یا بالاتر، یا دانلود ناموفق بسته است.
+- قالب کامیت: `type(scope): subject` که `scope` با پوشه ماژول مطابقت دارد (مثلاً `feat(slash-commands):`، `docs(memory):`، `fix(README):`).
+- شماره‌گذاری `01-` تا `10-` را بازسازمان‌دهی نکنید. این ترتیب همان برنامه درسی است.
 
-## Workflow preferences
+## ترجیحات گردش کار
 
-- For lesson edits, follow `STYLE_GUIDE.md` for structure/naming/diagrams.
-- Small fixes → minimal diff. Don't rewrite a section to fix a typo.
-- When adding a module page: README + templates first, then update root `README.md` index and `LEARNING-ROADMAP.md` if order/timing changes.
-- Tutorial > library: prioritize clear explanations and copy-paste examples over reusable abstractions.
-- If a quality check fails, fix the underlying issue. Don't bypass with `--no-verify`.
+- برای ویرایش درس‌ها، در ساختار/نام‌گذاری/نمودارها از `STYLE_GUIDE.md` پیروی کنید.
+- اصلاحات کوچک ← تفاوت حداقلی. برای رفع یک غلط تایپی یک بخش را بازنویسی نکنید.
+- هنگام افزودن صفحه ماژول: ابتدا README و قالب‌ها، سپس اگر ترتیب/زمان‌بندی تغییر می‌کند، فهرست `README.md` ریشه و `LEARNING-ROADMAP.md` را به‌روزرسانی کنید.
+- آموزش مهم‌تر از کتابخانه است: توضیحات شفاف و مثال‌های کپی-چسباندنی را بر انتزاع‌های قابل استفاده مجدد ترجیح دهید.
+- اگر یک بررسی کیفیت شکست خورد، مسئله زیربنایی را رفع کنید. با `--no-verify` دور نزنید.
 
-## Token Efficiency
-- Never re-read files you just wrote or edited. You know the contents.
-- Never re-run commands to "verify" unless the outcome was uncertain.
-- Don't echo back large blocks of code or file contents unless asked.
-- Batch related edits into single operations. Don't make 5 edits when 1 handles it.
-- Skip confirmations like "I'll continue..." Just do it.
-- If a task needs 1 tool call, don't use 3. Plan before acting.
-- Do not summarize what you just did unless the result is ambiguous or you need additional input.
+## بهره‌وری توکن
+- هرگز فایل‌هایی را که همین حالا نوشته یا ویرایش کرده‌اید دوباره نخوانید. محتوا را می‌دانید.
+- هرگز دستورات را برای «تأیید» دوباره اجرا نکنید، مگر اینکه نتیجه نامعلوم بوده باشد.
+- بلوک‌های بزرگ کد یا محتوای فایل را بازتاب ندهید، مگر اینکه خواسته شود.
+- ویرایش‌های مرتبط را در یک عملیات دسته‌بندی کنید. وقتی ۱ ویرایش کار را انجام می‌دهد، ۵ ویرایش نکنید.
+- تأییدهایی مانند «ادامه می‌دهم...» را حذف کنید. فقط انجامش دهید.
+- اگر کاری به ۱ فراخوانی ابزار نیاز دارد، ۳ فراخوانی نکنید. پیش از اقدام برنامه‌ریزی کنید.
+- آنچه همین حالا انجام دادید را خلاصه نکنید، مگر اینکه نتیجه مبهم باشد یا به ورودی بیشتری نیاز داشته باشید.

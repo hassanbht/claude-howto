@@ -11,11 +11,11 @@
 
 [![GitHub Stars](https://img.shields.io/github/stars/luongnv89/claude-howto?style=flat&color=gold)](https://github.com/luongnv89/claude-howto/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/luongnv89/claude-howto?style=flat)](https://github.com/luongnv89/claude-howto/network/members)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../LICENSE)
 [![Version](https://img.shields.io/badge/version-2.1.302-brightgreen)](CHANGELOG.md)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1+-purple)](https://code.claude.com)
 
-🌐 **زبان / Language / 语言 / Мова:** [English](README.md) | [Tiếng Việt](vi/README.md) | [中文](zh/README.md) | [Українська](uk/README.md) | [日本語](ja/README.md) | [فارسی](fa/README.md)
+🌐 **زبان / Language / 语言 / Мова:** [English](../README.md) | [Tiếng Việt](../vi/README.md) | [中文](../zh/README.md) | [Українська](../uk/README.md) | [日本語](../ja/README.md) | [فارسی](README.md)
 
 # تسلط بر Claude Code در یک آخر هفته
 
@@ -567,7 +567,7 @@ claude --plugin-dir ./07-plugins/documentation
 - **مدیریت جلسه** — `/resume`، `/rename`، `/fork`، `/branch`، `claude -c`، `claude -r`
 - **کانفیگ** — سفارشی‌سازی رفتار در `~/.claude/settings.json`
 
-به [config-examples.json](09-advanced-features/config-examples.json) برای کانفیگ‌های کامل مراجعه کنید.
+به [config-examples.json](../09-advanced-features/config-examples.json) برای کانفیگ‌های کامل مراجعه کنید.
 
 </details>
 
@@ -818,7 +818,7 @@ uv run scripts/build_epub.py
 <details>
 <summary>مشارکت</summary>
 
-یک اشکال پیدا کردید یا می‌خواهید مثالی contribuکنید؟ از کمک شما استقبال می‌کنیم!
+یک اشکال پیدا کردید یا می‌خواهید مثالی مشارکت کنید؟ از کمک شما استقبال می‌کنیم!
 
 **لطفاً [CONTRIBUTING.md](CONTRIBUTING.md) را برای راهنمایی‌های دقیق درباره:**
 - انواع مشارکت‌ها (مثال‌ها، مستندات، ویژگی‌ها، اشکال‌ها، بازخورد)
@@ -870,7 +870,7 @@ uv run scripts/build_epub.py
 
 ## لایسنس
 
-لایسنس MIT — به [LICENSE](LICENSE) مراجعه کنید. آزاد برای استفاده، تغییر و توزیع. تنها الزام گذاردن اعلان لایسنس است.
+لایسنس MIT — به [LICENSE](../LICENSE) مراجعه کنید. آزاد برای استفاده، تغییر و توزیع. تنها الزام گذاردن اعلان لایسنس است.
 
 ---
 
