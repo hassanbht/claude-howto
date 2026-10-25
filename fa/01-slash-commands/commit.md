@@ -1,107 +1,33 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
-</picture>
-
-# دستور تعریف‌دهی (Commit)
-
-این دستور، مدیریت định‌نمایی کد و مرج تعریف‌کردن را به‌عنوان یک لایه‌ی پشتیبانی دارد. برای توضیح مفاهیم پیچیده‌تر، استفاده‌ی ادامه، و پروژه‌های عمومی، استفاده می‌شود.
-
-## فهرست مطالب
-
-1. [چیست؟](#چه-چیست)
-2. [فرمت‌های تعریف‌دهی](#فرمت‌های-تعمیق‌نمایی)
-3. [ساخت یک فریم‌ورک](#ساخت-یک-فریم‌ورک)
-4. [ارسال یک PR](#ارسال-یک-pr)
-5. [ارسال نسخه‌ها](#ارسال-نسخه‌ها)
-6. [بازیابی و روان‌سازی](#بازیابی-و-روان‌سازی)
-7. [اشکال‌پردازی](#اشکال‌پردازی)
-
+---
+allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git diff:*)
+argument-hint: [پیام]
+description: ایجاد یک git commit با context
 ---
 
-## چه چیست؟
+## Context
 
-دستور **commit**، یک efforts এক-لایه برای مدیریت تعریف‌نمایی و ترجمه ماهر کد به‌دست می‌آورد. از جمله دستورات، می‌توان هر تعریف که بکار برده شود را ذخیره کرد.
+- وضعیت فعلی git: !`git status`
+- diff فعلی git: !`git diff HEAD`
+- شاخه فعلی: !`git branch --show-current`
+- commitهای اخیر: !`git log --oneline -10`
 
-## فرمت‌های تعریف‌دهی
+## وظیفه شما
 
-### تعریف‌های پیش‌فرض
+بر اساس تغییرات بالا، یک git commit ایجاد کنید.
 
-```json
-{
-  "name": "commit-example",
-  "description": "مثال تعریف",
-  "documentation": "https://example.com/docs",
-  "entrypoint": "./src/index.ts",
-  "tags": ["commit", "example"]
-}
-```
+اگر پیامی از طریق آرگومان‌ها ارائه شده بود، از آن استفاده کنید: $ARGUMENTS
 
-### تعریف‌های مخصوص
-
-```yaml
----
-name: my-custom-command
-description: توضیح خاص
-tags: git, commit
-custom_path: "./.custom-command"
-version: "1.0.0"
----
-```
-
-## ساخت یک فریم‌ورک
-
-فریم‌ورک، یک فایل مسدود یا گیتی‌های جداگانه است که به‌صورت خودکار؛ به‌عنوان یک "فایل تعریف‌دهی" استفاده می‌شود.
-
-```bash
-# ساخت دستور
-claude /commit --name my-cmd --description "description"
-
-# چک‌لیست
-claude /commit --check
-```
+در غیر این صورت، تغییرات را تحلیل کنید و یک پیام commit مناسب بر اساس فرمت conventional commits ایجاد کنید:
+- `feat:` برای قابلیت‌های جدید
+- `fix:` برای رفع باگ
+- `docs:` برای تغییرات مستندات
+- `refactor:` برای بازسازی کد
+- `test:` برای افزودن تست
+- `chore:` برای وظایف نگهداری
 
 ---
-
-## ارسال یک PR
-
-۱. دستور را اجرا کنید
-۲. تغییرات را commit کنید
-۳. PR را ارسال کنید
-۴. کدنویسی را بررسی کنید
-
----
-
-## ارسال نسخه‌ها
-
-از دستور `/commit bum` برای نگهداری نسخه‌ها استفاده می‌شود.
-
-```bash
-# ارسال نسخه
-claude /commit bump --version 1.2.3
-```
-
----
-
-## بازیابی و روان‌سازی
-
-```bash
-# بازگرداندن به نسخه قبل
-claude /rewind
-
-# روان‌سازی (commit)
-claude /commit --squash
-```
-
----
-
-## اشکال‌پردازی
-
-- دستور `/commit` پیدا نشد: اطمینان حاصل کنید که `.claude/commands/` پوشه‌ی صحیحی است
-- خطای `name` یا `description`: XML یا YAML به‌درستی نوشته شده باشد
-- دستور به‌جای رفتن: چک‌لیست دستور را بررسی می‌کنید
-
----
-
-**آخرین به‌روزرسانی**: ۱۸ آبان ۲۰۲۶
-**نسخه کلود کد**: ۲.۱.۳۰۲
+**آخرین به‌روزرسانی**: ۴ اوت ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۲۲۰
+**منبع**:
+- https://code.claude.com/docs/en/commands
+**مدل‌های سازگ**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

@@ -140,4 +140,4 @@ claude -r "session"    # بازگشت peril.session با نام/شناسه
 | **Git Worktrees** | درون‌ساخت | `claude -w <name>` |
 | **حافظه خودکار** | درون‌ساخت | ذخیره خودکار در `~/.claude/projects/<project>/memory/` |
 | **لیست وظایف** | درون‌ساخت | `Ctrl+T` (لیست)،`/tasks` (کارهای پس‌زمینه) |
-| **مهارت‌های داخلی (۵ عدد)** | درون‌ساخت | `/simplify`、`/loop`、`/claude-api`、`/voice`、`/browse` |
+| **مهارت‌های داخلی (۵ عدد)** | درون‌ساخت | `/simplify`، `/loop`، `/claude-api`، `/voice`، `/browse` |

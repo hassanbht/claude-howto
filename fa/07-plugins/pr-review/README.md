@@ -1,104 +1,104 @@
----
-name: PR 审查插件
-description: 为 Pull Request 提供完整的代码审查工作流
-tags: plugins, code-review, pull-request
----
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-# PR 审查插件
+# پلاگین بازبینی PR
 
-完整的 PR 审查工作流，包含安全、测试和文档检查。
+گردش‌کار کامل بازبینی PR با بررسی‌های امنیتی، تست و مستندات.
 
-## 功能
+## امکانات
 
-✅ 安全分析
-✅ 测试覆盖率检查
-✅ 文档校验
-✅ 代码质量评估
-✅ 性能影响分析
+✅ تحلیل امنیتی
+✅ بررسی پوشش تست
+✅ اعتبارسنجی مستندات
+✅ ارزیابی کیفیت کد
+✅ تحلیل تأثیر بر عملکرد
 
-## 安装
+## نصب
 
 ```bash
 claude --plugin-dir ./07-plugins/pr-review
 ```
 
-## 包含内容
+## محتویات
 
-### Slash 命令
-- `/review-pr` - 全面 PR 审查
-- `/check-security` - 面向安全的审查
-- `/check-tests` - 测试覆盖率分析
+### دستورات Slash
+- `/review-pr` - بازبینی جامع PR
+- `/check-security` - بازبینی با تمرکز بر امنیت
+- `/check-tests` - تحلیل پوشش تست
 
-### 子 agents
-- `security-reviewer` - 安全漏洞检测
-- `test-checker` - 测试覆盖率分析
-- `performance-analyzer` - 性能影响评估
+### subagentها
+- `security-reviewer` - شناسایی آسیب‌پذیری‌های امنیتی
+- `test-checker` - تحلیل پوشش تست
+- `performance-analyzer` - ارزیابی تأثیر بر عملکرد
 
-### MCP 服务器
-- 用于 PR 数据的 GitHub 集成
+### سرورهای MCP
+- یکپارچه‌سازی GitHub برای داده‌های PR
 
-### Hooks
-- `pre-review.js` - 审查前验证
+### هوک‌ها
+- `pre-review.js` - اعتبارسنجی پیش از بازبینی
 
-## 使用
+## استفاده
 
-### 基础 PR 审查
-
+### بازبینی پایه PR
 ```
 /review-pr
 ```
 
-### 仅安全检查
-
+### فقط بررسی امنیت
 ```
 /check-security
 ```
 
-### 仅测试覆盖率检查
-
+### بررسی پوشش تست
 ```
 /check-tests
 ```
 
-## 要求
+## نیازمندی‌ها
 
 - Claude Code 2.1+
-- GitHub 访问权限
-- Git 仓库
+- دسترسی GitHub
+- مخزن Git
 
-## 配置
+## پیکربندی
 
-设置 GitHub token：
-
+تنظیم GitHub token خود:
 ```bash
 export GITHUB_TOKEN="your_github_token"
 ```
 
-## 示例工作流
+## گردش‌کار نمونه
 
 ```
-用户：/review-pr
+کاربر: /review-pr
 
 Claude:
-1. 运行 pre-review hook（验证 git 仓库）
-2. 通过 GitHub MCP 获取 PR 数据
-3. 将安全审查委派给 security-reviewer subagent
-4. 将测试分析委派给 test-checker subagent
-5. 将性能分析委派给 performance-analyzer subagent
-6. 汇总所有发现
-7. 提供完整审查报告
+۱. اجرای هوک pre-review (اعتبارسنجی مخزن git)
+۲. دریافت داده‌های PR از طریق GitHub MCP
+۳. واگذاری بازبینی امنیت به subagent security-reviewer
+۴. واگذاری تست به subagent test-checker
+۵. واگذاری عملکرد به subagent performance-analyzer
+۶. جمع‌آوری همه یافته‌ها
+۷. ارائه گزارش جامع بازبینی
 
-结果：
-✅ 安全：未发现关键问题
-⚠️  测试：覆盖率为 65%，建议达到 80%+
-✅ 性能：没有明显影响
-📝 建议：为边界情况添加测试
+نتیجه:
+✅ امنیت: مشکل حیاتی پیدا نشد
+⚠️  تست: پوشش ۶۵٪ است، ۸۰٪+ پیشنهاد می‌شود
+✅ عملکرد: تأثیر قابل‌توجهی نیست
+📝 پیشنهادات: برای موارد حاشیه‌ای تست اضافه کنید
 ```
 
 ---
 
-**最后更新**: 2026 年 10 月 18 日
-**Claude Code 版本**: 2.1.302
-**来源**:
+**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.302
+**منابع**:
+- https://code.claude.com/docs/en/plugins
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.131
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.138
+- https://code.claude.com/docs/en/model-config
 - https://code.claude.com/docs/en/plugins/cli-reference
 - https://code.claude.com/docs/en/plugins/install
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

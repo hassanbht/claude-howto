@@ -1,135 +1,132 @@
----
-name: 文档生成插件
-description: 为文档编写、同步和校验提供完整工作流
-tags: plugins, documentation, automation
----
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-# 文档生成插件
+# پلاگین مستندسازی
 
-这个插件把文档相关的命令、subagents、模板和 MCP 服务器打包在一起，帮助你生成、同步和校验文档。
+تولید و نگهداری جامع مستندات برای پروژه شما.
 
-## 特性
+## امکانات
 
-✅ 生成 API 文档
-✅ 创建和更新 README
-✅ 同步文档
-✅ 改进代码注释
-✅ 生成示例
+✅ تولید مستندات API
+✅ ایجاد و به‌روزرسانی README
+✅ هماهنگ‌سازی مستندات
+✅ بهبود کامنت‌های کد
+✅ تولید نمونه
 
-## 包含内容
-
-### 命令
-- [commands/generate-api-docs.md](commands/generate-api-docs.md) - 生成 API 文档
-- [commands/generate-readme.md](commands/generate-readme.md) - 生成 README
-- [commands/sync-docs.md](commands/sync-docs.md) - 同步文档
-- [commands/validate-docs.md](commands/validate-docs.md) - 校验文档
-
-### Subagents
-- [agents/api-documenter.md](agents/api-documenter.md) - API 文档 subagent
-- [agents/code-commentator.md](agents/code-commentator.md) - 代码注释 subagent
-- [agents/example-generator.md](agents/example-generator.md) - 示例生成 subagent
-
-### 模板
-- [templates/adr-template.md](templates/adr-template.md) - ADR 模板
-- [templates/api-endpoint.md](templates/api-endpoint.md) - API 端点模板
-- [templates/function-docs.md](templates/function-docs.md) - 函数文档模板
-
-### MCP 服务器
-- GitHub 集成 - 用于文档同步
-
-## 安装
+## نصب
 
 ```bash
 claude --plugin-dir ./07-plugins/documentation
 ```
 
-## 使用方式
+## محتویات
 
-### 生成 API 文档
-```bash
+### دستورات Slash
+- `/generate-api-docs` - تولید مستندات API
+- `/generate-readme` - ایجاد یا به‌روزرسانی README
+- `/sync-docs` - هماهنگ‌سازی مستندات با تغییرات کد
+- `/validate-docs` - اعتبارسنجی مستندات
+
+### subagentها
+- `api-documenter` - متخصص مستندسازی API
+- `code-commentator` - بهبود کامنت‌های کد
+- `example-generator` - ایجاد نمونه‌های کد
+
+### قالب‌ها
+- `api-endpoint.md` - قالب مستندسازی endpoint API
+- `function-docs.md` - قالب مستندسازی تابع
+- `adr-template.md` - قالب ثبت تصمیم معماری
+
+### سرورهای MCP
+- یکپارچه‌سازی GitHub برای هماهنگ‌سازی مستندات
+
+## استفاده
+
+### تولید مستندات API
+```
 /generate-api-docs
 ```
 
-### 创建 README
-```bash
+### ایجاد README
+```
 /generate-readme
 ```
 
-### 同步文档
-```bash
+### هماهنگ‌سازی مستندات
+```
 /sync-docs
 ```
 
-### 校验文档
-```bash
+### اعتبارسنجی مستندات
+```
 /validate-docs
 ```
 
-## 适用场景
-
-- 想标准化项目文档产出
-- 想自动生成 README、API 文档和示例
-- 想同步多个文档之间的一致性
-- 想维护代码注释和示例质量
-
-## 需求
+## نیازمندی‌ها
 
 - Claude Code 2.1+
-- GitHub 访问权限（可选）
+- دسترسی GitHub (اختیاری)
 
-## 示例工作流
+## گردش‌کار نمونه
 
-```text
-用户：/generate-api-docs
+```
+کاربر: /generate-api-docs
 
-Claude：
-1. 扫描 /src/api/ 下的所有 API 端点
-2. 委派给 api-documenter subagent
-3. 提取函数签名和 JSDoc
-4. 按模块 / 端点组织内容
-5. 使用 api-endpoint.md 模板
-6. 生成完整的 Markdown 文档
-7. 包含 curl、JavaScript 和 Python 示例
+Claude:
+۱. اسکن همه endpointهای API در /src/api/
+۲. واگذاری به subagent api-documenter
+۳. استخراج امضای توابع و JSDoc
+۴. سازمان‌دهی بر اساس ماژول/endpoint
+۵. استفاده از قالب api-endpoint.md
+۶. تولید مستندات جامع markdown
+۷. شامل نمونه‌های curl، JavaScript و Python
 
-结果：
-✅ API 文档已生成
-📄 已创建文件：
+نتیجه:
+✅ مستندات API تولید شد
+📄 فایل‌های ایجاد‌شده:
    - docs/api/users.md
    - docs/api/auth.md
    - docs/api/products.md
-📊 覆盖率：23/23 个端点已文档化
+📊 پوشش: ۲۳/۲۳ endpoint مستندسازی شد
 ```
 
-## 模板用途
+## استفاده از قالب‌ها
 
-### API 端点模板
-用于编写带完整示例的 REST API 文档。
+### قالب endpoint API
+برای مستندسازی endpointهای REST API با نمونه‌های کامل استفاده کنید.
 
-### 函数文档模板
-用于编写单个函数或方法的说明文档。
+### قالب مستندسازی تابع
+برای مستندسازی توابع/متدهای فردی استفاده کنید.
 
-### ADR 模板
-用于记录架构决策。
+### قالب ADR
+برای ثبت تصمیمات معماری استفاده کنید.
 
-## 配置
+## پیکربندی
 
-为文档同步设置 GitHub token：
+تنظیم GitHub token برای هماهنگ‌سازی مستندات:
 ```bash
 export GITHUB_TOKEN="your_github_token"
 ```
 
-## 最佳实践
+## بهترین روش‌ها
 
-- 文档尽量贴近代码
-- 随着代码变化同步更新文档
-- 提供可直接执行的示例
-- 定期校验文档有效性
-- 使用模板保持一致性
+- مستندات را نزدیک کد نگه دارید
+- مستندات را با تغییرات کد به‌روزرسانی کنید
+- نمونه‌های کاربردی ارائه دهید
+- به‌طور منظم اعتبارسنجی کنید
+- برای یکپارچگی از قالب‌ها استفاده کنید
 
 ---
 
-**最后更新**: 2026 年 10 月 18 日
-**Claude Code 版本**: 2.1.302
-**来源**:
+**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.302
+**منابع**:
+- https://code.claude.com/docs/en/plugins
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.131
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.138
+- https://code.claude.com/docs/en/model-config
 - https://code.claude.com/docs/en/plugins/cli-reference
 - https://code.claude.com/docs/en/plugins/install
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

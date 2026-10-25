@@ -1,16 +1,16 @@
-# 快速开始 - 品牌资源
+# شروع سریع — دارایی‌های برند
 
-## 复制资源到你的项目
+## کپی دارایی‌ها به پروژه خود
 
 ```bash
-# 将所有资源复制到你的 Web 项目中
+# Copy all resources to your web project
 cp -r resources/ /path/to/your/website/
 
-# 或者只复制网页所需的 favicon
+# Or just the favicons for web
 cp resources/favicons/* /path/to/your/website/public/
 ```
 
-## 添加到 HTML（直接复制粘贴）
+## اضافه کردن به HTML (کپی و جای‌گذاری)
 
 ```html
 <!-- Favicons -->
@@ -21,7 +21,7 @@ cp resources/favicons/* /path/to/your/website/public/
 <meta name="theme-color" content="#000000">
 ```
 
-## 在 Markdown/文档中使用
+## استفاده در Markdown/مستندات
 
 ```markdown
 # Claude How To
@@ -31,21 +31,21 @@ cp resources/favicons/* /path/to/your/website/public/
 ![Icon](resources/icons/claude-howto-icon.svg)
 ```
 
-## 推荐尺寸
+## اندازه‌های پیشنهادی
 
-| 用途 | 尺寸 | 文件 |
+| هدف | اندازه | فایل |
 |---------|------|------|
-| 网站页眉 | 520×120 | `logos/claude-howto-logo.svg` |
-| 应用图标 | 256×256 | `icons/claude-howto-icon.svg` |
-| 浏览器标签页 | 32×32 | `favicons/favicon-32.svg` |
-| 移动端桌面图标 | 128×128 | `favicons/favicon-128.svg` |
-| 桌面应用 | 256×256 | `favicons/favicon-256.svg` |
-| 小头像 | 64×64 | `favicons/favicon-64.svg` |
+| سربرگ وب‌سایت | 520×120 | `logos/claude-howto-logo.svg` |
+| آیکون برنامه | 256×256 | `icons/claude-howto-icon.svg` |
+| زبانه مرورگر | 32×32 | `favicons/favicon-32.svg` |
+| صفحه‌خانه موبایل | 128×128 | `favicons/favicon-128.svg` |
+| برنامه دسکتاپ | 256×256 | `favicons/favicon-256.svg` |
+| آواتار کوچک | 64×64 | `favicons/favicon-64.svg` |
 
-## 颜色值
+## مقادیر رنگ
 
 ```css
-/* 在 CSS 中使用这些值 */
+/* Use these in your CSS */
 --color-primary: #000000;
 --color-secondary: #6B7280;
 --color-accent: #22C55E;
@@ -53,42 +53,37 @@ cp resources/favicons/* /path/to/your/website/public/
 --color-bg-dark: #0A0A0A;
 ```
 
-## 图标含义
+## معنای طراحی آیکون
 
-**指南针 + 代码括号**：
+**قطب‌نما با براکت کد**:
+- حلقه قطب‌نما = ناوبری، مسیر یادگیری ساختاریافته
+- سوزن شمال سبز = جهت، پیشرفت، راهنمایی
+- سوزن جنوب مشکی = استوار بودن، پایه محکم
+- براکت `>` = پرامپت ترمینال، کد، بافت CLI
+- علامت‌های درجه‌بندی = دقت، گام‌های ساختاریافته
 
-- 指南针环 = 导航、结构化学习路径
-- 绿色北针 = 方向、进展、引导
-- 黑色南针 = 基础、根基
-- `>` 括号 = 终端提示符、代码、CLI 场景
-- 刻度线 = 精准、结构化步骤
+این نماد «یافتن مسیر در کد با راهنمایی روشن» را نشان می‌دهد.
 
-这象征着“在清晰引导下穿行于代码世界”。
+## چه چیزی را کجا استفاده کنید
 
-## 在哪里用什么
+### وب‌سایت
+- **سربرگ**: لوگو (`logos/claude-howto-logo.svg`)
+- **Favicon**: 32px (`favicons/favicon-32.svg`)
+- **پیش‌نمایش اجتماعی**: آیکون (`icons/claude-howto-icon.svg`)
 
-### 网站
+### گیت‌هاب
+- **بَج README**: آیکون (`icons/claude-howto-icon.svg`) در اندازه 64-128px
+- **آواتار مخزن**: آیکون (`icons/claude-howto-icon.svg`)
 
-- **页眉**：Logo（`logos/claude-howto-logo.svg`）
-- **Favicon**：32px（`favicons/favicon-32.svg`）
-- **社交预览**：图标（`icons/claude-howto-icon.svg`）
+### رسانه‌های اجتماعی
+- **تصویر پروفایل**: آیکون (`icons/claude-howto-icon.svg`)
+- **بنر**: لوگو (`logos/claude-howto-logo.svg`)
+- **تصویر بندانگشتی**: آیکون در 256×256px
 
-### GitHub
-
-- **README 徽章**：图标（`icons/claude-howto-icon.svg`），建议 64-128px
-- **仓库头像**：图标（`icons/claude-howto-icon.svg`）
-
-### 社交媒体
-
-- **头像**：图标（`icons/claude-howto-icon.svg`）
-- **横幅**：Logo（`logos/claude-howto-logo.svg`）
-- **缩略图**：256×256px 图标
-
-### 文档
-
-- **章节标题**：Logo 或图标（按需缩放）
-- **导航图标**：Favicon（32-64px）
+### مستندات
+- **سربرگ‌های فصل**: لوگو یا آیکون (با مقیاس مناسب)
+- **آیکون‌های ناوبری**: Favicon (32-64px)
 
 ---
 
-完整文档见 [README.md](README.md)
+برای مستندات کامل به [README.md](README.md) مراجعه کنید.

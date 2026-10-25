@@ -1,22 +1,23 @@
 ---
-description: 创建或更新项目 README
+description: README پروژه را ایجاد یا به‌روزرسانی کنید
 ---
 
-# README 生成器
+# تولیدکننده README
 
-生成完整的 README：
+README جامع تولید کنید:
 
-1. 项目概览与简介
-2. 安装说明
-3. 使用示例
-4. API 文档链接
-5. 贡献指南
-6. 许可证信息
+۱. مرور کلی پروژه و توضیحات
+۲. دستورالعمل‌های نصب
+۳. نمونه‌های استفاده
+۴. پیوندهای مستندات API
+۵. راهنماهای مشارکت
+۶. اطلاعات مجوز
 
 ---
 
-**最后更新**: 2026 年 10 月 15 日
-**Claude Code 版本**: 2.1.300
-**来源**:
+**آخرین به‌روزرسانی**: ۱۵ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.300
+**منابع**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

@@ -1,484 +1,1261 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
 # راهنمای حافظه
 
+حافظه به کلود اجازه می‌دهد context را در سراسر سیشن‌ها و گفت‌وگوها حفظ کند. این به دو شکل وجود دارد: سنتز خودکار در claude.ai، و CLAUDE.md مبتنی بر filesystem در کلود کد.
+
 ## مرور کلی
 
-حافظه به کلود کد اجازه می‌دهد زمینه را در سیشن‌های مختلف حفظ کند. می‌توانید استانداردهای تیم، قوانین پروژه، ترجیحات شخصی و محدودیت‌های سطح دایرکتوری را در CLAUDE.md بنویسید تا کلود در زمان مناسب به صورت خودکار بارگذاری شود.
+حافظه در کلود کد context پایداری ارائه می‌دهد که در سراسر سیشن‌ها و گفت‌وگوهای متعدد حمل می‌شود. برخلاف پنجره‌های context موقت، فایل‌های حافظه به شما اجازه می‌دهند:
 
-## جدول مرجع سریع دستور حافظه
+- استانداردهای پروژه را در سراسر تیم به اشتراک بگذارید
+- ترجیحات توسعه شخصی را ذخیره کنید
+- قوانین و پیکربندی‌های خاص دایرکتوری را نگه دارید
+- مستندات خارجی را وارد کنید
+- حافظه را به‌عنوان بخشی از پروژه کنترل نسخه کنید
 
-| دستور | عملکرد |
-|------|--------|
-| /init | مقداردهی اولیه CLAUDE.md سطح پروژه |
-| /memory | باز کردن و ویرایش فایل حافظه |
-| # | نوشتن سریع قانون فعلی در حافظه |
+سیستم حافظه در سطوح متعدد عمل می‌کند، از ترجیحات شخصی سراسری تا زیردایرکتوری‌های خاص، که کنترل دانه‌بندی‌شده‌ای روی آنچه کلود به یاد می‌آورد و چگونگی اعمال آن دانش فراهم می‌کند.
+
+## مرجع سریع دستورات حافظه
+
+| دستور | هدف | استخدام | چه زمانی استفاده شود |
+|---------|---------|-------|-------------|
+| `/init` | مقداردهی اولیه حافظه پروژه | `/init` | شروع پروژه جدید، راه‌اندازی اولیه CLAUDE.md |
+| `/memory` | ویرایش فایل‌های حافظه در ویرایشگر | `/memory` | به‌روزرسانی‌های گسترده، سازماندهی مجدد، بازبینی محتوا |
+| پیشوند `#` | ~~افزودن سریع حافظه یک‌خطی~~ **متوقف‌شده** | — | به‌جای آن از `/memory` یا درخواست محاوره‌ای استفاده کنید |
+| `@path/to/file` | وارد کردن محتوای خارجی | `@README.md` یا `@docs/api.md` | ارجاع به مستندات موجود در CLAUDE.md |
 
 ## شروع سریع: مقداردهی اولیه حافظه
 
-### استفاده از /init
+### دستور `/init`
 
-در دایرکتوری پروژه اجرا کنید:
+دستور `/init` سریع‌ترین راه برای راه‌اندازی حافظه پروژه در کلود کد است. این یک فایل CLAUDE.md با مستندات پایه پروژه مقداردهی اولیه می‌کند.
+
+**استخدام:**
 
 ```bash
 /init
 ```
 
-کلود بر اساس پروژه فعلی یک CLAUDE.md تولید می‌کند که معمولاً ساختار مشابه زیر را دارد:
+**کاری انجام می‌دهد:**
 
-```md
-# پیکربندی پروژه
-## مرور پروژه
-## استانداردهای توسعه
+- یک فایل CLAUDE.md جدید در پروژه شما ایجاد می‌کند (معمولاً در `./CLAUDE.md` یا `./.claude/CLAUDE.md`)
+- قراردادها و دستورالعمل‌های پروژه را تأسیس می‌کند
+- پایه را برای پایداری context در سراسر سیشن‌ها تنظیم می‌کند
+- یک ساختار قالب برای مستندسازی استانداردهای پروژه ارائه می‌دهد
+
+**حالت تعاملی بهبودیافته:** تنظیم `CLAUDE_CODE_NEW_INIT=1` یک گردش کار تعاملی چندمرحله‌ای را فعال می‌کند که شما را گام‌به‌گام از راه‌اندازی پروژه عبور می‌دهد:
+
+```bash
+CLAUDE_CODE_NEW_INIT=1 claude
+/init
 ```
 
-### به‌روزرسانی سریع حافظه با #
+**چه زمانی از `/init` استفاده کنید:**
 
-وقتی می‌خواهید یک قانون را در حافظه بنویسید، می‌توانید قبل از ورودی از # استفاده کنید:
+- شروع یک پروژه جدید با کلود کد
+- تأسیس استانداردهای کدنویسی و قراردادهای تیم
+- ایجاد مستندات درباره ساختار codebase خود
+- راه‌اندازی سلسله‌مراتب حافظه برای توسعه مشارکتی
 
-```text
-# این پروژه همیشه از حالت سخت تایپ‌اسکریپت استفاده می‌کند
-# اولویت async/await را به زنجیره promise می‌دهد
-# قبل از هر commit npm test اجرا شود
-# نام فایل‌ها همیشه در قالب kebab-case باشد
+**گردش کار نمونه:**
+
+```markdown
+# In your project directory
+/init
+
+# Claude creates CLAUDE.md with structure like:
+# Project Configuration
+## Project Overview
+- Name: Your Project
+- Tech Stack: [Your technologies]
+- Team Size: [Number of developers]
+
+## Development Standards
+- Code style preferences
+- Testing requirements
+- Git workflow conventions
 ```
 
-این قانون را در حافظه‌ای که جلسه فعلی می‌تواند درک کند، اضافه می‌کند.
+### به‌روزرسانی‌های سریع حافظه
 
-### استفاده از /memory
+> **نکته**: میانبر `#` برای حافظه درون‌خطی متوقف شد. از `/memory` برای ویرایش مستقیم فایل‌های حافظه استفاده کنید، یا از کلود به‌صورت محاوره‌ای بخواهید چیزی را به یاد بسپارد (مثلاً "remember that we always use TypeScript strict mode").
 
-/memory ویرایشگر حافظه را باز می‌کند، به شما امکان می‌دهد بین دامنه‌های مختلف سوئیچ کنید:
+راه‌های توصیه‌شده برای افزودن اطلاعات به حافظه:
 
-1. حافظه استراتژی مدیریت
-2. حافظه پروژه (./CLAUDE.md)
-3. حافظه کاربر (~/.claude/CLAUDE.md)
-4. حافظه پروژه محلی
+**گزینه ۱: استفاده از دستور `/memory`**
 
-مناسب برای مدیریت لایه‌ی قوانین بلندمدت، استانداردهای پروژه و ترجیحات شخصی است.
+```bash
+/memory
+```
+
+فایل‌های حافظه شما را در ویرایشگر سیستم برای ویرایش مستقیم باز می‌کند.
+
+**گزینه ۲: درخواست محاوره‌ای**
+
+```
+Remember that we always use TypeScript strict mode in this project.
+Please add to memory: prefer async/await over promise chains.
+```
+
+درخواست از کلود برای به یاد سپردن چیزی آن را در حافظه خودکار ذخیره می‌کند. برای تغییر CLAUDE.md به‌جای آن بگویید "add this to CLAUDE.md"، یا فایل را خودتان با `/memory` ویرایش کنید.
+
+**مرجع تاریخی** (دیگر کارآمد نیست):
+
+میانبر پیشوند `#` قبلاً اجازه افزودن قوانین درون‌خطی را می‌داد:
+
+```markdown
+# Always use TypeScript strict mode in this project  ← no longer works
+```
+
+اگر به این الگو متکی بودید، به دستور `/memory` یا درخواست‌های محاوره‌ای تغییر دهید.
+
+### دستور `/memory`
+
+دستور `/memory` دسترسی مستقیم به ویرایشش فایل‌های حافظه CLAUDE.md در سیشن‌های کلود کد فراهم می‌کند. این فایل‌های حافظه شما را در ویرایشگر سیستم برای ویرایش جامع باز می‌کند. هنگامی که فایل در یک ویرایشگر GUI باز می‌شود، سیشن دیگر در حالی که فایل باز است مسدود نمی‌شود، بنابراین می‌توانید به‌صورت موازی کار کنید (v2.1.216); ویرایشگرهای ترمینال مثل Vim همچنان ترمینال را تا خروج تصرف می‌کنند.
+
+**استخدام:**
+
+```bash
+/memory
+```
+
+**کاری انجام می‌دهد:**
+
+- فایل‌های حافظه شما را در ویرایشگر پیش‌فرض سیستم باز می‌کند
+- امکان افزودن‌ها، اصلاحات و سازماندهی مجدد گسترده را فراهم می‌کند
+- دسترسی مستقیم به همه فایل‌های حافظه در سلسله‌مراتب
+- مدیریت context پایدار در سراسر سیشن‌ها را فعال می‌کند
+
+**چه زمانی از `/memory` استفاده کنید:**
+
+- بازبینی محتوای حافظه موجود
+- به‌روزرسانی‌های گسترده استانداردهای پروژه
+- سازماندهی مجدد ساختار حافظه
+- افزودن مستندات یا دستورالعمل‌های دقیق
+- نگه‌داری و به‌روزرسانی حافظه با تکامل پروژه
+
+**مقایسه: `/memory` در مقابل `/init`**
+
+| جنبه | `/memory` | `/init` |
+|--------|-----------|---------|
+| **هدف** | ویرایش فایل‌های حافظه موجود | مقداردهی اولیه CLAUDE.md جدید |
+| **چه زمانی** | به‌روزرسانی/اصلاح context پروژه | شروع پروژه‌های جدید |
+| **اکشن** | باز کردن ویرایشگر برای تغییرات | تولید قالب آغازین |
+| **گردش کار** | نگه‌داری مستمر | راه‌اندازی یک‌باره |
+
+**گردش کار نمونه:**
+
+```markdown
+# Open memory for editing
+/memory
+
+# Claude presents options:
+# 1. Managed Policy Memory
+# 2. Project Memory (./CLAUDE.md)
+# 3. User Memory (~/.claude/CLAUDE.md)
+# 4. Local Project Memory
+
+# Choose option 2 (Project Memory)
+# Your default editor opens with ./CLAUDE.md content
+
+# Make changes, save, and close editor
+# Claude automatically reloads the updated memory
+```
+
+**استفاده از importهای حافظه:**
+
+فایل‌های CLAUDE.md از نحو `@path/to/file` برای شامل کردن محتوای خارجی پشتیبانی می‌کنند:
+
+```markdown
+# Project Documentation
+See @README.md for project overview
+See @package.json for available npm commands
+See @docs/architecture.md for system design
+
+# Import from home directory using absolute path
+@~/.claude/my-project-instructions.md
+```
+
+**ویژگی‌های import:**
+
+- هم مسیرهای نسبی و هم مطلق پشتیبانی می‌شوند (مثلاً `@docs/api.md` یا `@~/.claude/my-project-instructions.md`)
+- importهای بازگشتی با حداکثر عمق ۴ hop پشتیبانی می‌شوند
+- importهای اولین‌بار از مکان‌های خارجی یک گفت‌وگوی تأیید برای امنیت ایجاد می‌کنند
+- دستورالعمل‌های import داخل code spanها یا بلوک‌های کد markdown ارزیابی نمی‌شوند (بنابراین مستندسازی آنها در مثال‌ها بی‌خطر است)
+- با ارجاع به مستندات موجود از تکرار جلوگیری می‌کند
+- به‌صورت خودکار محتوای ارجاع‌شده را در context کلود شامل می‌کند
 
 ## معماری حافظه
 
-سیستم حافظه کلود کد معمولاً لایه‌های زیر را دارد:
+حافظه در کلود کد یک سیستم سلسله‌مراتبی پیروی می‌کند که در آن scopeهای مختلف اهداف متفاوتی را خدمت می‌کنند. برخلاف چرخه سنتز ۲۴-ساعته Claude Web/Desktop (به [حافظه در Claude Web/Desktop](#memory-in-claude-webdesktop) در زیر مراجعه کنید)، کلود کد دو سیستم حافظه دارد که هر دو در شروع هر سیشن بارگذاری و به‌طور مستمر به‌روزرسانی می‌شوند، نه روی تایمر:
 
-| لایه | دامنه | محتوا typical |
-|------|----------|----------|
-| استراتژی مدیریت | سازمانی | انطباق، امنیت، فرآیندهای یکپارچه |
-| حافظه پروژه | تک پروژه | معماری، استاندارد کد، گردش کار |
-| حافظه دایرکتوری | زیردایرکتوری | محدودیت‌های ماژول، استانداردهای محلی |
-| حافظه کاربر | تک کاربر | ترجیحات شخصی، تنظیمات پیش‌فرض |
+```mermaid
+graph TB
+    A["Session Start"]
+    B["CLAUDE.md Files<br/>(you write)"]
+    C["Auto Memory<br/>(Claude writes)"]
+    D["Claude Session"]
+    E["Your Correction /<br/>Preference"]
 
-## لایه‌بندی حافظه
+    B -->|loaded in full| A
+    C -->|MEMORY.md loaded| A
+    A --> D
+    D -->|"Remember that..."| E
+    E -->|writes during session| C
+    D -->|"add this to CLAUDE.md"| B
+```
 
-کلود از قوانین نزدیک‌تر به زمینه فعلی، حافظه‌ی خاص‌تر استفاده می‌کند. به طور کلی:
+## سلسله‌مراتب حافظه در کلود کد
 
-- قوانین سازمانی بر ترجیه‌های عادی اولویت دارند
-- قوانین پروژه بر ترجیه‌های شخصی اولویت دارند
-- قوانین سطح دایرکتوری بر قوانین سطح پروژه عمومی اولویت دارند
+کلود کد دو سیستم حافظه مکمل دارد، که هر دو در شروع هر گفت‌وگو بارگذاری می‌شوند: **فایل‌های CLAUDE.md** (دستورالعمل‌هایی که شما می‌نویسید) و **حافظه خودکار** (یادداشت‌هایی که کلود خودش می‌نویسد). فایل‌های CLAUDE.md **به context الحاق می‌شوند به‌جای اینکه یکدیگر را بازنویسی کنند** — این یک زنجیره تقدم سخت‌گیرانه نیست که در آن لایه بالاتر جای پایین‌تر را بگیرد. فایل‌های `.claude/rules/*.md` یک مکانیسم جداگانه و مرتبط برای دستورالعمل‌های موضوعی یا مسیر-محور هستند.
 
-## قوانین استثنا
+**مکان‌های فایل CLAUDE.md، به ترتیب بارگذاری (وسیع‌ترین scope تا خاص‌ترین):**
 
-اگر برخی از فایل‌های CLAUDE.md نباید به صورت خودکار بارگذاری شوند، می‌توانید از طریق claudeMdExcludes یا تنظیمات مشابه آن‌ها را خارج کنید.
+| Scope | مکان | هدف |
+|-------|----------|---------|
+| Managed policy | macOS: `/Library/Application Support/ClaudeCode/CLAUDE.md`<br>Linux/WSL: `/etc/claude-code/CLAUDE.md`<br>Windows: `C:\Program Files\ClaudeCode\CLAUDE.md` | دستورالعمل‌های سازمان‌گستر مدیریت‌شده توسط IT/DevOps. نمی‌تواند توسط تنظیمات فردی حذف شود. |
+| User instructions | `~/.claude/CLAUDE.md` | ترجیحات شخصی برای همه پروژه‌ها |
+| Project instructions | `./CLAUDE.md` یا `./.claude/CLAUDE.md` | دستورالعمل‌های مشترک تیم، کنترل نسخه. از v2.1.277، `./AGENTS.md` در همین لایه بارگذاری می‌شود، زمانی که هیچ `CLAUDE.md` یا `CLAUDE.local.md` در یا بالای دایرکتوری کاری وجود ندارد — کنترل‌شده توسط **Project instructions** در `/config` |
+| Local instructions | `./CLAUDE.local.md` | ترجیحات خاص پروژه شخصی; به `.gitignore` اضافه کنید |
 
-## سلسله‌مراتب فایل پیکربندی
+در درون درخت دایرکتوری، کلود کد از دایرکتوری کاری شما به بالا حرکت می‌کند: `foo/CLAUDE.md` قبل از `foo/bar/CLAUDE.md` بارگذاری می‌شود اگر از `foo/bar/` راه‌اندازی کنید، بنابراین دستورالعمل‌های نزدیک‌تر به جایی که راه‌اندازی کردید *آخر* خوانده می‌شوند — نه "بالاترین اولویت" به معنای بازنویسی، فقط آخرین در context. در هر دایرکتوری، `CLAUDE.local.md` پس از `CLAUDE.md` اضافه می‌شود. فایل‌های CLAUDE.md و CLAUDE.local.md در زیردایرکتوری‌های *زیر* دایرکتوری کاری شما هنگام تقاضا بارگذاری می‌شوند، وقتی کلود فایل‌ها را در آن زیردایرکتوری‌ها می‌خواند، نه در راه‌اندازی.
 
-تنظیمات پروژه، تنظیمات کاربر و تنظیمات مدیریت سازمانی همگی بارگذاری حافظه را تحت تأثیر قرار می‌دهند. می‌توانید آن را به این شکل در نظر بگیرید:
+سازمان‌ها همچنین می‌توانند محتوای CLAUDE.md مدیریت‌شده را مستقیماً داخل `managed-settings.json` از طریق کلید `claudeMd` قرار دهند، به‌جای استقرار یک فایل جداگانه. این فقط در تنظیمات مدیریت‌شده/سیاستی پذیرفته می‌شود — تنظیم `claudeMd` در تنظیمات کاربر یا پروژه بی‌تأثیر است.
 
-1. سیاست سازمانی
-2. تنظیمات پروژه
-3. تنظیمات محلی
-4. ورودی جلسه موقت
+**`.claude/rules/*.md`** — دستورالعمل‌های ماژولار، موضوعی، به‌صورت اختیاری محدود به مسیرهای فایل از طریق frontmatter `paths`. قوانین بدون فیلد `paths` بدون قیدوشروط با همان اولویت `.claude/CLAUDE.md` بارگذاری می‌شوند; قوانین مسیر-محور هنگام تقاضا بارگذاری می‌شوند وقتی کلود یک فایل تطابقی را می‌خواند، می‌نویسد یا ویرایش می‌کند — شامل مشاهده با یک خواندن Bash تک‌فایلی مثل `cat`, `head`, `tail`, `sed -n` یا `grep` (Write/Edit از v2.1.288، خواندن Bash از v2.1.293). قوانین سطح کاربر (`~/.claude/rules/`) قبل از قوانین پروژه بارگذاری می‌شوند.
+
+**حافظه خودکار** (`~/.claude/projects/<project>/memory/`) یک سیستم جداگانه است: یادداشت‌های خود کلود، نه محتوای CLAUDE.md، و نه بخشی از ترتیب الحاق بالا. به [حافظه خودکار](#auto-memory) در زیر مراجعه کنید.
+
+> **نکته**: `CLAUDE.local.md` به‌طور کامل پشتیبانی و در [مستندات رسمی](https://code.claude.com/docs/en/memory) مستند شده است. این ترجیحات خاص پروژه شخصی را که به کنترل نسخه commit نمی‌شوند فراهم می‌کند. `CLAUDE.local.md` را به `.gitignore` خود اضافه کنید.
+
+**رفتار کشف حافظه:**
+
+```mermaid
+graph TD
+    A["Managed Policy<br/>/Library/.../ClaudeCode/CLAUDE.md"] -->|loads first| B["User Instructions<br/>~/.claude/CLAUDE.md"]
+    B --> C["Project Instructions<br/>./CLAUDE.md or ./.claude/CLAUDE.md"]
+    C --> D["Local Instructions<br/>./CLAUDE.local.md"]
+
+    C -->|imports| H["@docs/architecture.md"]
+    H -->|imports| I["@docs/api-standards.md"]
+
+    style A fill:#fce4ec,stroke:#333,color:#333
+    style B fill:#f3e5f5,stroke:#333,color:#333
+    style C fill:#e1f5fe,stroke:#333,color:#333
+    style D fill:#e8f5e9,stroke:#333,color:#333
+    style H fill:#e1f5fe,stroke:#333,color:#333
+    style I fill:#e1f5fe,stroke:#333,color:#333
+```
+
+همه فایل‌های نشان‌داده‌شده در یک context الحاق می‌شوند، نه با بازنویسی انتخاب — جعبه‌های بعدی بعداً در context ظاهر می‌شوند، نه "به‌جای" قبلی‌ها.
+
+## AGENTS.md
+
+`AGENTS.md` یک فایل context پروژه چندابزاری است: همان *دسته* از مستندات CLAUDE.md، نوشته‌شده تا چند agent کدنویس بتوانند یک مجموعه از قراردادهای پروژه را به اشتراک بگذارند. از **v2.1.277**، کلود کد آن را مستقیماً به‌عنوان دستورالعمل‌های پروژه می‌خواند به‌جای آنکه نیازمند import آن باشید.
+
+**رفتار پیش‌فرض** (`claude-md-or-agents-md`):
+
+| آنچه پروژه شامل است | آنچه کلود کد می‌خواند |
+|---------------------------|------------------------|
+| `AGENTS.md`, بدون `CLAUDE.md` | `AGENTS.md` |
+| هم `AGENTS.md` و هم `CLAUDE.md` | فقط `CLAUDE.md` |
+| یک `CLAUDE.md` که `AGENTS.md` را با `@AGENTS.md` import می‌کند | `CLAUDE.md`, با بسط import |
+
+**کدام فایل‌ها AGENTS.md را سرکوب می‌کنند.** کلود کد دایرکتوری کاری و هر دایرکتوری بالاتر از آن را برای `CLAUDE.md`, `.claude/CLAUDE.md` یا `CLAUDE.local.md` بررسی می‌کند. اگر هرکدام را پیدا کند، `AGENTS.md` خوانده نمی‌شود. `~/.claude/CLAUDE.md`، CLAUDE.md مدیریت‌شده، و `.claude/rules/` برای این بررسی **شمردن نمی‌شوند** و در کنار هر فایل پروژه‌ای که برنده شود بارگذاری ادامه می‌دهند.
+
+> **هشدار**: افزودن یک `CLAUDE.local.md` به‌صورت بی‌صدا `AGENTS.md` از خوانده شدن را متوقف می‌کند. اگر دستورالعمل‌های پروژه شما پس از ایجاد یک بازنویسی محلی ناپدید به نظر می‌رسند، این معمولاً دلیل است.
+
+**آنچه خوانده می‌شود.** هر `AGENTS.md` و `.claude/AGENTS.md` در و بالای دایرکتوری کاری در شروع سیشن بارگذاری می‌شوند; فایل‌های زیردایرکتوری‌ها هنگام تقاضا، وقتی کلود فایل‌ها را آنجا می‌خواند. importهای `@path` همان‌طور که در CLAUDE.md انجام می‌دهند بسط می‌یابند، و `claudeMdExcludes` اعمال می‌شود.
+
+**آنچه هرگز خوانده نمی‌شود**: `AGENTS.local.md`, `AGENTS.override.md`, و هر چیزی زیر `.agents/`.
+
+**انتخاب رفتار.** تنظیم **Project instructions** چهار مقدار می‌گیرد:
+
+| مقدار | اثر |
+|-------|--------|
+| `claude-md-or-agents-md` | پیش‌فرض — `AGENTS.md` فقط وقتی هیچ فایل CLAUDE.md یافت نشود |
+| `claude-md-and-agents-md` | وقتی هر دو وجود دارند هر دو خوانده می‌شوند |
+| `claude-md` | فقط فایل‌های CLAUDE.md; `AGENTS.md` نادیده گرفته می‌شود |
+| `managed-only` | فقط دستورالعمل‌های سیاست مدیریت‌شده |
+
+از طریق `/config` تنظیم کنید، یا در تنظیمات:
+
+```jsonc
+{
+  "pluginConfigs": {
+    "agents-md@builtin": {
+      "options": {
+        "instructionFiles": "claude-md-and-agents-md"
+      }
+    }
+  }
+}
+```
+
+این کلید فقط در تنظیمات کاربر و مدیریت‌شده پذیرفته می‌شود — تنظیم آن در تنظیمات پروژه یا محلی بی‌تأثیر است.
+
+**کجا خواندن مستقیم در دسترس نیست.** روی نسخه‌های قبل از v2.1.277 (یا قبل از v2.1.281 روی Bedrock/Vertex/Foundry، پشت دروازه‌های LLM، یا با telemetry غیرفعال)، در طول اولین سیشن پس از ارتقا، یا با پلاگین `agents-md` داخلی غیرفعال، کلود کد `AGENTS.md` را خودش به دست نمی‌آورد. در این موارد، آن را از CLAUDE.md import کنید:
+
+```markdown
+@AGENTS.md
+```
+
+## حذف فایل‌های CLAUDE.md با `claudeMdExcludes`
+
+در monorepoهای بزرگ، برخی فایل‌های CLAUDE.md ممکن است به کار فعلی شما نامربوط باشند. تنظیم `claudeMdExcludes` به شما اجازه می‌دهد فایل‌های CLAUDE.md خاص را رد کنید تا در context بارگذاری نشوند:
+
+```jsonc
+// In ~/.claude/settings.json or .claude/settings.json
+{
+  "claudeMdExcludes": [
+    "**/packages/legacy-app/CLAUDE.md",
+    "**/vendors/**/CLAUDE.md"
+  ]
+}
+```
+
+الگوها علیه مسیرهای فایل مطلق با نحو glob تطابق می‌شوند، بنابراین الگوهای نسبی به repo را با `**/` شروع کنید. این به‌طور خاص مفید است برای:
+
+- monorepoها با بسیاری از زیرپروژه‌ها، که فقط برخی مرتبط‌اند
+- مخزن‌هایی که شامل فایل‌های CLAUDE.md فروشنده یا شخص‌ثالث هستند
+- کاهش نویز در پنجره context کلود با حذف دستورالعمل‌های کهنه یا نامرتبط
+
+## سلسله‌مراتب فایل تنظیمات
+
+تنظیمات کلود کد (شامل `autoMemoryDirectory`, `claudeMdExcludes` و سایر پیکربندی‌ها) بر اساس تقدم حل می‌شوند — برخلاف فایل‌های CLAUDE.md بالا، تنظیمات واقعاً بازنویسی می‌کنند به‌جای الحاق. وقتی همان تنظیم در چندین scope ظاهر می‌شود، سطح بالاتر برنده می‌شود:
+
+| سطح | مکان | Scope |
+|-------|----------|-------|
+| ۱ (بالاترین) | مدیریت‌شده — `managed-settings.json`, plist/registry, یا سرور-مدیریت‌شده | اجرای سازمان‌گستر; نمی‌تواند بازنویسی شود |
+| ۲ | آرگومان‌های خط فرمان | بازنویسی‌های سیشن موقت |
+| ۳ | `.claude/settings.local.json` | بازنویسی‌های محلی (git-ignored) |
+| ۴ | `.claude/settings.json` | سطح پروژه (به git commit شده) |
+| ۵ (پایین‌ترین) | `~/.claude/settings.json` | ترجیحات کاربر |
+
+تنظیمات مدیریت‌شده همچنین یک دایرکتوری drop-in, `managed-settings.d/`، در کنار `managed-settings.json` پشتیبانی می‌کنند: فایل پایه اول merge می‌شود، سپس فایل‌های `*.json` در دایرکتوری drop-in به ترتیب حروف الفبا روی آن merge می‌شوند (اسکالرها بازنویسی، آرایه‌ها concat و de-duplicate می‌شوند، اشیاء deep-merge). این به تیم‌های جداگانه اجازه می‌دهد قطعات سیاست مستقل مستقر کنند بدون ویرایش یک فایل مشترک. توجه این یک مکانیسم **settings.json** است، نه CLAUDE.md — این به مکان‌های فایل CLAUDE.md توضیح‌داده‌شده بالا اعمال نمی‌شود.
+
+قوانین مجوز (`allow`/`ask`/`deny`) متفاوت از سایر تنظیمات رفتار می‌کنند: آنها در سراسر scopeها merge می‌شوند به‌جای اینکه سطح بالاتر جای پایین‌تر را بگیرد.
+
+**پیکربندی خاص پلتفرم (v2.1.51+):**
+
+تنظیمات همچنین می‌توانند از طریق پیکربندی شوند:
+- **macOS**: فایل‌های Property list (plist)
+- **Windows**: Windows Registry
+
+این مکانیسم‌های بومی پلتفرم در کنار فایل‌های تنظیمات JSON خوانده می‌شوند و همان قواعد تقدم را پیروی می‌کنند.
+
+> **نکته (v2.1.119)**: تغییرات `/config` اکنون در `~/.claude/settings.json` پایدار می‌شوند. مقادیر نوشته‌شده از طریق `/config` در زنجیره تقدم نرمال سیاست/محلی/پروژه توضیح‌داده‌شده بالا شرکت می‌کنند — آنها دیگر فقط-سیشن نیستند. از `/config` برای ویرایش‌های تعاملی استفاده کنید و فایل‌های `settings.json` را مستقیماً برای پیکربندی اسکریپت‌شده یا مدیریت‌شده ویرایش کنید.
+
+### تنظیمات نگه‌داری و پاکسازی
+
+| تنظیم | نوع | پیش‌فرض | توضیح |
+|---------|------|---------|-------------|
+| `cleanupPeriodDays` | integer (روز) | 30 | پنجره نگه‌داری برای transcriptهای سیشن و سایر داده‌های برنامه زیر `~/.claude/`, شامل `file-history/` (snapshotهای checkpoint), `plans/`, `debug/`, `tasks/`, `shell-snapshots/`, و `backups/`. پوشه `~/.claude/checkpoints/` وجود ندارد. فایل‌های قدیمی‌تر از پنجره در شروع هرس می‌شوند. |
+
+```jsonc
+// ~/.claude/settings.json
+{
+  "cleanupPeriodDays": 14
+}
+```
+
+### تنظیمات Attribution، Voice و PR URL
+
+| تنظیم | نوع | توضیح |
+|---------|------|-------------|
+| `attribution.commit` | string | متنی که به commitهایی کلود ایجاد می‌کند اضافه می‌شود (به‌طور پیش‌فرض، trailer `Co-Authored-By: Claude`); `""` آن را پنهان می‌کند. flag منسوخ‌شده `includeCoAuthoredBy` را جایگزین می‌کند. |
+| `attribution.pr` | string | متنی که به توضیحات pull requestهایی کلود ایجاد می‌کند اضافه می‌شود; `""` آن را پنهان می‌کند. flag منسوخ‌شده `includeCoAuthoredBy` برای PRها را جایگزین می‌کند. |
+| `attribution.sessionUrl` | boolean | حذف لینک سیشن claude.ai از commitها و PRهای ایجادشده در سیشن‌های وب و Remote Control (v2.1.183+). |
+| `voice.enabled` | boolean | دیکته‌صوتی push-to-talk را فعال می‌کند (`/voice`). flag منسوخ‌شده `voiceEnabled` را جایگزین می‌کند. |
+| `prUrlTemplate` | string | **جدید در v2.1.119.** قالب URL سفارشی برای badge پای‌صف PR; مفید برای GitLab، Bitbucket یا پلتفرم‌های بازبینی کد داخلی. placeholderهای `{host}`, `{owner}`, `{repo}`, `{number}` و `{url}` را پشتیبانی می‌کند; لینک‌های merge request GitLab تغییر نمی‌کنند. |
+
+```jsonc
+// ~/.claude/settings.json
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "voice": {
+    "enabled": true
+  },
+  "prUrlTemplate": "https://reviews.example.com/{owner}/{repo}/pull/{number}"
+}
+```
+
+یک رشته خالی (`""`) آن attribution را پنهان می‌کند; `"attribution": false` همه را پنهان می‌کند (v2.1.281+).
+
+#### نام کلیدهای تنظیمات منسوخ‌شده
+
+کلیدهای تنظیمات قدیمی زیر هنوز کار می‌کنند اما منسوخ‌شده‌اند. ترجیحاً از جایگزین‌های بالا استفاده کنید.
+
+| کلید منسوخ‌شده | جایگزین | یادداشت‌ها |
+|----------------|-------------|-------|
+| `includeCoAuthoredBy` | `attribution.commit` / `attribution.pr` | flag تکی قدیمی به سوئیچ‌های commit و PR جداگانه تقسیم می‌شود. کاربران روی نصب‌های قدیمی‌تر می‌توانند کلید قدیمی را نگه دارند; پروژه‌های جدید باید از فرم تودرتو استفاده کنند. |
+| `voiceEnabled` | `voice.enabled` | زیر namespace `voice` در کنار گزینه‌های آینده مرتبط با voice گروه‌بندی شده. |
 
 ## سیستم قوانین ماژولار
 
-حافظه به طور کلی به یک فایل بزرگ نیاز ندارد. می‌توانید قوانین را به فایل‌های دایرکتوری مختلف تقسیم کنید و بر اساس مسیر سازماندهی کنید.
+قوانین سازمان‌یافته، خاص مسیر با استفاده از ساختار دایرکتوری `.claude/rules/` ایجاد کنید. قوانین می‌توانند هم در سطح پروژه و هم در سطح کاربر تعریف شوند:
 
-### تنظیم قوانین مسیر از طریق YAML frontmatter
+```
+your-project/
+├── .claude/
+│   ├── CLAUDE.md
+│   └── rules/
+│       ├── code-style.md
+│       ├── testing.md
+│       ├── security.md
+│       └── api/                  # Subdirectories supported
+│           ├── conventions.md
+│           └── validation.md
 
-```md
----
-description: قوانین توسعه API
----
-
-# قوانین توسعه API
+~/.claude/
+├── CLAUDE.md
+└── rules/                        # User-level rules (all projects)
+    ├── personal-style.md
+    └── preferred-patterns.md
 ```
 
-### زیاردایرکتوری و پیوند نمادین
+قوانین به‌صورت بازگشتی در دایرکتوری `rules/` کشف می‌شوند، شامل هر زیردایرکتوری. قوانین سطح کاربر در `~/.claude/rules/` قبل از قوانین سطح پروژه بارگذاری می‌شوند، که اجازه می‌دهد پیش‌فرض‌های شخصی که پروژه‌ها می‌توانند بازنویسی کنند.
 
-می‌توانید از زیاردایرکتوری و symlink برای استفاده مجدد قوانین محلی در چندین منطقه پروژه استفاده کنید.
+### قوانین خاص مسیر با YAML Frontmatter
 
-## جدول موقعیت حافظه
+قوانینی تعریف کنید که فقط به مسیرهای فایل خاص اعمال می‌شوند:
 
-موقعیت‌ها شامل:
+```markdown
+---
+paths: src/api/**/*.ts
+---
 
-- CLAUDE.md در ریشه پروژه
-- ~/.claude/CLAUDE.md در دایرکتوری کاربر
-- CLAUDE.md در زیاردایرکتوری
+# API Development Rules
 
-## چرخه عمر به‌روزرسانی حافظه
+- All API endpoints must include input validation
+- Use Zod for schema validation
+- Document all parameters and response types
+- Include error handling for all operations
+```
 
-الگوریتم عمومی به این صورت است:
+**مثال‌های الگوی Glob:**
 
-1. ایجاد یا ویرایش CLAUDE.md
-2. کلود دوباره بارگذاری می‌شود
-3. قوانین جدید در سیشن‌های بعدی اعمال می‌شوند
+- `**/*.ts` - همه فایل‌های TypeScript
+- `src/**/*` - همه فایل‌های زیر src/
+- `src/**/*.{ts,tsx}` - چند پسوند
+- `{src,lib}/**/*.ts, tests/**/*.test.ts` - چند الگو
+
+### زیردایرکتوری‌ها و Symlinkها
+
+قوانین در `.claude/rules/` از دو ویژگی سازماندهی پشتیبانی می‌کنند:
+
+- **زیردایرکتوری‌ها**: قوانین به‌صورت بازگشتی کشف می‌شوند، بنابراین می‌توانید آنها را در پوشه‌های موضوعی سازماندهی کنید (مثلاً `rules/api/`, `rules/testing/`, `rules/security/`)
+- **Symlinkها**: Symlinkها برای به اشتراک‌گذاری قوانین در سراسر پروژه‌های متعدد پشتیبانی می‌شوند. مثلاً می‌توانید یک فایل قانون مشترک را از یک مکان مرکزی به دایرکتوری `.claude/rules/` هر پروژه symlink کنید. از v2.1.284، یک قانون symlink‌شده از خارج پروژه — یا یک دایرکتوری `.claude` symlink‌شده از خارج — همان اعلان تأیید importهای خارجی را نشان می‌دهد
+
+## جدول مکان‌های حافظه
+
+فایل‌های CLAUDE.md و قوانین به context الحاق می‌شوند، نه با بازنویسی سخت‌گیرانه انتخاب — "ترتیب بارگذاری" در زیر یعنی *کجا در context ظاهر می‌شود*, نه *کدام برنده می‌شود*. حافظه خودکار یک مکانیسم جداگانه با مکان ذخیره‌سازی خود است.
+
+| مکان | نوع | ترتیب بارگذاری | مشترک | دسترسی | مناسب برای |
+|----------|------|-------------|--------|--------|----------|
+| `/Library/Application Support/ClaudeCode/CLAUDE.md` (macOS) | Managed Policy | اول (اول بارگذاری) | سازمان | سیستم | سیاست‌های شرکت‌گستر |
+| `/etc/claude-code/CLAUDE.md` (Linux/WSL) | Managed Policy | اول (اول بارگذاری) | سازمان | سیستم | استانداردهای سازمان |
+| `C:\Program Files\ClaudeCode\CLAUDE.md` (Windows) | Managed Policy | اول (اول بارگذاری) | سازمان | سیستم | دستورالعمل‌های شرکتی |
+| `~/.claude/rules/*.md` | User Rules | دوم | فردی | Filesystem | قوانین شخصی (همه پروژه‌ها) |
+| `~/.claude/CLAUDE.md` | User Memory | سوم | فردی | Filesystem | ترجیحات شخصی (همه پروژه‌ها) |
+| `./.claude/rules/*.md` | Project Rules | چهارم | تیم | Git | قوانین ماژولار، خاص مسیر |
+| `./CLAUDE.md` یا `./.claude/CLAUDE.md` | Project Memory | پنجم | تیم | Git | استانداردهای تیم، معماری مشترک |
+| `./CLAUDE.local.md` | Project Local | ششم (آخر بارگذاری) | فردی | Git (ignored) | ترجیحات خاص پروژه شخصی |
+| `~/.claude/projects/<project>/memory/` | Auto Memory | N/A — مکانیسم جداگانه | فردی | Filesystem | یادداشت‌های خودکار و یادگیری‌های کلود |
+
+## چرخه‌حیات به‌روزرسانی حافظه
+
+نحوه جریان به‌روزرسانی‌های حافظه در سیشن‌های کلود کد شما:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Claude as Claude Code
+    participant Editor as File System
+    participant Memory as CLAUDE.md
+
+    User->>Claude: "Add async/await rule to CLAUDE.md"
+    Claude->>User: "Which memory file?"
+    User->>Claude: "Project memory"
+    Claude->>Editor: Open ./CLAUDE.md
+    Claude->>Memory: Write to ./CLAUDE.md
+    Memory-->>Claude: File saved
+    Claude->>Claude: Load updated memory
+    Claude-->>User: "Memory saved!"
+```
 
 ## حافظه خودکار
 
-حافظه خودکار به کلود اجازه می‌دهد بر اساس دایرکتوری فعلی، فایل حافظه‌ی مناسبی را پیدا و بارگذاری کند.
+حافظه خودکار یک دایرکتوری پایدار است که در آن کلود به‌طور خودکار یادداشت‌های تایپ‌شده (`user`, `feedback`, `project`, `reference`) را با کار روی پروژه شما ذخیره می‌کند. این از هر چیزی که می‌تواند از codebase استنتاج کند، مثل معماری، مسیرهای فایل، یا رفع‌های دیباگ، صرف‌نظر می‌کند. برخلاف فایل‌های CLAUDE.md که شما دستی می‌نویسید و نگه‌داری می‌کنید، حافظه خودکار توسط خود کلود در طول سیشن‌ها نوشته می‌شود.
 
+### حافظه خودکار چگونه کار می‌کند
 
-### نحوه عملکرد
+- **مکان**: `~/.claude/projects/<project>/memory/`
+- **Entrypoint**: `MEMORY.md` به‌عنوان فایل اصلی در دایرکتوری حافظه خودکار خدمت می‌کند
+- **فایل‌های موضوعی**: فایل‌های اختیاری اضافی، یکی به‌ازای حافظه (مثلاً `prefers-pnpm.md`, `release-checklist.md`)
+- **رفتار بارگذاری**: اولین ۲۰۰ خط `MEMORY.md` (یا اولین ۲۵KB، هرکدام اول بیاید) در شروع سیشن در context بارگذاری می‌شود. فایل‌های موضوعی هنگام تقاضا بارگذاری می‌شوند، نه در راه‌اندازی.
+- **خواندن/نوشتن**: کلود فایل‌های حافظه را در طول سیشن‌ها می‌خواند و می‌نویسد وقتی ترجیحات، بازخورد و context پروژه شما را یاد می‌گیرد
+- **Frontmatter**: فایل‌هایی که با YAML frontmatter شروع می‌شوند یک فیلد `modified` می‌گیرند — یک timestamp ISO 8601 که کلود کد هر بار که فایل را می‌نویسد ثبت می‌کند (v2.1.214)
 
-Claude بر اساس دایرکتوری فعلی، دایرکتری‌های والد و مسیرهای پیکربندی شده، به لایه‌ها برای پیدا کردن حافظه مرتبط می‌گردد.
+### معماری حافظه خودکار
 
-### ساختار دایرکتوری
+```mermaid
+graph TD
+    A["Claude Session Starts"] --> B["Load MEMORY.md<br/>(first 200 lines / 25KB)"]
+    B --> C["Session Active"]
+    C --> D["Claude learns<br/>preferences & feedback"]
+    D --> E{"Write to<br/>auto memory"}
+    E -->|General notes| F["MEMORY.md"]
+    E -->|Topic-specific| G["prefers-pnpm.md"]
+    E -->|Topic-specific| H["release-checklist.md"]
+    C --> I["On-demand load<br/>topic files"]
+    I --> C
 
-```text
-project/
-├── CLAUDE.md
-├── src/
-│   ├── CLAUDE.md
-│   └── api/
-│       └── CLAUDE.md
+    style A fill:#e1f5fe,stroke:#333,color:#333
+    style B fill:#e1f5fe,stroke:#333,color:#333
+    style C fill:#e8f5e9,stroke:#333,color:#333
+    style D fill:#f3e5f5,stroke:#333,color:#333
+    style E fill:#fff3e0,stroke:#333,color:#333
+    style F fill:#fce4ec,stroke:#333,color:#333
+    style G fill:#fce4ec,stroke:#333,color:#333
+    style H fill:#fce4ec,stroke:#333,color:#333
+    style I fill:#f3e5f5,stroke:#333,color:#333
 ```
 
-### نیاز به نسخه
+### ساختار دایرکتوری حافظه خودکار
 
-برخی از رفتارهای حافظه خودکار به نسخه‌های جدیدتر Claude Code وابسته است.
+```
+~/.claude/projects/<project>/memory/
+├── MEMORY.md              # Entrypoint (first 200 lines / 25KB loaded at startup)
+├── prefers-pnpm.md        # Topic file (loaded on demand)
+├── release-checklist.md   # Topic file (loaded on demand)
+└── team-contacts.md       # Topic file (loaded on demand)
+```
 
-### دایرکتوری‌های سفارشی حافظه خودکار
+### الزام نسخه
 
-اگر دایرکتوری‌های پیش‌فرض برای پروژه شما مناسب نیست، می‌توانید در تنظیمات مسیر حافظه جدید مشخص کنید.
+حافظه خودکار نیازمند **کلود کد v2.1.59 یا بعدتر** است. اگر روی نسخه قدیمی‌تر هستید، ابتدا ارتقا دهید:
 
-### worktree و ذخیره مشترک
+```bash
+npm install -g @anthropic-ai/claude-code@latest
+```
 
-در سناریوهای worktree، monorepo یا همکاری多人، حافظه خودکار می‌تواند کمک کند تا قوانین یکپارچه بمانند.
+### روشن یا خاموش کردن حافظه خودکار
+
+حافظه خودکار **به‌طور پیش‌فرض روشن است**. تنظیم `autoMemoryEnabled` (پیش‌فرض `true`) آن را کنترل می‌کند; وقتی `false`، کلود نه از و نه به دایرکتوری حافظه خودکار می‌خواند یا می‌نویسد. همچنین می‌توانید با `/memory` در طول یک سیشن toggle کنید.
+
+```json
+{
+  "autoMemoryEnabled": false
+}
+```
+
+برای غیرفعال‌سازی از طریق محیط به‌جای آن، `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1` تنظیم کنید. تنظیم `0` حافظه خودکار را **روشن** می‌کند حتی وقتی `--bare` mode یا `autoMemoryEnabled: false` در غیر این صورت آن را غیرفعال می‌کرد.
+
+### دایرکتوری حافظه خودکار سفارشی
+
+به‌طور پیش‌فرض، حافظه خودکار در `~/.claude/projects/<project>/memory/` ذخیره می‌شود. می‌توانید این مکان را با تنظیم `autoMemoryDirectory` (در دسترس از **v2.1.74**) تغییر دهید:
+
+```jsonc
+// In any settings file: user, project, local, or managed policy
+{
+  "autoMemoryDirectory": "/path/to/custom/memory/directory"
+}
+```
+
+> **نکته**: `autoMemoryDirectory` از هر scope تنظیمات خوانده می‌شود: کاربر، پروژه، محلی، سیاست مدیریت‌شده، یا `--settings`. مقدار باید یک مسیر مطلق یا با `~/` شروع شود.
+
+این مفید است وقتی می‌خواهید:
+
+- حافظه خودکار را در یک مکان مشترک یا همگام‌شده ذخیره کنید
+- حافظه خودکار را از دایرکتوری پیکربندی پیش‌فرض کلود جدا کنید
+- از یک مسیر خاص پروژه خارج از سلسله‌مراتب پیش‌فرض استفاده کنید
+
+### اشتراک Worktree و مخزن
+
+همه worktreeها و زیردایرکتوری‌های درون همان مخزن git یک دایرکتوری حافظه خودکار مشترک دارند. این یعنی تعویض بین worktreeها یا کار در زیردایرکتوری‌های متفاوت همان repo به همان فایل‌های حافظه می‌خواند و می‌نویسد.
 
 ### حافظه Subagent
 
-Subagentها نیز می‌توانند دامنه حفظ خود را داشته باشند، برای حفظ یکپارچگی در هرکدام از وظایفشان.
+Subagentها (ایجادشده از طریق ابزار Agent) می‌توانند حافظه پایدار خود را نگه دارند. فیلد frontmatter `memory` در تعریف subagent انتخاب می‌کند که دایرکتوری حافظه کجا قرار دارد:
+
+```yaml
+memory: user      # ~/.claude/agent-memory/<agent-name>/
+memory: project   # .claude/agent-memory/<agent-name>/ (shareable via git)
+memory: local     # .claude/agent-memory-local/<agent-name>/ (not checked in)
+```
+
+Subagent اولین ۲۰۰ خط / ۲۵KB از `MEMORY.md` آن دایرکتوری را در راه‌اندازی می‌خواند و Read/Write/Edit برای نگه‌داری آن دریافت می‌کند. وقتی حافظه خودکار غیرفعال است بی‌تأثیر است.
+
+> **نکته**: Subagentها همچنین می‌توانند حافظه خودکار خود را نگه دارند. برای جزئیات به [مستندات رسمی حافظه subagent](https://code.claude.com/docs/en/sub-agents#enable-persistent-memory) مراجعه کنید.
 
 ### کنترل حافظه خودکار
 
-```bash
-# غیرفعال‌سازی حافظه خودکار برای جلسه فعلی
+حافظه خودکار می‌تواند از طریق متغیر محیط `CLAUDE_CODE_DISABLE_AUTO_MEMORY` کنترل شود:
 
-# فعال‌سازی صریح حافظه خودکار
+| مقدار | رفتار |
+|-------|----------|
+| `0` | روشن کردن اجباری حافظه خودکار |
+| `1` | خاموش کردن اجباری حافظه خودکار |
+| *(unset)* | رفتار پیش‌فرض (حافظه خودکار فعال) |
+
+```bash
+# Disable auto memory for a session
+CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude
+
+# Force auto memory on explicitly
+CLAUDE_CODE_DISABLE_AUTO_MEMORY=0 claude
 ```
 
-## اضافه کردن دایرکتوری‌های اضافی با `--add-dir`
+## دایرکتوری‌های اضافی با `--add-dir`
 
-می‌توانید از `--add-dir` برای افزودن دایرکتوری‌های اضافی به دامنة دید Claude استفاده کنید، مناسب برای همکاری چنددایرته‌ای.
+flag `--add-dir` به کلود کد اجازه می‌دهد فایل‌های CLAUDE.md را از دایرکتوری‌های اضافی فراتر از دایرکتوری کاری فعلی بارگذاری کند. این برای monorepoها یا راه‌اندازی‌های چندپروژه‌ای مفید است که در آن context از دایرکتوری‌های دیگر مرتبط است.
 
-## مثال‌های کاربردی
+برای فعال‌سازی این ویژگی، متغیر محیط را تنظیم کنید:
+
+```bash
+CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1
+```
+
+سپس کلود کد را با flag راه‌اندازی کنید:
+
+```bash
+claude --add-dir /path/to/other/project
+```
+
+کلود CLAUDE.md را از دایرکتوری اضافی مشخص‌شده در کنار فایل‌های حافظه از دایرکتوری کاری فعلی شما بارگذاری می‌کند.
+
+## مثال‌های عملی
 
 ### مثال ۱: ساختار حافظه پروژه
 
-```md
-# پیکربندی پروژه
-## مرور پروژه
-## معماری
-## استانداردهای توسعه
-### سبک کد
-### عرف نام‌گذاری
-### گردش کار git
-### الزامات تست
-### مواصفات API
-## پایگاه داده
-## استقرار
-## دستورات常用
-## تماس تیم
-## مشکلات شناخته شده و راه‌حل‌ها
-## پروژه‌های مرتبط
+**فایل:** `./CLAUDE.md`
+
+```markdown
+# Project Configuration
+
+## Project Overview
+- **Name**: E-commerce Platform
+- **Tech Stack**: Node.js, PostgreSQL, React 18, Docker
+- **Team Size**: 5 developers
+- **Deadline**: Q4 2025
+
+## Architecture
+@docs/architecture.md
+@docs/api-standards.md
+@docs/database-schema.md
+
+## Development Standards
+
+### Code Style
+- Use Prettier for formatting
+- Use ESLint with airbnb config
+- Maximum line length: 100 characters
+- Use 2-space indentation
+
+### Naming Conventions
+- **Files**: kebab-case (user-controller.js)
+- **Classes**: PascalCase (UserService)
+- **Functions/Variables**: camelCase (getUserById)
+- **Constants**: UPPER_SNAKE_CASE (API_BASE_URL)
+- **Database Tables**: snake_case (user_accounts)
+
+### Git Workflow
+- Branch names: `feature/description` or `fix/description`
+- Commit messages: Follow conventional commits
+- PR required before merge
+- All CI/CD checks must pass
+- Minimum 1 approval required
+
+### Testing Requirements
+- Minimum 80% code coverage
+- All critical paths must have tests
+- Use Jest for unit tests
+- Use Cypress for E2E tests
+- Test filenames: `*.test.ts` or `*.spec.ts`
+
+### API Standards
+- RESTful endpoints only
+- JSON request/response
+- Use HTTP status codes correctly
+- Version API endpoints: `/api/v1/`
+- Document all endpoints with examples
+
+### Database
+- Use migrations for schema changes
+- Never hardcode credentials
+- Use connection pooling
+- Enable query logging in development
+- Regular backups required
+
+### Deployment
+- Docker-based deployment
+- Kubernetes orchestration
+- Blue-green deployment strategy
+- Automatic rollback on failure
+- Database migrations run before deploy
+
+## Common Commands
+
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Start development server |
+| `npm test` | Run test suite |
+| `npm run lint` | Check code style |
+| `npm run build` | Build for production |
+| `npm run migrate` | Run database migrations |
+
+## Team Contacts
+- Tech Lead: Sarah Chen (@sarah.chen)
+- Product Manager: Mike Johnson (@mike.j)
+- DevOps: Alex Kim (@alex.k)
+
+## Known Issues & Workarounds
+- PostgreSQL connection pooling limited to 20 during peak hours
+- Workaround: Implement query queuing
+- Safari 14 compatibility issues with async generators
+- Workaround: Use Babel transpiler
+
+## Related Projects
+- Analytics Dashboard: `/projects/analytics`
+- Mobile App: `/projects/mobile`
+- Admin Panel: `/projects/admin`
 ```
 
-### مثال ۲: حافظه سطح دایرکتوری
+### مثال ۲: حافظه خاص دایرکتوری
 
-```md
-# مواصفات ماژول API
-## مواصفات ویژه API
-### اعتبارسنجی درخواست
-### احراز هویت
-### فرمت پاسخ
-### صفحه‌بندی
-### محدودیت نرخ
-### کش
+**فایل:** `./src/api/CLAUDE.md`
+
+````markdown
+# API Module Standards
+
+This file supplements root CLAUDE.md for everything in /src/api/. Memory files are
+concatenated, not overridden — the root CLAUDE.md still applies, and Claude Code
+loads this file on demand when it reads, writes, or edits files in this subtree.
+
+## API-Specific Standards
+
+### Request Validation
+- Use Zod for schema validation
+- Always validate input
+- Return 400 with validation errors
+- Include field-level error details
+
+### Authentication
+- All endpoints require JWT token
+- Token in Authorization header
+- Token expires after 24 hours
+- Implement refresh token mechanism
+
+### Response Format
+
+All responses must follow this structure:
+
+```json
+{
+  "success": true,
+  "data": { /* actual data */ },
+  "timestamp": "2025-11-06T10:30:00Z",
+  "version": "1.0"
+}
 ```
+
+Error responses:
+```json
+{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "User message",
+    "details": { /* field errors */ }
+  },
+  "timestamp": "2025-11-06T10:30:00Z"
+}
+```
+
+### Pagination
+- Use cursor-based pagination (not offset)
+- Include `hasMore` boolean
+- Limit max page size to 100
+- Default page size: 20
+
+### Rate Limiting
+- 1000 requests per hour for authenticated users
+- 100 requests per hour for public endpoints
+- Return 429 when exceeded
+- Include retry-after header
+
+### Caching
+- Use Redis for session caching
+- Cache duration: 5 minutes default
+- Invalidate on write operations
+- Tag cache keys with resource type
+````
 
 ### مثال ۳: حافظه شخصی
 
-```md
-# ترجیحات توسعه من
-## درباره من
-## ترجیحات کد
-### مدیریت خطا
-### نظرات
-### تست
-### معماری
-## ترجيحات اشکال‌زدایی
-## روش ارتباط
-## سازماندهی پروژه
-## زنجیره ابزار
+**فایل:** `~/.claude/CLAUDE.md`
+
+```markdown
+# My Development Preferences
+
+## About Me
+- **Experience Level**: 8 years full-stack development
+- **Preferred Languages**: TypeScript, Python
+- **Communication Style**: Direct, with examples
+- **Learning Style**: Visual diagrams with code
+
+## Code Preferences
+
+### Error Handling
+I prefer explicit error handling with try-catch blocks and meaningful error messages.
+Avoid generic errors. Always log errors for debugging.
+
+### Comments
+Use comments for WHY, not WHAT. Code should be self-documenting.
+Comments should explain business logic or non-obvious decisions.
+
+### Testing
+I prefer TDD (test-driven development).
+Write tests first, then implementation.
+Focus on behavior, not implementation details.
+
+### Architecture
+I prefer modular, loosely-coupled design.
+Use dependency injection for testability.
+Separate concerns (Controllers, Services, Repositories).
+
+## Debugging Preferences
+- Use console.log with prefix: `[DEBUG]`
+- Include context: function name, relevant variables
+- Use stack traces when available
+- Always include timestamps in logs
+
+## Communication
+- Explain complex concepts with diagrams
+- Show concrete examples before explaining theory
+- Include before/after code snippets
+- Summarize key points at the end
+
+## Project Organization
+I organize my projects as:
+
+   project/
+   ├── src/
+   │   ├── api/
+   │   ├── services/
+   │   ├── models/
+   │   └── utils/
+   ├── tests/
+   ├── docs/
+   └── docker/
+
+## Tooling
+- **IDE**: VS Code with vim keybindings
+- **Terminal**: Zsh with Oh-My-Zsh
+- **Format**: Prettier (100 char line length)
+- **Linter**: ESLint with airbnb config
+- **Test Framework**: Jest with React Testing Library
 ```
 
-### مثال ۴: به‌روزرسانی حافظه در peril.session
+_My Test_
+Ask Claude to save a new rule
 
-دو روش رایج:
+![Ask Claude to save a new rule](memory-ask-claude.png)
+Claude has not save the rule because I did not have any `Claude.md` file anywhere. Then asked Claude to confirm the location.
 
-1. درخواست مستقیم برای اینکه Claude قانون را در حافظه بنویسد
-2. استفاده از الگو `# قانون جدید در حافظه` برای افزودن قانون
+![Ask Claude to save a new rule](memory-saved.png)
 
+### مثال ۴: به‌روزرسانی حافظه در طول سیشن
 
-### نحوه عملکرد
+می‌توانید در طول یک سیشن فعال کلود کد قوانین جدیدی به CLAUDE.md اضافه کنید با درخواست مستقیم از کلود (درخواست از آن برای *به یاد سپردن* چیزی به‌جای آن به حافظه خودکار ذخیره می‌شود):
 
-Claude بر اساس دایرکتوری فعلی، دایرکتری‌های والد و مسیرهای پیکربندی شده، به لایه‌ها برای پیدا کردن حافظه مرتبط می‌گردد.
+```markdown
+User: Add this to CLAUDE.md: I prefer using React hooks instead of class components
+     for all new components.
 
-### ساختار دایرکتوری
+Claude: I'm adding that to your memory. Which memory file should this go in?
+        1. Project memory (./CLAUDE.md)
+        2. Personal memory (~/.claude/CLAUDE.md)
 
-```text
-project/
-├── CLAUDE.md
-├── src/
-│   ├── CLAUDE.md
-│   └── api/
-│       └── CLAUDE.md
+User: Project memory
+
+Claude: ✅ Memory saved!
+
+Added to ./CLAUDE.md:
+---
+
+### Component Development
+- Use functional components with React Hooks
+- Prefer hooks over class components
+- Custom hooks for reusable logic
+- Use useCallback for event handlers
+- Use useMemo for expensive computations
 ```
 
-### نیاز به نسخه
+یا از `/memory` برای ویرایش مستقیم فایل‌های حافظه برای به‌روزرسانی‌های گسترده یا سازماندهی مجدد استفاده کنید.
 
-برخی از رفتارهای حافظه خودکار به نسخه‌های جدیدتر Claude Code وابسته است.
+#### نکات برای افزودن حافظه
 
-### دایرکتوری‌های سفارشی حافظه خودکار
+- در قوانین خود خاص و کنش‌محور باشید
+- قوانین مرتبط را زیر یک عنوان بخش گروه‌بندی کنید
+- به‌جای تکرار محتوا، بخش‌های موجود را به‌روزرسانی کنید
+- scope حافظه مناسب را انتخاب کنید (پروژه در مقابل شخصی)
 
-اگر دایرکتوری‌های پیش‌فرض برای پروژه شما مناسب نیست، می‌توانید در تنظیمات مسیر حافظه جدید مشخص کنید.
+## مقایسه ویژگی‌های حافظه
 
-### worktree و ذخیره مشترک
+| ویژگی | Claude Web/Desktop | Claude Code (CLAUDE.md) |
+|---------|-------------------|------------------------|
+| سنتز خودکار | ✅ هر ۲۴h | ✅ حافظه خودکار |
+| Cross-project | ✅ مشترک | ❌ خاص پروژه |
+| دسترسی تیم | ✅ پروژه‌های مشترک | ✅ Git-tracked |
+| قابل‌جستجو | ✅ داخلی | ✅ از طریق `/memory` |
+| قابل‌ویرایش | ✅ در-گفت‌وگو | ✅ ویرایش مستقیم فایل |
+| Import/Export | ✅ بله | ✅ کپی/جای‌گذاری |
+| پایدار | ✅ ۲۴h+ | ✅ نامحدود |
 
-در سناریوهای worktree، monorepo یا همکاری多人، حافظه خودکار می‌تواند کمک کند تا قوانین یکپارچه بمانند.
+### حافظه در Claude Web/Desktop
 
-### حافظه Subagent
+#### خط‌زمان سنتز حافظه
 
-Subagentها نیز می‌توانند دامنه حفظ خود را داشته باشند، برای حفظ یکپارچگی در هرکدام از وظایفشان.
-
-### کنترل حافظه خودکار
-
-```bash
-# غیرفعال‌سازی حافظه خودکار برای جلسه فعلی
-
-# فعال‌سازی صریح حافظه خودکار
+```mermaid
+graph LR
+    A["Day 1: User<br/>Conversations"] -->|24 hours| B["Day 2: Memory<br/>Synthesis"]
+    B -->|Automatic| C["Memory Updated<br/>Summarized"]
+    C -->|Loaded in| D["Day 2-N:<br/>New Conversations"]
+    D -->|Add to| E["Memory"]
+    E -->|24 hours later| F["Memory Refreshed"]
 ```
 
-## اضافه کردن دایرکتوری‌های اضافی با `--add-dir`
+**مثال خلاصه حافظه:**
 
-می‌توانید از `--add-dir` برای افزودن دایرکتوری‌های اضافی به دامنة دید Claude استفاده کنید، مناسب برای همکاری چنددایرته‌ای.
+```markdown
+## Claude's Memory of User
 
-## مثال‌های کاربردی
+### Professional Background
+- Senior full-stack developer with 8 years experience
+- Focus on TypeScript/Node.js backends and React frontends
+- Active open source contributor
+- Interested in AI and machine learning
 
-### مثال ۱: ساختار حافظه پروژه
+### Project Context
+- Currently building e-commerce platform
+- Tech stack: Node.js, PostgreSQL, React 18, Docker
+- Working with team of 5 developers
+- Using CI/CD and blue-green deployments
 
-```md
-# پیکربندی پروژه
-## مرور پروژه
-## معماری
-## استانداردهای توسعه
-### سبک کد
-### عرف نام‌گذاری
-### گردش کار git
-### الزامات تست
-### مواصفات API
-## پایگاه داده
-## استقرار
-## دستورات常用
-## تماس تیم
-## مشکلات شناخته شده و راه‌حل‌ها
-## پروژه‌های مرتبط
+### Communication Preferences
+- Prefers direct, concise explanations
+- Likes visual diagrams and examples
+- Appreciates code snippets
+- Explains business logic in comments
+
+### Current Goals
+- Improve API performance
+- Increase test coverage to 90%
+- Implement caching strategy
+- Document architecture
 ```
-
-### مثال ۲: حافظه سطح دایرکتوری
-
-```md
-# مواصفات ماژول API
-## مواصفات ویژه API
-### اعتبارسنجی درخواست
-### احراز هویت
-### فرمت پاسخ
-### صفحه‌بندی
-### محدودیت نرخ
-### کش
-```
-
-### مثال ۳: حافظه شخصی
-
-```md
-# ترجیحات توسعه من
-## درباره من
-## ترجیحات کد
-### مدیریت خطا
-### نظرات
-### تست
-### معماری
-## ترجيحات اشکال‌زدایی
-## روش ارتباط
-## سازماندهی پروژه
-## زنجیره ابزار
-```
-
-### مثال ۴: به‌روزرسانی حافظه در peril.session
-
-دو روش رایج:
-
-1. درخواست مستقیم برای اینکه Claude قانون را در حافظه بنویسد
-2. استفاده از الگو `# قانون جدید در حافظه` برای افزودن قانون
-
 
 ## بهترین شیوه‌ها
 
-### چیزی که باید انجام دهید
+### انجام دهید — چه چیزی شامل شود
 
-- از حافظه پروژه برای حفظ استانداردهای تیم استفاده کنید
-- از حافظه دایرکتوری برای حفظ تفاوت‌های محلی استفاده کنید
-- ابتدا قوانین خلاصه بنویسید، سپس به تدریج تکمیل کنید
-- محتوای تکرارپذیر را در `CLAUDE.md` بنویسید
+- **خاص و دقیق باشید**: از دستورالعمل‌های روشن و دقیق به‌جای راهنمایی مبهم استفاده کنید
+  - ✅ خوب: "از تورفتگی ۲-فضایی برای همه فایل‌های JavaScript استفاده کنید"
+  - ❌ اجتناب: "از بهترین شیوه‌ها پیروی کنید"
 
-### چیزی که نباید انجام دهید
+- **سازماندهی‌شده نگه دارید**: فایل‌های حافظه را با بخش‌های markdown روشن و عنوان‌ها ساختار دهید
 
-- کل README را نocalize در `CLAUDE.md` نکنید
-- جزئیات اجرای کد را به طور Пуств維 در حافظه ننوشتد
-- حافظه را سطل زباله نکنید
+- **از سطوح سلسله‌مراتب مناسب استفاده کنید**:
+  - **سیاست مدیریت‌شده**: سیاست‌های شرکت‌گستر، استانداردهای امنیتی، الزامات انطباق
+  - **حافظه پروژه**: استانداردهای تیم، معماری، قراردادهای کدنویسی (به git commit کنید)
+  - **حافظه کاربر**: ترجیحات شخصی، سبک ارتباط، انتخاب ابزار
+  - **حافظه دایرکتوری**: قوانین و بازنویسی‌های خاص ماژول
 
-### پیشنهادات مدیریت حافظه
+- **از importها استفاده کنید**: از نحو `@path/to/file` برای ارجاع به مستندات موجود استفاده کنید
+  - حداکثر عمق ۴ hop برای importهای بازگشتی پشتیبانی می‌شود
+  - از تکرار در سراسر فایل‌های حافظه جلوگیری می‌کند
+  - مثال: `See @README.md for project overview`
 
-- به مستندات موجود ارجاع دهید، نه کپی و چسباندن تکراری
-- فقط اطلاعاتی که واقعاً رفتار Claude را تحت تأثیر قرار می‌دهد را نگه دارید
-- laws‌های منسوخ یا تداخل شده را به طور منظم سازماندهی کنید
+- **دستورات متداول را مستند کنید**: دستوراتی که به‌طور مکرر استفاده می‌کنید شامل شوید تا در زمان صرفه‌جویی شود
 
-## راهنمای نصب
+- **حافظه پروژه را کنترل نسخه کنید**: فایل‌های CLAUDE.md سطح پروژه را به git commit کنید تا به نفع تیم باشد
 
-### تنظیم حافظه پروژه
+- **به‌طور دوره‌ای بازبینی کنید**: حافظه را به‌طور منظم با تکامل پروژه و تغییر الزامات به‌روزرسانی کنید
 
-#### روش ۱: استفاده از `/init` (توصیه می‌شود)
+- **مثال‌های ملموس ارائه دهید**: قطعات کد و سناریوهای خاص را شامل شوید
 
-```bash
-/init
+### انجام ندهید — چه چیزی اجتناب شود
+
+- **اسرار ذخیره نکنید**: هرگز کلیدهای API، رمزهای عبور، tokenها یا اعتبارنامه‌ها شامل نکنید
+
+- **داده‌های حساس شامل نکنید**: بدون PII، اطلاعات خصوصی، یا اسرار اختصاصی
+
+- **محتوا را تکرار نکنید**: از importها (`@path`) برای ارجاع به مستندات موجود به‌جای آن استفاده کنید
+
+- **مبهم نباشید**: از جملات عمومی مثل "از بهترین شیوه‌ها پیروی کنید" یا "کد خوب بنویسید" اجتناب کنید
+
+- **بیش از حد طولانی نکنید**: هدف **زیر ۲۰۰ خط** به‌ازای CLAUDE.md. فایل‌های طولانی‌تر همچنان به‌طور کامل بارگذاری می‌شوند، اما پایبندی کاهش می‌یابد — به [کوچک نگه‌داشتن CLAUDE.md](#keeping-claudemd-small) در زیر مراجعه کنید
+
+- **بیش از حد سازماندهی نکنید**: از سلسله‌مراتب به‌صورت استراتژیک استفاده کنید; بازنویسی‌های زیردایرکتوری افراطی ایجاد نکنید
+
+- **به‌روزرسانی را فراموش نکنید**: حافظه کهنه می‌تواند باعث سردرگمی و شیوه‌های قدیمی شود
+
+- **از محدودیت‌های تودرتو فراتر نروید**: importهای حافظه حداکثر عمق ۴ hop را پشتیبانی می‌کنند
+
+### کوچک نگه‌داشتن CLAUDE.md
+
+راهنمایی فعلی Anthropic برخلاف "همه چیز را در CLAUDE.md بگذارید" است. فایل در **هر** سیشن بارگذاری می‌شود، بنابراین هر خطی که اضافه می‌کنید خطی است که برای توجه روی وظایفی که هیچ ربطی به آن ندارد رقابت می‌کند.
+
+**قاعده سرانگشتی: CLAUDE.md را زیر ۲۰۰ خط نگه دارید.** فایل‌های طولانی‌تر همچنان به‌طور کامل بارگذاری می‌شوند، اما پایبندی دستورالعمل با رشد فایل کاهش می‌یابد.
+
+وقتی شروع به رشد کرد، محتوا را به‌جای کوتاه‌کردن نثر منتقل کنید:
+
+| محتوا | جایی که متعلق است | چرا |
+|---------|------------------|-----|
+| رویه‌های چندمرحله‌ای | یک [مهارت](../03-skills/) | هنگام تقاضا بارگذاری می‌شود، فقط وقتی مرتبط است |
+| قوانین خاص دایرکتوری یا نوع فایل | `.claude/rules/*.md` با frontmatter `paths:` | با glob محدود; فقط وقتی فایل‌های تطابقی را لمس می‌کنید بارگذاری می‌شود |
+| ماده مرجع و مثال‌های طولانی | دایرکتوری `references/` یک مهارت | فقط وقتی مهارت نیاز دارد خوانده می‌شود |
+| چیزهایی که کلود باید درباره *شما* به یاد بیاورد | حافظه خودکار (به‌طور پیش‌فرض روشن) | به‌طور خودکار نوشته و بارگذاری می‌شود |
+
+> **نکته**: importهای `@path` یک CLAUDE.md بزرگ را سازماندهی می‌کنند اما context را **ذخیره نمی‌کنند** — فایل‌های importشده در زمان بارگذاری همان‌طور کشیده می‌شوند. تقسیم به قوانین مسیر-محور آن چیزی است که واقعاً آنچه بارگذاری می‌شود را کاهش می‌دهد.
+
+`/doctor` (v2.1.206+) پیکربندی شما را بررسی و زمانی که CLAUDE.md از حد مفیدی عبور کرده پیشنهاد کوتاه‌کردن می‌کند.
+
+### یادآوری‌های تأیید ننویسید
+
+راهنمایی قدیمی‌تر خطوطی مثل "همیشه پیش از گفتن اتمام تست‌ها را اجرا کن" یا "کار خود را دوباره بررسی کن" را تشویق می‌کرد. روی **Claude Opus 5 و Fable 5 این اکنون باعث تأیید بیش از حد می‌شود** — کلود کاری که از قبل درست بود را دوباره بررسی می‌کند، نوبت و token را می‌سوزاند.
+
+Anthropic بیش از ۸۰٪ از system prompt خود کلود کد را برای نسل Claude 5 بدون رگرسیون اندازه‌گیری‌شده حذف کرد. همین اصل به CLAUDE.md شما اعمال می‌شود: بیان هدف و letting کلود قضاوت اعمال کند را به شمارش بررسی‌هایی که باید انجام دهد ترجیح دهید.
+
+یادآوری‌های تأیید را از فایل‌های CLAUDE.md موجود که Opus 5 یا Fable 5 را هدف قرار می‌دهند حذف کنید. الزامات پروژه واقعاً غیربدیهی را نگه دارید — "تست‌های یکپارچه به Docker در حال اجرا نیاز دارند" اطلاعات است، نه یک یادآوری.
+
+### نکات مدیریت حافظه
+
+**سطح حافظه مناسب را انتخاب کنید:**
+
+| مورد استفاده | سطح حافظه | منطق |
+|----------|-------------|-----------|
+| سیاست امنیتی شرکت | Managed Policy | به همه پروژه‌های سازمان‌گستر اعمال می‌شود |
+| راهنمای سبک کد تیم | Project | با تیم از طریق git مشترک |
+| میانبرهای ویرایشگر ترجیحی شما | User | ترجیح شخصی، مشترک نیست |
+| استانداردهای ماژول API | Directory | خاص آن ماژول |
+
+**گردش کار به‌روزرسانی سریع:**
+
+1. برای قوانین تکی: از `/memory` برای باز کردن ویرایشگر استفاده کنید، یا محاوره‌ای بخواهید
+2. برای تغییرات متعدد: از `/memory` برای باز کردن ویرایشگر استفاده کنید
+3. برای راه‌اندازی اولیه: از `/init` برای ایجاد قالب استفاده کنید
+
+**بهترین شیوه‌های import:**
+
+```markdown
+# Good: Reference existing docs
+@README.md
+@docs/architecture.md
+@package.json
+
+# Avoid: Copying content that exists elsewhere
+# Instead of copying README content into CLAUDE.md, just import it
 ```
+
+## دستورالعمل‌های نصب
+
+### راه‌اندازی حافظه پروژه
+
+#### روش ۱: استفاده از دستور `/init` (توصیه‌شده)
+
+سریع‌ترین راه برای راه‌اندازی حافظه پروژه:
+
+1. **به دایرکتوری پروژه خود بروید:**
+   ```bash
+   cd /path/to/your/project
+   ```
+
+2. **دستور init را در کلود کد اجرا کنید:**
+   ```bash
+   /init
+   ```
+
+3. **کلود CLAUDE.md را ایجاد و پر می‌کند** با یک ساختار قالب
+
+4. **فایل تولیدشده را سفارشی کنید** تا با نیازهای پروژه شما تطابق داشته باشد
+
+5. **به git commit کنید:**
+   ```bash
+   git add CLAUDE.md
+   git commit -m "Initialize project memory with /init"
+   ```
 
 #### روش ۲: ایجاد دستی
 
-```bash
-cp project-CLAUDE.md CLAUDE.md
-```
+اگر راه‌اندازی دستی را ترجیح می‌دهید:
 
-#### روش ۳: به‌روزرسانی سریع
+1. **یک CLAUDE.md در ریشه پروژه خود ایجاد کنید:**
+   ```bash
+   cd /path/to/your/project
+   touch CLAUDE.md
+   ```
 
-```text
-# Use semantic versioning for all releases
-# Always run tests before committing
-# Prefer composition over inheritance
-```
+2. **استانداردهای پروژه را اضافه کنید:**
+   ```bash
+   cat > CLAUDE.md << 'EOF'
+   # Project Configuration
 
-### تنظیم حافظه کاربر
+   ## Project Overview
+   - **Name**: Your Project Name
+   - **Tech Stack**: List your technologies
+   - **Team Size**: Number of developers
 
-```bash
-cp personal-CLAUDE.md ~/.claude/CLAUDE.md
-```
+   ## Development Standards
+   - Your coding standards
+   - Naming conventions
+   - Testing requirements
+   EOF
+   ```
 
-### تنظیم حافظه دایرکتوری
+3. **به git commit کنید:**
+   ```bash
+   git add CLAUDE.md
+   git commit -m "Add project memory configuration"
+   ```
 
-```bash
-cp directory-api-CLAUDE.md src/api/CLAUDE.md
-```
+### راه‌اندازی حافظه شخصی
 
-### تأیید نصب
+1. **دایرکتوری ~/.claude ایجاد کنید:**
+   ```bash
+   mkdir -p ~/.claude
+   ```
 
-- peril.session Claude Code را دوباره باز کنید
-- بررسی کنید `CLAUDE.md` به صورت خودکار بارگذاری شده است
-- با یک نشانه‌گذاری که明显 تحت تأثیر حافظه قرار می‌گیرد، تست کنید
+2. **CLAUDE.md شخصی ایجاد کنید:**
+   ```bash
+   touch ~/.claude/CLAUDE.md
+   ```
 
-## مستندات رسمی
+3. **ترجیحات خود را اضافه کنید:**
+   ```bash
+   cat > ~/.claude/CLAUDE.md << 'EOF'
+   # My Development Preferences
 
-اگر می‌خواهید تعریف‌های رفتاری دقیق‌تر، سازگاری و محدودیت‌های جدید را ببینید، به مستندات رسمی حافظه Claude Code مراجعه کنید.
+   ## About Me
+   - Experience Level: [Your level]
+   - Preferred Languages: [Your languages]
+   - Communication Style: [Your style]
 
-## مفاهیم مرتبط
+   ## Code Preferences
+   - [Your preferences]
+   EOF
+   ```
 
-- [مرجع دستورات Slash](../01-slash-commands/README.md)
-- [راهنمای Skills](../03-skills/README.md)
-- [مرجع Subagents](../04-subagents/README.md)
-- [راهنمای ویژگی‌های پیشرفته](../09-advanced-features/README.md)
+### راه‌اندازی حافظه خاص دایرکتوری
 
+1. **حافظه برای دایرکتوری‌های خاص ایجاد کنید:**
+   ```bash
+   mkdir -p /path/to/directory/.claude
+   touch /path/to/directory/CLAUDE.md
+   ```
 
-## بهترین شیوه‌ها
+2. **قوانین خاص دایرکتوری اضافه کنید:**
+   ```bash
+   cat > /path/to/directory/CLAUDE.md << 'EOF'
+   # [Directory Name] Standards
 
-### چیزی که باید انجام دهید
+   This file supplements root CLAUDE.md for this directory. Memory files are
+   concatenated, not overridden — Claude Code loads this file on demand when it
+   reads, writes, or edits files in this directory.
 
-- از حافظه پروژه برای حفظ استانداردهای تیم استفاده کنید
-- از حافظه دایرکتوری برای حفظ تفاوت‌های محلی استفاده کنید
-- ابتدا قوانین خلاصه بنویسید، سپس به تدریج تکمیل کنید
-- محتوای تکرارپذیر را در `CLAUDE.md` بنویسید
+   ## [Specific Standards]
+   EOF
+   ```
 
-### چیزی که نباید انجام دهید
+3. **به کنترل نسخه commit کنید:**
+   ```bash
+   git add /path/to/directory/CLAUDE.md
+   git commit -m "Add [directory] memory configuration"
+   ```
 
-- کل README را نocalize در `CLAUDE.md` نکنید
-- جزئیات اجرای کد را به طور Пуств維 در حافظه ننوشتد
-- حافظه را سطل زباله نکنید
+### تأیید راه‌اندازی
 
-### پیشنهادات مدیریت حافظه
+1. **مکان‌های حافظه را بررسی کنید:**
+   ```bash
+   # Project root memory
+   ls -la ./CLAUDE.md
 
-- به مستندات موجود ارجاع دهید، نه کپی و چسباندن تکراری
-- فقط اطلاعاتی که واقعاً رفتار Claude را تحت تأثیر قرار می‌دهد را نگه دارید
-- laws‌های منسوخ یا تداخل شده را به طور منظم سازماندهی کنید
+   # Personal memory
+   ls -la ~/.claude/CLAUDE.md
+   ```
 
-## راهنمای نصب
+2. **کلود کد به‌طور خودکار بارگذاری می‌کند** این فایل‌ها را هنگام شروع یک سیشن
 
-### تنظیم حافظه پروژه
-
-#### روش ۱: استفاده از `/init` (توصیه می‌شود)
-
-```bash
-/init
-```
-
-#### روش ۲: ایجاد دستی
-
-```bash
-cp project-CLAUDE.md CLAUDE.md
-```
-
-#### روش ۳: به‌روزرسانی سریع
-
-```text
-# Use semantic versioning for all releases
-# Always run tests before committing
-# Prefer composition over inheritance
-```
-
-### تنظیم حافظه کاربر
-
-```bash
-cp personal-CLAUDE.md ~/.claude/CLAUDE.md
-```
-
-### تنظیم حافظه دایرکتوری
-
-```bash
-cp directory-api-CLAUDE.md src/api/CLAUDE.md
-```
-
-### تأیید نصب
-
-- peril.session Claude Code را دوباره باز کنید
-- بررسی کنید `CLAUDE.md` به صورت خودکار بارگذاری شده است
-- با یک نشانه‌گذاری که明显 تحت تأثیر حافظه قرار می‌گیرد، تست کنید
+3. **با کلود کد تست کنید** با شروع یک سیشن جدید در پروژه خود
 
 ## مستندات رسمی
 
-اگر می‌خواهید تعریف‌های رفتاری دقیق‌تر، سازگاری و محدودیت‌های جدید را ببینید، به مستندات رسمی حافظه Claude Code مراجعه کنید.
+برای به‌روزترین اطلاعات، به مستندات رسمی کلود کد مراجعه کنید:
 
-## مفاهیم مرتبط
+- **[مستندات حافظه](https://code.claude.com/docs/en/memory)** - مرجع کامل سیستم حافظه
+- **[مرجع دستورات اسلش](https://code.claude.com/docs/en/interactive-mode)** - همه دستورات داخلی شامل `/init` و `/memory`
+- **[مرجع CLI](https://code.claude.com/docs/en/cli-reference)** - مستندات رابط خط فرمان
 
-- [مرجع دستورات Slash](../01-slash-commands/README.md)
-- [راهنمای Skills](../03-skills/README.md)
-- [مرجع Subagents](../04-subagents/README.md)
-- [راهنمای ویژگی‌های پیشرفته](../09-advanced-features/README.md)
+### جزئیات فنی کلیدی از مستندات رسمی
+
+**بارگذاری حافظه:**
+
+- همه فایل‌های حافظه به‌طور خودکار بارگذاری می‌شوند وقتی کلود کد راه‌اندازی می‌شود
+- کلود از دایرکتوری کاری فعلی به بالا حرکت می‌کند تا فایل‌های CLAUDE.md را کشف کند
+- فایل‌های زیردرختی به‌صورت متنی کشف و بارگذاری می‌شوند هنگام دسترسی به آن دایرکتوری‌ها
+
+**نحو import:**
+
+- از `@path/to/file` برای شامل کردن محتوای خارجی استفاده کنید (مثلاً `@~/.claude/my-project-instructions.md`)
+- هم مسیرهای نسبی و هم مطلق پشتیبانی می‌شوند (مسیرهای نسبی نسبت به فایل شامل‌کننده import حل می‌شوند، نه دایرکتوری کاری)
+- importهای بازگشتی با حداکثر عمق ۴ hop پشتیبانی می‌شوند
+- importهای اولین‌بار خارجی یک گفت‌وگوی تأیید ایجاد می‌کنند
+- داخل code spanها یا بلوک‌های کد markdown ارزیابی نمی‌شوند
+- به‌طور خودکار محتوای ارجاع‌شده در context کلود شامل می‌شود
+
+**ترتیب بارگذاری CLAUDE.md** (به context الحاق، نه بازنویسی سخت‌گیرانه — به [سلسله‌مراتب حافظه در کلود کد](#memory-hierarchy-in-claude-code) بالا مراجعه کنید):
+
+1. سیاست مدیریت‌شده (اول بارگذاری)
+2. قوانین سطح کاربر (`~/.claude/rules/`)
+3. حافظه کاربر
+4. قوانین پروژه (`.claude/rules/`)
+5. حافظه پروژه
+6. حافظه پروژه محلی (آخر بارگذاری)
+
+حافظه خودکار یک مکانیسم جداگانه است (`~/.claude/projects/<project>/memory/`)، نه بخشی از این ترتیب الحاق.
+
+## لینک‌های مفاهیم مرتبط
+
+### نقاط یکپارچگی
+- [پروتکل MCP](../05-mcp/) - دسترسی داده زنده در کنار حافظه
+- [دستورات اسلش](../01-slash-commands/) - میانبرهای خاص سیشن
+- [مهارت‌ها](../03-skills/) - گردش کارهای خودکار با context حافظه
+
+### ویژگی‌های مرتبط کلود
+- [حافظه Claude Web](https://claude.ai) - سنتز خودکار
+- [مستندات رسمی حافظه](https://code.claude.com/docs/en/memory) - مستندات Anthropic
+
+---
+
+**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۳۰۲
+**منبع**:
+- https://code.claude.com/docs/en/memory
+- https://code.claude.com/docs/en/memory#agents-md
+- https://code.claude.com/docs/en/memory#when-agents-md-support-is-unavailable
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.284
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.288
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.293
+- https://code.claude.com/docs/en/sub-agents#enable-persistent-memory
+- https://code.claude.com/docs/en/settings-reference
+- https://code.claude.com/docs/en/claude-directory
+**مدل‌های سازگ**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

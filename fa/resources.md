@@ -1,122 +1,123 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
 </picture>
 
-# 优质资源清单
+# فهرست منابع خوب
 
-## 官方文档
+## مستندات رسمی
 
-| 资源 | 说明 | 链接 |
+| منبع | توضیح | لینک |
 |----------|-------------|------|
-| Claude Code 文档 | Claude Code 官方文档 | [code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview) |
-| Anthropic 文档 | Anthropic 完整文档 | [docs.anthropic.com](https://docs.anthropic.com) |
-| MCP Protocol | Model Context Protocol 规范 | [modelcontextprotocol.io](https://modelcontextprotocol.io) |
-| MCP Servers | 官方 MCP server 实现 | [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) |
-| Anthropic Cookbook | 代码示例和教程 | [github.com/anthropics/anthropic-cookbook](https://github.com/anthropics/anthropic-cookbook) |
-| Claude Code Skills | 社区技能仓库 | [github.com/anthropics/skills](https://github.com/anthropics/skills) |
-| Agent Teams | 多 agent 协作与协调 | [code.claude.com/docs/en/agent-teams](https://code.claude.com/docs/en/agent-teams) |
-| Scheduled Tasks | 使用 `/loop` 和 cron 的周期性任务 | [code.claude.com/docs/en/scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) |
-| Chrome Integration | 浏览器自动化 | [code.claude.com/docs/en/chrome](https://code.claude.com/docs/en/chrome) |
-| Keybindings | 键盘快捷键自定义 | [code.claude.com/docs/en/keybindings](https://code.claude.com/docs/en/keybindings) |
-| Desktop App | 原生桌面应用 | [code.claude.com/docs/en/desktop](https://code.claude.com/docs/en/desktop) |
-| Remote Control | 远程会话控制 | [code.claude.com/docs/en/remote-control](https://code.claude.com/docs/en/remote-control) |
-| Auto Mode | 自动权限管理 | [code.claude.com/docs/en/permissions](https://code.claude.com/docs/en/permissions) |
-| Channels | 多通道通信 | [code.claude.com/docs/en/channels](https://code.claude.com/docs/en/channels) |
-| Voice Dictation | Claude Code 语音输入 | [code.claude.com/docs/en/voice-dictation](https://code.claude.com/docs/en/voice-dictation) |
+| مستندات Claude Code | مستندات رسمی Claude Code | [code.claude.com/docs/en/overview](https://code.claude.com/docs/en/overview) |
+| مستندات Anthropic | مستندات کامل Anthropic | [docs.anthropic.com](https://docs.anthropic.com) |
+| پروتکل MCP | مشخصات پروتکل Model Context | [modelcontextprotocol.io](https://modelcontextprotocol.io) |
+| سرورهای MCP | پیاده‌سازی‌های رسمی سرور MCP | [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) |
+| کتاب آشپزی Anthropic | نمونه‌های کد و آموزش‌ها | [github.com/anthropics/anthropic-cookbook](https://github.com/anthropics/anthropic-cookbook) |
+| مهارت‌های Claude Code | مخزن مهارت‌های جامعه | [github.com/anthropics/skills](https://github.com/anthropics/skills) |
+| تیم‌های ایجنت | هماهنگی و همکاری چندایجنتی | [code.claude.com/docs/en/agent-teams](https://code.claude.com/docs/en/agent-teams) |
+| وظایف زمان‌بندی‌شده | وظایف تکراری با /loop و cron | [code.claude.com/docs/en/scheduled-tasks](https://code.claude.com/docs/en/scheduled-tasks) |
+| یکپارچگی Chrome | خودکارسازی مرورگر | [code.claude.com/docs/en/chrome](https://code.claude.com/docs/en/chrome) |
+| کلیدبایندها | سفارشی‌سازی میان‌برهای صفحه‌کلید | [code.claude.com/docs/en/keybindings](https://code.claude.com/docs/en/keybindings) |
+| برنامه دسکتاپ | برنامه دسکتاپ بومی | [code.claude.com/docs/en/desktop](https://code.claude.com/docs/en/desktop) |
+| کنترل از راه دور | کنترل جلسه از راه دور | [code.claude.com/docs/en/remote-control](https://code.claude.com/docs/en/remote-control) |
+| حالت خودکار | مدیریت خودکار اجازه | [code.claude.com/docs/en/permissions](https://code.claude.com/docs/en/permissions) |
+| کانال‌ها | ارتباط چندکاناله | [code.claude.com/docs/en/channels](https://code.claude.com/docs/en/channels) |
+| دیکته صوتی | ورودی صوتی برای Claude Code | [code.claude.com/docs/en/voice-dictation](https://code.claude.com/docs/en/voice-dictation) |
+| بازبینی کد | بازبینی‌های درخواست pull مدیریت‌شده از طریق Claude GitHub App (Team و Enterprise) | [code.claude.com/docs/en/code-review](https://code.claude.com/docs/en/code-review) |
 
-## Anthropic Engineering Blog
+## بلاگ مهندسی Anthropic
 
-| 文章 | 说明 | 链接 |
+| مقاله | توضیح | لینک |
 |---------|-------------|------|
-| Code Execution with MCP | 如何通过代码执行解决 MCP 上下文膨胀问题，Token 数量减少 98.7% | [anthropic.com/engineering/code-execution-with-mcp](https://www.anthropic.com/engineering/code-execution-with-mcp) |
+| اجرای کد با MCP | چگونه با استفاده از اجرای کد، اضافه‌بار زمینه MCP را حل کنیم — کاهش ۹۸.۷ درصدی توکن | [anthropic.com/engineering/code-execution-with-mcp](https://www.anthropic.com/engineering/code-execution-with-mcp) |
 
 ---
 
-## 30 分钟掌握 Claude Code
+## تسلط بر Claude Code در ۳۰ دقیقه
 
-_视频_: https://www.youtube.com/watch?v=6eBSHbLKuN0
+_ویدیو_: https://www.youtube.com/watch?v=6eBSHbLKuN0
 
-_**全部技巧**_
-- **探索高级功能和快捷键**
-  - 定期查看 Claude 发布说明中的新代码编辑与上下文功能。
-  - 学习键盘快捷键，在聊天、文件和编辑器视图之间快速切换。
+_**همه نکات**_
+- **کاوش ویژگی‌های پیشرفته و میان‌برها**
+  - به‌طور منظم ویژگی‌های جدید ویرایش کد و زمینه Claude را در یادداشت‌های انتشار آن‌ها بررسی کنید.
+  - میان‌برهای صفحه‌کلید را یاد بگیرید تا سریع بین نمای چت، فایل و ویرایشگر جابه‌جا شوید.
 
-- **高效设置**
-  - 为项目创建带有清晰名称和描述的会话，便于之后查找。
-  - 将最常用的文件或文件夹固定住，让 Claude 随时可访问。
-  - 配置 Claude 的集成，例如 GitHub 和常见 IDE，以简化你的编码流程。
+- **راه‌اندازی کارآمد**
+  - جلسات خاص پروژه با نام‌ها/توضیحات واضح برای بازیابی آسان ایجاد کنید.
+  - فایل‌ها یا پوشه‌های پراستفاده را پین کنید تا Claude هر زمان به آن‌ها دسترسی داشته باشد.
+  - یکپارچگی‌های Claude (مثلاً GitHub، IDEهای محبوب) را برای تسریع فرآیند کدنویسی تنظیم کنید.
 
-- **高效的代码库问答**
-  - 向 Claude 询问架构、设计模式和具体模块的细节问题。
-  - 在问题里使用文件和行号引用，例如：“`app/models/user.py` 里的逻辑是在做什么？”
-  - 对于大型代码库，提供摘要或清单，帮助 Claude 聚焦。
-  - **示例提示词**：_“你能解释一下 `src/auth/AuthService.ts:45-120` 里实现的认证流程吗？它是如何与 `src/middleware/auth.ts` 里的中间件集成的？”_
+- **پرس‌وپاسخ کارآمد پایگاه کد**
+  - از Claude سوالات دقیق درباره معماری، الگوهای طراحی و ماژول‌های خاص بپرسید.
+  - از ارجاعات فایل و خط در سوالات خود استفاده کنید (مثلاً "منطق در `app/models/user.py` چه کاری انجام می‌دهد؟").
+  - برای پایگاه‌های کد بزرگ، یک خلاصه یا manifest ارائه دهید تا Claude تمرکز کند.
+  - **نمونه پرامپت**: _"می‌توانی جریان احراز هویت پیاده‌سازی‌شده در src/auth/AuthService.ts:45-120 را توضیح دهی؟ چگونه با middleware در src/middleware/auth.ts یکپارچه می‌شود؟"_
 
-- **代码编辑与重构**
-  - 使用代码块中的内联注释或请求来获得更聚焦的编辑结果（例如：“把这个函数重构得更清晰一些”）。
-  - 让 Claude 给出并排的修改前后对比。
-  - 在重大修改后，让 Claude 生成测试或文档，以保证质量。
-  - **示例提示词**：_“把 `api/users.js` 里的 `getUserData` 函数从 promises 改成 async/await。给我一个修改前后对比，并为重构后的版本生成单元测试。”_
+- **ویرایش و بازطراحی کد**
+  - از کامنت‌های درون‌خطی یا درخواست‌ها در بلوک‌های کد برای دریافت ویرایش‌های متمرکز استفاده کنید ("این تابع را برای وضوح بازطراحی کن").
+  - مقایسه side-by-side قبل/بعد درخواست کنید.
+  - اجازه دهید Claude پس از ویرایش‌های بزرگ، تست یا مستندات تولید کند برای اطمینان از کیفیت.
+  - **نمونه پرامپت**: _"تابع getUserData در api/users.js را بازطراحی کن تا به جای promises از async/await استفاده کند. مقایسه قبل/بعد به من نشان بده و تست‌های واحد برای نسخه بازطراحی‌شده تولید کن."_
 
-- **上下文管理**
-  - 只粘贴当前任务真正需要的代码和上下文。
-  - 使用结构化提示词（“这里是文件 A，这里是函数 B，我的问题是 X”）通常效果最好。
-  - 在提示窗口里移除或折叠大文件，避免超出上下文限制。
-  - **示例提示词**：_“这里是 `models/User.js` 里的 User 模型，以及 `utils/validation.js` 里的 `validateUser` 函数。我的问题是：如何在保持向后兼容的前提下添加邮箱验证？”_
+- **مدیریت زمینه**
+  - کد/زمینه جای‌گذاری‌شده خود را فقط به موارد مرتبط برای وظیفه فعلی محدود کنید.
+  - از پرامپت‌های ساختاریافته ("این فایل A است، این تابع B است، سوال من X است") برای بهترین عملکرد استفاده کنید.
+  - فایل‌های بزرگ را در پنجره پرامپت حذف یا جمع کنید تا از عبور از محدودیت‌های زمینه جلوگیری شود.
+  - **نمونه پرامپت**: _"این مدل User از models/User.js و تابع validateUser از utils/validation.js است. سوال من: چگونه می‌توانم اعتبارسنجی ایمیل را اضافه کنم و سازگاری با نسخه قبلی را حفظ کنم؟"_
 
-- **接入团队工具**
-  - 将 Claude 会话连接到你们团队的代码仓库和文档。
-  - 使用内置模板，或为重复出现的工程任务创建自定义模板。
-  - 通过和队友共享会话记录与提示词来协作。
+- **یکپارچه‌سازی ابزارهای تیم**
+  - جلسات Claude را به مخازن و مستندات تیم خود متصل کنید.
+  - از قالب‌های داخلی استفاده کنید یا قالب‌های سفارشی برای وظایف مهندسی تکراری ایجاد کنید.
+  - با به اشتراک‌گذاری رونوشت‌های جلسه و پرامپت‌ها با هم‌تیمی‌ها همکاری کنید.
 
-- **提升性能**
-  - 给 Claude 清晰、面向目标的指令，例如：“用五个要点总结这个类”。
-  - 从上下文窗口中删掉不必要的注释和样板代码。
-  - 如果 Claude 的输出跑偏了，重置上下文或重新表述问题，以获得更好的对齐。
-  - **示例提示词**：_“用五个要点总结 `src/db/Manager.ts` 里的 `DatabaseManager` 类，重点说明它的核心职责和关键方法。”_
+- **افزایش عملکرد**
+  - دستورالعمل‌های واضح و هدف‌محور به Claude بدهید (مثلاً "این کلاس را در پنج نکته خلاصه کن").
+  - کامنت‌ها و کدهای تکراری غیرضروری را از پنجره‌های زمینه حذف کنید.
+  - اگر خروجی Claude از مسیر خارج شد، زمینه را بازنشانی کنید یا سوالات را بازنویسی کنید برای هم‌راستایی بهتر.
+  - **نمونه پرامپت**: _"کلاس DatabaseManager در src/db/Manager.ts را در پنج نکته خلاصه کن، با تمرکز بر مسئولیت‌های اصلی و متدهای کلیدی."_
 
-- **实用场景示例**
-  - 调试：粘贴错误和堆栈信息，然后询问可能的原因和修复方式。
-  - 生成测试：为复杂逻辑请求属性测试、单元测试或集成测试。
-  - 代码审查：请 Claude 识别风险变更、边界情况或代码异味。
-  - **示例提示词**：
-    - _“我遇到这个错误：`TypeError: Cannot read property 'map' of undefined at line 42 in components/UserList.jsx`。这是堆栈信息和相关代码。是什么原因导致的？我该怎么修复？”_
-    - _“为 `PaymentProcessor` 类生成完整的单元测试，包括失败交易、超时和无效输入等边界情况。”_
-    - _“审查这个 pull request diff，找出潜在的安全问题、性能瓶颈和代码异味。”_
+- **نمونه‌های استفاده عملی**
+  - اشکال‌زدایی: خطاها و stack trace را جای‌گذاری کنید، سپس علل و راه‌حل‌های ممکن را درخواست کنید.
+  - تولید تست: تست‌های property-based، واحد یا یکپارچگی برای منطق پیچیده درخواست کنید.
+  - بازبینی‌های کد: از Claude بخواهید تغییرات پرخطر، موارد لبه یا code smell را شناسایی کند.
+  - **نمونه پرامپت‌ها**:
+    - _"این خطا را دریافت می‌کنم: 'TypeError: Cannot read property 'map' of undefined at line 42 in components/UserList.jsx'. stack trace و کد مرتبط اینجاست. چه چیزی باعث این می‌شود و چگونه می‌توانم آن را اصلاح کنم؟"_
+    - _"تست‌های واحد جامع برای کلاس PaymentProcessor تولید کن، شامل موارد لبه برای تراکنش‌های ناموفق، timeout و ورودی‌های نامعتبر."_
+    - _"این diff درخواست pull را بازبینی کن و مسائل امنیتی بالقوه، گلوگاه‌های عملکرد و code smell را شناسایی کن."_
 
-- **工作流自动化**
-  - 用 Claude 提示词为格式化、清理、批量重命名等重复任务编写脚本。
-  - 用 Claude 基于代码 diff 起草 PR 描述、发布说明或文档。
-  - **示例提示词**：_“根据 git diff，生成一份详细的 PR 描述，包含变更摘要、修改文件列表、测试步骤和潜在影响。同时为 2.3.0 版本生成发布说明。”_
+- **خودکارسازی خط لوله کاری**
+  - وظایف تکراری (مثل قالب‌بندی، پاکسازی و تغییر نام تکراری) را با استفاده از پرامپت‌های Claude اسکریپت کنید.
+  - از Claude برای پیش‌نویس توضیحات PR، یادداشت‌های انتشار یا مستندات بر اساس diff کد استفاده کنید.
+  - **نمونه پرامپت**: _"بر اساس git diff، یک توضیحات PR دقیق با خلاصه تغییرات، فهرست فایل‌های تغییریافته، مراحل تست و تأثیرات احتمالی ایجاد کن. همچنین یادداشت‌های انتشار برای نسخه 2.3.0 تولید کن."_
 
-**提示**：想要获得最佳效果，可以把这些实践组合起来使用。先固定关键文件并总结目标，再使用聚焦的提示词和 Claude 的重构工具，逐步改进你的代码库和自动化流程。
+**نکته**: برای بهترین نتایج، چندین مورد از این شیوه‌ها را ترکیب کنید — با پین کردن فایل‌های حیاتی و خلاصه کردن اهداف خود شروع کنید، سپس از پرامپت‌های متمرکز و ابزارهای بازطراحی Claude برای بهبود تدریجی پایگاه کد و خودکارسازی خود استفاده کنید.
 
 
-**与 Claude Code 配合使用的推荐工作流**
+**خط لوله کاری پیشنهادی با Claude Code**
 
-### Claude Code 推荐工作流
+### خط لوله کاری پیشنهادی با Claude Code
 
-#### 新仓库场景
+#### برای یک مخزن جدید
 
-1. **初始化仓库并接入 Claude**
-   - 建立新仓库的基础结构：`README`、`LICENSE`、`.gitignore`、根配置文件。
-   - 创建 `CLAUDE.md`，说明架构、高层目标和编码规范。
-   - 安装 Claude Code，并将其连接到仓库，用于代码建议、测试脚手架和工作流自动化。
+1. **راه‌اندازی مخزن و یکپارچگی Claude**
+   - مخزن جدید خود را با ساختار ضروری راه‌اندازی کنید: README، LICENSE، .gitignore، کانفیگ‌های ریشه.
+   - یک فایل `CLAUDE.md` ایجاد کنید که معماری، اهداف سطح بالا و راهنمایی‌های کدنویسی را توصیف کند.
+   - Claude Code را نصب کرده و به مخزن خود لینک کنید برای پیشنهادهای کد، ساختار تست و خودکارسازی خط لوله کاری.
 
-2. **使用计划模式和规格说明**
-   - 在实现功能之前，使用计划模式（`shift-tab` 或 `/plan`）先写详细规格。
-   - 让 Claude 给出架构建议和初始项目布局。
-   - 保持清晰、面向目标的提示词序列，依次询问组件轮廓、主要模块和职责。
+2. **استفاده از حالت Plan و مشخصات**
+   - از حالت plan (`shift-tab` یا `/plan`) برای پیش‌نویس یک مشخصات دقیق قبل از پیاده‌سازی ویژگی‌ها استفاده کنید.
+   - از Claude پیشنهادهای معماری و چیدمان اولیه پروژه بخواهید.
+   - یک توالی پرامپت واضح و هدف‌محور داشته باشید — برای طرح‌های کامپوننت، ماژول‌های اصلی و مسئولیت‌ها سوال کنید.
 
-3. **迭代开发与审查**
-   - 把核心功能拆成小块逐步实现，并在过程中请求 Claude 生成代码、重构和文档。
-   - 每增加一小步，都请求单元测试和示例。
-   - 在 `CLAUDE.md` 中维护持续更新的任务列表。
+3. **توسعه تکراری و بازبینی**
+   - ویژگی‌های اصلی را در قطعات کوچک پیاده‌سازی کنید، و از Claude برای تولید کد، بازطراحی و مستندسازی پرامپت بگیرید.
+   - پس از هر افزایش، تست‌های واحد و مثال‌ها درخواست کنید.
+   - یک فهرست وظایف در حال اجرا در CLAUDE.md نگه دارید.
 
-4. **自动化 CI/CD 和部署**
-   - 用 Claude 搭建 GitHub Actions、npm/yarn 脚本或部署工作流。
-   - 通过更新 `CLAUDE.md` 并请求对应命令/脚本，轻松调整流水线。
+4. **خودکارسازی CI/CD و استقرار**
+   - از Claude برای ساخت GitHub Actions، اسکریپت‌های npm/yarn یا خط لوله‌های استقرار استفاده کنید.
+   - خط لوله‌ها را با به‌روزرسانی CLAUDE.md و درخواست کامندها/اسکریپت‌های مربوطه به‌راحتی تطبیق دهید.
 
 ```mermaid
 graph TD
@@ -145,31 +146,31 @@ graph TD
     S --> T[Test Automation]
     T --> U[Repository Ready]
 
-    style A fill:#e1f5ff
-    style G fill:#fff4e1
-    style K fill:#f0ffe1
-    style Q fill:#ffe1f5
-    style U fill:#90EE90
+    style A fill:#e1f5fe,stroke:#333,color:#333
+    style G fill:#fff9c4,stroke:#333,color:#333
+    style K fill:#e8f5e9,stroke:#333,color:#333
+    style Q fill:#f3e5f5,stroke:#333,color:#333
+    style U fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-#### 现有仓库场景
+#### برای یک مخزن موجود
 
-1. **仓库与上下文准备**
-   - 添加或更新 `CLAUDE.md`，记录仓库结构、编码模式和关键文件。对于旧仓库，可以使用 `CLAUDE_LEGACY.md`，其中涵盖框架、版本映射、说明、已知问题和升级笔记。
-   - 固定或高亮 Claude 应该用来作为上下文的主文件。
+1. **راه‌اندازی مخزن و زمینه**
+   - `CLAUDE.md` را اضافه یا به‌روزرسانی کنید تا ساختار مخزن، الگوهای کدنویسی و فایل‌های کلیدی را مستند کنید. برای مخازن legacy، از `CLAUDE_LEGACY.md` استفاده کنید که فریمورک‌ها، نقشه نسخه‌ها، دستورالعمل‌ها، اشکال‌ها و یادداشت‌های ارتقا را پوشش می‌دهد.
+   - فایل‌های اصلی که Claude باید برای زمینه استفاده کند را پین یا برجسته کنید.
 
-2. **上下文驱动的代码问答**
-   - 让 Claude 基于具体文件/函数，回答代码审查、 bug 解释、重构或迁移计划。
-   - 给 Claude 明确边界，例如“只修改这些文件”或者“不要新增依赖”。
+2. **پرس‌وپاسوهای زمینه‌ای کد**
+   - از Claude برای بازبینی‌های کد، توضیحات اشکال، بازطراحی یا برنامه‌های مهاجرت با ارجاع به فایل‌ها/توابع خاص بخواهید.
+   - مرزهای صریح به Claude بدهید (مثلاً "فقط این فایل‌ها را تغییر بده" یا "بدون وابستگی جدید").
 
-3. **分支、工作区和多会话管理**
-   - 使用多个 git worktree 做隔离的功能开发或 bug 修复，并为每个 worktree 启动独立的 Claude 会话。
-   - 通过终端标签页/窗口按分支或功能组织并行工作。
+3. **مدیریت Branch، Worktree و چندجلسه‌ای**
+   - از چندین git worktree برای ویژگی‌ها یا رفع اشکال ایزوله استفاده کنید و جلسات جداگانه Claude برای هر worktree راه‌اندازی کنید.
+   - تب‌ها/پنجره‌های ترمینال را بر اساس شاخه یا ویژگی سازماندهی کنید برای خط لوله‌های کاری موازی.
 
-4. **团队工具和自动化**
-   - 通过 `.claude/commands/` 同步自定义命令，保持团队一致性。
-   - 用 Claude 的 slash commands 或 hooks 自动化重复任务、PR 创建和代码格式化。
-   - 与团队成员共享会话和上下文，便于协作排障和审查。
+4. **ابزارهای تیم و خودکارسازی**
+   - کامندهای سفارشی را از طریق `.claude/commands/` برای یکپارچگی بین‌تیمی همگام کنید.
+   - وظایف تکراری، ایجاد PR و قالب‌بندی کد را از طریق اسلش کامندها یا هوک‌های Claude خودکارسازی کنید.
+   - جلسات و زمینه را با اعضای تیم به اشتراک بگذارید برای عیب‌یابی و بازبینی مشترک.
 
 ```mermaid
 graph TD
@@ -210,48 +211,59 @@ graph TD
     Y -->|Yes| H
     Y -->|No| Z[Workflow Complete]
 
-    style A fill:#e1f5ff
-    style C fill:#ffecec
-    style D fill:#fff4e1
-    style P fill:#f0ffe1
-    style T fill:#ffe1f5
-    style Z fill:#90EE90
+    style A fill:#e1f5fe,stroke:#333,color:#333
+    style C fill:#fce4ec,stroke:#333,color:#333
+    style D fill:#fff9c4,stroke:#333,color:#333
+    style P fill:#e8f5e9,stroke:#333,color:#333
+    style T fill:#f3e5f5,stroke:#333,color:#333
+    style Z fill:#e8f5e9,stroke:#333,color:#333
 ```
 
-**提示**：
-- 每个新功能或修复都从规格和计划模式提示词开始。
-- 对于旧仓库和复杂仓库，把更详细的指导存放在 `CLAUDE.md` / `CLAUDE_LEGACY.md` 中。
-- 给出清晰、聚焦的指令，把复杂工作拆成多阶段计划。
-- 定期清理会话、裁剪上下文，并删除已完成的工作区，避免堆积混乱。
+**نکات**:
+- هر ویژگی یا رفع جدید را با یک مشخصات و پرامپت حالت plan شروع کنید.
+- برای مخازن legacy و پیچیده، راهنمایی‌های دقیق را در CLAUDE.md/CLAUDE_LEGACY.md ذخیره کنید.
+- دستورالعمل‌های واضح و متمرکز بدهید و کار پیچیده را به برنامه‌های چندمرحله‌ای تقسیم کنید.
+- به‌طور منظم جلسات را پاک کنید، زمینه را هرس کنید و worktree‌های تکمیل‌شده را حذف کنید تا از شلوغی جلوگیری شود.
 
-这些步骤概括了在新旧代码库中更顺畅使用 Claude Code 的核心建议。
+این مراحل توصیه‌های اصلی برای خط لوله‌های کاری روان با Claude Code در پایگاه‌های کد جدید و موجود را نشان می‌دهد.
 
 ---
 
-## 2026 年 3 月新增功能与能力
+## ویژگی‌ها و قابلیت‌های جدید
 
-### 关键功能资源
+### منابع ویژگی‌های کلیدی
 
-| 功能 | 说明 | 了解更多 |
+| ویژگی | توضیح | بیشتر بدانید |
 |---------|-------------|------------|
-| **Auto Memory** | Claude 会自动学习并记住你跨会话的偏好 | [记忆指南](02-memory/README.md) |
-| **Remote Control** | 从手机、浏览器或 Claude 应用继续本地的 Claude Code 会话 | [高级功能](09-advanced-features/README.md) |
-| **Web Sessions** | 通过基于浏览器的界面访问 Claude Code，实现远程开发 | [CLI 参考](10-cli/README.md) |
-| **Desktop App** | Claude Code 的原生桌面应用，界面更强大 | [Claude Code 文档](https://code.claude.com/docs/en/desktop) |
-| **Extended Thinking** | 通过 `Alt+T` / `Option+T` 切换深度推理；Opus 4.7+、Sonnet 5+、Haiku 5.5 和 Fable 始终使用自适应推理，因此 `MAX_THINKING_TOKENS` 固定预算不适用（用 `/effort` 控制深度） | [高级功能](09-advanced-features/README.md) |
-| **Permission Modes** | 精细权限控制：default、acceptEdits、plan、auto、dontAsk、bypassPermissions | [高级功能](09-advanced-features/README.md) |
-| **7-Tier Memory** | Managed Policy、Project、Project Rules、User、User Rules、Local、Auto Memory | [记忆指南](02-memory/README.md) |
-| **Hook Events** | 33 个事件：PreToolUse、PostToolUse、PostToolUseFailure、Stop、StopFailure、SubagentStart、SubagentStop、Notification、Elicitation 等 | [Hooks 指南](06-hooks/README.md) |
-| **Agent Teams** | 协调多个 agent 共同处理复杂任务 | [Subagents 指南](04-subagents/README.md) |
-| **Scheduled Tasks** | 用 `/loop` 和 cron 工具设置周期性任务 | [高级功能](09-advanced-features/README.md) |
-| **Chrome Integration** | 通过 Claude in Chrome 扩展在你自己的 Chrome 中做浏览器自动化 | [高级功能](09-advanced-features/README.md) |
-| **Keyboard Customization** | 自定义按键绑定，包括组合键序列 | [高级功能](09-advanced-features/README.md) |
+| **حافظه خودکار** | Claude به‌طور خودکار ترجیحات شما را بین جلسه‌ها یاد می‌گیرد و به یاد می‌سپارد | [راهنمای حافظه](02-memory/) |
+| **کنترل از راه دور** | یک جلسه محلی Claude Code را از تلفن، مرورگر یا برنامه Claude ادامه دهید | [ویژگی‌های پیشرفته](09-advanced-features/) |
+| **جلسات وب** | به Claude Code از طریق رابط‌های مبتنی بر مرورگر برای توسعه از راه دور دسترسی پیدا کنید | [مرجع CLI](10-cli/) |
+| **برنامه دسکتاپ** | برنامه دسکتاپ بومی برای Claude Code با رابط کاربری بهبودیافته | [مستندات Claude Code](https://code.claude.com/docs/en/desktop) |
+| **تفکر گسترش‌یافته** | تغییر استدلال عمیق از طریق `Alt+T`/`Option+T`؛ Opus 4.7+، Sonnet 5+، Haiku 5.5 و Fable همیشه از استدلال تطبیقی استفاده می‌کنند، بنابراین یک بودجه ثابت `MAX_THINKING_TOKENS` اعمال نمی‌شود (عمق را با `/effort` کنترل کنید) | [ویژگی‌های پیشرفته](09-advanced-features/) |
+| **حالت‌های اجازه** | کنترل دقیق: manual (قبلاً default)، acceptEdits، plan، auto، dontAsk، bypassPermissions | [ویژگی‌های پیشرفته](09-advanced-features/) |
+| **حافظه ۷ سطحی** | Managed Policy، Project، Project Rules، User، User Rules، Local، Auto Memory | [راهنمای حافظه](02-memory/) |
+| **رویدادهای هوک** | ۳۳ رویداد: PreToolUse، PostToolUse، PostToolUseFailure، Stop، StopFailure، SubagentStart، SubagentStop، Notification، Elicitation و بیشتر | [راهنمای هوک‌ها](06-hooks/) |
+| **تیم‌های ایجنت** | هماهنگی چندین ایجنت که روی وظایف پیچیده با هم کار می‌کنند | [راهنمای زیرایجنت‌ها](04-subagents/) |
+| **وظایف زمان‌بندی‌شده** | وظایف تکراری را با `/loop` و ابزارهای cron تنظیم کنید | [ویژگی‌های پیشرفته](09-advanced-features/) |
+| **یکپارچگی Chrome** | خودکارسازی مرورگر در Chrome خود از طریق افزونه Claude in Chrome | [ویژگی‌های پیشرفته](09-advanced-features/) |
+| **سفارشی‌سازی صفحه‌کلید** | سفارشی‌سازی کلیدبایندها شامل توالی chord | [ویژگی‌های پیشرفته](09-advanced-features/) |
+| **ابزار Monitor** | تماشای جریان stdout یک کامند پس‌زمینه و واکنش به رویدادها به جای polling (v2.1.98+) | [ویژگی‌های پیشرفته](09-advanced-features/) |
+| **حالت /goal** | ثبت یک شرط تکمیل سطح جلسه؛ Claude تا برآورده شدن آن به کار ادامه می‌دهد (v2.1.139+) | [اسلش کامندها](01-slash-commands/) |
+| **claude agents (نمای ایجنت)** | فهرست‌بندی، بررسی و از سرگیری ایجنت‌های پس‌زمینه از ترمینال؛ `--json` برای خروجی قابل‌خواندن توسط ماشین (v2.1.139+، `--json` در v2.1.145 اضافه شد) | [code.claude.com/docs/en/agent-view](https://code.claude.com/docs/en/agent-view) |
+| **/run, /verify, /run-skill-generator** | مهارت‌های بسته‌بندی‌شده برای راه‌اندازی پروژه، تأیید کارکرد رفع و تولید مهارت‌های run/verify خاص پروژه (v2.1.145+) | [راهنمای مهارت‌ها](03-skills/) |
 
 ---
-
-**最后更新**：2026 年 10 月 18 日
-**Claude Code 版本**：2.1.302
-**来源**：
+**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.302
+**منابع**:
+- https://code.claude.com/docs/en/overview
+- https://code.claude.com/docs/en/changelog
+- https://code.claude.com/docs/en/agent-view
+- https://code.claude.com/docs/en/permission-modes
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.144
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.145
+- https://code.claude.com/docs/en/model-config
 - https://code.claude.com/docs/en/chrome
 - https://code.claude.com/docs/en/remote-control
-- https://code.claude.com/docs/en/model-config
+- https://code.claude.com/docs/en/code-review
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

@@ -1,22 +1,23 @@
 ---
-description: 将应用部署到生产或预发环境
+description: برنامه را در محیط تولید یا staging مستقر کنید
 ---
 
-# 应用部署
+# استقرار برنامه
 
-执行部署工作流：
+اجرای گردش‌کار استقرار:
 
-1. 运行部署前检查
-2. 构建应用
-3. 运行测试
-4. 部署到目标环境
-5. 运行健康检查
-6. 在 Slack 上通知团队
+۱. اجرای بررسی‌های پیش از استقرار
+۲. ساخت برنامه
+۳. اجرای تست‌ها
+۴. استقرار در محیط هدف
+۵. اجرای بررسی‌های سلامت
+۶. اطلاع به تیم در Slack
 
 ---
 
-**最后更新**: 2026 年 10 月 15 日
-**Claude Code 版本**: 2.1.300
-**来源**:
+**آخرین به‌روزرسانی**: ۱۵ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.300
+**منابع**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

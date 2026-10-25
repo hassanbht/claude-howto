@@ -1,22 +1,23 @@
 ---
-description: 从源代码生成完整的 API 文档
+description: مستندات جامع API را از کد منبع تولید کنید
 ---
 
-# API 文档生成器
+# تولیدکننده مستندات API
 
-生成完整的 API 文档：
+مستندات کامل API تولید کنید:
 
-1. 扫描 API 端点
-2. 提取函数签名和 JSDoc
-3. 按模块 / 端点组织内容
-4. 创建带示例的 Markdown
-5. 包含请求 / 响应 schema
-6. 添加错误文档
+۱. اسکن endpoint‌های API
+۲. استخراج امضای توابع و JSDoc
+۳. سازمان‌دهی بر اساس ماژول/endpoint
+۴. ایجاد markdown با نمونه‌ها
+۵. شامل schema‌های درخواست/پاسخ
+۶. افزودن مستندات خطا
 
 ---
 
-**最后更新**: 2026 年 10 月 15 日
-**Claude Code 版本**: 2.1.300
-**来源**:
+**آخرین به‌روزرسانی**: ۱۵ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.300
+**منابع**:
 - https://code.claude.com/docs/en/plugins
 - https://code.claude.com/docs/en/skills#frontmatter-reference
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

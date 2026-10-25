@@ -1,105 +1,95 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
-</picture>
+# پیکربندی پروژه
 
-# 项目配置
+## مرور کلی پروژه
+- **نام**: پلتفرم تجارت الکترونیک
+- **Tech Stack**: Node.js، PostgreSQL، React 18، Docker
+- **اندازه تیم**: ۵ توسعه‌دهنده
+- **مهلت**: Q4 2025
 
-## 项目概览
-
-- **名称**：电商平台
-- **技术栈**：Node.js、PostgreSQL、React 18、Docker
-- **团队规模**：5 名开发者
-- **截止时间**：2025 年第 4 季度
-
-## 架构
-
+## معماری
 @docs/architecture.md
 @docs/api-standards.md
 @docs/database-schema.md
 
-## 开发规范
+## استانداردهای توسعه
 
-### 代码风格
+### سبک کد
+- از Prettier برای قالب‌بندی استفاده کنید
+- از ESLint با config اولیه airbnb استفاده کنید
+- حداکثر طول خط: ۱۰۰ کاراکتر
+- از تورفتگی ۲-فضایی استفاده کنید
 
-- 使用 Prettier 格式化
-- 使用带 airbnb 配置的 ESLint
-- 最大行长度：100 字符
-- 使用 2 空格缩进
+### قراردادهای نام‌گذاری
+- **فایل‌ها**: kebab-case (user-controller.js)
+- **کلاس‌ها**: PascalCase (UserService)
+- **توابع/متغیرها**: camelCase (getUserById)
+- **ثابت‌ها**: UPPER_SNAKE_CASE (API_BASE_URL)
+- **جداول پایگاه‌داده**: snake_case (user_accounts)
 
-### 命名规范
+### گردش کار Git
+- نام شاخه‌ها: `feature/description` یا `fix/description`
+- پیام‌های commit: از conventional commits پیروی کنید
+- PR پیش از merge الزامی است
+- همه بررسی‌های CI/CD باید عبور کنند
+- حداقل ۱ تأیید لازم است
 
-- **文件**：kebab-case（`user-controller.js`）
-- **类**：PascalCase（`UserService`）
-- **函数 / 变量**：camelCase（`getUserById`）
-- **常量**：UPPER_SNAKE_CASE（`API_BASE_URL`）
-- **数据库表**：snake_case（`user_accounts`）
+### الزامات تست
+- حداقل ۸۰٪ پوشش کد
+- همه مسیرهای بحرانی باید تست داشته باشند
+- از Jest برای تست‌های واحد استفاده کنید
+- از Cypress برای تست‌های E2E استفاده کنید
+- نام فایل‌های تست: `*.test.ts` یا `*.spec.ts`
 
-### Git 工作流
+### استانداردهای API
+- فقط endpointهای RESTful
+- درخواست/پاسخ JSON
+- استفاده صحیح از کدهای وضعیت HTTP
+- نسخه‌بندی endpointهای API: `/api/v1/`
+- همه endpointها را با مثال مستند کنید
 
-- 分支命名：`feature/description` 或 `fix/description`
-- 提交信息：遵循 conventional commits
-- 合并前必须有 PR
-- 所有 CI/CD 检查都必须通过
-- 至少需要 1 个 approval
+### پایگاه‌داده
+- از migration برای تغییرات schema استفاده کنید
+- هرگز اعتبارنامه‌ها را hardcode نکنید
+- از connection pooling استفاده کنید
+- فعال کردن query logging در توسعه
+- پشتیبان‌گیری منظم الزامی است
 
-### 测试要求
+### استقرار
+- استقرار مبتنی بر Docker
+- هماهنگی Kubernetes
+- استراتژی استقرار blue-green
+- بازگشت خودکار در صورت شکست
+- migrationهای پایگاه‌داده پیش از استقرار اجرا شوند
 
-- 最低 80% 代码覆盖率
-- 所有关键路径都必须有测试
-- 单元测试使用 Jest
-- E2E 测试使用 Cypress
-- 测试文件名：`*.test.ts` 或 `*.spec.ts`
+## دستورات متداول
 
-### API 规范
+| دستور | هدف |
+|---------|---------|
+| `npm run dev` | راه‌اندازی سرور توسعه |
+| `npm test` | اجرای مجموعه تست |
+| `npm run lint` | بررسی سبک کد |
+| `npm run build` | build برای تولید |
+| `npm run migrate` | اجرای migrationهای پایگاه‌داده |
 
-- 只允许 RESTful 端点
-- 请求 / 响应都使用 JSON
-- 正确使用 HTTP 状态码
-- API 版本路径：`/api/v1/`
-- 所有端点都要带示例文档
+## مخاطبان تیم
+- Tech Lead: Sarah Chen (@sarah.chen)
+- Product Manager: Mike Johnson (@mike.j)
+- DevOps: Alex Kim (@alex.k)
 
-### 数据库
+## مسائل شناخته‌شده و راه‌حل‌ها
+- connection pooling PostgreSQL در ساعات اوج به ۲۰ محدود است
+- راه‌حل: پیاده‌سازی صف query
+- مسائل سازگاری Safari 14 با async generatorها
+- راه‌حل: استفاده از Babel transpiler
 
-- schema 变更使用 migrations
-- 绝不硬编码凭据
-- 使用连接池
-- 开发环境启用查询日志
-- 需要定期备份
+## پروژه‌های مرتبط
+- داشبورد تحلیلی: `/projects/analytics`
+- برنامه موبایل: `/projects/mobile`
+- پنل مدیریت: `/projects/admin`
 
-### 部署
-
-- 基于 Docker 的部署
-- 使用 Kubernetes 编排
-- 蓝绿部署策略
-- 失败时自动回滚
-- 部署前先执行数据库迁移
-
-## 常用命令
-
-| 命令 | 作用 |
-|------|------|
-| `npm run dev` | 启动开发服务器 |
-| `npm test` | 运行测试套件 |
-| `npm run lint` | 检查代码风格 |
-| `npm run build` | 构建生产版本 |
-| `npm run migrate` | 执行数据库迁移 |
-
-## 团队联系人
-
-- 技术负责人：Sarah Chen（@sarah.chen）
-- 产品经理：Mike Johnson（@mike.j）
-- 运维：Alex Kim（@alex.k）
-
-## 已知问题与解决方案
-
-- PostgreSQL 连接池在高峰期限制为 20
-- 解决方法：实现查询排队
-- Safari 14 对 async generator 的兼容性有问题
-- 解决方法：使用 Babel 转译器
-
-## 关联项目
-
-- 分析仪表盘：`/projects/analytics`
-- 移动端 App：`/projects/mobile`
-- 管理后台：`/projects/admin`
+---
+**آخرین به‌روزرسانی**: ۴ اوت ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۲۲۰
+**منبع**:
+- https://code.claude.com/docs/en/memory
+**مدل‌های سازگ**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

@@ -3,13 +3,13 @@
   <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# مرجع胡ک‌ها
+# مرجعهوک‌ها
 
-胡ک‌ها دستورات شل هستند که در رخ دادن رویدادهای Claude Code به صورت خودکار اجرا می‌شوند، برای اتوماسیون کارهایی مانند فرمت화، اعتبارسنجی، اعلان، بررسی امنیتی و غیره.
+هوک‌ها دستورات شل هستند که در رخ دادن رویدادهای Claude Code به صورت خودکار اجرا می‌شوند، برای اتوماسیون کارهایی مانند فرمت화، اعتبارسنجی، اعلان، بررسی امنیتی و غیره.
 
 ## مروری کلی
 
-胡ک‌ها یک مکانیزم اتوماسیون مبتنی بر رویداد هستند. آن‌ها در زمان انجام برخی اقدامات در Claude Code به صورت خودکار اجرا می‌شوند، بدون نیاز به فعال‌سازی دستی شما.
+هوک‌ها یک مکانیزم اتوماسیون مبتنی بر رویداد هستند. آن‌ها در زمان انجام برخی اقدامات در Claude Code به صورت خودکار اجرا می‌شوند، بدون نیاز به فعال‌سازی دستی شما.
 
 استفاده‌های رایج:
 
@@ -20,14 +20,14 @@
 - اعتبارسنجی پرامپت کاربر
 - ارسال اعلان به تیم
 
-## انواع胡ک
+## انواعهوک
 
-Claude Code ۳۳ رویداد胡ک را پشتیبانی می‌کند، به چهار گروه بر اساس کاربرد تقسیم شده‌اند. ۵ نوع handler وجود دارد: `command`، `http`، `mcp_tool`، `prompt`، `agent`.
+Claude Code ۳۳ رویدادهوک را پشتیبانی می‌کند، به چهار گروه بر اساس کاربرد تقسیم شده‌اند. ۵ نوع handler وجود دارد: `command`، `http`، `mcp_tool`، `prompt`، `agent`.
 
-- **胡ک ابزارها**: `PreToolUse`، `PostToolUse`، `PostToolUseFailure`، `PostToolBatch`، `PermissionRequest`، `PermissionDenied`
-- **胡ک جلسه**: `SessionStart`، `Setup`، `SessionEnd`، `Stop`، `StopFailure`، `SubagentStart`، `SubagentStop`
-- **胡ک وظیفه**: `UserPromptSubmit`، `UserPromptExpansion`، `MessageDisplay`، `TaskCompleted`، `TaskCreated`، `TeammateIdle` (`TaskCompleted` و `TaskCreated` فقط وقتی ابزار todo فعال است اجرا می‌شوند — به طور پیش‌فرض فقط در مدل‌های Claude 3.x، Opus ۴ تا ۴.۷، Sonnet ۴ تا ۴.۶ و Haiku ۴.۵ در دسترس است؛ `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` می‌تواند آن را بازیابی کند)
-- **胡ک چرخه عمر**: `ConfigChange`، `CwdChanged`، `DirectoryAdded`، `FileChanged`، `PreCompact`، `PostCompact`، `PreModelSwitch`، `PostModelSwitch`، `WorktreeCreate`، `WorktreeRemove`، `Notification`، `InstructionsLoaded`، `Elicitation`، `ElicitationResult`
+- **هوک ابزارها**: `PreToolUse`، `PostToolUse`، `PostToolUseFailure`، `PostToolBatch`، `PermissionRequest`، `PermissionDenied`
+- **هوک جلسه**: `SessionStart`، `Setup`، `SessionEnd`، `Stop`، `StopFailure`، `SubagentStart`، `SubagentStop`
+- **هوک وظیفه**: `UserPromptSubmit`، `UserPromptExpansion`، `MessageDisplay`، `TaskCompleted`، `TaskCreated`، `TeammateIdle` (`TaskCompleted` و `TaskCreated` فقط وقتی ابزار todo فعال است اجرا می‌شوند — به طور پیش‌فرض فقط در مدل‌های Claude 3.x، Opus ۴ تا ۴.۷، Sonnet ۴ تا ۴.۶ و Haiku ۴.۵ در دسترس است؛ `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` می‌تواند آن را بازیابی کند)
+- **هوک چرخه عمر**: `ConfigChange`، `CwdChanged`، `DirectoryAdded`، `FileChanged`، `PreCompact`، `PostCompact`، `PreModelSwitch`، `PostModelSwitch`، `WorktreeCreate`، `WorktreeRemove`، `Notification`، `InstructionsLoaded`، `Elicitation`، `ElicitationResult`
 
 ## نصب
 
@@ -70,7 +70,7 @@ chmod +x ~/.claude/hooks/*.sh
 
 ## استفاده
 
-胡ک‌ها وقتی رویداد مطابق پیدا می‌شود، به صورت خودکار اجرا می‌شوند. می‌توانید آن‌ها را به عنوان 콜بک رویداد Claude Code در نظر بگیرید.
+هوک‌ها وقتی رویداد مطابق پیدا می‌شود، به صورت خودکار اجرا می‌شوند. می‌توانید آن‌ها را به عنوان 콜بک رویداد Claude Code در نظر بگیرید.
 
 ## مثال‌های رایج
 
@@ -83,10 +83,10 @@ chmod +x ~/.claude/hooks/*.sh
 
 ## بهترین شیوه‌ها
 
--胡ک‌ها را کوتاه و مشخص نگه دارید
+-هوک‌ها را کوتاه و مشخص نگه دارید
 - فقط مسئولیت واحد انجام دهید
 - ابتدا در محیط محلی تست کنید
-- منطق تجاری پیچیده را در胡ک قرار ندهید
+- منطق تجاری پیچیده را درهوک قرار ندهید
 - در مورد اثرات جانبی مراقب باشید
 
 ## عیب‌یابی
@@ -108,7 +108,7 @@ chmod +x ~/.claude/hooks/*.sh
 ## منابع بیشتر
 
 - [راهنمای حافظه](../02-memory/README.md)
-- [مستندات رسمی胡ک‌ها](https://code.claude.com/docs/en/hooks)
+- [مستندات رسمیهوک‌ها](https://code.claude.com/docs/en/hooks)
 - [مرجع CLI](https://code.claude.com/docs/en/cli-reference)
 
 ---

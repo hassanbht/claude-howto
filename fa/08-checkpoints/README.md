@@ -285,7 +285,7 @@ Checkpoints و git یک تکمیلی هستند:
 ## مفاهیم مرتبط
 
 - **حافظه**: contexte بلندمدت در peril.sessionهای مختلف، به [02-memory/README.md](../02-memory/README.md) مراجعه کنید
-- **胡ک‌ها**: اتوماسیون رویداد، به [06-hooks/README.md](../06-hooks/README.md) مراجعه کنید
+- **هوک‌ها**: اتوماسیون رویداد، به [06-hooks/README.md](../06-hooks/README.md) مراجعه کنید
 - **پلاگین‌ها**: مجموعه قابلیت‌های بسته‌بندی شده، به [07-plugins/README.md](../07-plugins/README.md) مراجعه کنید
 - **ویژگی‌های پیشرفته**: شامل التخطيط و وظایف پس‌زمینه، به [09-advanced-features/README.md](../09-advanced-features/README.md) مراجعه کنید
 

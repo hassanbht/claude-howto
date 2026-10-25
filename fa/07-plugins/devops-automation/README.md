@@ -1,122 +1,120 @@
----
-name: DevOps 自动化插件
-description: 为部署、监控和故障处理提供自动化工作流
-tags: plugins, devops, automation
----
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+</picture>
 
-# DevOps 自动化插件
+# پلاگین خودکارسازی DevOps
 
-完整的 DevOps 自动化工作流，覆盖部署、监控和事故响应。
+خودکارسازی کامل DevOps برای استقرار، مانیتورینگ و پاسخ به حوادث.
 
-## 功能
+## امکانات
 
-✅ 自动化部署
-✅ 回滚流程
-✅ 系统健康监控
-✅ 事故响应工作流
-✅ Kubernetes 集成
+✅ استقرار خودکار
+✅ رویه‌های بازگشت (rollback)
+✅ مانیتورینگ سلامت سیستم
+✅ گردش‌کار پاسخ به حوادث
+✅ یکپارچه‌سازی Kubernetes
 
-## 安装
+## نصب
 
 ```bash
 claude --plugin-dir ./07-plugins/devops-automation
 ```
 
-## 包含内容
+## محتویات
 
-### Slash 命令
-- `/deploy` - 部署到生产或预发环境
-- `/rollback` - 回滚到上一个版本
-- `/status` - 检查系统健康
-- `/incident` - 处理生产事故
+### دستورات Slash
+- `/deploy` - استقرار در محیط تولید یا staging
+- `/rollback` - بازگشت به نسخه قبلی
+- `/status` - بررسی سلامت سیستم
+- `/incident` - مدیریت حوادث تولید
 
-### 子 agents
-- `deployment-specialist` - 部署操作
-- `incident-commander` - 事故协调
-- `alert-analyzer` - 系统健康分析
+### subagentها
+- `deployment-specialist` - عملیات استقرار
+- `incident-commander` - هماهنگی حوادث
+- `alert-analyzer` - تحلیل سلامت سیستم
 
-### MCP 服务器
-- Kubernetes 集成
+### سرورهای MCP
+- یکپارچه‌سازی Kubernetes
 
-### 脚本
-- `deploy.sh` - 部署自动化
-- `rollback.sh` - 回滚自动化
-- `health-check.sh` - 健康检查工具
+### اسکریپت‌ها
+- `deploy.sh` - خودکارسازی استقرار
+- `rollback.sh` - خودکارسازی بازگشت
+- `health-check.sh` - ابزارهای بررسی سلامت
 
-### Hooks
-- `pre-deploy.js` - 部署前验证
-- `post-deploy.js` - 部署后任务
+### هوک‌ها
+- `pre-deploy.js` - اعتبارسنجی پیش از استقرار
+- `post-deploy.js` - وظایف پس از استقرار
 
-## 使用
+## استفاده
 
-### 部署到预发环境
-
+### استقرار در staging
 ```
 /deploy staging
 ```
 
-### 部署到生产环境
-
+### استقرار در تولید
 ```
 /deploy production
 ```
 
-### 回滚
-
+### بازگشت
 ```
 /rollback production
 ```
 
-### 检查状态
-
+### بررسی وضعیت
 ```
 /status
 ```
 
-### 处理事故
-
+### مدیریت حادثه
 ```
 /incident
 ```
 
-## 要求
+## نیازمندی‌ها
 
 - Claude Code 2.1+
-- Kubernetes CLI（kubectl）
-- 已配置集群访问
+- Kubernetes CLI (kubectl)
+- دسترسی کلاستر پیکربندی‌شده
 
-## 配置
+## پیکربندی
 
-设置 Kubernetes 配置：
-
+پیکربندی Kubernetes خود را تنظیم کنید:
 ```bash
 export KUBECONFIG=~/.kube/config
 ```
 
-## 示例工作流
+## گردش‌کار نمونه
 
 ```
-用户：/deploy production
+کاربر: /deploy production
 
 Claude:
-1. 运行 pre-deploy hook（验证 kubectl 和集群连接）
-2. 将部署委派给 deployment-specialist subagent
-3. 运行 deploy.sh 脚本
-4. 通过 Kubernetes MCP 监控部署进度
-5. 运行 post-deploy hook（等待 pods 就绪，执行 smoke tests）
-6. 提供部署总结
+۱. اجرای هوک pre-deploy (اعتبارسنجی kubectl، اتصال کلاستر)
+۲. واگذاری به subagent deployment-specialist
+۳. اجرای اسکریپت deploy.sh
+۴. مانیتورینگ پیشرفت استقرار از طریق Kubernetes MCP
+۵. اجرای هوک post-deploy (انتظار برای podها، تست‌های smoke)
+۶. ارائه خلاصه استقرار
 
-结果：
-✅ 部署完成
-📦 版本：v2.1.0
-🚀 Pods：3/3 已就绪
-⏱️  用时：2m 34s
+نتیجه:
+✅ استقرار کامل شد
+📦 نسخه: v2.1.0
+🚀 Podها: ۳/۳ آماده
+⏱️  زمان: ۲m 34s
 ```
 
 ---
 
-**最后更新**: 2026 年 10 月 18 日
-**Claude Code 版本**: 2.1.302
-**来源**:
+**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.302
+**منابع**:
+- https://code.claude.com/docs/en/plugins
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.131
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.138
+- https://code.claude.com/docs/en/model-config
 - https://code.claude.com/docs/en/plugins/cli-reference
 - https://code.claude.com/docs/en/plugins/install
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

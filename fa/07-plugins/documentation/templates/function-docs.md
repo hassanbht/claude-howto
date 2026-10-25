@@ -1,38 +1,38 @@
-# 函数：`functionName`
+# تابع: `functionName`
 
-## 描述
-简要说明这个函数的作用。
+## توضیح
+توضیح مختصری از اینکه این تابع چه کاری انجام می‌دهد.
 
-## 签名
+## امضا
 ```typescript
 function functionName(param1: Type1, param2: Type2): ReturnType
 ```
 
-## 参数
+## پارامترها
 
-| 参数 | 类型 | 必填 | 描述 |
-|------|------|------|------|
-| param1 | Type1 | 是 | param1 的说明 |
-| param2 | Type2 | 否 | param2 的说明 |
+| پارامتر | نوع | الزامی | توضیح |
+|---------|------|----------|-------------|
+| param1 | Type1 | بله | توضیح param1 |
+| param2 | Type2 | خیر | توضیح param2 |
 
-## 返回值
-**类型**：`ReturnType`
+## بازگشتی
+**نوع**: `ReturnType`
 
-返回内容的说明。
+توضیح چیزی که بازگردانده می‌شود.
 
-## 抛出异常
-- `Error`：在输入无效时抛出
-- `TypeError`：在传入错误类型时抛出
+## استثناها
+- `Error`: هنگامی که ورودی نامعتبر ارائه شود
+- `TypeError`: هنگامی که نوع اشتباه ارسال شود
 
-## 示例
+## نمونه‌ها
 
-### 基本用法
+### استفاده پایه
 ```typescript
 const result = functionName('value1', 'value2');
 console.log(result);
 ```
 
-### 高级用法
+### استفاده پیشرفته
 ```typescript
 const result = functionName(
   complexParam1,
@@ -40,11 +40,19 @@ const result = functionName(
 );
 ```
 
-## 备注
-- 其他说明或警告
-- 性能注意事项
-- 最佳实践
+## یادداشت‌ها
+- یادداشت‌ها یا هشدارهای اضافی
+- ملاحظات عملکرد
+- بهترین روش‌ها
 
-## 另请参阅
-- [相关函数](#)
-- [API 文档](#)
+## همچنین ببینید
+- [تابع مرتبط](#)
+- [مستندات API](#)
+
+---
+
+**آخرین به‌روزرسانی**: ۴ اوت ۲۰۲۶
+**نسخه Claude Code**: 2.1.220
+**منابع**:
+- https://code.claude.com/docs/en/plugins
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

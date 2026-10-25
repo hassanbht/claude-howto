@@ -1,102 +1,686 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
-# دستورات Slash
+# دستورات اسلش
 
-دستورات Slash، دستورهای کوتاه که کاربر برای اجرای وظایف خاص از طریق کلود کد استفاده می‌کند. این دستورات، بسته به توسعه‌دهنده، مستقل از فعالیت‌های مدل‌های هوشمند و کلود کد است.
+## مرور کلی
 
-## فهرست مطالب
+دستورات اسلش میانبرهایی هستند که رفتار کلود را در طول یک سیشن تعاملی کنترل می‌کنند. این دستورات در چند نوع ارائه می‌شوند:
 
-1. [چه چیست؟](#چه-چیست)
-2. [آموزش](#آموزش)
-3. [خانه‌ی دستورات](#خانه‌ی-دستورات)
-4. [اشکال‌پردازی](#اشکال‌پردازی)
+- **دستورات داخلی**: ارائه‌شده توسط کلود کد (`/help`, `/clear`, `/model`)
+- **مهارت‌ها**: دستورات تعریف‌شده توسط کاربر به‌عنوان فایل‌های `SKILL.md` (`/optimize`, `/pr`)
+- **دستورات پلاگین**: دستورات از پلاگین‌های نصب‌شده (`/frontend-design:frontend-design`)
+- **پرامپت‌های MCP**: دستورات از سرورهای MCP (`/mcp__github__list_prs`)
 
----
+> **نکته**: دستورات اسلش سفارشی در مهارت‌ها ادغام شده‌اند. فایل‌های `.claude/commands/` هنوز کار می‌کنند، اما مهارت‌ها (`.claude/skills/`) اکنون رویکرد توصیه‌شده هستند. هر دو میانبر `/command-name` ایجاد می‌کنند. برای مرجع کامل به [راهنمای مهارت‌ها](../03-skills/) مراجعه کنید.
 
-## چه چیست؟
+## مرجع دستورات داخلی
 
-دستورات Slash، فایل‌های Markdown در پوشه‌ی `.claude/commands/` هستند که کلود کد، هنگام تایپ `/نام-دستور`، قبل از پاسخ، می‌تواند در آن‌ها بروید.
+دستورات داخلی میانبرهایی برای اقدامات متداول هستند. **بیش از ۶۰ دستور داخلی** و **حدود ۲۰ مهارت همراه** (برخی نیاز به فعال‌سازی ویژگی دارند) موجود است. در کلود کد `/` را تایپ کنید تا لیست کامل را ببینید، یا `/` و سپس هر حرفی را تایپ کنید تا فیلتر شود.
 
-### کارکرد
+> **نکته**: از v2.1.236، فشردن Enter روی یک دستور اسلش اشتباه‌تایپ‌شده — یا روی دستوری که در سیشن فعلی در دسترس نیست — خطا گزارش می‌کند به‌جای آنکه نزدیک‌ترین تطابق فازی را بی‌صدا اجرا کند. پیشوندهای بدون ابهام و نام‌های مستعار تعریف‌شده همچنان به‌طور قبلی اجرا می‌شوند.
 
-- کلود کد، وقتی کاربر `/دستور` می‌نویسد، فایل `.claude/commands/dostor.md` را می‌خواند
-- سنت‌instructions برای کلود کد است
-- برای ساختن محیط‌های مشخصی، مثل کد، لیبن، یا بهینه‌سازی، از آن‌ها استفاده می‌شود
+| دستور | هدف |
+|---------|---------|
+| `/add-dir <path>` | افزودن دایرکتوری کاری |
+| `/advisor [model\|off]` | پیکربندی مشاور. به‌صورت یک گفت‌وگوی تعاملی باز می‌شود؛ در برنامه دسکتاپ، Remote Control و سیشن‌های headless (`-p` / Agent SDK) به جای آن فرم متنی می‌گیرد — `/advisor` ساده، `/advisor <model>` یا `/advisor off` (v2.1.260+) |
+| `/agents` | دیگر یک دستور کارآمد نیست: ویزارد تعاملی در v2.1.198 حذف شد، و از v2.1.281 دیگر در منوی `/` یا `/help` ظاهر نمی‌شود — تایپ کردن آن فقط توضیح می‌دهد که ویزارد کجا رفت. از کلود بخواهید subagentها را ایجاد یا مدیریت کند، یا فایل‌های `.claude/agents/` را مستقیماً ویرایش کنید |
+| `/branch [name]` | تغییر به یک کپی از گفت‌وگو در این نقطه، با حفظ اصل (با `/resume` به آن برگردید) |
+| `/fork [prompt]` | کپی گفت‌وگوی فعلی به یک **سیشن پس‌زمینه جدید** و ادامه کار در اینجا؛ این دو از آن نقطه مستقل هستند و کپی ردیف خود را در `claude agents` می‌گیرد (v2.1.212+). به‌جز در مواردی که کپی در محل ویرایش می‌کند، کلود کد به آن دستور می‌دهد پیش از ایجاد تغییرات کد یک worktree اختصاصی بسازد (دستور جداسازی نیازمند v2.1.221+ است) |
+| `/subtask <task>` | ایجاد یک **subagent منشعب** که کل گفت‌وگو را به ارث می‌برد و روی وظیفه کار می‌کند در حالی که شما ادامه می‌دهید؛ نتیجه آن پس از پایان به این گفت‌وگو برمی‌گردد (v2.1.212+) |
+| `/btw [question]` | پرسیدن یک پرسش جانبی موقت در حالی که کلود روی وظیفه اصلی کار می‌کند؛ context گفت‌وگوی اصلی را آلوده نمی‌کند. `/btw` ساده آخرین پرسش جانبی شما را باز می‌کند (v2.1.212+) |
+| `/cd <path>` | انتقال سیشن به دایرکتوری کاری جدید بدون شکستن cache پرامپت (اضافه شده در v2.1.169) |
+| `/chrome` | پیکربندی یکپارچگی مرورگر Chrome |
+| `/clear` | پاک‌کردن گفت‌وگو (نام‌های مستعار: `/reset`, `/new`) |
+| `/color [color\|default]` | تنظیم رنگ نوار پرامپت. `/color` ساده (بدون آرگومان) یک رنگ سیشن تصادفی انتخاب می‌کند (v2.1.128+)؛ یک نام رنگ یا hex را برای تنظیم صریح ارسال کنید. |
+| `/compact [instructions]` | فشرده‌سازی گفت‌وگو با دستورالعمل‌های تمرکز اختیاری. یک compact ناموفق اکنون به‌جای بی‌صدا انجام ندادن، به‌عنوان خطا در UI نمایش می‌یابد (v2.1.216) |
+| `/config` | باز کردن تنظیمات (نام مستعار: `/settings`) |
+| `/context` | تجسم استفاده از context به‌عنوان شبکه رنگی. هنگامی که استفاده بیش از حد پنجره context است یک هشدار صریح نشان می‌دهد (v2.1.216) |
+| `/copy [N]` | کپس‌کردن پاسخ دستیار به کلیپ‌بورد؛ `w` در فایل می‌نویسد |
+| `/cost` | نام مستعار میانبر تایپ برای `/usage` — تب هزینه را باز می‌کند (v2.1.118+) |
+| `/desktop` | ادامه در برنامه دسکتاپ (نام مستعار: `/app`) |
+| `/diff` | نمایشگر diff تعاملی برای تغییرات commit‌نشده. در رندر fullscreen به‌جای آن یک پنل diff در کنار گفت‌وگو باز می‌کند که باز می‌ماند در حالی که به کار ادامه می‌دهید — فایل‌های تغییر یافته با تعداد خطوط اضافه/حذف‌شده لیست می‌شود و هر بار که کلود فایلی را ویرایش می‌کند یا دستور شل اجرا می‌کند تازه می‌شود؛ `/diff` را مجدداً اجرا کنید یا `✕` را کلیک کنید تا بسته شود (v2.1.260+). رندر کلاسیک نمایشگر را به‌جای نوار پرامپت باز می‌کند |
+| `/doctor` | تشخیص سلامت نصب — در حین پاسخ‌گویی کلود قابل باز شدن است؛ یک مهارت همراه: کلود نصب شما را بررسی می‌کند و راه‌حل‌هایی پیشنهاد می‌کند که پس از تأیید شما اعمال می‌کند (`claude doctor` تشخیص فقط‌خواندی اجرا می‌کند); `/doctor prompt-audit` (همچنین `/checkup prompt-audit`) فایل‌های CLAUDE.md، مهارت‌ها، agentها و دستورات را برای الگوهای پرامپت‌نویسی نوشته‌شده برای مدل‌های قدیمی‌تر ممیزی می‌کند (v2.1.283) |
+| `/effort [low\|medium\|high\|xhigh\|max\|auto\|ultracode [on\|off]]` | تنظیم سطح تلاش از طریق اسلایدر فلش کلیدی تعاملی. سطوح: `low` → `medium` → `high` → `xhigh` (جدید در v2.1.111) → `max`. پیش‌فرض `medium` روی Opus 5.5 (مدل پیش‌فرض از v2.1.280)، Sonnet 5.5 و Haiku 5.5، `high` روی Opus 5، Sonnet 5 و Opus 4.8، و `xhigh` روی Opus 4.7 است؛ `xhigh` نیازمند Fable 5.1، Fable 5، Opus 5.5، Sonnet 5.5، Haiku 5.5، Opus 5، Sonnet 5، Opus 4.8 یا Opus 4.7 است؛ `max` روی Fable 5.1، Fable 5، Opus 5.5، Sonnet 5.5، Haiku 5.5، Opus 5، Sonnet 5، Opus 4.8/4.7/4.6 و Sonnet 4.6 کار می‌کند. یک سطح ذخیره‌شده پیش از اینکه `/effort` به‌ازای مدل شود برای مدل‌های جدید منتشر‌شده مثل Opus 5.5 اعمال نمی‌شود (v2.1.280). اسلایدر همچنین یک toggle **Ultracode** دارد (Tab یا `/effort ultracode [on\|off]`) — یک سطح تلاش مدل نیست: به کلود می‌گوید گردش کارهای پویا را در هر سطح تلاشی که سیشن اجرا می‌شود هماهنگ کند. از v2.1.284 دیگر `xhigh` را تحمیل نمی‌کند و با تغییر سطح روشن می‌ماند؛ `/effort ultracode` برای سیشن باقی می‌ماند و تنظیم `ultracode` آن را پایدار می‌کند |
+| `/exit` | خروج از REPL (نام مستعار: `/quit`) |
+| `/export [filename]` | صادرات گفت‌وگوی فعلی به یک فایل یا کلیپ‌بورد |
+| `/usage-credits` | پیکربندی استفاده اضافی برای محدودیت‌های نرخ (تغییر نام از `/extra-usage` در v2.1.144؛ `/extra-usage` همچنان به‌عنوان نام مستعار کار می‌کند) |
+| `/fast [on\|off]` | toggle حالت سریع. برای Opus 5.5 (پیش‌فرض حالت سریع از v2.1.280)، Opus 5 و Opus 4.8 اعمال می‌شود |
+| `/feedback` | ارسال بازخورد. از v2.1.141، می‌تواند سیشن‌های اخیر (آخر ۲۴ ساعت یا ۷ روز) را ضمیمه کند تا گزارش‌هایی که بیش از یک سیشن را در بر می‌گیرند شامل context باشند. از v2.1.178، `/bug` نیازمند یک توضیح پیش از ارسال است. |
+| `/focus` | toggle نمای تمرکز (اضافه شده در v2.1.110؛ جایگزین `Ctrl+O` برای toggle تمرکز) |
+| `/goal <statement>` | ثبت یک شرط تکمیل سطح سیشن؛ کلود تا زمان تحقق هدف کار می‌کند. `/goal clear` آن را حذف می‌کند. هدف فعال در خط وضعیت ظاهر می‌شود، با یک پنل overlay زنده که زمان سپری‌شده، تعداد نوبت و استفاده از token را نشان می‌دهد (اضافه شده در v2.1.139). |
+| `/help` | نمایش راهنما |
+| `/hooks` | مشاهده پیکربندی‌های هوک |
+| `/ide` | مدیریت یکپارچگی‌های IDE |
+| `/init` | مقداردهی اولیه `CLAUDE.md`. تنظیم `CLAUDE_CODE_NEW_INIT=1` برای گردش کار تعاملی |
+| `/insights` | تولید گزارش تحلیل سیشن |
+| `/install-github-app` | راه‌اندازی برنامه GitHub Actions |
+| `/install-slack-app` | نصب برنامه Slack |
+| `/keybindings` | باز کردن پیکربندی keybindingها |
+| `/fewer-permission-prompts` | تحلیل فراخوانی‌های اخیر Bash/MCP و افزودن یک allowlist با اولویت به `.claude/settings.json` برای کاهش اعلان‌های مجوز (اضافه شده در v2.1.111) |
+| `/login` | تعویض حساب‌های Anthropic |
+| `/logout` | خروج از حساب Anthropic |
+| `/mcp` | مدیریت سرورهای MCP و OAuth |
+| `/memory` | ویرایش `CLAUDE.md`، toggle حافظه خودکار |
+| `/mobile` | QR code برای برنامه موبایل (نام‌های مستعار: `/ios`, `/android`) |
+| `/model [model]` | انتخاب مدل با فلش چپ/راست برای تلاش. از v2.1.153، انتخاب **به‌عنوان پیش‌فرض ذخیره می‌شود** برای سیشن‌های جدید (هماهنگ با IDE); پس از انتخاب `s` را بفشارید تا فقط روی سیشن فعلی اعمال شود. (keybinding `modelPicker:setAsDefault` به `modelPicker:thisSessionOnly` تغییر نام یافت; اکشن قدیمی `d` اکنون `s` است.) از v2.1.219 انتخاب‌گر ردیف ادغام‌شده Opus را به‌عنوان "Opus (1M context)" نشان می‌داد; v2.1.283 این برچسب از ردیف‌های Opus و Default که در آن Opus از قبل پنجره ۱M دارد حذف می‌کند (پنجره تغییر نکرده). |
+| `/output-style [name]` | لیست و تعویض سبک‌های خروجی (در v2.1.269 پس از حذف در v2.1.91 مجدداً اضافه شد). بدون آرگومان سبک‌ها را لیست می‌کند و سبک فعلی را علامت‌گذاری می‌کند. در سیشن‌های headless و Remote Control کار می‌کند; انتخاب در `.claude/settings.local.json` ذخیره می‌شود |
+| `/passes` | اشتراک‌گذاری یک هفته رایگان کلود کد |
+| `/permissions` | مشاهده/به‌روزرسانی مجوزها (نام مستعار: `/allowed-tools`) |
+| `/plan [description]` | ورود به حالت برنامه‌ریزی |
+| `/plugin` | مدیریت پلاگین‌ها |
+| `/proactive` | نام مستعار برای `/loop` (اضافه شده در v2.1.105) |
+| `/powerup` | کشف ویژگی‌ها از طریق درس‌های تعاملی با دموهای انیمیشن |
+| `/privacy-settings` | تنظیمات حریم خصوصی (فقط Pro/Max) |
+| `/release-notes` | مشاهده changelog |
+| `/recap` | نمایش خلاصه/مرور سیشن هنگام بازگشت به یک سیشن (اضافه شده در v2.1.108) |
+| `/reload-plugins` | بارگذاری مجدد پلاگین‌های فعال. از v2.1.221 اکثر نصب‌ها بلافاصله فعال می‌شوند، بنابراین این فقط زمانی لازم است که خلاصه نصب بگوید `Run /reload-plugins to activate.` در سیشن‌های headless از v2.1.260 در دسترس است، بنابراین در لیست دستورات Claude Code Desktop و SDK هم ظاهر می‌شود |
+| `/reload-skills` | اسکن مجدد دایرکتوری‌های مهارت بدون راه‌اندازی مجدد سیشن (اضافه شده در v2.1.152). لیست کامل مهارت را مجدداً به کلود ارسال می‌کند که مهارت‌ها را پس از compaction بازمی‌گرداند (v2.1.299) |
+| `/remote-control` | کنترل از راه دور از claude.ai (نام مستعار: `/rc`) |
+| `/remote-env` | پیکربندی محیط راه دور پیش‌فرض |
+| `/rename [name]` | تغییر نام سیشن |
+| `/resume [session]` | ازسرگیری گفت‌وگو (نام مستعار: `/continue`) |
+| `/review [low\|medium\|high\|xhigh\|max\|ultra] [--fix] [--comment] [pr#\|branch\|path]` | نام مستعار `/code-review` (v2.1.223): diff فعلی، یا یک شماره PR، شاخه یا مسیر ارسالی را بازبینی می‌کند — مثلاً `/review 1234`. همان سطوح تلاش و flagها را می‌گیرد. بدون سطح داده‌شده، آخرین سطح `low`–`max` تایپ‌شده را بازاستفاده می‌کند |
+| `/rewind` | بازگردانی گفت‌وگو و/یا کد (نام‌های مستعار: `/checkpoint`, `/undo`) |
+| `/sandbox` | toggle حالت sandbox |
+| `/schedule [description]` | ایجاد/مدیریت وظایف زمان‌بندی‌شده Cloud |
+| `/scroll-speed` | باز کردن یک گفت‌وگوی تعاملی برای تنظیم سرعت پیمایش چرخ ماوس در حالت fullscreen: ←/→ را برای تنظیم، `r` برای بازنشانی، Enter برای ذخیره بفشارید. در `~/.claude/settings.json` ذخیره می‌شود (اضافه شده در v2.1.139). |
+| `/security-review` | تحلیل شاخه برای آسیب‌پذیری‌های امنیتی |
+| `/skill-doctor` | نشان می‌دهد کدام مهارت‌های بارگذاری‌شده بلااستفاده می‌مانند و هرکدام چقدر در context هزینه دارند، تا تصمیم بگیرید کدام را خاموش کنید. گزارش در تب **Stats** مدیر `/plugin` باز می‌شود; در حالت `-p` غیرتعاملی به‌صورت متن چاپ می‌شود. روی Remote Control پاسخ می‌دهد `Skill usage reports are not available on this connection.` — آن را در ترمینال روی ماشینی که سیشن را میزبانی می‌کند اجرا کنید (نیازمند v2.1.252+) |
+| `/skills` | لیست مهارت‌های در دسترس |
+| `/stats` | نام مستعار میانبر تایپ برای `/usage` — تب آمار را باز می‌کند (استخدام روزانه، سیشن‌ها، streakها) (v2.1.118+) |
+| `/stickers` | سفارش استیکرهای کلود کد |
+| `/status` | نمایش نسخه، مدل، حساب و یک ردیف `Session kind` با محتوای `background job · attached`, `background job · unattended` یا `interactive` (ردیف اضافه شد در v2.1.221). در حین پاسخ‌گویی کلود قابل باز شدن است |
+| `/statusline` | پیکربندی خط وضعیت |
+| `/tasks` | لیست/مدیریت وظایف پس‌زمینه |
+| `/team-onboarding` | تولید راهنمای ramp-up هم‌تیمی از ۳۰ روز اخیر سیشن‌ها، دستورات و استخدام MCP کلود کد شما، و بازگرداندن یک لینک اشتراک‌گذاری (جدید در v2.1.101) |
+| `/teleport` | ازسرگیری یک سیشن Claude Code on the web در این ترمینال; یک انتخاب‌گر از سیشن‌های وب شما باز می‌کند (نام مستعار: `/tp`). نیازمند اشتراک claude.ai |
+| `/terminal-setup` | پیکربندی keybindingهای ترمینال |
+| `/theme` | باز کردن انتخاب‌گر تم / مدیریت تم‌های سفارشی (v2.1.118). تعریف تم‌های سفارشی از طریق JSON در `~/.claude/themes/<name>.json` |
+| `/tui [default\|fullscreen]` | تنظیم رندرر UI ترمینال (`fullscreen` رندر بدون پرش می‌دهد) و راه‌اندازی مجدد در آن; یک `/tui` ساده رندرر فعلی را چاپ می‌کند (اضافه شده در v2.1.110) |
+| `/ultrareview` | بازبینی کد جامع مبتنی بر cloud با چند agent (اضافه شده در v2.1.111). فراخوانی ترجیحی اکنون `/code-review ultra` است; `/ultrareview` به‌عنوان نام مستعار باقی می‌ماند. شامل ۳ اجرای رایگان روی Pro و Max، سپس نیازمند usage credit |
+| `/upgrade` | باز کردن صفحه ارتقا برای طرح بالاتر |
+| `/usage` | داشبورد استخدام کانونی (v2.1.118) — محدودیت‌های استخدام طرح، محدودیت‌های نرخ، هزینه و آمار سیشن روزانه را ترکیب می‌کند. `/cost` و `/stats` نام‌های مستعار میانبر تایپ هستند که تب‌های خاصی را باز می‌کنند. در مورد تلاش max، گردش کارها، context همیشه روشن و نتایج ابزار بزرگ هشدار می‌دهد (v2.1.299) |
+| `/voice` | toggle دیکته‌صوتی push-to-talk |
+| `/workflows` | مشاهده اجراهای گردش کار پویای در حال اجرا و تکمیل‌شده (اضافه شده در v2.1.154). به [گردش کارهای پویا](../09-advanced-features/README.md#dynamic-workflows) مراجعه کنید |
 
-### ساختار فایل
+> **چرا `/cd` مهم است:** تغییر دایرکتوری قبلاً گرمای cache را از دست می‌داد (نوبت بعدی را کندتر و پرهزینه‌تر می‌کرد); `/cd` cache پرامپت را در طول تعویض حفظ می‌کند.
 
-```markdown
----
-name: نام‌دستور
-description: توضیح مختصر
-tags: perform
----
+### مهارت‌های همراه
 
-## محتویات دستور
-...
+این مهارت‌ها با کلود کد ارائه می‌شوند و مانند دستورات اسلش فراخوانی می‌شوند:
+
+| مهارت | هدف |
+|-------|---------|
+| `/batch <instruction>` | هماهنگ‌سازی تغییرات موازی مقیاس‌بزرگ با استفاده از worktreeها |
+| `/claude-api` | بارگذاری مرجع Claude API برای زبان پروژه |
+| `/dataviz` | راهنمای طراحی نمودار و داشبورد با یک اعتبارسنج قابل‌اجرا palette رنگ (v2.1.198) |
+| `/debug [description]` | فعال‌سازی لاگ دیباگ |
+| `/design [description]` | ایجاد یک **بوم طراحی** — یک طراحی بصری چندصفحه‌ای (mockupهای UI، جریان‌های صفحه، صفحات فرود، پوستر) که به‌عنوان artifact منتشر و به‌صورت بصری به‌جای کد اصلاح می‌شود. به‌جای نوشتن دستی HTML زمانی استفاده کنید که چیدمان چیزی است که می‌خواهید روی آن تکرار کنید. نیازمند v2.1.265+، یک سیشن که در آن artifactها در دسترس‌اند، و یک حساب با قالب Design; در Bedrock، Vertex، Foundry یا Claude Platform on AWS در دسترس نیست. Claude Design مستقل (claude.ai/design) در ۱۴ دسامبر ۲۰۲۶ بسته می‌شود. |
+| `/loop [interval] [prompt]` | اجرای پرامپت تکراری روی بازه |
+| `/code-review [low\|medium\|high\|xhigh\|max\|ultra] [--fix] [--comment] [--max-findings n\|all\|default] [pr#\|branch\|path]` | بازبینی diff فعلی — یا یک شماره PR، شاخه یا مسیر ارسالی — برای باگ‌های صحت. `--fix` برای اعمال یافته‌ها، `--comment` برای ارسال آن‌ها به‌عنوان کامنت‌های درون‌خطی GitHub PR، یا `ultra` برای اجرای بازبینی عمیق cloud; با `ultra` روی هدف PR `github.com`، `--post` ارسال یافته‌ها به PR را پیش‌انتخاب می‌کند. بدون سطح تلاش داده‌شده، بازبینی آخرین سطح تایپ‌شده را بازاستفاده می‌کند (v2.1.223). در ابتدا `/simplify` را در v2.1.147 جذب کرد، اما `/simplify` در v2.1.154 به‌عنوان یک دستور مجزا بازگشت. `--max-findings <n>\|all` را برای گزارش بیشتر یا کمتر از حد معمول ارسال کنید; انتخاب تا زمانی که `--max-findings default` ارسال کنید بازاستفاده می‌شود (v2.1.288) |
+| `/simplify` | اجرای یک بازبینی فقط-پاکسازی (بازاستفاده / ساده‌سازی / کارایی / ارتفاع) و اعمال راه‌حل‌ها; برای شکار باگ **نیست** — برای آن از `/code-review` استفاده کنید. به‌طور خلاصه یک نام مستعار `/code-review --fix` بود (v2.1.152)، در v2.1.154 فقط-پاکسازی شد |
+
+### دستورات منسوخ‌شده
+
+| دستور | وضعیت |
+|---------|--------|
+| `/pr-comments` | در v2.1.91 حذف شد — از کلود مستقیماً بخواهید کامنت‌های PR را ببیند |
+| `/vim` | در v2.1.92 حذف شد — از /config → Editor mode استفاده کنید |
+
+### تغییرات اخیر
+
+- `/fork` و `/subtask` در **v2.1.212** نقش‌ها را تعویض کردند. `/fork` اکنون گفت‌وگو را در یک سیشن مستقل پس‌زمینه جدید کپی می‌کند; رفتار subagent منشعب که قبلاً داشت به دستور جدید `/subtask` منتقل شد. تاریخچه: `/fork` از v2.1.77 تا v2.1.161 یک نام مستعار برای `/branch` بود; از v2.1.161 تا v2.1.211 یک subagent منشعب را شروع می‌کرد (کاری که `/subtask` اکنون می‌کند). هنگامی که نمای agent خاموش است، `/subtask` در دسترس نیست و `/fork` رفتار subagent منشعب را نگه می‌دارد
+- `/resume` (بدون آرگومان) یک انتخاب‌گر از سیشن‌های گذشته — از جمله سیشن‌های حذف‌شده از لیست قابل‌مشاهده — باز می‌کند و سیشن انتخابی را به‌عنوان سیشن پس‌زمینه ازسرگیری می‌کند (v2.1.212)
+- `/resume` و `claude --resume` روی سیشنی که در پس‌زمینه در حال اجراست، آن سیشن را به‌جای امتناع باز می‌کنند، و `claude --resume <id> "prompt"` پرامپت را به‌عنوان نوبت بعدی ارسال می‌کند (v2.1.285)
+- `/output-style` منسوخ (v2.1.73) و حذف (v2.1.91) شد، سپس **در v2.1.269 مجدداً اضافه شد** — در v2.1.278 یک دستور زنده است دوباره، و در سیشن‌های headless و Remote Control کار می‌کند. سبک‌های خروجی همچنین از طریق `/config` → Output style یا تنظیم `outputStyle` در دسترس‌اند; سبک‌های داخلی Default، Proactive، Explanatory، Learning و Concise (اضافه شده در v2.1.237) هستند
+- `/review` یک نام مستعار کامل `/code-review` شد — همان اهداف، سطوح تلاش و flagها (v2.1.223). تاریخچه: در ابتدا در v2.1.186 روی موتور `/code-review medium` منتقل شد در حالی که همچنان فقط-PR بود
+- دستور `/effort` اضافه شد; سطح `max` روی Opus 4.6+ در دسترس است (در ابتدا فقط Opus 4.6)
+- دستور `/voice` برای دیکته‌صوتی push-to-talk اضافه شد
+- دستور `/schedule` برای ایجاد/مدیریت وظایف زمان‌بندی‌شده اضافه شد
+- دستور `/color` برای سفارشی‌سازی نوار پرامپت اضافه شد
+- /pr-comments در v2.1.91 حذف شد — از کلود مستقیماً بخواهید کامنت‌های PR را ببیند
+- /vim در v2.1.92 حذف شد — به‌جای آن از /config → Editor mode استفاده کنید
+- `/ultraplan` در v2.1.222 حذف شد — به‌جای آن از حالت برنامه‌ریزی استفاده کنید
+- /powerup برای درس‌های تعاملی ویژگی اضافه شد
+- /sandbox برای toggle حالت sandbox اضافه شد
+- انتخاب‌گر `/model` اکنون برچسب‌های قابل‌خواندن توسط انسان (مثلاً "Sonnet 4.6") به‌جای شناسه‌های مدل خام نشان می‌دهد
+- `/resume` از نام مستعار `/continue` پشتیبانی می‌کند
+- پرامپت‌های MCP به‌عنوان دستورات `/mcp__<server>__<prompt>` در دسترس‌اند (به [پرامپت‌های MCP به‌عنوان دستور](#mcp-prompts-as-commands) مراجعه کنید)
+- `/team-onboarding` برای تولید خودکار راهنماهای ramp-up هم‌تیمی اضافه شد (v2.1.101)
+- `/tui` برای رندر TUI fullscreen بدون پرش اضافه شد (v2.1.110)
+- `/focus` برای toggle نمای تمرکز اضافه شد; `Ctrl+O` اکنون فقط transcript پر‌حرف را toggle می‌کند (v2.1.110)
+- `/recap` برای راه‌اندازی دستی خلاصه context سیشن اضافه شد (v2.1.108)
+- `/undo` به‌عنوان نام مستعار `/rewind` اضافه شد (v2.1.108); همچنان یک نام مستعار `/rewind` است، در کنار `/checkpoint`
+- `/proactive` به‌عنوان نام مستعار `/loop` اضافه شد (v2.1.105)
+- `/effort` اسلایدر فلش کلیدی تعاملی و سطح جدید `xhigh` بین `high` و `max` گرفت; تلاش پیش‌فرض برای طرح‌های Opus 4.7 به `xhigh` افزایش یافت (v2.1.111). روی Opus 4.8 پیش‌فرض `high` است (v2.1.154); Opus 5 نیز پیش‌فرض `high` (v2.1.219)
+- `/ultrareview` برای بازبینی کد جامع مبتنی بر cloud با چند agent اضافه شد (v2.1.111)
+- `/fewer-permission-prompts` برای تحلیل فراخوانی‌های Bash/MCP و کاهش اعلان‌های مجوز از طریق allowlist در `.claude/settings.json` اضافه شد (v2.1.111)
+- حالت Auto دیگر برای مشترکین Max روی Opus 4.7 نیازمند flag `--enable-auto-mode` نیست (v2.1.112)
+- `/goal` اضافه شد — شرط تکمیل سطح سیشن که کلود در طول نوبت‌ها به‌سوی آن کار می‌کند; overlay زنده زمان سپری‌شده، تعداد نوبت و استخدام token را نشان می‌دهد (v2.1.139)
+- `/scroll-speed` اضافه شد — تنظیم سرعت پیمایش چرخ ماوس پنل پیش‌نمایش زنده TUI; به‌ازای ماشین پایدار است (v2.1.139)
+- `/reload-skills` اضافه شد — اسکن مجدد دایرکتوری‌های مهارت بدون راه‌اندازی مجدد سیشن (v2.1.152)
+- `/model` اکنون مدل انتخاب‌شده را به‌عنوان پیش‌فرض برای سیشن‌های جدید ذخیره می‌کند; برای فقط-سیشن `s` را بفشارید (keybinding `modelPicker:setAsDefault` → `modelPicker:thisSessionOnly`) (v2.1.153)
+- `/workflows` اضافه شد — مشاهده اجراهای گردش کار پویای در حال اجرا و تکمیل‌شده (v2.1.154)
+- `/simplify` به‌عنوان یک دستور بازبینی فقط-پاکسازی مجزا بازگشت (بازاستفاده / ساده‌سازی / کارایی / ارتفاع)، جدا از شکار باگ `/code-review` (v2.1.154)
+- `/status` یک ردیف `Session kind` گرفت که کارهای پس‌زمینه متصل و نظارت‌نشده را از سیشن‌های تعاملی متمایز می‌کند (v2.1.221)
+- نصب‌های پلاگین اکنون زمانی که ایمن باشد بلافاصله فعال می‌شوند; `/reload-plugins` فقط زمانی لازم است که خلاصه نصب آن را بخواهد (v2.1.221)
+- `/ultraplan` حذف شد — از حالت برنامه‌ریزی استفاده کنید (v2.1.222)
+- `/code-review` و `/review` آخرین سطح تلاش تایپ‌شده شما را هنگام حذف آن به یاد می‌آورند (v2.1.223)
+- `/code-review ultra` نقطه ورودی ترجیحی برای بازبینی چندagentی cloud شد; `/ultrareview` به‌عنوان نام مستعار باقی می‌ماند (v2.1.223)
+- `/code-review` در تلاش `high`, `xhigh` و `max` اکنون مانند سایر سطوح در یک agent پس‌زمینه اجرا می‌شود (v2.1.232)
+- نکته شروع که پیشنهاد ایجاد subagentهای سفارشی می‌کرد، و نudge مطابق در تور `/powerup`، حذف شدند (v2.1.232)
+- `/permissions` اکنون می‌تواند در حین کار کلود باز شود — تغییرات قانون برای بقیه نوبت فعلی اعمال می‌شود (v2.1.234)
+- `/add-dir <path>` اکنون می‌تواند در حین کار کلود استفاده شود; گفت‌وگوهای `/add-dir`, `/autocompact`, `/theme`, `/help`, `/config` و `/advisor` در **fullscreen TUI** میان نوبت باز می‌شوند، به‌جای اینکه تا پایان پاسخ‌گویی کلود در صف بمانند (`/bug` از v2.1.232 از قبل بلافاصله باز می‌شد) (v2.1.234)
+
+### `/goal` — شرط تکمیل سطح سیشن
+
+> **جدید در v2.1.139**
+
+از `/goal` برای ثبت یک شرط تکمیل برای سیشن فعلی استفاده کنید. کلود در طول نوبت‌ها به‌سوی آن کار می‌کند، و یک پنل overlay زمان سپری‌شده، تعداد نوبت و tokenهای استفاده‌شده را نشان می‌دهد. با `/goal clear` آن را پاک کنید. در حالت تعاملی، `claude -p` و Remote Control کار می‌کند.
+
+```
+User: /goal Migrate the payments service from REST to gRPC and get the integration tests passing.
+Claude: Goal registered. I'll work toward this until you clear it.
+[Goal panel: ⏱ 0s · turns 0 · tokens 0]
+
+User: start by listing the REST endpoints
+Claude: [کار را انجام می‌دهد، پنل به‌روز می‌شود]
 ```
 
-## آموزش
+**بررسی روی وظایف پس‌زمینه متوقف‌شده (v2.1.234):** در حالی که یک هدف فعال است، اگر یک وظیفه پس‌زمینه ۳۰+ دقیقه پیشرفتی نداشته باشد، کلود به‌جای ادامه بی‌صدا با یک به‌روزرسانی وضعیت بررسی می‌کند. آستانه (به دقیقه) را با متغیر محیط `CLAUDE_CODE_GOAL_CHECKIN_MINUTES` تنظیم کنید، یا `0` قرار دهید تا بررسی‌ها کاملاً غیرفعال شوند.
 
-### ساخت دستور جدید
+### `/team-onboarding` — راهنمای ramp-up هم‌تیمی
 
-۱. فایل را در `.claude/commands/` ذخیره کنید
-۲. در بالا، info‌‌های خود را کنید
-۳. استایل را تایید کنید
+> **جدید در v2.1.101**
 
-### استفاده
+از `/team-onboarding` برای تولید یک راهنمای ramp-up هم‌تیمی از استخدام محلی کلود کد پروژه استفاده کنید. کلود سیشن‌ها، دستورات و استخدام سرور MCP شما از ۳۰ روز گذشته را تحلیل می‌کند، سپس یک راهنمای onboarding تولید می‌کند که به توسعه‌دهندگان جدید کمک می‌کند سریع‌تر بهره‌ور شوند و یک لینک اشتراک‌گذاری به آن بازمی‌گرداند.
+
+این یک دستور داخلی است — چیزی برای نصب نیست.
+
+**استخدام:**
 
 ```bash
-/dostor-name
+claude /team-onboarding
 ```
 
-### شخصی‌سازی نام
+راهنمای تولیدشده بر اساس:
 
-برای اسم‌گذاری‌تون، از سیستم خاص برای نام‌گذاری استفاده می‌شود.
+- گردش کارهایی که در سراسر سیشن‌های اخیر شما تکرار می‌شوند
+- دستوراتی که اغلب اجرا می‌کنید
+- [سرورهای MCP](../05-mcp/README.md) که استفاده می‌کنید
+
+**در دسترس بودن:** در کلود کد v2.1.101 (۱۱ آوریل ۲۰۲۶) ارائه شد.
+
+## دستورات سفارشی (اکنون مهارت‌ها)
+
+دستورات اسلش سفارشی در مهارت‌ها **ادغام شده‌اند**. هر دو رویکرد دستوراتی ایجاد می‌کنند که می‌توانید با `/command-name` فراخوانی کنید:
+
+| رویکرد | مکان | وضعیت |
+|----------|----------|--------|
+| **مهارت‌ها (توصیه‌شده)** | `.claude/skills/<name>/SKILL.md` | استاندارد فعلی |
+| **دستورات قدیمی** | `.claude/commands/<name>.md` | هنوز کار می‌کند |
+
+اگر یک مهارت و یک دستور هم‌نام باشند، **مهارت تقدم دارد**. مثلاً وقتی هم `.claude/commands/review.md` و هم `.claude/skills/review/SKILL.md` وجود دارند، نسخه مهارت استفاده می‌شود.
+
+### مسیر مهاجرت
+
+فایل‌های `.claude/commands/` موجود شما بدون تغییر به کار ادامه می‌دهند. برای مهاجرت به مهارت‌ها:
+
+**قبل (دستور):**
+```
+.claude/commands/optimize.md
+```
+
+**بعد (مهارت):**
+```
+.claude/skills/optimize/SKILL.md
+```
+
+### چرا مهارت‌ها؟
+
+مهارت‌ها ویژگی‌های اضافی نسبت به دستورات قدیمی ارائه می‌دهند:
+
+- **ساختار دایرکتوری**: بسته‌بندی اسکریپت‌ها، قالب‌ها و فایل‌های مرجع
+- **فراخوانی خودکار**: کلود می‌تواند مهارت‌ها را هنگام ارتباط به‌صورت خودکار راه‌اندازی کند
+- **کنترل فراخوانی**: انتخاب اینکه کاربر، کلود یا هر دو بتوانند فراخوانی کنند
+- **اجرای subagent**: اجرای مهارت‌ها در contextهای ایزوله با `context: fork`
+- **افشا تدریجی**: بارگذاری فایل‌های اضافی فقط هنگام نیاز
+
+### ایجاد یک دستور سفارشی به‌عنوان مهارت
+
+یک دایرکتوری با یک فایل `SKILL.md` ایجاد کنید:
+
+```bash
+mkdir -p .claude/skills/my-command
+```
+
+**فایل:** `.claude/skills/my-command/SKILL.md`
+
+```yaml
+---
+name: my-command
+description: What this command does and when to use it
+---
+
+# My Command
+
+Instructions for Claude to follow when this command is invoked.
+
+1. First step
+2. Second step
+3. Third step
+```
+
+### مرجع Frontmatter
+
+| فیلد | هدف | پیش‌فرض |
+|-------|---------|---------|
+| `name` | نام دستور (به `/name` تبدیل می‌شود) | نام دایرکتوری |
+| `description` | توضیح کوتاه (به کلود کمک می‌کند بداند چه زمان استفاده کند) | اولین خط غیرخالی |
+| `argument-hint` | آرگومان‌های مورد انتظار برای تکمیل خودکار | هیچ |
+| `allowed-tools` | ابزارهایی که دستور بدون مجوز می‌تواند استفاده کند | به ارث می‌برد |
+| `model` | مدل خاص برای استفاده | به ارث می‌برد |
+| `disable-model-invocation` | اگر `true`، فقط کاربر می‌تواند فراخوانی کند (نه کلود) | `false` |
+| `user-invocable` | اگر `false`، از منوی `/` پنهان می‌شود | `true` |
+| `context` | تنظیم به `fork` برای اجرا در subagent ایزوله | هیچ |
+| `agent` | نوع agent هنگام استفاده از `context: fork` | `general-purpose` |
+| `hooks` | هوک‌های ثبت‌شده هنگام اجرای مهارت (هر رویداد هوک; آنها برای بقیه سیشن فعال می‌مانند) | هیچ |
+
+### آرگومان‌ها
+
+دستورات می‌توانند آرگومان دریافت کنند:
+
+**همه آرگومان‌ها با `$ARGUMENTS`:**
+
+```yaml
+---
+name: fix-issue
+description: Fix a GitHub issue by number
+---
+
+Fix issue #$ARGUMENTS following our coding standards
+```
+
+استخدام: `/fix-issue 123` → `$ARGUMENTS` تبدیل به "123" می‌شود
+
+**آرگومان‌های تکی با `$0`, `$1` و غیره:**
+
+```yaml
+---
+name: review-pr
+description: Review a PR with priority
+---
+
+Review PR #$0 with priority $1
+```
+
+استخدام: `/review-pr 456 high` → `$0`="456", `$1`="high"
+
+`${CLAUDE_PROJECT_DIR}` به مسیر مطلق ریشه پروژه تبدیل می‌شود (v2.1.196).
+
+### Context پویا با دستورات شل
+
+دستورات bash را پیش از پرامپت با `` !`command` `` اجرا کنید:
+
+> **نکته (v2.1.299)**: هوک‌های `UserPromptSubmit` پیش از بسط دستور اجرا می‌شوند، بنابراین یک هوک که پرامپت را مسدود می‌کند این دستورات `!` را نیز از اجرا بازمی‌دارد.
+
+```yaml
+---
+name: commit
+description: Create a git commit with context
+allowed-tools: Bash(git *)
+---
+
+## Context
+
+- Current git status: !`git status`
+- Current git diff: !`git diff HEAD`
+- Current branch: !`git branch --show-current`
+- Recent commits: !`git log --oneline -5`
+
+## Your task
+
+Based on the above changes, create a single git commit.
+```
+
+### ارجاعات فایل
+
+شامل محتوای فایل با استفاده از `@`:
+
+```markdown
+Review the implementation in @src/utils/helpers.js
+Compare @src/old-version.js with @src/new-version.js
+```
+
+## دستورات پلاگین
+
+پلاگین‌ها می‌توانند دستورات سفارشی ارائه دهند:
+
+```
+/plugin-name:command-name
+```
+
+یا به‌سادگی `/command-name` زمانی که تعارض نام‌گذاری وجود ندارد.
+
+**مثال‌ها:**
+```bash
+/frontend-design:frontend-design
+/commit-commands:commit
+```
+
+## پرامپت‌های MCP به‌عنوان دستور
+
+سرورهای MCP می‌توانند پرامپت‌ها را به‌عنوان دستورات اسلش در دسترس قرار دهند:
+
+```
+/mcp__<server-name>__<prompt-name> [arguments]
+```
+
+**مثال‌ها:**
+```bash
+/mcp__github__list_prs
+/mcp__github__pr_review 456
+/mcp__jira__create_issue "Bug title" high
+```
+
+### نحو مجوز MCP
+
+کنترل دسترسی به سرور MCP در مجوزها:
+
+- `mcp__github` - دسترسی به کل سرور GitHub MCP
+- `mcp__github__*` - دسترسی wildcard به همه ابزارها
+- `mcp__github__get_issue` - دسترسی به ابزار خاص
+
+> **v2.1.299+:** یک قانون فقط به سروری که نام‌گذاری می‌کند می‌رسد — `mcp__github` دیگر با سروری به‌نام `github__x` یا `github_` تطابق نمی‌کند. برای سروری که نام نرمال‌شده‌اش شامل `__` است، `mcp__<whole normalized name>__*` بنویسید (همین برای لیست‌های `tools:` subagent نیز اعمال می‌شود).
+
+## معماری دستور
+
+```mermaid
+graph TD
+    A["User Input: /command-name"] --> B{"Command Type?"}
+    B -->|Built-in| C["Execute Built-in"]
+    B -->|Skill| D["Load SKILL.md"]
+    B -->|Plugin| E["Load Plugin Command"]
+    B -->|MCP| F["Execute MCP Prompt"]
+
+    D --> G["Parse Frontmatter"]
+    G --> H["Substitute Variables"]
+    H --> I["Execute Shell Commands"]
+    I --> J["Send to Claude"]
+    J --> K["Return Results"]
+```
+
+## چرخه‌حیات دستور
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Claude as Claude Code
+    participant FS as File System
+    participant CLI as Shell/Bash
+
+    User->>Claude: Types /optimize
+    Claude->>FS: Searches .claude/skills/ and .claude/commands/
+    FS-->>Claude: Returns optimize/SKILL.md
+    Claude->>Claude: Parses frontmatter
+    Claude->>CLI: Executes !`command` substitutions
+    CLI-->>Claude: Command outputs
+    Claude->>Claude: Substitutes $ARGUMENTS
+    Claude->>User: Processes prompt
+    Claude->>User: Returns results
+```
+
+## دستورات در دسترس در این پوشه
+
+این دستورات نمونه می‌توانند به‌عنوان مهارت یا دستورات قدیمی نصب شوند.
+
+### ۱. `/optimize` - بهینه‌سازی کد
+
+کد را برای مسائل عملکرد، نشت حافظه و فرصت‌های بهینه‌سازی تحلیل می‌کند.
+
+**استخدام:**
+```
+/optimize
+[Paste your code]
+```
+
+### ۲. `/pr` - آماده‌سازی Pull Request
+
+از طریق چک‌لیست آماده‌سازی PR شامل linting، تست و قالب‌بندی commit راهنمایی می‌کند.
+
+**استخدام:**
+```
+/pr
+```
+
+**اسکرین‌شات:**
+![/pr](pr-slash-command.png)
+
+### ۳. `/generate-api-docs` - تولید مستندات API
+
+مستندات جامع API از کد منبع تولید می‌کند.
+
+**استخدام:**
+```
+/generate-api-docs
+```
+
+### ۴. `/commit` - Git Commit با Context
+
+یک git commit با context پویا از مخزن شما ایجاد می‌کند.
+
+**استخدام:**
+```
+/commit [optional message]
+```
+
+### ۵. `/push-all` - Stage، Commit و Push
+
+همه تغییرات را stage می‌کند، یک commit ایجاد می‌کند و با بررسی‌های ایمنی به remote ارسال می‌کند.
+
+**استخدام:**
+```
+/push-all
+```
+
+**بررسی‌های ایمنی:**
+- اسرار: `.env*`, `*.key`, `*.pem`, `credentials.json`
+- کلیدهای API: کلیدهای واقعی در مقابل placeholderها را شناسایی می‌کند
+- فایل‌های بزرگ: `>10MB` بدون Git LFS
+- artifactهای build: `node_modules/`, `dist/`, `__pycache__/`
+
+### ۶. `/doc-refactor` - بازسازی مستندات
+
+ساختار مستندات پروژه را برای وضوح و دسترسایی بازسازی می‌کند.
+
+**استخدام:**
+```
+/doc-refactor
+```
+
+### ۷. `/setup-ci-cd` - راه‌اندازی خط لوله CI/CD
+
+pre-commit hookها و GitHub Actions را برای اطمینان کیفیت پیاده‌سازی می‌کند.
+
+**استخدام:**
+```
+/setup-ci-cd
+```
+
+### ۸. `/unit-test-expand` - گسترش پوشش تست
+
+پوشش تست را با هدف‌گیری شاخه‌های تست‌نشده و موارد لبه افزایش می‌دهد.
+
+**استخدام:**
+```
+/unit-test-expand
+```
+
+## نصب
+
+### به‌عنوان مهارت (توصیه‌شده)
+
+در دایرکتوری مهارت‌های خود کپی کنید:
+
+```bash
+# Create skills directory
+mkdir -p .claude/skills
+
+# For each command file, create a skill directory
+for cmd in optimize pr commit; do
+  mkdir -p .claude/skills/$cmd
+  cp 01-slash-commands/$cmd.md .claude/skills/$cmd/SKILL.md
+done
+```
+
+### به‌عنوان دستورات قدیمی
+
+در دایرکتوری دستورات خود کپی کنید:
+
+```bash
+# Project-wide (team)
+mkdir -p .claude/commands
+cp 01-slash-commands/*.md .claude/commands/ && rm .claude/commands/README.md
+
+# Personal use
+mkdir -p ~/.claude/commands
+cp 01-slash-commands/*.md ~/.claude/commands/ && rm ~/.claude/commands/README.md
+```
+
+## ایجاد دستورات خودتان
+
+### قالب مهارت (توصیه‌شده)
+
+ایجاد `.claude/skills/my-command/SKILL.md`:
+
+```yaml
+---
+name: my-command
+description: What this command does. Use when [trigger conditions].
+argument-hint: [optional-args]
+allowed-tools: Bash(npm *), Read, Grep
+---
+
+# Command Title
+
+## Context
+
+- Current branch: !`git branch --show-current`
+- Related files: @package.json
+
+## Instructions
+
+1. First step
+2. Second step with argument: $ARGUMENTS
+3. Third step
+
+## Output Format
+
+- How to format the response
+- What to include
+```
+
+### دستور فقط-کاربر (بدون فراخوانی خودکار)
+
+برای دستورات با عوارض جانبی که کلود نباید خودکار راه‌اندازی کند:
+
+```yaml
+---
+name: deploy
+description: Deploy to production
+disable-model-invocation: true
+allowed-tools: Bash(npm *), Bash(git *)
+---
+
+Deploy the application to production:
+
+1. Run tests
+2. Build application
+3. Push to deployment target
+4. Verify deployment
+```
+
+## بهترین شیوه‌ها
+
+| انجام دهید | انجام ندهید |
+|------|---------|
+| از نام‌های روشن، کنش‌محور استفاده کنید | دستوراتی برای وظایف یک‌باره ایجاد کنید |
+| شامل `description` با شرایط راه‌اندازی | منطق پیچیده در دستورات بسازید |
+| دستورات را روی یک وظیفه تمرکز کنید | اطلاعات حساس را hardcode کنید |
+| از `disable-model-invocation` برای عوارض جانبی استفاده کنید | فیلد description را رد کنید |
+| از پیشوند `!` برای context پویا استفاده کنید | فرض کنید کلود وضعیت فعلی را می‌داند |
+| فایل‌های مرتبط را در دایرکتوری‌های مهارت سازماندهی کنید | همه چیز را در یک فایل قرار دهید |
+
+## رفع اشکال
+
+### دستور یافت نشد
+
+**راه‌حل‌ها:**
+- بررسی کنید فایل در `.claude/skills/<name>/SKILL.md` یا `.claude/commands/<name>.md` است
+- فیلد `name` در frontmatter را با نام دستور مورد انتظار تطابق دهید
+- سیشن کلود کد را مجدداً راه‌اندازی کنید
+- `/help` را اجرا کنید تا دستورات در دسترس را ببینید
+
+### دستور طبق انتظار اجرا نمی‌شود
+
+**راه‌حل‌ها:**
+- دستورالعمل‌های خاص‌تری اضافه کنید
+- مثال‌ها را در فایل مهارت شامل کنید
+- `allowed-tools` را در صورت استفاده از دستورات bash بررسی کنید
+- ابتدا با ورودی‌های ساده تست کنید
+
+### تعارض مهارت در مقابل دستور
+
+اگر هر دو با نام یکسان وجود داشته باشند، **مهارت تقدم دارد**. یکی را حذف یا تغییر نام دهید.
+
+## راهنماهای مرتبط
+
+- **[مهارت‌ها](../03-skills/)** - مرجع کامل برای مهارت‌ها (قابلیت‌های فراخوانی‌شده خودکار)
+- **[حافظه](../02-memory/)** - context پایدار با CLAUDE.md
+- **[Subagentها](../04-subagents/)** - agentهای هوشمند واگذار‌شده
+- **[پلاگین‌ها](../07-plugins/)** - مجموعه‌های دستور بسته‌بندی‌شده
+- **[هوک‌ها](../06-hooks/)** - خودکار‌سازی رویدادمحور
+
+## منابع اضافی
+
+- [مستندات رسمی حالت تعاملی](https://code.claude.com/docs/en/interactive-mode) - مرجع دستورات داخلی
+- [مستندات رسمی مهارت‌ها](https://code.claude.com/docs/en/skills) - مرجع کامل مهارت‌ها
+- [مرجع CLI](https://code.claude.com/docs/en/cli-reference) - گزینه‌های خط فرمان
 
 ---
 
-## استانداردها
+**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
+**نسخه کلود کد**: ۲.۱.۳۰۲
+**منبع**:
+- https://code.claude.com/docs/en/output-styles
+- https://code.claude.com/docs/en/skills
+- https://code.claude.com/docs/en/slash-commands
+- https://code.claude.com/docs/en/interactive-mode
+- https://code.claude.com/docs/en/interactive-mode#review-changes-with-diff
+- https://code.claude.com/docs/en/changelog
+- https://code.claude.com/docs/en/commands
+- https://code.claude.com/docs/en/whats-new/2026-w34
+- https://code.claude.com/docs/en/model-config
+- https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.139
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.144
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.152
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.153
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.154
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.281
+- https://code.claude.com/docs/en/fast-mode
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.283
+- https://code.claude.com/docs/en/workflows#let-claude-decide-with-ultracode
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.285
+- https://code.claude.com/docs/en/hooks#hooks-in-skills-and-agents
+- https://code.claude.com/docs/en/permissions#mcp
+- https://code.claude.com/docs/en/changelog#2-1-299
+- https://code.claude.com/docs/en/hooks#hook-lifecycle
+- https://code.claude.com/docs/en/fullscreen
+- https://support.claude.com/en/articles/17440474-migrate-from-standalone-claude-design-to-claude
+**مدل‌های سازگ**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
 
-### معماری
-
-**در اینجا:**
-- استاندارد‌ها، قابلیت‌های خاص را بهعنوان 관계법령‌ها تعریف می‌کنند، وvivero هستند
-
-**به‌پرپس از استاندارد:** 
-به‌درستی برقرار می‌شود
-
----
-
-## مقایسه با Skill
-
-| قابلیت | روش فعال‌سازی | کاربرد |
-|--------|----------------|--------|
-| **Slash Commands** | دستی پیام‌دهی | دستورات سریع |
-| **Skills** | خودکار / نیمه‌خودکار | قابلیت‌های قابل استفاده مجدد، استانداردسازی گردش‌کار |
-| **Subagent** | خودکار محتمل | تکمیل وظایف با فراخوانی |
-| **Plugins** | نصب و فعال‌سازی مستقیم | کاربرد‌های تخصصی‌تر |
-| **Hooks** | رویداد‌محور | خودکار‌سازی بر اساس رویداد |
-| **MCP Servers** | شبکه‌ی یکپارچه | دسترسی به API‌ها و منابع مجازی |
-
-### اصول
-
-- **Skill‌ها** خودکار وEncoded، دستورات توسط کاربر استفاده می‌شوند
-- **Subagentها** خودکار می‌توانند د Jang Contract را برای تایید فراهم کنند
-
----
-
-## اشکال‌پردازی
-
-### دستور نا‌موردیت
-
-- سرچ کنید که آیا فایل `.claude/commands/` وجود دارد
-- ساختار YAML frontmatter را بررسی کنید
-
-### خطای "کار نکرد"
-
-- بررسی کنید که فایل با اسم دستور، تعیین‌شده، سازگار باشد
-- اطمینان حاصل کنید که فایل، پوشه‌ی `.claude/commands/` نیست
+*بخشی از سری راهنمای [Claude How To](../)*
