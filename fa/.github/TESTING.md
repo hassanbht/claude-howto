@@ -143,7 +143,7 @@ cat package.json | grep scripts
 
 ## مراجع
 
-- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [CONTRIBUTING.md](../CONTRIBUTING.md)
 - [STYLE_GUIDE.md](../STYLE_GUIDE.md)
 - [CODING RULES.md](../clean-code-rules.md)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
