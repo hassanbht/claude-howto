@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
 <p align="center">
@@ -12,7 +12,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/luongnv89/claude-howto?style=flat&color=gold)](https://github.com/luongnv89/claude-howto/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/luongnv89/claude-howto?style=flat)](https://github.com/luongnv89/claude-howto/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../LICENSE)
-[![Version](https://img.shields.io/badge/version-2.1.302-brightgreen)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.1.310-brightgreen)](CHANGELOG.md)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-2.1+-purple)](https://code.claude.com)
 
 🌐 **زبان / Language / 语言 / Мова:** [English](../README.md) | [Tiếng Việt](../vi/README.md) | [中文](../zh/README.md) | [Українська](../uk/README.md) | [日本語](../ja/README.md) | [فارسی](README.md)
@@ -43,9 +43,9 @@
 
 شما Claude Code را نصب کرده‌اید. چند پرامپت اجرا کرده‌اید. حالا چه؟
 
-- **مستندات رسمی ویژگی‌ها را توصیف می‌کنند — اما نشان نمی‌دهند چگونه آن‌ها را ترکیب کنید.** شما می‌دانید که اسلش کامندها وجود دارند، اما نمی‌دانید چگونه آن‌ها را با هوک‌ها، حافظه و زیرایجنت‌ها در یک خط لوله کاری که واقعاً ساعت‌ها زمان صرفه‌جویی می‌کند، زنجیره کنید.
+- **مستندات رسمی ویژگی‌ها را توصیف می‌کنند — اما نشان نمی‌دهند چگونه آن‌ها را ترکیب کنید.** شما می‌دانید که دستورهای اسلش وجود دارند، اما نمی‌دانید چگونه آن‌ها را با هوک‌ها، حافظه و زیرایجنت‌ها در یک خط لوله کاری که واقعاً ساعت‌ها زمان صرفه‌جویی می‌کند، زنجیره کنید.
 - **مسیر یادگیری روشنی وجود ندارد.** آیا باید MCP را قبل از هوک‌ها یاد بگیرید؟ مهارت‌ها قبل از زیرایجنت‌ها؟ در نهایت همه‌چیز را سطحی می‌خوانید و به چیزی تسلط پیدا نمی‌کنید.
-- **مثال‌ها بیش از حد ساده هستند.** یک اسلش کامند «hello world» به شما کمک نمی‌کند یک خط لوله بازبینی کد تولیدی بسازید که از حافظه استفاده می‌کند، کارها را به ایجنت‌های تخصصی سپرده و به‌طور خودکار اسکن‌های امنیتی اجرا می‌کند.
+- **مثال‌ها بیش از حد ساده هستند.** یک دستور اسلش «hello world» به شما کمک نمی‌کند یک خط لوله بازبینی کد تولیدی بسازید که از حافظه استفاده می‌کند، کارها را به ایجنت‌های تخصصی سپرده و به‌طور خودکار اسکن‌های امنیتی اجرا می‌کند.
 
 شما ۹۰ درصد قدرت Claude Code را روی میز رها می‌کنید — و نمی‌دانید چه چیزی را نمی‌دانید.
 
@@ -66,8 +66,8 @@
 
 ### آنچه دریافت می‌کنید:
 
-- **۱۰ ماژول آموزشی** که هر ویژگی Claude Code را پوشش می‌دهد — از اسلش کامندها تا تیم‌های ایجنت سفارشی
-- **کانفیگ‌های آماده کپی** — اسلش کامندها، قالب‌های CLAUDE.md، اسکریپت‌های هوک، کانفیگ‌های MCP، تعریف‌های زیرایجنت و بسته‌های کامل پلاگین
+- **۱۰ ماژول آموزشی** که هر ویژگی Claude Code را پوشش می‌دهد — از دستورهای اسلش تا تیم‌های ایجنت سفارشی
+- **کانفیگ‌های آماده کپی** — دستورهای اسلش، قالب‌های CLAUDE.md، اسکریپت‌های هوک، کانفیگ‌های MCP، تعریف‌های زیرایجنت و بسته‌های کامل پلاگین
 - **نمودارهای Mermaid** که نشان می‌دهد هر ویژگی درونی چگونه کار می‌کند، تا درک کنید *چرا*، نه فقط *چگونه*
 - **مسیر یادگیری راهنمایی‌شده** که شما را در ۱۱ تا ۱۳ ساعت از مبتدی به کاربر حرفه‌ای می‌رساند
 - **ارزیابی خودکار داخلی** — `/self-assessment` یا `/lesson-quiz hooks` را مستقیماً در Claude Code اجرا کنید تا شکاف‌ها را شناسایی کنید
@@ -80,7 +80,7 @@
 
 ### ۱. سطح خود را پیدا کنید
 
-[آزمون ارزیابی خودکار](LEARNING-ROADMAP.md#🧭-سطح-خود-را-پیدا-کنید) را انجام دهید یا `/self-assessment` را در Claude Code اجرا کنید. یک نقشه راه شخصی‌سازی‌شده بر اساس آنچه از قبل می‌دانید دریافت کنید.
+[آزمون ارزیابی خودکار](LEARNING-ROADMAP.md#-سطح-خود-را-پیدا-کنید) را انجام دهید یا `/self-assessment` را در Claude Code اجرا کنید. یک نقشه راه شخصی‌سازی‌شده بر اساس آنچه از قبل می‌دانید دریافت کنید.
 
 ### ۲. مسیر راهنمایی‌شده را دنبال کنید
 
@@ -88,7 +88,7 @@
 
 ### ۳. ویژگی‌ها را در خطوط لوله کاری ترکیب کنید
 
-قدرت واقعی در ترکیب ویژگی‌هاست. یاد بگیرید اسلش کامندها + حافظه + زیرایجنت‌ها + هوک‌ها را در خطوط لوله خودکار که بازبینی کد، استقرار و تولید مستندات را مدیریت می‌کنند، سیم‌کشی کنید.
+قدرت واقعی در ترکیب ویژگی‌هاست. یاد بگیرید دستورهای اسلش + حافظه + زیرایجنت‌ها + هوک‌ها را در خطوط لوله خودکار که بازبینی کد، استقرار و تولید مستندات را مدیریت می‌کنند، سیم‌کشی کنید.
 
 ### ۴. درک خود را آزمایش کنید
 
@@ -102,7 +102,7 @@
 
 - **ستاره‌های GitHub** از توسعه‌دهندگانی که روزانه از Claude Code استفاده می‌کنند
 - **فورک‌ها** از تیم‌هایی که این راهنما را برای خط لوله کاری خود تطبیق می‌دهند
-- **فعالاً نگهداری می‌شود** — با هر نسخه Claude Code هماهنگ است (آخرین: v2.1.302، اکتبر ۲۰۲۶)
+- **فعالاً نگهداری می‌شود** — با هر نسخه Claude Code هماهنگ است (آخرین: v2.1.310، اکتبر ۲۰۲۶)
 - **محور جامعه** — مشارکت‌هایی از توسعه‌دهندگانی که کانفیگ‌های واقعی خود را به اشتراک می‌گذارند
 
 [![نمودار تاریخچه ستاره](https://api.star-history.com/svg?repos=luongnv89/claude-howto&type=Date)](https://star-history.com/#luongnv89/claude-howto&Date)
@@ -115,7 +115,7 @@
 
 | سطح | شما می‌توانید... | از اینجا شروع کنید | زمان |
 |-------|-----------|------------|------|
-| **مبتدی** | Claude Code را شروع کرده و چت کنید | [اسلش کامندها](01-slash-commands/) | ~۲.۵ ساعت |
+| **مبتدی** | Claude Code را شروع کرده و چت کنید | [دستورهای اسلش](01-slash-commands/) | ~۲.۵ ساعت |
 | **متوسط** | از CLAUDE.md و کامندهای سفارشی استفاده کنید | [مهارت‌ها](03-skills/) | ~۳.۵ ساعت |
 | **پیشرفته** | سرورهای MCP و هوک‌ها را کانفیگ کنید | [ویژگی‌های پیشرفته](09-advanced-features/) | ~۵ ساعت |
 
@@ -123,7 +123,7 @@
 
 | ترتیب | ماژول | سطح | زمان |
 |-------|--------|-------|------|
-| ۱ | [اسلش کامندها](01-slash-commands/) | مبتدی | ۳۰ دقیقه |
+| ۱ | [دستورهای اسلش](01-slash-commands/) | مبتدی | ۳۰ دقیقه |
 | ۲ | [حافظه](02-memory/) | مبتدی+ | ۴۵ دقیقه |
 | ۳ | [چک‌پوینت‌ها](08-checkpoints/) | متوسط | ۴۵ دقیقه |
 | ۴ | [پایه‌های CLI](10-cli/) | مبتدی+ | ۳۰ دقیقه |
@@ -147,7 +147,7 @@
 git clone https://github.com/luongnv89/claude-howto.git
 cd claude-howto
 
-# 2. اولین اسلش کامند خود را کپی کنید
+# 2. اولین دستور اسلش خود را کپی کنید
 mkdir -p /path/to/your-project/.claude/commands
 cp 01-slash-commands/optimize.md /path/to/your-project/.claude/commands/
 
@@ -164,7 +164,7 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 راه‌اندازی کامل را می‌خواهید؟ در اینجا **راه‌اندازی اولیه ۱ ساعته** آمده است:
 
 ```bash
-# اسلش کامندها (15 min)
+# دستورهای اسلش (15 min)
 cp 01-slash-commands/*.md .claude/commands/
 
 # حافظه پروژه (15 min)
@@ -185,8 +185,8 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 
 | مورد استفاده | ویژگی‌هایی که ترکیب می‌کنید |
 |----------|------------------------|
-| **بازبینی خودکار کد** | اسلش کامندها + زیرایجنت‌ها + حافظه + MCP |
-| **آماده‌سازی تیم** | حافظه + اسلش کامندها + پلاگین‌ها |
+| **بازبینی خودکار کد** | دستورهای اسلش + زیرایجنت‌ها + حافظه + MCP |
+| **آماده‌سازی تیم** | حافظه + دستورهای اسلش + پلاگین‌ها |
 | **خودکارسازی CI/CD** | مرجع CLI + هوک‌ها + وظایف پس‌زمینه |
 | **تولید مستندات** | مهارت‌ها + زیرایجنت‌ها + پلاگین‌ها |
 | **ممیزی‌های امنیتی** | زیرایجنت‌ها + مهارت‌ها + هوک‌ها (حالت فقط‌خواندنی) |
@@ -201,13 +201,13 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 بله. با لایسنس MIT، برای همیشه رایگان است. در پروژه‌های شخصی، در محل کار، در تیم خود استفاده کنید — بدون محدودیت به جز گذاردن اعلان لایسنس.
 
 **آیا این نگهداری می‌شود؟**
-فعالاً. راهنما با هر نسخه Claude Code هماهنگ است. نسخه فعلی: v2.1.302 (اکتبر ۲۰۲۶)، سازگار با Claude Code 2.1+.
+فعالاً. راهنما با هر نسخه Claude Code هماهنگ است. نسخه فعلی: v2.1.310 (اکتبر ۲۰۲۶)، سازگار با Claude Code 2.1+.
 
 **این چگونه از مستندات رسمی متفاوت است؟**
 مستندات رسمی یک مرجع ویژگی هستند. این راهنما یک آموزش با نمودارها، قالب‌های آماده تولید و مسیر یادگیری پیش‌رونده است. این دو مکمل یکدیگرند — برای یادگیری از اینجا شروع کنید، وقتی به جزئیات نیاز دارید به مستندات مراجعه کنید.
 
 **چقدر طول می‌کشد همه‌چیز را بگذرانید؟**
-۱۱ تا ۱۳ ساعت برای مسیر کامل. اما در ۱۵ دقیقه ارزش فوری دریافت می‌کنید — فقط یک قالب اسلش کامند را کپی و امتحان کنید.
+۱۱ تا ۱۳ ساعت برای مسیر کامل. اما در ۱۵ دقیقه ارزش فوری دریافت می‌کنید — فقط یک قالب دستور اسلش را کپی و امتحان کنید.
 
 **آیا می‌توانم با Claude Sonnet / Haiku / Opus از این استفاده کنم؟**
 بله. همه قالب‌ها با Claude Fable 5.1، Claude Fable 5، Claude Opus 5.5، Claude Opus 5، Claude Sonnet 5.5، Claude Sonnet 5، Claude Sonnet 4.6، Claude Opus 4.8، Claude Haiku 5.5 و Claude Haiku 4.5 کار می‌کنند.
@@ -236,7 +236,7 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 | ویژگی | توضیح | پوشه |
 |---------|-------------|--------|
 | **کاتالوگ ویژگی‌ها** | مرجع کامل با کامندهای نصب | [CATALOG.md](CATALOG.md) |
-| **اسلش کامندها** | میان‌برهای فراخوانی‌شده توسط کاربر | [01-slash-commands/](01-slash-commands/) |
+| **دستورهای اسلش** | میان‌برهای فراخوانی‌شده توسط کاربر | [01-slash-commands/](01-slash-commands/) |
 | **حافظه** | زمینه پایدار | [02-memory/](02-memory/) |
 | **مهارت‌ها** | قابلیت‌های قابل استفاده مجدد | [03-skills/](03-skills/) |
 | **زیرایجنت‌ها** | دستیاران هوش مصنوعی تخصصی | [04-subagents/](04-subagents/) |
@@ -255,7 +255,7 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 
 | ویژگی | فراخوانی | پایداری | بهترین برای |
 |---------|-----------|------------|----------|
-| **اسلش کامندها** | دستی (`/cmd`) | فقط جلسه | میان‌برهای سریع |
+| **دستورهای اسلش** | دستی (`/cmd`) | فقط جلسه | میان‌برهای سریع |
 | **حافظه** | بارگذاری خودکار | بین جلسه‌ای | یادگیری بلندمدت |
 | **مهارت‌ها** | فراخوانی خودکار | سیستم فایل | خط لوله‌های خودکار |
 | **زیرایجنت‌ها** | سپردن خودکار | زمینه ایزوله | توزیع وظایف |
@@ -273,7 +273,7 @@ cp -r 03-skills/code-review-specialist ~/.claude/skills/
 <summary>مرجع سریع نصب</summary>
 
 ```bash
-# اسلش کامندها
+# دستورهای اسلش
 cp 01-slash-commands/*.md .claude/commands/
 
 # حافظه
@@ -309,7 +309,7 @@ claude --plugin-dir ./07-plugins/pr-review
 </details>
 
 <details>
-<summary>۰۱. اسلش کامندها</summary>
+<summary>۰۱. دستورهای اسلش</summary>
 
 **محل**: [01-slash-commands/](01-slash-commands/)
 
@@ -332,7 +332,7 @@ cp 01-slash-commands/*.md /path/to/project/.claude/commands/
 /generate-api-docs
 ```
 
-**بیشتر بدانید**: [کشف اسلش کامندهای Claude Code](https://medium.com/@luongnv89/discovering-claude-code-slash-commands-cdc17f0dfb29)
+**بیشتر بدانید**: [کشف دستورهای اسلشی Claude Code](https://medium.com/@luongnv89/discovering-claude-code-slash-commands-cdc17f0dfb29)
 
 </details>
 
@@ -421,7 +421,7 @@ cp 04-subagents/*.md /path/to/project/.claude/agents/
 
 **مثال‌ها**:
 - `github-mcp.json` - یکپارچگی GitHub
-- `database-mcp.json` - پرس‌وجوی پایگاه داده
+- `database-mcp.json` - پرس‌وجوی پایگاه داده (‏`DATABASE_URL` را به یک کاربر فقط-SELECT بدهید؛ [پیکربندی فقط‌خواندنی](05-mcp/README.md#نمونه-۲-راه‌اندازی-database-mcp) را ببینید)
 - `filesystem-mcp.json` - عملیات فایل
 - `multi-mcp.json` - چندین سرور MCP
 
@@ -511,7 +511,7 @@ claude --plugin-dir ./07-plugins/devops-automation
 claude --plugin-dir ./07-plugins/documentation
 ```
 
-**استفاده**: از اسلش کامندها و ویژگی‌های بسته‌بندی‌شده استفاده کنید
+**استفاده**: از دستورهای اسلش و ویژگی‌های بسته‌بندی‌شده استفاده کنید
 
 </details>
 
@@ -563,7 +563,7 @@ claude --plugin-dir ./07-plugins/documentation
 - **تفکر گسترش‌یافته** — استدلال عمیق برای مسائل پیچیده (تغییر با `Alt+T` / `Option+T`)
 - **وظایف پس‌زمینه** — اجرای عملیات‌های طولانی بدون مسدودسازی
 - **حالت‌های اجازه** — `manual` (مقدار کانفیگ `default`)، `acceptEdits`، `plan`، `auto`، `dontAsk`، `bypassPermissions`
-- **حالت بدون سر** — اجرای Claude Code در CI/CD: `claude -p "Run tests and generate report"`
+- **حالت بدون سر** — اجرای Claude Code در CI/CD: `claude -p "Run tests and generate report" --permission-mode auto`
 - **مدیریت جلسه** — `/resume`، `/rename`، `/fork`، `/branch`، `claude -c`، `claude -r`
 - **کانفیگ** — سفارشی‌سازی رفتار در `~/.claude/settings.json`
 
@@ -606,7 +606,7 @@ claude -r "feature-auth" "continue implementation"
 ### خط لوله کامل بازبینی کد
 
 ```markdown
-# استفاده از: اسلش کامندها + زیرایجنت‌ها + حافظه + MCP
+# استفاده از: دستورهای اسلش + زیرایجنت‌ها + حافظه + MCP
 
 کاربر: /review-pr
 
@@ -722,7 +722,7 @@ Claude:
 <summary>بهترین شیوه‌ها</summary>
 
 ### بایدها
-- با اسلش کامندها ساده شروع کنید
+- با دستورهای اسلش ساده شروع کنید
 - ویژگی‌ها را به‌تدریج اضافه کنید
 - از حافظه برای استانداردهای تیم استفاده کنید
 - کانفیگ‌ها را اول محلی تست کنید
@@ -796,7 +796,7 @@ bandit -c scripts/pyproject.toml -r scripts/ --exclude scripts/tests/
 mypy scripts/ --ignore-missing-imports
 ```
 
-تست‌ها به‌طور خودکار با هر push به `main`/`develop` و هر PR به `main` اجرا می‌شوند. به [TESTING.md](.github/TESTING.md) برای اطلاعات دقیق مراجعه کنید.
+تست‌ها به‌طور خودکار با هر push به `main`/`develop` و هر PR به `main` اجرا می‌شوند. برای اطلاعات دقیق به [TESTING.md](../.github/TESTING.md) (انگلیسی) مراجعه کنید.
 
 </details>
 
@@ -836,7 +836,7 @@ uv run scripts/build_epub.py
 اگر یک آسیب‌پذیری امنیتی کشف کردید، لطفاً مسئولانه گزارش دهید:
 
 1. **استفاده از گزارش خصوصی آسیب‌پذیری GitHub**: https://github.com/luongnv89/claude-howto/security/advisories
-2. **یا بخوانید** [.github/SECURITY_REPORTING.md](.github/SECURITY_REPORTING.md) برای دستورالعمل‌های دقیق
+2. **یا بخوانید** [.github/SECURITY_REPORTING.md](../.github/SECURITY_REPORTING.md) (انگلیسی) برای دستورالعمل‌های دقیق
 3. **این کار را نکنید** برای آسیب‌پذیری‌های امنیتی یک issue عمومی باز نکنید
 
 شروع سریع:
@@ -856,7 +856,7 @@ uv run scripts/build_epub.py
 - [مشخصات پروتکل MCP](https://modelcontextprotocol.io)
 - [مخزن مهارت‌ها](https://github.com/luongnv89/skills) - مجموعه‌ای از مهارت‌های آماده استفاده
 - [کتاب آشپزی Anthropic](https://github.com/anthropics/anthropic-cookbook)
-- [خط لوله کاری Claude Code بوریس چرنی](https://x.com/bcherny/status/2007179832300581177) - خالق Claude Code خط لوله کاری سیستماتیک‌شده خود را به اشتراک می‌گذارد: ایجنت‌های موازی، CLAUDE.md مشترک، حالت Plan، اسلش کامندها، زیرایجنت‌ها و هوک‌های تأیید برای جلسات خودکار طولانی‌مدت.
+- [خط لوله کاری Claude Code بوریس چرنی](https://x.com/bcherny/status/2007179832300581177) - خالق Claude Code خط لوله کاری سیستماتیک‌شده خود را به اشتراک می‌گذارد: ایجنت‌های موازی، CLAUDE.md مشترک، حالت Plan، دستورهای اسلش، زیرایجنت‌ها و هوک‌های تأیید برای جلسات خودکار طولانی‌مدت.
 
 </details>
 
@@ -874,8 +874,8 @@ uv run scripts/build_epub.py
 
 ---
 
-**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
-**نسخه Claude Code**: 2.1.302
+**آخرین به‌روزرسانی**: ۲۶ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.310
 **منابع**:
 - https://code.claude.com/docs/en/tools-reference#task-tool-availability
 - https://code.claude.com/docs/en/hooks
@@ -894,4 +894,8 @@ uv run scripts/build_epub.py
 - https://code.claude.com/docs/en/checkpointing
 - https://github.com/anthropics/claude-code
 - https://code.claude.com/docs/en/changelog#2-1-302
+- https://code.claude.com/docs/en/changelog#2-1-310
+- https://code.claude.com/docs/en/headless#auto-approve-tools
+- https://code.claude.com/docs/en/permission-modes#which-mode-a-non-interactive-run-starts-in
+- https://code.claude.com/docs/en/mcp#example-query-your-postgresql-database
 **مدل‌های سازگار**: Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

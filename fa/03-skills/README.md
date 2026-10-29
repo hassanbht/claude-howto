@@ -101,7 +101,7 @@ sequenceDiagram
 
 **دایرکتوری‌های تودرتو**: وقتی با فایل‌های زیردایرکتوری‌ها کار می‌کنید، Claude Code به‌طور خودکار مهارت‌ها را از دایرکتوری‌های تودرتوی `.claude/skills/` کشف می‌کند. مثلاً اگر فایلی در `packages/frontend/` ویرایش می‌کنید، Claude Code مهارت‌ها را در `packages/frontend/.claude/skills/` هم جستجو می‌کند. این از راه‌اندازی‌های monorepo که بسته‌ها مهارت خودشان را دارند پشتیبانی می‌کند. وقتی یک مهارت تودرتو نامی همانند مهارت ریشه مخزن دارد، **هر دو بارگذاری می‌شوند**: برای مهارت `deploy` در ریشه و در `apps/web/.claude/skills/`، `/deploy` مهارت ریشه و `/apps/web:deploy` مهارت تودرتو را اجرا می‌کند.
 
-**دایرکتوری‌های `--add-dir`**: مهارت‌های دایرکتوری‌های افزوده‌شده از طریق `--add-dir` به‌طور خودکار با تشخیص زنده تغییرات بارگذاری می‌شوند. هر ویرایشی در فایل‌های مهارت آن دایرکتوری‌ها بلافاصله اعمال می‌شود، بدون راه‌اندازی مجدد Claude Code.
+**دایرکتوری‌های `--add-dir`**: مهارت‌های دایرکتوری‌های افزوده‌شده از طریق `--add-dir` به‌طور خودکار با تشخیص زنده تغییرات بارگذاری می‌شوند. هر ویرایشی در فایل‌های مهارت آن دایرکتوری‌ها بلافاصله اعمال می‌شود، بدون راه‌اندازی مجدد Claude Code. اگر مهارت یک دایرکتوری افزوده‌شده هم‌نام مهارتی از سطح سازمان، شخصی یا پروژه باشد، یا هم‌نام مهارتی از دایرکتوری‌ای که پیش‌تر افزوده شده، با نام پیشوند‌دار اجرا می‌شود. برای مثال با `--add-dir ../cli` و یک مهارت `verify` در هر دو جا، `/verify` مهارت پروژه‌ی شما را اجرا می‌کند و `/cli:verify` مهارت `../cli` را (v2.1.309+).
 
 **بارگذاری مجدد مهارت‌ها**: دستور `/reload-skills` (افزوده‌شده در نسخه 2.1.152) همه دایرکتوری‌های مهارت را بدون راه‌اندازی مجدد نشست دوباره اسکن می‌کند — مفید پس از افزودن یا ویرایش مهارتی که تشخیص زنده آن را برنمی‌دارد. یک هوک `SessionStart` می‌تواند با برگرداندن `reloadSkills: true` همان اسکن مجدد را فعال کند (به [هوک‌ها](../06-hooks/README.md) مراجعه کنید).
 
@@ -180,7 +180,7 @@ paths: "src/api/**/*.ts"               # Glob patterns limiting when skill activ
 | `argument-hint` | راهنمایی نمایش‌داده‌شده در منوی تکمیل خودکار `/` (مثلاً `"[filename] [format]"`). |
 | `disable-model-invocation` | `true` = فقط کاربر می‌تواند از طریق `/name` فراخوانی کند. Claude هرگز به‌طور خودکار فراخوانی نمی‌کند. |
 | `user-invocable` | `false` = از منوی `/` پنهان است. فقط Claude می‌تواند آن را به‌طور خودکار فراخوانی کند. |
-| `allowed-tools` | فهرست جداشده با ویرگول از ابزارهایی که مهارت می‌تواند بدون پرامپت مجوز استفاده کند. |
+| `allowed-tools` | فهرست جداشده با ویرگول از ابزارهایی که مهارت می‌تواند بدون پرامپت مجوز استفاده کند. وقتی تنظیمات مدیریت‌شده `hooks` را در `strictPluginOnlyCustomization` فهرست کند، مهارت شخصی یا پروژه‌ای که frontmatter آن `hooks` را تعریف کرده این پیش‌تأیید را از دست می‌دهد (v2.1.304)؛ `hooks` آن را حذف کنید یا مهارت را به یک پلاگین منتقل کنید. |
 | `disallowed-tools` | فهرست جداشده با ویرگول از ابزارهایی که هنگام فعال بودن مهارت حذف می‌شوند (مکمل `allowed-tools`). افزوده‌شده در نسخه 2.1.152. |
 | `model` | بازنویسی مدل هنگام فعال بودن مهارت (مثلاً `opus`، `sonnet`). |
 | `effort` | بازنویسی سطح تلاش هنگام فعال بودن مهارت: `low`، `medium`، `high`، `xhigh` یا `max` — هر پنج سطح در Fable 5.1، Fable 5، Opus 5.5، Sonnet 5.5، Haiku 5.5، Opus 5، Sonnet 5، Opus 4.8 و Opus 4.7 پشتیبانی می‌شوند. تلاش پیش‌فرض در هر مدلی که از effort پشتیبانی می‌کند `high` است، به‌جز Opus 5.5، Sonnet 5.5 و Haiku 5.5 که پیش‌فرض `medium` دارند، و Opus 4.7 که پیش‌فرض `xhigh` دارد. |
@@ -188,8 +188,8 @@ paths: "src/api/**/*.ts"               # Glob patterns limiting when skill activ
 | `agent` | نوع زیرایجنت وقتی `context: fork` باشد (مثلاً `Explore`، `Plan`، `general-purpose`). |
 | `background` | فقط با `context: fork` معنا دارد. برای مهارت‌های `context: fork` پیش‌فرض `true` است، بنابراین در پس‌زمینه اجرا می‌شوند؛ برای اجرا در پیش‌زمینه `false` بگذارید. افزوده‌شده در نسخه 2.1.218. |
 | `shell` | شل استفاده‌شده برای جایگذاری‌های `` !`command` `` و اسکریپت‌ها: `bash` (پیش‌فرض) یا `powershell`. |
-| `hooks` | هوک‌های ثبت‌شده هنگام فراخوانی مهارت (همان قالب هوک‌های تنظیمات؛ هر رویدادی). برای باقی نشست فعال می‌مانند. |
-| `paths` | الگوهای glob که زمان فعال‌سازی خودکار مهارت را محدود می‌کنند. رشته جداشده با ویرگول یا فهرست YAML. همان قالب قواعد مخصوص مسیر. |
+| `hooks` | هوک‌های ثبت‌شده هنگام فراخوانی مهارت (همان قالب هوک‌های تنظیمات؛ هر رویدادی). برای باقی نشست فعال می‌مانند. از v2.1.304، مهارت‌های یک منبع (پروژه‌ شما، پوشهٔ مهارت‌های شخصی شما یا یک پلاگین) حداکثر ۱٬۰۲۴ هوک و ۱۶٬۳۸۴ کاراکتر matcher در هر نشست ثبت می‌کنند؛ فراتر از آن، یک مهارت بدون هوک‌های frontmatter خود اجرا می‌شود (با `/hooks` بررسی کنید). |
+| `paths` | الگوهای glob که زمان فعال‌سازی خودکار مهارت را محدود می‌کنند. رشته جداشده با ویرگول یا فهرست YAML. الگوها نسبت به دایرکتوری کاری فعلی Claude هستند و فایل‌های بیرون از آن، مثل یک worktree همسایه که با `/add-dir` افزوده شده، تطبیق نمی‌یابند (Claude Code را آنجا اجرا کنید یا از `/cd` استفاده کنید). همان قالب قواعد مخصوص مسیر. |
 | `arguments` | آرگومان‌هایی را که مهارت می‌پذیرد اعلام می‌کند، برای تکمیل خودکار و جایگذاری آرگومان. فقط ۶۴ نام اول، هر کدام تا ۶۴ کاراکتر، پر می‌شوند (نسخه 2.1.301). |
 | `metadata` | نگاشت کلید/مقدار آزاد برای دفترداری خودتان (مثلاً `version`، `author`). Claude Code آن را عبور می‌دهد. |
 | `license` | شناسه مجوز مهارت (مثلاً `MIT`). |
@@ -845,7 +845,7 @@ Claude Code مجموعه‌ای از مهارت‌های داخلی را عرض�
 | مهارت | توضیح |
 |-------|-------------|
 | `/batch <instruction>` | هماهنگ‌سازی تغییرات موازی در مقیاس بزرگ در کدبیس با استفاده از worktreeهای گیت |
-| `/claude-api` | بارگذاری مرجع Claude API/SDK؛ فعال‌سازی خودکار روی importهای `anthropic`/`@anthropic-ai/sdk` |
+| `/claude-api` | بارگذاری مرجع Claude API/SDK؛ فعال‌سازی خودکار روی importهای `anthropic`/`@anthropic-ai/sdk`. `/claude-api api-version` کد شما را به یک نسخهٔ جدیدتر API مثل `2026-10-21` به‌روز می‌کند (v2.1.307+)؛ `/claude-api managed-agents-secure [<agent-id>]` تنظیمات یک Managed Agent را با راهنمای امنیتی Anthropic مقایسه می‌کند، بدون تغییر چیزی (نیازمند CLI `ant`، v2.1.304+) |
 | `/dataviz` | راهنمای طراحی نمودار و داشبورد با یک اعتبارسنج پالت رنگ قابل اجرا (نسخه 2.1.198) |
 | `/debug [description]` | عیب‌یابی نشست جاری با خواندن لاگ اشکال‌زدایی |
 | `/deep-research <question>` | یک **جریان کاری** بسته‌بندی‌شده، نه یک مهارت: جستجوهای وب را پخش می‌کند و یک گزارش استنادشده ترکیب می‌کند (از نسخه 2.1.218 فقط با فراخوانی صریح — Claude خودش آن را فعال نمی‌کند) |
@@ -906,8 +906,8 @@ chmod +x ~/.claude/skills/my-skill/scripts/*.py
 
 ---
 
-**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
-**نسخه Claude Code**: 2.1.302
+**آخرین به‌روزرسانی**: ۲۶ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.310
 **منابع**:
 - https://code.claude.com/docs/en/skills
 - https://code.claude.com/docs/en/slash-commands
@@ -926,4 +926,15 @@ chmod +x ~/.claude/skills/my-skill/scripts/*.py
 - https://code.claude.com/docs/en/memory
 - https://code.claude.com/docs/en/changelog#2-1-301
 - https://code.claude.com/docs/en/code-review
+- https://code.claude.com/docs/en/changelog#2-1-304
+- https://code.claude.com/docs/en/changelog#2-1-307
+- https://code.claude.com/docs/en/changelog#2-1-309
+- https://code.claude.com/docs/en/commands#all-commands
+- https://code.claude.com/docs/en/hooks#limits-on-skill-hooks
+- https://code.claude.com/docs/en/skills#how-a-skill-gets-its-command-name
+- https://code.claude.com/docs/en/skills#run-a-same-named-skill-from-an-added-directory
+- https://code.claude.com/docs/en/skills#when-managed-settings-lock-hooks-to-plugins
+- https://code.claude.com/docs/en/skills#frontmatter-reference
+- https://code.claude.com/docs/en/skills#skill-not-triggering
+- https://code.claude.com/docs/en/skills#work-on-claude-api-projects
 **مدل‌های سازگار**: Claude Fable 5، Claude Opus 5، Claude Sonnet 5، Claude Sonnet 4.6، Claude Opus 4.8، Claude Haiku 4.5

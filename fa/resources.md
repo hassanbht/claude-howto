@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
 # فهرست منابع خوب
@@ -169,7 +169,7 @@ graph TD
 
 4. **ابزارهای تیم و خودکارسازی**
    - کامندهای سفارشی را از طریق `.claude/commands/` برای یکپارچگی بین‌تیمی همگام کنید.
-   - وظایف تکراری، ایجاد PR و قالب‌بندی کد را از طریق اسلش کامندها یا هوک‌های Claude خودکارسازی کنید.
+   - وظایف تکراری، ایجاد PR و قالب‌بندی کد را از طریق دستورهای اسلش یا هوک‌های Claude خودکارسازی کنید.
    - جلسات و زمینه را با اعضای تیم به اشتراک بگذارید برای عیب‌یابی و بازبینی مشترک.
 
 ```mermaid
@@ -248,13 +248,13 @@ graph TD
 | **یکپارچگی Chrome** | خودکارسازی مرورگر در Chrome خود از طریق افزونه Claude in Chrome | [ویژگی‌های پیشرفته](09-advanced-features/) |
 | **سفارشی‌سازی صفحه‌کلید** | سفارشی‌سازی کلیدبایندها شامل توالی chord | [ویژگی‌های پیشرفته](09-advanced-features/) |
 | **ابزار Monitor** | تماشای جریان stdout یک کامند پس‌زمینه و واکنش به رویدادها به جای polling (v2.1.98+) | [ویژگی‌های پیشرفته](09-advanced-features/) |
-| **حالت /goal** | ثبت یک شرط تکمیل سطح جلسه؛ Claude تا برآورده شدن آن به کار ادامه می‌دهد (v2.1.139+) | [اسلش کامندها](01-slash-commands/) |
+| **حالت /goal** | ثبت یک شرط تکمیل سطح جلسه؛ Claude تا برآورده شدن آن به کار ادامه می‌دهد (v2.1.139+) | [دستورهای اسلش](01-slash-commands/) |
 | **claude agents (نمای ایجنت)** | فهرست‌بندی، بررسی و از سرگیری ایجنت‌های پس‌زمینه از ترمینال؛ `--json` برای خروجی قابل‌خواندن توسط ماشین (v2.1.139+، `--json` در v2.1.145 اضافه شد) | [code.claude.com/docs/en/agent-view](https://code.claude.com/docs/en/agent-view) |
 | **/run, /verify, /run-skill-generator** | مهارت‌های بسته‌بندی‌شده برای راه‌اندازی پروژه، تأیید کارکرد رفع و تولید مهارت‌های run/verify خاص پروژه (v2.1.145+) | [راهنمای مهارت‌ها](03-skills/) |
 
 ---
-**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
-**نسخه Claude Code**: 2.1.302
+**آخرین به‌روزرسانی**: ۲۶ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.310
 **منابع**:
 - https://code.claude.com/docs/en/overview
 - https://code.claude.com/docs/en/changelog
@@ -266,4 +266,6 @@ graph TD
 - https://code.claude.com/docs/en/chrome
 - https://code.claude.com/docs/en/remote-control
 - https://code.claude.com/docs/en/code-review
+- https://code.claude.com/docs/en/scheduled-tasks
+- https://code.claude.com/docs/en/permission-modes#available-modes
 **مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

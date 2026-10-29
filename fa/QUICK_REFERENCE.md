@@ -226,8 +226,10 @@ claude --permission-mode auto -p "Refactor and test the auth module"
 
 ### یکپارچه‌سازی CI/CD
 ```bash
-# اجرا در حالت بدون رابط (غیرتعاملی)
-claude -p "Run all tests and generate report"
+# اجرا در حالت بدون رابط (غیرتعاملی). بدون حالت مجوز، ‏-p در Manual شروع می‌شود
+# (مقدار تنظیمات "default"، نسخه 2.1.302+): فراخوانی‌هایی که به تأیید نیاز دارند رد می‌شوند،
+# پس `--allowedTools "Bash(npm test *)"` یا `--permission-mode auto` را اضافه کنید
+claude -p "Run all tests and generate report" --permission-mode auto
 
 # با حالت مجوز برای CI
 claude -p "Run tests" --permission-mode dontAsk
@@ -409,7 +411,7 @@ claude --plugin-dir ./07-plugins/pr-review
 | **انتخاب مدل** | جابه‌جایی بین Fable 5.1، Fable 5، Opus 5.5، Opus 5، Sonnet 5.5، Sonnet 5، Sonnet 4.6، Opus 4.8، Haiku 5.5 و Haiku 4.5 | `/model` (`sonnet` روی API آنتروپیک به Sonnet 5.5 تبدیل می‌شود، v2.1.284+) — از v2.1.153 انتخاب به‌عنوان پیش‌فرض نشست‌های جدید ذخیره می‌شود؛ برای فقط-این-نشست `s` را بزنید |
 | **تیم‌های ایجنت** | هماهنگی چند ایجنت روی وظایف | فعال‌سازی با متغیر محیطی `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` (آزمایشی) |
 | **گردش کارهای پویا** *(v2.1.154)* | هماهنگ‌سازی چندایجنت قطعی؛ از v2.1.219 راهنمای اندازه پیش‌فرض متوسط است (هدف: کمتر از ۱۰ ایجنت) | `/workflows` برای مشاهده اجراها؛ از Claude بخواهید یکی بسازد؛ اندازه را با **Dynamic workflow size** در `/config` تغییر دهید |
-| **وظایف زمان‌بندی‌شده** | وظایف تکرارشونده با `/loop` | `/loop 5m /command` یا ابزار CronCreate |
+| **وظایف زمان‌بندی‌شده (محدود به نشست)** | وظایف تکرارشونده با `/loop` درون یک نشست | `/loop 5m /command` یا ابزار CronCreate |
 | **یکپارچه‌سازی Chrome** | خودکارسازی مرورگر | پرچم `--chrome` یا دستور `/chrome` |
 | **سفارشی‌سازی صفحه‌کلید** | کلیدهای میان‌بر سفارشی | دستور `/keybindings` |
 | **/usage-credits** | پیکربندی محدودیت‌های مصرف اضافی (در v2.1.144 از `/extra-usage` تغییر نام یافت؛ نام قدیمی هنوز به‌عنوان مستعار کار می‌کند) | `/usage-credits` |
@@ -417,8 +419,8 @@ claude --plugin-dir ./07-plugins/pr-review
 | **/verify** *(v2.1.145+)* | ساخت، اجرا و مشاهده اپ برای تأیید کارکرد یک اصلاح (از v2.1.215 فقط با فراخوانی صریح — Claude خودش آن را فعال نمی‌کند) | `/verify` |
 | **/run-skill-generator** *(v2.1.145+)* | آموزش `/run`/`/verify` برای رسیدگی به یک پروژه خاص | `/run-skill-generator` |
 | **اسکن خروجی زیرایجنت** *(v2.1.210+)* | گزارش‌های زیرایجنت را برای الگوهای تزریق پرامپت اسکن و خنثی می‌کند | به‌طور پیش‌فرض روشن، بدون امکان غیرفعال‌سازی |
-| **سقف WebSearch و محدودیت‌های انشعاب زیرایجنت** *(v2.1.212، تمدید در v2.1.219)* | ۲۰۰ فراخوانی WebSearch در هر نشست، با شارژ مجدد ۱۰۰ فراخوانی در ساعت در نشست‌های تعاملی از v2.1.290؛ سقف زیرایجنت هم‌زمان (پیش‌فرض ۲۰) در v2.1.217 اضافه شد؛ از v2.1.219 زیرایجنت‌ها می‌توانند زیرایجنت تودرتو تا **عمق ۳ به‌طور پیش‌فرض** بسازند (v2.1.217 تودرتویی را غیرفعال کرده بود). سقف ۲۰۰ زیرایجنت در هر نشست **در v2.1.224 حذف شد** — دیگر هیچ محدودیتی برای مجموع زیرایجنت‌ها در هر نشست وجود ندارد | `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` (پیش‌فرض ۲۰۰؛ `/clear` بازنشانی می‌کند)، `CLAUDE_CODE_WEB_SEARCH_REFILLS_PER_HOUR` (پیش‌فرض ۱۰۰ تعاملی، ۰ با `-p`)، `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` (پیش‌فرض ۲۰)، `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` (پیش‌فرض ۳؛ برای غیرفعال‌سازی ۱ بگذارید) |
-| **حالت صفحه‌خوان** *(v2.1.208)* | حالت رندر متن ساده برای صفحه‌خوان‌ها | پرچم `--ax-screen-reader`، `CLAUDE_AX_SCREEN_READER=1`، یا `"axScreenReader": true` در تنظیمات |
+| **سقف WebSearch و محدودیت‌های انشعاب زیرایجنت** *(v2.1.212، تمدید در v2.1.219)* | ۲۰۰ فراخوانی WebSearch در هر نشست (در هر نوبت با `-p` و Agent SDK)، با شارژ مجدد ۱۰۰ فراخوانی در ساعت در نشست‌های تعاملی از v2.1.290؛ سقف زیرایجنت هم‌زمان (پیش‌فرض ۲۰) در v2.1.217 اضافه شد؛ از v2.1.219 زیرایجنت‌ها می‌توانند زیرایجنت تودرتو تا **عمق ۳ به‌طور پیش‌فرض** بسازند (v2.1.217 تودرتویی را غیرفعال کرده بود). سقف ۲۰۰ زیرایجنت در هر نشست **در v2.1.224 حذف شد** — دیگر هیچ محدودیتی برای مجموع زیرایجنت‌ها در هر نشست وجود ندارد | `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION` (پیش‌فرض ۲۰۰؛ `/clear` بازنشانی می‌کند)، `CLAUDE_CODE_WEB_SEARCH_REFILLS_PER_HOUR` (پیش‌فرض ۱۰۰ تعاملی، ۰ با `-p`)، `CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS` (پیش‌فرض ۲۰)، `CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH` (پیش‌فرض ۳؛ برای غیرفعال‌سازی ۱ بگذارید) |
+| **حالت صفحه‌خوان** *(v2.1.208)* | حالت رندر متن ساده برای صفحه‌خوان‌ها | پرچم `--ax-screen-reader`، `CLAUDE_AX_SCREEN_READER=1` در شل شما، یا `"axScreenReader": true` در تنظیمات کاربر (`~/.claude/settings.json`)، تنظیمات مدیریت‌شده یا فایل `--settings` — از نسخه 2.1.305 در تنظیمات پروژه و محلی نادیده گرفته می‌شود |
 | **حالت محدود** *(v2.1.248+)* | ابزارهای داخلی اجرای دستور یا کد (مانند Bash و PowerShell) و WebFetch را حذف می‌کند، مگر اینکه `--tools` آن‌ها را جداگانه نام ببرد (نه از طریق پیش‌تنظیم `default`)؛ تنظیمات کاربر، پروژه و محلی را نادیده می‌گیرد (تنظیمات مدیریت‌شده و `--settings` همچنان اعمال می‌شوند)؛ ابزارهای فایل را به دایرکتوری‌های کاری محدود می‌کند؛ `bypassPermissions` و نشست‌های ابری را رد می‌کند | `claude --restricted`، یا `CLAUDE_CODE_RESTRICTED=1` |
 | **TTL کش زیرایجنت** *(v2.1.248+)* | فیلد frontmatter ایجنت `experimental.cacheTtl` تعیین می‌کند کش پرامپت زیرایجنت چقدر زنده بماند | `experimental:` با `cacheTtl: "5m"` (یا `"1h"`) را به frontmatter ایجنت اضافه کنید. [زیرایجنت‌ها](04-subagents/README.md) را ببینید |
 | **مدل اجباری زیرایجنت** *(v2.1.257+)* | `CLAUDE_CODE_SUBAGENT_MODEL_FORCE=1` باعث می‌شود `CLAUDE_CODE_SUBAGENT_MODEL` بر frontmatter ایجنت اولویت یابد. از v2.1.251 متغیر محیطی به‌طور پیش‌فرض برنده نیست — frontmatter (شامل `model: inherit`) اولویت دارد مگر اینکه این تنظیم شود | `CLAUDE_CODE_SUBAGENT_MODEL=sonnet CLAUDE_CODE_SUBAGENT_MODEL_FORCE=1 claude` |
@@ -524,8 +526,8 @@ echo $GITHUB_PERSONAL_ACCESS_TOKEN
 
 ---
 
-**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
-**نسخه Claude Code**: 2.1.302
+**آخرین به‌روزرسانی**: ۲۶ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.310
 **منابع**:
 - https://code.claude.com/docs/en/workflows#set-a-size-guideline
 - https://code.claude.com/docs/en/memory#agents-md
@@ -545,4 +547,10 @@ echo $GITHUB_PERSONAL_ACCESS_TOKEN
 - https://code.claude.com/docs/en/managed-settings
 - https://code.claude.com/docs/en/scheduled-tasks
 - https://code.claude.com/docs/en/code-review-local
+- https://code.claude.com/docs/en/changelog#2-1-307
+- https://code.claude.com/docs/en/settings-reference#axscreenreader
+- https://code.claude.com/docs/en/headless
+- https://code.claude.com/docs/en/permission-modes#tool-calls-denied-in-claude-p-and-agent-sdk-runs
+- https://code.claude.com/docs/en/tools-reference#session-search-limit
+- https://code.claude.com/docs/en/routines
 **مدل‌های سازگار**: Claude Fable 5.1, Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

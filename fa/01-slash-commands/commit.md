@@ -1,7 +1,7 @@
 ---
 allowed-tools: Bash(git add:*), Bash(git status:*), Bash(git commit:*), Bash(git diff:*)
-argument-hint: [پیام]
-description: ایجاد یک git commit با context
+argument-hint: [message]
+description: ایجاد یک git commit با زمینه
 ---
 
 ## Context
@@ -27,7 +27,7 @@ description: ایجاد یک git commit با context
 
 ---
 **آخرین به‌روزرسانی**: ۴ اوت ۲۰۲۶
-**نسخه کلود کد**: ۲.۱.۲۲۰
+**نسخه Claude Code**: ۲.۱.۲۲۰
 **منبع**:
 - https://code.claude.com/docs/en/commands
-**مدل‌های سازگ**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

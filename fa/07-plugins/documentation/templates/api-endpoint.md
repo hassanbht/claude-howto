@@ -63,9 +63,9 @@
 
 ## نمونه‌ها
 
-### curl
+### cURL
 ```bash
-curl -X METHOD https://api.example.com/api/v1/endpoint \
+curl -X GET "https://api.example.com/api/v1/endpoint" \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json"
 ```

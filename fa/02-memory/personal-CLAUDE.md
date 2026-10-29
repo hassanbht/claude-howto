@@ -28,7 +28,7 @@
 
 ## ترجیحات دیباگ
 - استفاده از console.log با پیشوند: `[DEBUG]`
-- شامل context: نام تابع، متغیرهای مرتبط
+- شامل زمینه: نام تابع، متغیرهای مرتبط
 - در صورت وجود از stack trace استفاده کنید
 - همیشه در لاگ‌ها timestamp قرار دهید
 
@@ -61,7 +61,7 @@ project/
 
 ---
 **آخرین به‌روزرسانی**: ۴ اوت ۲۰۲۶
-**نسخه کلود کد**: ۲.۱.۲۲۰
+**نسخه Claude Code**: ۲.۱.۲۲۰
 **منبع**:
 - https://code.claude.com/docs/en/memory
-**مدل‌های سازگ**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5
+**مدل‌های سازگار**: Claude Fable 5, Claude Opus 5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Opus 4.8, Claude Haiku 4.5

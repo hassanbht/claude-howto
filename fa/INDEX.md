@@ -377,7 +377,7 @@ documentation/
 | `planning-mode-examples.md` | نمونه‌های برنامه‌ریزی | REST API، مهاجرت پایگاه داده، ری‌فاکتور |
 | `setup-auto-mode-permissions.py` | مقدارگذاری اولیه `permissions.allow` برای حالت auto | خودتوان (idempotent)، `--dry-run` و پرچم‌های اختیاری |
 | جریان‌های کاری پویا | هماهنگ‌سازی قطعی چند‌ایجنتها از طریق `/workflows` (نسخه 2.1.154) | ممیزی جامع، مهاجرت، مقیاس‌پذیری |
-| وظایف زمان‌بندی‌شده | وظایف تکرارشونده با `/loop` و ابزارهای cron | جریان‌های کاری تکرارشونده خودکار |
+| وظایف زمان‌بندی‌شده | وظایف تکرارشوندهٔ محدود به نشست با `/loop` و ابزارهای cron | جریان‌های کاری تکرارشونده خودکار |
 | یکپارچه‌سازی Chrome | خودکارسازی مرورگر در Chrome خودتان از طریق افزونه Claude in Chrome | تست و استخراج داده وب |
 | کنترل از راه دور (گسترش‌یافته) | روش‌های اتصال، امنیت، جدول مقایسه، کارت‌های دستگاه | مدیریت نشست از راه دور (دیگر پیش‌نمایش پژوهشی نیست) |
 | پیام‌رسانی بین‌نشستی | `SendMessage` / `ListAgents`، شامل `notify_when_idle` (نسخه 2.1.236) | هماهنگ‌سازی نشست‌ها روی یک ماشین |
@@ -899,8 +899,8 @@ Run tests in background
 
 ---
 
-**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
-**نسخه Claude Code**: 2.1.302
+**آخرین به‌روزرسانی**: ۲۶ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.310
 **منابع**:
 - https://code.claude.com/docs/en/tools-reference#task-tool-availability
 - https://code.claude.com/docs/en/workflows#set-a-size-guideline
@@ -919,6 +919,9 @@ Run tests in background
 - https://code.claude.com/docs/en/checkpointing
 - https://code.claude.com/docs/en/remote-control
 - https://code.claude.com/docs/en/chrome
+- https://code.claude.com/docs/en/headless#auto-approve-tools
+- https://code.claude.com/docs/en/permission-modes#which-mode-a-non-interactive-run-starts-in
+- https://code.claude.com/docs/en/scheduled-tasks
 **مدل‌های سازگار**: Claude Fable 5، Claude Opus 5، Claude Sonnet 5، Claude Sonnet 4.6، Claude Opus 4.8، Claude Haiku 4.5
 **تعداد کل مثال‌ها**: بیش از ۱۰۰ فایل
 **دسته‌بندی‌ها**: ۱۰ ویژگی

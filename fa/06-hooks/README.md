@@ -61,7 +61,7 @@
 | `once` | اگر `true` باشد، هوک پس از نخستین اجرای موفق حذف می‌شود (اجراهای شکست‌خورده، مسدود یا مهلت‌گذشته آن را نگه می‌دارند). فقط در frontmatter مهارت؛ در تنظیمات و frontmatter ایجنت نادیده گرفته می‌شود | `true` |
 | `async` | اگر `true` باشد، در پس‌زمینه و بدون بلوکه کردن اجرا می‌شود | `true` |
 | `asyncRewake` | اگر `true` باشد، در پس‌زمینه اجرا می‌شود و در صورت کد خروج ۲، Claude را بیدار می‌کند. مستلزم `async` است. | `true` |
-| `shell` | `"bash"` یا `"powershell"` را می‌پذیرد. پیش‌فرض `"bash"` است، یا در Windows وقتی Git Bash نصب نباشد `"powershell"`. | `"bash"` |
+| `shell` | `"bash"` یا `"powershell"` را می‌پذیرد. پیش‌فرض `"bash"` است، یا در Windows وقتی Git Bash نصب نباشد `"powershell"`. کد خروج 2 یک هوک PowerShell فقط از v2.1.309 به بعد جلوی کار را می‌گیرد؛ پیش از تکیه بر یک هوک نگهبان PowerShell ارتقا دهید. | `"bash"` |
 | `statusMessage` | پیام چرخان سفارشی که هنگام اجرای هوک نمایش داده می‌شود | `"Formatting…"` |
 | `onFailure` | آنچه هنگام شکست یک هوک command یا HTTP با اقدام رخ می‌دهد (شروع نشدن، پایان مهلت، خروج با کد غیرمنتظره): `"continue"` (پیش‌فرض) یا `"block"` (نسخه 2.1.295 به بعد) | `"block"` |
 
@@ -330,10 +330,10 @@ Claude Code از **۳۳ رویداد هوک** پشتیبانی می‌کند:
   - `"allow"` پرامپت مجوز را رد می‌کند (به‌جز ابزارهایی که نیازمند تعامل کاربر هستند، و ابزارهای کانکتوری که سازمان شما روی `ask` گذاشته است)
   - `"deny"` از فراخوانی ابزار جلوگیری می‌کند
   - `"ask"` از کاربر می‌خواهد تأیید کند؛ پرامپت نام پلاگین یا مهارتی که هوک از آن آمده را نشان می‌دهد (نسخه 2.1.301)
-  - `"defer"` به‌صورت محترمانه خارج می‌شود تا ابزار بعداً از سر گرفته شود؛ برای این مقدار `permissionDecisionReason`، `updatedInput` و `additionalContext` همه نادیده گرفته می‌شوند
+  - `"defer"` نوبت را پایان می‌دهد تا ابزار بعداً از سر گرفته شود، و فقط در حالت غیرتعاملی با `-p` کار می‌کند (نشست‌های تعاملی هشدار ثبت و آن را نادیده می‌گیرند)؛ نتیجه `stop_reason: "tool_deferred"` را حمل می‌کند. برای این مقدار `permissionDecisionReason`، `updatedInput` و `additionalContext` همه نادیده گرفته می‌شوند
   - قواعد deny و ask بدون توجه به آنچه هوک برمی‌گرداند هنوز ارزیابی می‌شوند. وقتی چندین هوک `PreToolUse` اختلاف دارند، اولویت `deny` > `defer` > `ask` > `allow` است
 - `permissionDecisionReason`: توضیح تصمیم. برای `"ask"` به کاربر نمایش داده می‌شود (نه به Claude)؛ برای `"deny"` به Claude نمایش داده می‌شود؛ برای `"allow"` و `"defer"` فقط در لاگ اشکال‌زدایی نوشته می‌شود
-- `updatedInput`: ورودی جایگزین ابزار (کل شیء ورودی را جایگزین می‌کند). از نسخه 2.1.300 مانند ورودی خود Claude اعتبارسنجی می‌شود — کلیدهای ناشناخته حذف می‌شوند، و ورودی‌ای که ابزار رد کند باعث رد فراخوانی می‌شود.
+- `updatedInput`: ورودی جایگزین ابزار (کل شیء ورودی را جایگزین می‌کند). از نسخه 2.1.300 مانند ورودی خود Claude اعتبارسنجی می‌شود — کلیدهای ناشناخته حذف می‌شوند، و ورودی‌ای که ابزار رد کند باعث رد فراخوانی می‌شود. وقتی چند هوک `PreToolUse` برای یک فراخوانی `updatedInput` برمی‌گردانند، Claude Code بازنویسی‌ها را ادغام نمی‌کند و تضمین نمی‌کند ابزار با کدام‌یک اجرا شود، پس بگذارید فقط یک هوک ورودی یک ابزار را بازنویسی کند.
 
 ### PostToolUse
 
@@ -554,6 +554,7 @@ matcherهای به‌روزشده برای رویدادهای اعلان:
 - `agent_needs_input` - ایجنت پس‌زمینه نیازمند ورودی است (نسخه 2.1.198)
 - `agent_completed` - ایجنت پس‌زمینه تمام شد (نسخه 2.1.198)
 - `quota_auto_resume_fired` / `quota_auto_resume_stale` / `quota_auto_resume_disabled` - نتایج از سرگیری خودکار پس از محدودیت استفاده (نسخه 2.1.234)
+- `plugin_notification` - یک mod با `$.ui.notify` اعلانی فرستاد؛ `title` هوک نام آن mod است مگر اینکه mod خودش یکی تعیین کرده باشد
 
 ### PreModelSwitch
 
@@ -661,7 +662,7 @@ hooks:
 ---
 ```
 
-**رویدادهای پشتیبانی‌شده:** همه رویدادهای هوک. هوک‌های زیرایجنت فقط تا زمانی که زیرایجنت فعال است اجرا می‌شوند (`Stop` → `SubagentStop`)؛ هوک‌های مهارت هنگام فراخوانی مهارت ثبت می‌شوند و برای باقی نشست فعال می‌مانند.
+**رویدادهای پشتیبانی‌شده:** همه رویدادهای هوک. هوک‌های زیرایجنت فقط تا زمانی که زیرایجنت فعال است اجرا می‌شوند (`Stop` → `SubagentStop`)؛ هوک‌های مهارت هنگام فراخوانی مهارت ثبت می‌شوند و برای باقی نشست فعال می‌مانند. از v2.1.304، مهارت‌های یک منبع (پروژه‌ی شما، پوشه مهارت‌های شخصی شما یا یک پلاگین) حداکثر ۱٬۰۲۴ هوک و ۱۶٬۳۸۴ کاراکتر matcher در هر نشست ثبت می‌کنند؛ مهارت فراتر از این حد هیچ‌یک از هوک‌هایش را ثبت نمی‌کند (در لاگ `claude --debug` عبارت `registers none of its hooks` را جست‌وجو کنید).
 
 این اجازه می‌دهد هوک‌ها را مستقیماً در کامپوننتی که از آن‌ها استفاده می‌کند تعریف کنید و کد مرتبط را کنار هم نگه دارید.
 
@@ -1648,8 +1649,8 @@ chmod +x ~/.claude/hooks/*.sh
 
 ---
 
-**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
-**نسخه Claude Code**: 2.1.302
+**آخرین به‌روزرسانی**: ۲۶ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.310
 **منابع**:
 - https://code.claude.com/docs/en/hooks
 - https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md
@@ -1666,4 +1667,11 @@ chmod +x ~/.claude/hooks/*.sh
 - https://code.claude.com/docs/en/changelog#2-1-300
 - https://code.claude.com/docs/en/changelog#2-1-301
 - https://code.claude.com/docs/en/changelog#2-1-302
+- https://code.claude.com/docs/en/hooks#defer-a-tool-call-for-later
+- https://code.claude.com/docs/en/hooks-guide#limitations
+- https://code.claude.com/docs/en/hooks#notification
+- https://code.claude.com/docs/en/changelog#2-1-304
+- https://code.claude.com/docs/en/hooks#limits-on-skill-hooks
+- https://code.claude.com/docs/en/changelog#2-1-309
+- https://code.claude.com/docs/en/hooks#failed-hooks-on-windows-without-git-bash
 **مدل‌های سازگار**: Claude Fable 5، Claude Opus 5، Claude Sonnet 5، Claude Sonnet 4.6، Claude Opus 4.8، Claude Haiku 4.5

@@ -261,7 +261,7 @@ sequenceDiagram
 
 ## جست‌وجوی ابزار MCP
 
-جست‌وجوی ابزار به‌طور پیش‌فرض فعال است: ابزارهای MCP به تعویق می‌افتند و در صورت نیاز کشف می‌شوند، بنابراین تعریف‌های آن‌ها زمینهٔ مدل را پر نمی‌کند. Claude Code آن را زمانی خاموش می‌کند که `ANTHROPIC_BASE_URL` به میزبانی غیر از طرف اول اشاره کند، چون بیشتر پروکسی‌ها بلوک‌هایی را که نیاز دارد منتقل نمی‌کنند.
+جست‌وجوی ابزار به‌طور پیش‌فرض فعال است: ابزارهای MCP به تعویق می‌افتند و در صورت نیاز کشف می‌شوند، بنابراین تعریف‌های آن‌ها زمینهٔ مدل را پر نمی‌کند. از v2.1.304 پشت یک دروازهٔ سفارشی `ANTHROPIC_BASE_URL` نیز روشن می‌ماند؛ آن دروازه باید فیلدهای ابزار `defer_loading` و بلوک‌های `tool_reference` را منتقل کند. از v2.1.305، Claude Code درخواستی را که دروازه با 400 یا 422 رد کند بدون جست‌وجوی ابزار دوباره تلاش می‌کند. برای بارگذاری همهٔ ابزارها از ابتدا و رد نکردن آن درخواست‌ها، `ENABLE_TOOL_SEARCH=false` را تنظیم کنید. پیش از v2.1.304، جست‌وجوی ابزار پشت یک دروازه خاموش بود مگر اینکه `ENABLE_TOOL_SEARCH` روی `true`، `auto` یا `auto:N` باشد.
 
 | تنظیم | مقدار | توضیح |
 |---------|-------|-------------|
@@ -301,6 +301,8 @@ sequenceDiagram
 یک ابزار را با تنظیم `"anthropic/alwaysLoad"` در شیء
 `_meta` آن ابزار علامت می‌زنند و تنظیم `alwaysLoad` در سطح سرور در
 پیکربندی شما می‌تواند آن را بازنویسی کند.
+
+نویسندگان سرور: ابزارهایی را که فراخوانی دوباره‌شان ایمن است، با حاشیه‌نویسی `idempotentHint` یا `readOnlyHint` در ورودی `tools/list` آن‌ها علامت بزنید. از v2.1.307، Claude Code فراخوانی‌ای را که هنگام بسته شدن یک اتصال HTTP یا کانکتور claude.ai در انتظار بود فقط برای همان ابزارها تکرار می‌کند؛ فراخوانی‌های دیگر با `connection closed before the tool call was answered` شکست می‌خورند.
 
 ## به‌روزرسانی‌های پویای ابزار
 
@@ -824,6 +826,8 @@ claude mcp add --transport stdio claude-agent -- claude mcp serve
 
 هر کاربری روی دستگاه می‌تواند این فایل را بخواند، بنابراین هرگز اعتبارنامه‌ها را در بلوک `env` قرار ندهید. به‌جای آن از بسط `${VAR}`، OAuth یا `headersHelper` استفاده کنید.
 
+> **نکته (v2.1.305):** سرورهای داخل `managed-mcp.json` به مدخل `allowedMcpServers` نیازی ندارند. فهرست مجاز یک سرور مدیریت‌شده را فقط وقتی بررسی می‌کند که از بسط `${VAR}` در بیرون `env` استفاده کند؛ پیش از v2.1.305 سرورهایی را هم بررسی می‌کرد که `${VAR}` را فقط در `env` به کار می‌بردند. اگر برای خاموش نگه‌داشتن چنین سروری به `allowedMcpServers` تکیه کرده بودید، حالا پس از ارتقا بدون هیچ پرسشی بارگذاری می‌شود؛ به‌جایش برای آن یک مدخل `deniedMcpServers` اضافه کنید.
+
 **فیلترکردن: فهرست‌های مجاز و مسدود**
 
 `allowedMcpServers`، `deniedMcpServers` و `allowAllClaudeAiMcps` **کلیدهای تنظیمات هستند، نه فیلدهای `managed-mcp.json`**. آن‌ها را در یک منبع تنظیمات مدیریت‌شده قرار دهید — تنظیمات مدیریت‌شده توسط سرور، `managed-settings.json`، یک پروفایل MDM یا رجیستری — تا قابل اعمال باشند:
@@ -927,6 +931,12 @@ export MAX_MCP_OUTPUT_TOKENS=50000
 # تغییر آستانه انتقال خودکار به پس‌زمینه به ۵ دقیقه (۳۰۰٬۰۰۰ میلی‌ثانیه)
 export CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS=300000
 ```
+
+آن را روی `0` بگذارید تا انتقال خودکار به پس‌زمینه خاموش شود؛ `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1` آن را همراه با فرمان‌های پس‌زمینه و زیرایجنت‌های پس‌زمینه خاموش می‌کند. برای محدودکردن مدت اجرای یک فراخوانی، یک `timeout` به میلی‌ثانیه در هر سرور اضافه کنید (یک حد سخت زمانی واقعی) یا `MCP_TOOL_TIMEOUT` را برای همهٔ سرورها تنظیم کنید (پیش‌فرض حدود ۲۸ ساعت).
+
+### MCP Tasks (بتای عمومی، v2.1.304+)
+
+سروری که افزونهٔ tasks در MCP را پشتیبانی می‌کند می‌تواند یک کار طولانی را خودش اجرا کند: فراخوانی ابزار Claude به‌محض پذیرش کار توسط سرور برمی‌گردد، پانوشت شمارشی مثل `1 MCP task` نشان می‌دهد و Claude با پایان کار نتیجه را می‌گیرد. با `x` در `/tasks` یکی را متوقف کنید. یک task روی سرور دوردست پس از خروج شما هم ادامه می‌یابد؛ همان نشست را ازسرگیری کنید تا دوباره آن را دنبال کنید. Tasks به بازبینی پروتکل 2026-07-28، واکشی با feature-flag (پس نه Bedrock، Vertex، Foundry یا تلمتری خاموش) و یک نشست ترمینال CLI، Agent SDK یا GitHub Actions نیاز دارند. یک اجرای غیرتعاملی آن‌ها را فقط از Agent SDK یا `claude -p --input-format stream-json` می‌گیرد، و هر کدام `CLAUDE_AUTO_BACKGROUND_TASKS=1` لازم دارند (یک `claude -p \"<prompt>\"` ساده آن‌ها را نمی‌گیرد). VS Code و اپ دسکتاپ آن‌ها را نمی‌گیرند، و فراخوانی‌های زیرایجنت‌ها هرگز task نمی‌شوند. برای اینکه Claude منتظر نتیجهٔ یک task بماند، `CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND=1` را تنظیم کنید (یا `CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS=0` برای منتظرماندن روی هر فراخوانی MCP).
 
 ## حل تورم زمینه با اجرای کد
 
@@ -1166,11 +1176,11 @@ MCPorter رویکرد اجرای کد که در بالا توضیح داده ش�
 
 ### بهترین شیوه‌های پیکربندی
 
-۱. **کنترل نسخه**: `.mcp.json` را در git نگه دارید اما برای اسرار از متغیرهای محیطی استفاده کنید
-۲. **کمترین امتیاز**: برای هر سرور MCP حداقل مجوزهای لازم را اعطا کنید
-۳. **جداسازی**: در صورت امکان سرورهای MCP مختلف را در فرایندهای جداگانه اجرا کنید
-۴. **پایش**: همه درخواست‌ها و خطاهای MCP را برای ردپای حسابرسی ثبت کنید
-۵. **آزمایش**: همه پیکربندی‌های MCP را پیش از استقرار در محیط عملیاتی آزمایش کنید
+1. **کنترل نسخه**: `.mcp.json` را در git نگه دارید اما برای اسرار از متغیرهای محیطی استفاده کنید
+2. **کمترین امتیاز**: برای هر سرور MCP حداقل مجوزهای لازم را اعطا کنید
+3. **جداسازی**: در صورت امکان سرورهای MCP مختلف را در فرایندهای جداگانه اجرا کنید
+4. **پایش**: همه درخواست‌ها و خطاهای MCP را برای ردپای حسابرسی ثبت کنید
+5. **آزمایش**: همه پیکربندی‌های MCP را پیش از استقرار در محیط عملیاتی آزمایش کنید
 
 ### نکات کارایی
 
@@ -1189,7 +1199,7 @@ MCPorter رویکرد اجرای کد که در بالا توضیح داده ش�
 
 ### راه‌اندازی گام‌به‌گام
 
-۱. **نخستین سرور MCP خود را اضافه کنید** با استفاده از CLI (مثال: GitHub):
+1. **نخستین سرور MCP خود را اضافه کنید** با استفاده از CLI (مثال: GitHub):
 ```bash
 claude mcp add --transport http github https://api.githubcopilot.com/mcp/ --header "Authorization: Bearer YOUR_GITHUB_PAT"
 ```
@@ -1209,17 +1219,17 @@ claude mcp add --transport http github https://api.githubcopilot.com/mcp/ --head
 }
 ```
 
-۲. **متغیرهای محیطی را تنظیم کنید:**
+2. **متغیرهای محیطی را تنظیم کنید:**
 ```bash
 export GITHUB_PERSONAL_ACCESS_TOKEN="your_github_personal_access_token"
 ```
 
-۳. **اتصال را آزمایش کنید:**
+3. **اتصال را آزمایش کنید:**
 ```bash
 claude /mcp
 ```
 
-۴. **از ابزارهای MCP استفاده کنید:**
+4. **از ابزارهای MCP استفاده کنید:**
 ```bash
 /mcp__github__list_prs
 /mcp__github__create_issue "Title" "Description"
@@ -1314,7 +1324,7 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="your_token"
 - اتصال شبکه را بررسی کنید: `ping api.github.com`
 - بررسی کنید که نقطه پایانی API در دسترس باشد
 - محدودیت‌های نرخ API را بررسی کنید
-- افزایش زمان انتظار در پیکربندی را امتحان کنید
+- `timeout` سرور (به میلی‌ثانیه) را در مدخل پیکربندی آن بالا ببرید، یا `MCP_TOOL_TIMEOUT` را برای همهٔ سرورها
 - مشکلات فایروال یا پروکسی را بررسی کنید
 
 ### کرش سرور MCP
@@ -1347,13 +1357,13 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="your_token"
 - [سرورهای MCP موجود](https://github.com/modelcontextprotocol/servers)
 - [MCPorter](https://github.com/steipete/mcporter) — رانتایم TypeScript و CLI برای فراخوانی سرورهای MCP بدون کد تکراری
 - [اجرای کد با MCP](https://www.anthropic.com/engineering/code-execution-with-mcp) — وبلاگ مهندسی Anthropic درباره حل تورم زمینه
-- [مرجع CLI کلود کد](https://code.claude.com/docs/en/cli-reference)
+- [مرجع CLI Claude Code](https://code.claude.com/docs/en/cli-reference)
 - [مستندات Claude API](https://docs.anthropic.com)
 
 ---
 
-**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
-**نسخه کلود کد**: 2.1.302
+**آخرین به‌روزرسانی**: ۲۶ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.310
 **منابع**:
 - https://code.claude.com/docs/en/mcp
 - https://code.claude.com/docs/en/managed-mcp
@@ -1369,4 +1379,15 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="your_token"
 - https://code.claude.com/docs/en/mcp#tool-search-for-mcp-server-authors
 - https://code.claude.com/docs/en/mcp#environment-variable-expansion-in-mcp-json
 - https://code.claude.com/docs/en/sub-agents
+- https://code.claude.com/docs/en/changelog#2-1-304
+- https://code.claude.com/docs/en/changelog#2-1-305
+- https://code.claude.com/docs/en/mcp#tool-search-through-an-llm-gateway
+- https://code.claude.com/docs/en/managed-mcp#how-allowlists-and-denylists-apply-to-the-managed-set
+- https://code.claude.com/docs/en/mcp#mcp-tasks-that-run-on-the-server
+- https://code.claude.com/docs/en/mcp#what-a-call-needs-to-become-an-mcp-task
+- https://code.claude.com/docs/en/mcp#make-claude-wait-for-the-result-of-an-mcp-task
+- https://code.claude.com/docs/en/mcp#automatic-backgrounding-of-long-tool-calls
+- https://code.claude.com/docs/en/mcp#time-limits-on-mcp-tool-calls
+- https://code.claude.com/docs/en/changelog#2-1-307
+- https://code.claude.com/docs/en/mcp#mark-tools-that-are-safe-to-call-twice
 **مدل‌های سازگار**: Claude Fable 5، Claude Opus 5، Claude Sonnet 5، Claude Sonnet 4.6، Claude Opus 4.8، Claude Haiku 4.5

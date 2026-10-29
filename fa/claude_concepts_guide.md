@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="../../resources/logos/claude-howto-logo-dark.svg">
-  <img alt="Claude How To" src="../../resources/logos/claude-howto-logo.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="../resources/logos/claude-howto-logo-dark.svg">
+  <img alt="Claude How To" src="../resources/logos/claude-howto-logo.svg">
 </picture>
 
 # راهنمای کامل مفاهیم Claude
@@ -560,7 +560,7 @@ Claude Code مهارت‌های همراهی را شامل می‌شود که ا
 | مهارت | دستور | کاربرد |
 |-------|---------|---------|
 | **Batch** | `/batch` | اجرای عملیات روی چندین فایل یا آیتم |
-| **Claude API** | `/claude-api` | بارگذاری مواد مرجع Claude API و Managed Agents برای زبان پروژه شما؛ زمانی که کد شما `anthropic` یا `@anthropic-ai/sdk` را import کند به‌طور خودکار فعال می‌شود |
+| **Claude API** | `/claude-api` | بارگذاری مواد مرجع Claude API و Managed Agents برای زبان پروژه شما؛ زمانی که کد شما `anthropic` یا `@anthropic-ai/sdk` را import کند به‌طور خودکار فعال می‌شود. زیردستورها شامل `api-version` (نسخه 2.1.307) و `managed-agents-secure` (نسخه 2.1.304) است |
 | **Code Review** | `/code-review` | بررسی diff فعلی از نظر باگ‌های صحت در سطح تلاش انتخابی. مهارتی متمایز از `/simplify` (پاک‌سازی کیفیت/استفاده مجدد) که در v2.1.154 دوباره جدا شد. Claude از v2.1.246 در همه‌جا می‌تواند خودش آن را شروع کند |
 | **Simplify** | `/simplify` | بررسی کیفیت، استفاده مجدد و پاک‌سازی — از v2.1.154 دوباره متمایز از `/code-review` |
 | **Debug** | `/debug` | روشن کردن گزارش اشکال‌زدایی برای نشست فعلی و عیب‌یابی با خواندن گزارش اشکال‌زدایی نشست |
@@ -1230,12 +1230,12 @@ Esc + Esc
 ```
 
 وقتی چک‌پوینتی را انتخاب می‌کنید، از میان شش گزینه یکی را برمی‌گزینید:
-۱. **بازیابی کد و گفتگو** -- بازگرداندن هر دو به آن نقطه
-۲. **بازیابی گفتگو** -- بازگرداندن پیام‌ها و نگه‌داشتن کد فعلی
-۳. **بازیابی کد** -- بازگرداندن فایل‌ها و نگه‌داشتن گفتگو
-۴. **خلاصه‌سازی از اینجا** -- فشرده‌کردن گفتگو در یک خلاصه
-۵. **خلاصه‌سازی تا اینجا** -- فشرده‌کردن همهٔ پیش از این نقطه در یک خلاصه
-۶. **بی‌خیال** -- انصراف
+1. **بازیابی کد و گفتگو** -- بازگرداندن هر دو به آن نقطه
+2. **بازیابی گفتگو** -- بازگرداندن پیام‌ها و نگه‌داشتن کد فعلی
+3. **بازیابی کد** -- بازگرداندن فایل‌ها و نگه‌داشتن گفتگو
+4. **خلاصه‌سازی از اینجا** -- فشرده‌کردن گفتگو در یک خلاصه
+5. **خلاصه‌سازی تا اینجا** -- فشرده‌کردن همهٔ پیش از این نقطه در یک خلاصه
+6. **بی‌خیال** -- انصراف
 
 ### موارد استفاده
 
@@ -1337,7 +1337,7 @@ Claude Code را با استفاده از پرچم `-p` (چاپ) و بدون و�
 **استفاده:**
 ```bash
 # اجرای وظیفهٔ مشخص
-claude -p "Run all tests"
+claude -p "Run all tests" --permission-mode auto
 
 # انتقال ورودی برای تحلیل
 cat error.log | claude -p "explain this error"
@@ -1352,7 +1352,7 @@ claude -p --output-format json "list all functions in src/"
 
 ### وظایف زمان‌بندی‌شده
 
-وظایف را با استفاده از دستور `/loop` طبق یک زمان‌بندی تکرارشونده اجرا کنید.
+وظایف محدود به نشست را با استفاده از دستور `/loop` طبق یک زمان‌بندی تکرارشونده اجرا کنید. برای زمان‌بندی‌هایی که از نشست فراتر می‌روند، از وظایف زمان‌بندی‌شدهٔ ابری (سابقاً routines) با `/schedule` یا وظایف زمان‌بندی‌شدهٔ دسکتاپ استفاده کنید.
 
 **کاربرد:**
 ```bash
@@ -1365,7 +1365,7 @@ claude -p --output-format json "list all functions in src/"
 
 ### یکپارچه‌سازی با کروم
 
-کلود کد می‌تواند برای وظایف خودکارسازی وب با مرورگر کروم یکپارچه شود. این امکان قابلیت‌هایی مانند پیمایش در صفحات وب، پر کردن فرم‌ها، گرفتن اسکرین‌شات و استخراج داده از وب‌سایت‌ها را مستقیماً درون گردش‌کار توسعه شما فراهم می‌کند.
+Claude Code می‌تواند برای وظایف خودکارسازی وب با مرورگر کروم یکپارچه شود. این امکان قابلیت‌هایی مانند پیمایش در صفحات وب، پر کردن فرم‌ها، گرفتن اسکرین‌شات و استخراج داده از وب‌سایت‌ها را مستقیماً درون گردش‌کار توسعه شما فراهم می‌کند.
 
 ### مدیریت نشست
 
@@ -1412,14 +1412,14 @@ claude -r "Feature"    # ادامه نشست بر اساس نام/شناسه
 
 ## مدل‌ها و سطح تلاش استدلال
 
-کلود کد از مدل‌های زیر با تلاش استدلال تطبیقی پشتیبانی می‌کند:
+Claude Code از مدل‌های زیر با تلاش استدلال تطبیقی پشتیبانی می‌کند:
 
-| مدل | پنجره زمینه | سطوح تلاش | تلاش پیش‌فرض (کلود کد) |
+| مدل | پنجره زمینه | سطوح تلاش | تلاش پیش‌فرض (Claude Code) |
 |-------|----------------|---------------|------------------------------|
-| Claude Opus 5.5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `medium` — مدل پیش‌فرض و مدل پیش‌فرض Opus از نسخه v2.1.280 (نیازمند کلود کد v2.1.280+) |
-| Claude Sonnet 5.5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `medium` — مدل پیش‌فرض Sonnet در API آنتروپیک از نسخه v2.1.284 (نیازمند کلود کد v2.1.284+) |
-| Claude Haiku 5.5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `medium` — مدل پیش‌فرض Haiku در API آنتروپیک از نسخه v2.1.293 (نیازمند کلود کد v2.1.293+) |
-| Claude Opus 5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `high` — مدل پیش‌فرض Opus از v2.1.219 تا v2.1.280 (نیازمند کلود کد v2.1.219+) |
+| Claude Opus 5.5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `medium` — مدل پیش‌فرض و مدل پیش‌فرض Opus از نسخه v2.1.280 (نیازمند Claude Code v2.1.280+) |
+| Claude Sonnet 5.5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `medium` — مدل پیش‌فرض Sonnet در API آنتروپیک از نسخه v2.1.284 (نیازمند Claude Code v2.1.284+) |
+| Claude Haiku 5.5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `medium` — مدل پیش‌فرض Haiku در API آنتروپیک از نسخه v2.1.293 (نیازمند Claude Code v2.1.293+) |
+| Claude Opus 5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `high` — مدل پیش‌فرض Opus از v2.1.219 تا v2.1.280 (نیازمند Claude Code v2.1.219+) |
 | Claude Sonnet 5 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `high` — مدل پیش‌فرض برای Pro/Team Standard از v2.1.197 تا v2.1.280 (اکنون Opus 5.5) |
 | Claude Opus 4.8 | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `high` (از v2.1.154) |
 | Claude Opus 4.7 (قدیمی) | ۱ میلیون توکن (بومی) | `low`, `medium`, `high`, `xhigh`, `max` | `xhigh` (از زمان عرضه Opus 4.7، 2026-04-16) |
@@ -1434,14 +1434,14 @@ claude -r "Feature"    # ادامه نشست بر اساس نام/شناسه
 
 ## منابع
 
-- [مستندات کلود کد](https://code.claude.com/docs/en/overview)
-- [تغییرات نسخه‌های کلود کد](https://code.claude.com/docs/en/changelog)
+- [مستندات Claude Code](https://code.claude.com/docs/en/overview)
+- [تغییرات نسخه‌های Claude Code](https://code.claude.com/docs/en/changelog)
 - [سرورهای MCP گیت‌هاب](https://github.com/modelcontextprotocol/servers)
 - [کتاب آشپزی آنتروپیک](https://github.com/anthropics/anthropic-cookbook)
 
 ---
-**آخرین به‌روزرسانی**: ۱۸ اکتبر ۲۰۲۶
-**نسخه کلود کد**: 2.1.302
+**آخرین به‌روزرسانی**: ۲۶ اکتبر ۲۰۲۶
+**نسخه Claude Code**: 2.1.310
 **منابع**:
 - https://code.claude.com/docs/en/plugins/manifest-reference
 - https://code.claude.com/docs/en/plugins/create
@@ -1462,4 +1462,10 @@ claude -r "Feature"    # ادامه نشست بر اساس نام/شناسه
 - https://code.claude.com/docs/en/commands
 - https://code.claude.com/docs/en/remote-control
 - https://code.claude.com/docs/en/hooks#userpromptexpansion
+- https://code.claude.com/docs/en/headless#auto-approve-tools
+- https://code.claude.com/docs/en/permission-modes#which-mode-a-non-interactive-run-starts-in
+- https://code.claude.com/docs/en/routines
+- https://code.claude.com/docs/en/scheduled-tasks
+- https://code.claude.com/docs/en/changelog#2-1-307
+- https://code.claude.com/docs/en/skills#work-on-claude-api-projects
 **مدل‌های سازگار**: Claude Fable 5.1، Claude Fable 5، Claude Opus 5، Claude Sonnet 5، Claude Sonnet 4.6، Claude Opus 4.8، Claude Haiku 4.5
