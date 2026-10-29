@@ -101,3 +101,6 @@ scripts/.vendor-cache/
 .asm-improver/
 .gitissue/
 .idd/
+
+# Personal Claude Code instructions (learners and contributors)
+CLAUDE.local.md
