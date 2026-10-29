@@ -157,7 +157,7 @@ claude -p "list todos" | grep "URGENT"
 | `--model` | تعیین مدل (sonnet، opus، haiku یا نام کامل) | `claude --model opus` |
 | `--fallback-model` | جایگزینی خودکار مدل وقتی مدل اصلی بیش‌بار یا در دسترس نباشد؛ تا سه مدل را از طریق تنظیم `fallbackModel` پیکربندی کنید. از نسخه 2.1.166 روی نشست‌های تعاملی هم اعمال می‌شود (پیش‌تر فقط حالت چاپ) | `claude -p --fallback-model sonnet "query"` |
 | `--agent` | تعیین ایجنت برای نشست | `claude --agent my-custom-agent` |
-| `--agents` | تعریف زیرایجنت‌های سفارشی از طریق JSON | به [پیکربندی ایجنت‌ها](#پیکربندی-ایجنتها) مراجعه کنید |
+| `--agents` | تعریف زیرایجنت‌های سفارشی از طریق JSON | به [پیکربندی ایجنت‌ها](#پیکربندی-ایجنت‌ها) مراجعه کنید |
 | `--effort` | تعیین سطح تلاش (low، medium، high، xhigh، max) | `claude --effort xhigh` |
 
 ### مثال‌های انتخاب مدل
